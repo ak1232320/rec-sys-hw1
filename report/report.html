@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>A01 report — Aleksei Kosychev</title><style>
+@page { size: A4; margin: 18mm 17mm 16mm 17mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; line-height: 1.32; color: #111; }
+h1 { font-size: 16.5pt; text-align: center; margin: 0 0 6px; line-height: 1.2; }
+.meta { text-align: center; font-style: italic; font-size: 9.5pt; margin-bottom: 10px; }
+h2 { font-size: 12pt; margin: 12px 0 4px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+p { margin: 3px 0 5px; text-align: justify; }
+ul { margin: 2px 0 5px; padding-left: 18px; }
+li { margin: 1px 0; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.8pt; background: #f2f4f7; padding: 0 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4px 0 8px; }
+th, td { border: 1px solid #8fa3bf; padding: 2px 5px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+.fig { text-align: center; margin: 6px 0; page-break-inside: avoid; }
+.fig img { width: 44%; margin: 0 1.5%; border: 1px solid #ccc; }
+.fig p { text-align: center; font-size: 9pt; }
+.todo { background: #fff3a8; font-style: italic; }
+</style></head>
+<body><h1>Why Lunch Icons Disappear: Debugging Hallucinated Font Awesome Classes in an AI-Generated Web App</h1>
+<div class="meta">
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: Individual<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-09-16<br>
+Assignment: A01 — Random Lunch Generator, web app scaffold (Week 1)
+</div>
+
+<h2>Abstract</h2>
+<p>The course starter app "Random Lunch Generator" sometimes shows a dish name with an empty box
+instead of its icon. I traced the bug in the given prompt and code and found that 3 of the 12 menu
+items use Font Awesome class names (<code>fa-bowl-hot</code>, <code>fa-pasta</code>, <code>fa-bowl</code>) that do not exist in the
+loaded Font Awesome 6.4.0 Free stylesheet. A headless Chrome test showed 9/12 icons rendered before the fix
+and 12/12 after it, and the blank rate over 10,000 simulated clicks dropped from 24.9% (theory: 3/12 = 25%) to 0%.
+The takeaway is that LLM-written code can use icon names that look real but are not in the library, and "sometimes" bugs
+in random apps are often a fixed defect hit with some probability.</p>
+<p><em>Index Terms</em> — AI-assisted debugging, Font Awesome, hallucinated API, prompt correction, web app</p>
+<h2>1. Introduction</h2>
+<p><strong>Problem statement.</strong> The Week 1 homework provides a prompt (<code>week1/prompt.md</code>) and the resulting
+single-file app (<code>week1/index.html</code>) from the course repository [1]. The TODO on the lecture slide is to
+understand and fix "the issue of images sometimes not displaying". The instructor asked us to fix the
+given code and prompt, not to write a new version from scratch.</p>
+<p><strong>Motivation.</strong> This app is the base for later assignments ("random → AI-personalized"), so a
+visual defect would carry over. The exercise also trains a team skill: reading someone else's
+AI-generated prompt and code and finding where the AI was wrong.</p>
+<p><strong>Concrete example.</strong> Click "Generate Lunch!" → the random pick is Ramen → the card shows the text
+"Ramen" above an empty grey area (Fig. 1, left). Clicking again → Pizza → the icon is shown normally.</p>
+<p><strong>Contributions.</strong></p>
+<ul>
+<li>Root cause with evidence: three non-existent icon classes, which give a blank icon with probability 3/12.</li>
+<li>A minimal fix to the given <code>index.html</code> and <code>prompt.md</code> (diffs in the repository), checked with an automated browser test.</li>
+</ul>
+<h2>2. Related Work</h2>
+<p>References used (full list at the end): the course starter repository [1]; the exact
+Font Awesome 6.4.0 stylesheet the app loads [2]; the Font Awesome icon search with the Free filter [3];
+MDN documentation of <code>getComputedStyle</code> and <code>::before</code> [4], [5]; Playwright for Python [6].</p>
+<p><strong>Alternatives considered.</strong></p>
+<ul>
+<li><em>Emoji instead of icons</em> — no external dependency, but this means redesigning the given app rather than fixing it.</li>
+<li><em>Local image files (<code>assets/food-icons/</code>, as the README suggests)</em> — full control, but the images do not exist and would have to be created; out of scope.</li>
+<li><em>Self-hosting Font Awesome</em> — avoids CDN outages, but does not fix wrong class names by itself.</li>
+</ul>
+<h2>3. Method</h2>
+<p><strong>Approach.</strong> I did not rewrite the app. I (i) read the prompt and code to find how an icon gets to
+the screen, (ii) checked every class name used against the stylesheet that the page actually loads, (iii) measured
+rendering in a real browser, and (iv) applied the smallest change to the code and to the prompt that removes
+the cause, plus a safety fallback.</p>
+<p><strong>Pipeline.</strong> <code>lunchMenu[i].icon</code> (string) → <code>innerHTML = &lt;i class="fas fa-…"&gt;</code> →
+Font Awesome CSS rule <code>.fa-…:before { content: "\fXXX" }</code> → glyph from the webfont.
+If no CSS rule matches, <code>::before</code> has <code>content: none</code>, the <code>&lt;i&gt;</code> has 0 px width and nothing is drawn — and there is no error
+in the console. This is why the bug is silent.</p>
+<p><strong>Tools &amp; libraries.</strong> Font Awesome Free 6.4.0 via cdnjs [2]; Google Chrome 152.0.7977.84 (headless);
+Playwright for Python 1.58.0 [6]; Python 3.12; Claude Code 2.1.273 (VS Code extension) with Claude Opus 5.</p>
+<p><strong>Key design decisions.</strong></p>
+<ul>
+<li><em>Replace the class names, keep the design.</em> Ramen → <code>fa-bowl-rice</code>, Pasta → <code>fa-plate-wheat</code>,
+  Soup → <code>fa-bowl-food</code>. All three exist in 6.4.0 Free. Font Awesome has no noodle or pasta icon, so these are the closest existing ones.</li>
+<li><em>Add a runtime fallback.</em> After an icon is inserted, the page checks <code>getComputedStyle(icon, '::before').content</code> [4];
+  if it is <code>none</code>, it shows <code>fa-utensils</code>. A future wrong name then shows a generic icon, not a blank box.</li>
+<li><em>Fix the prompt, not only the code.</em> The prompt never fixed the icon library version and never asked to check
+  that icons exist, so a new generation could bring the bug back. The corrected <code>prompt.md</code> fixes Font Awesome 6.4.0 Free,
+  asks for a table of icon classes checked against the CSS, requires the fallback, and makes the README match the real
+  single-file structure (it listed <code>style.css</code>, <code>script.js</code>, <code>assets/</code> and <code>LICENSE.md</code>, none of which exist).</li>
+<li><em>Old names left as they are:</em> <code>fa-hamburger</code> and <code>fa-random</code> are Font Awesome 5 names, but 6.4.0 still defines them as aliases
+  (<code>.fa-burger:before,.fa-hamburger:before</code> in [2]), so they render and I did not change them.</li>
+<li><em>Secondary fix:</em> <code>clearTimeout</code> of the pending timer, so a fast second click does not briefly show the old result.</li>
+</ul>
+<p><strong>Configuration.</strong> Test viewport 600×700; wait 1100 ms per pick (500 ms delay + 500 ms fade-in);
+item <em>i</em> is forced by replacing <code>Math.random</code> with <code>() =&gt; (i + 0.5) / 12</code>; Monte-Carlo seed 42, 10,000 clicks.
+Command: <code>python tests/check_icons.py</code>.</p>
+<h2>4. Experiments</h2>
+<p><strong>Setup.</strong> Both <code>starter/index.html</code> (unchanged copy of commit <code>d8a178a</code> of [1]) and <code>fixed/index.html</code> are opened
+from disk in headless Chrome with the live cdnjs stylesheet. For each of the 12 items the script records the
+<code>::before</code> content and the width of the <code>&lt;i&gt;</code>. A separate script check searches for every <code>fas fa-*</code> class in the downloaded CSS file.</p>
+<p><strong>Results.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Starter class</th>
+<th>Starter</th>
+<th>Fixed class</th>
+<th>Fixed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pizza, Sushi, Burger, Salad, Tacos, Sandwich, Curry, Steak, BBQ</td>
+<td>(unchanged)</td>
+<td>9 × OK</td>
+<td>(unchanged)</td>
+<td>9 × OK</td>
+</tr>
+<tr>
+<td>Ramen</td>
+<td><code>fa-bowl-hot</code></td>
+<td><strong>blank</strong> (<code>none</code>, 0 px)</td>
+<td><code>fa-bowl-rice</code></td>
+<td>OK (<code>\ue2eb</code>, 64 px)</td>
+</tr>
+<tr>
+<td>Pasta</td>
+<td><code>fa-pasta</code></td>
+<td><strong>blank</strong> (<code>none</code>, 0 px)</td>
+<td><code>fa-plate-wheat</code></td>
+<td>OK (<code>\ue55a</code>, 64 px)</td>
+</tr>
+<tr>
+<td>Soup</td>
+<td><code>fa-bowl</code></td>
+<td><strong>blank</strong> (<code>none</code>, 0 px)</td>
+<td><code>fa-bowl-food</code></td>
+<td>OK (<code>\ue4c6</code>, 64 px)</td>
+</tr>
+<tr>
+<td><strong>Rendered</strong></td>
+<td></td>
+<td><strong>9 / 12</strong></td>
+<td></td>
+<td><strong>12 / 12</strong></td>
+</tr>
+<tr>
+<td><strong>Blank rate, 10,000 clicks</strong></td>
+<td></td>
+<td><strong>24.91 %</strong></td>
+<td></td>
+<td><strong>0 %</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fig">
+<img src="figures/starter_ramen.png"><img src="figures/fixed_ramen.png">
+<p><em>Fig. 1. The same pick (Ramen) before (left, empty icon area) and after the fix (right). Screenshots from the test script.</em></p>
+</div>
+
+<p><strong>Comparison vs. baseline.</strong> The starter fails on exactly the three items whose classes are missing from the
+CSS. The class search gives the same three names: <code>bowl</code>, <code>bowl-hot</code>, <code>pasta</code>. So the measured
+24.91% matches the expected 3/12 = 25% (the difference comes from sampling). After the fix, no classes are missing and all 12 items render.</p>
+<p><strong>Verification.</strong></p>
+<ul>
+<li><em>Fallback test:</em> the fixed page was loaded again with Ramen changed back to <code>fa-bowl-hot</code>. The page showed
+  <code>fa-utensils</code> (rendered), so the fallback works.</li>
+<li><em>Timer race test:</em> click Pizza, then Sushi 100 ms later, and read the label 550 ms after the first click.
+  Starter shows the stale "Pizza"; the fixed version shows "Thinking...". Both end on "Sushi".</li>
+<li><em>Cross-check against the CSS:</em> the code point measured for Pizza (<code>\f818</code>) is the same as
+  <code>.fa-pizza-slice:before{content:"\f818"}</code> in the stylesheet.</li>
+<li>The three missing names are also absent from the latest Font Awesome Free (7.3.1, jsDelivr), so a
+  version update would not fix the bug either.</li>
+</ul>
+<h2>5. Discussion</h2>
+<p><strong>Failure case.</strong> Starter, pick = Ramen: <code>&lt;i class="fas fa-bowl-hot"&gt;</code>, computed <code>::before</code> content
+<code>none</code>, width 0 px, no console error. The card shows only the text "Ramen".</p>
+<p><strong>Root cause.</strong> The code that shows the icon is correct. The data is wrong: three class names in <code>lunchMenu</code>
+look like real Font Awesome names but are not defined in the loaded version. The prompt asked for "a
+relevant icon or image" without fixing a version or asking for a check, so the model invented
+plausible names — the "hallucinated API" failure mode. The word "sometimes" comes only from <code>Math.random()</code>:
+the defect is always there, and a user hits it on 1 of 4 clicks.</p>
+<p><strong>Fix + verification.</strong> Detection: per-item browser test (9/12) and the CSS class search (3 missing names).
+Change: three class names, a <code>::before</code> fallback, <code>clearTimeout</code>, and the corrected prompt.
+Confirmation: 12/12 rendered, 0% blank rate, fallback and timer tests pass (Section 4).</p>
+<p><strong>What worked.</strong></p>
+<ul>
+<li>Forcing each index instead of clicking at random: it turns a "sometimes" bug into a repeatable 12-row table.</li>
+<li>Reading computed <code>::before</code> content: it shows the real cause directly, which a screenshot alone does not.</li>
+</ul>
+<p><strong>What surprised me / didn't work.</strong></p>
+<ul>
+<li>A missing Font Awesome class fails silently: no 404 and no console warning, because an unmatched CSS selector is not an error.</li>
+<li>My first automatic class check wrongly reported the fixed page as broken: it also matched the old names in my own code comment. I limited it to real <code>fas fa-*</code> class strings.</li>
+<li>Some existing icons still fit poorly (Steak → chicken drumstick, Tacos → spoon). They render, so this is about content quality, not this bug.</li>
+</ul>
+<p><strong>Next improvement.</strong> Add a CDN-failure fallback: if the Font Awesome stylesheet does not load, the
+<code>::before</code> check fails for every item. The page could then switch to emoji or a self-hosted copy of the icons, so it
+still shows a picture offline.</p>
+<h2>6. AI Usage Disclosure</h2>
+<p><strong>AI tools used.</strong> Claude Code 2.1.273 (VS Code extension), model Claude Opus 5, one session (see
+<code>kosychev_a01_session.json</code>).</p>
+<p><strong>How AI was used.</strong></p>
+<ul>
+<li><em>Search / reading:</em> extracting the task from the lecture slides and guidelines; cloning [1] and reading <code>week1/</code>.</li>
+<li><em>Debugging:</em> checking icon classes against the downloaded CSS; writing and running the Playwright test.</li>
+<li><em>Code generation:</em> the edits to <code>fixed/index.html</code> and <code>fixed/prompt.md</code>; the report build script.</li>
+<li><em>Docs:</em> the first draft of this report.</li>
+</ul>
+<p><strong>What I personally verified.</strong></p>
+<ul>
+<li>Ran the original version (<code>starter/index.html</code>, built from the original prompt) locally and confirmed that the bug is real:
+  Ramen, Pasta and Soup appear without an icon.</li>
+<li>Ran the fixed version (<code>fixed/index.html</code>) locally, clicked until I got these three dishes, and confirmed that each of them now shows an icon.</li>
+<li>Opened the stylesheet <code>tests/fa-6.4.0-all.min.css</code> myself and searched for the old name <code>fa-bowl-hot</code>: no results
+  (Fig. 2, left). Searching for the new name <code>fa-bowl-food</code> gave 1 result, the rule <code>.fa-bowl-food:before</code> (Fig. 2, right).</li>
+<li>Read the whole report and made small corrections and additions.</li>
+<li>Deployed the fixed app to GitHub Pages: https://ak1232320.github.io/rec-sys-hw1/ (code: https://github.com/ak1232320/rec-sys-hw1).</li>
+</ul>
+<div class="fig">
+<img src="../manual-verification/check-1.png"><img src="../manual-verification/check-2.png">
+<p><em>Fig. 2. Manual check in the Font Awesome 6.4.0 CSS: <code>fa-bowl-hot</code> — no results (left); <code>fa-bowl-food</code> — 1 of 1 (right).</em></p>
+</div>
+
+<p><strong>What I trusted without verification.</strong> That the Monte-Carlo loop in <code>check_icons.py</code> models the page
+correctly (it reuses the per-item results rather than clicking 10,000 times in the browser); the Chrome and
+Playwright versions printed by the script.</p>
+<p><strong>Session log.</strong> <code>kosychev_a01_session.json</code> is the unmodified Claude Code log of this work.</p>
+<h2>References</h2>
+<p>[1] S. Jin, "RecSys-LLMs: Recommender Systems course repository (week1: prompt.md, index.html)," GitHub, 2025. [Online]. Available: https://github.com/dryjins/RecSys-LLMs. [Accessed: 2026-09-16].</p>
+<p>[2] Fonticons, Inc., "Font Awesome Free 6.4.0 — all.min.css," cdnjs. [Online]. Available: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css. [Accessed: 2026-09-16].</p>
+<p>[3] Fonticons, Inc., "Font Awesome icon search," [Online]. Available: https://fontawesome.com/search. [Accessed: 2026-09-16].</p>
+<p>[4] Mozilla Developer Network, "Window: getComputedStyle() method," MDN Web Docs. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle. [Accessed: 2026-09-16].</p>
+<p>[5] Mozilla Developer Network, "::before," MDN Web Docs. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/CSS/::before. [Accessed: 2026-09-16].</p>
+<p>[6] Microsoft, "Playwright for Python — Installation," Playwright Docs. [Online]. Available: https://playwright.dev/python/docs/intro. [Accessed: 2026-09-16].</p></body></html>

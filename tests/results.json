@@ -1,0 +1,295 @@
+{
+  "summary": {
+    "starter": {
+      "rendered": 9,
+      "missing_in_css": [
+        "bowl",
+        "bowl-hot",
+        "pasta"
+      ],
+      "mc_blank_rate": 0.2491
+    },
+    "fixed": {
+      "rendered": 12,
+      "missing_in_css": [],
+      "mc_blank_rate": 0.0
+    },
+    "fallback_ramen": {
+      "cls": "fas fa-utensils",
+      "name": "Ramen",
+      "before": "\"\uf2e7\"",
+      "width": 56,
+      "rendered": true
+    },
+    "double_click": {
+      "starter": [
+        "Pizza",
+        "Sushi"
+      ],
+      "fixed": [
+        "Thinking...",
+        "Sushi"
+      ]
+    }
+  },
+  "rows": {
+    "starter": [
+      {
+        "cls": "fas fa-pizza-slice",
+        "name": "Pizza",
+        "before": "\"\uf818\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-fish",
+        "name": "Sushi",
+        "before": "\"\uf578\"",
+        "width": 72,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-hamburger",
+        "name": "Burger",
+        "before": "\"\uf805\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-leaf",
+        "name": "Salad",
+        "before": "\"\uf06c\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-utensil-spoon",
+        "name": "Tacos",
+        "before": "\"\uf2e5\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bowl-hot",
+        "name": "Ramen",
+        "before": "none",
+        "width": 0,
+        "rendered": false
+      },
+      {
+        "cls": "fas fa-bread-slice",
+        "name": "Sandwich",
+        "before": "\"\uf7ec\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-pasta",
+        "name": "Pasta",
+        "before": "none",
+        "width": 0,
+        "rendered": false
+      },
+      {
+        "cls": "fas fa-mortar-pestle",
+        "name": "Curry",
+        "before": "\"\uf5a7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-drumstick-bite",
+        "name": "Steak",
+        "before": "\"\uf6d7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bowl",
+        "name": "Soup",
+        "before": "none",
+        "width": 0,
+        "rendered": false
+      },
+      {
+        "cls": "fas fa-fire",
+        "name": "BBQ",
+        "before": "\"\uf06d\"",
+        "width": 56,
+        "rendered": true
+      }
+    ],
+    "fixed": [
+      {
+        "cls": "fas fa-pizza-slice",
+        "name": "Pizza",
+        "before": "\"\uf818\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-fish",
+        "name": "Sushi",
+        "before": "\"\uf578\"",
+        "width": 72,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-hamburger",
+        "name": "Burger",
+        "before": "\"\uf805\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-leaf",
+        "name": "Salad",
+        "before": "\"\uf06c\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-utensil-spoon",
+        "name": "Tacos",
+        "before": "\"\uf2e5\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bowl-rice",
+        "name": "Ramen",
+        "before": "\"\ue2eb\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bread-slice",
+        "name": "Sandwich",
+        "before": "\"\uf7ec\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-plate-wheat",
+        "name": "Pasta",
+        "before": "\"\ue55a\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-mortar-pestle",
+        "name": "Curry",
+        "before": "\"\uf5a7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-drumstick-bite",
+        "name": "Steak",
+        "before": "\"\uf6d7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bowl-food",
+        "name": "Soup",
+        "before": "\"\ue4c6\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-fire",
+        "name": "BBQ",
+        "before": "\"\uf06d\"",
+        "width": 56,
+        "rendered": true
+      }
+    ],
+    "fixed_bad_ramen": [
+      {
+        "cls": "fas fa-pizza-slice",
+        "name": "Pizza",
+        "before": "\"\uf818\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-fish",
+        "name": "Sushi",
+        "before": "\"\uf578\"",
+        "width": 72,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-hamburger",
+        "name": "Burger",
+        "before": "\"\uf805\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-leaf",
+        "name": "Salad",
+        "before": "\"\uf06c\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-utensil-spoon",
+        "name": "Tacos",
+        "before": "\"\uf2e5\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-utensils",
+        "name": "Ramen",
+        "before": "\"\uf2e7\"",
+        "width": 56,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bread-slice",
+        "name": "Sandwich",
+        "before": "\"\uf7ec\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-plate-wheat",
+        "name": "Pasta",
+        "before": "\"\ue55a\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-mortar-pestle",
+        "name": "Curry",
+        "before": "\"\uf5a7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-drumstick-bite",
+        "name": "Steak",
+        "before": "\"\uf6d7\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-bowl-food",
+        "name": "Soup",
+        "before": "\"\ue4c6\"",
+        "width": 64,
+        "rendered": true
+      },
+      {
+        "cls": "fas fa-fire",
+        "name": "BBQ",
+        "before": "\"\uf06d\"",
+        "width": 56,
+        "rendered": true
+      }
+    ]
+  }
+}

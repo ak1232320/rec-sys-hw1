@@ -1,0 +1,56 @@
+Chrome 152.0.7977.84
+
+== starter: 9/12 icons rendered
+  Pizza     fas fa-pizza-slice       before="\uf818"   width=   64  OK
+  Sushi     fas fa-fish              before="\uf578"   width=   72  OK
+  Burger    fas fa-hamburger         before="\uf805"   width=   64  OK
+  Salad     fas fa-leaf              before="\uf06c"   width=   64  OK
+  Tacos     fas fa-utensil-spoon     before="\uf2e5"   width=   64  OK
+  Ramen     fas fa-bowl-hot          before=none       width=    0  BLANK
+  Sandwich  fas fa-bread-slice       before="\uf7ec"   width=   64  OK
+  Pasta     fas fa-pasta             before=none       width=    0  BLANK
+  Curry     fas fa-mortar-pestle     before="\uf5a7"   width=   64  OK
+  Steak     fas fa-drumstick-bite    before="\uf6d7"   width=   64  OK
+  Soup      fas fa-bowl              before=none       width=    0  BLANK
+  BBQ       fas fa-fire              before="\uf06d"   width=   56  OK
+
+== fixed: 12/12 icons rendered
+  Pizza     fas fa-pizza-slice       before="\uf818"   width=   64  OK
+  Sushi     fas fa-fish              before="\uf578"   width=   72  OK
+  Burger    fas fa-hamburger         before="\uf805"   width=   64  OK
+  Salad     fas fa-leaf              before="\uf06c"   width=   64  OK
+  Tacos     fas fa-utensil-spoon     before="\uf2e5"   width=   64  OK
+  Ramen     fas fa-bowl-rice         before="\ue2eb"   width=   64  OK
+  Sandwich  fas fa-bread-slice       before="\uf7ec"   width=   64  OK
+  Pasta     fas fa-plate-wheat       before="\ue55a"   width=   64  OK
+  Curry     fas fa-mortar-pestle     before="\uf5a7"   width=   64  OK
+  Steak     fas fa-drumstick-bite    before="\uf6d7"   width=   64  OK
+  Soup      fas fa-bowl-food         before="\ue4c6"   width=   64  OK
+  BBQ       fas fa-fire              before="\uf06d"   width=   56  OK
+
+== fixed_bad_ramen: 12/12 icons rendered
+  Pizza     fas fa-pizza-slice       before="\uf818"   width=   64  OK
+  Sushi     fas fa-fish              before="\uf578"   width=   72  OK
+  Burger    fas fa-hamburger         before="\uf805"   width=   64  OK
+  Salad     fas fa-leaf              before="\uf06c"   width=   64  OK
+  Tacos     fas fa-utensil-spoon     before="\uf2e5"   width=   64  OK
+  Ramen     fas fa-utensils          before="\uf2e7"   width=   56  OK
+  Sandwich  fas fa-bread-slice       before="\uf7ec"   width=   64  OK
+  Pasta     fas fa-plate-wheat       before="\ue55a"   width=   64  OK
+  Curry     fas fa-mortar-pestle     before="\uf5a7"   width=   64  OK
+  Steak     fas fa-drumstick-bite    before="\uf6d7"   width=   64  OK
+  Soup      fas fa-bowl-food         before="\ue4c6"   width=   64  OK
+  BBQ       fas fa-fire              before="\uf06d"   width=   56  OK
+
+[starter] double click: at 550 ms shows 'Pizza', final 'Sushi'
+[fixed] double click: at 550 ms shows 'Thinking...', final 'Sushi'
+
+[starter] classes missing in FA 6.4.0 CSS: ['bowl', 'bowl-hot', 'pasta']
+[starter] Monte-Carlo blank rate over 10000 clicks: 0.2491
+
+[fixed] classes missing in FA 6.4.0 CSS: none
+[fixed] Monte-Carlo blank rate over 10000 clicks: 0.0000
+
+[fallback] Ramen with fa-bowl-hot -> shown class 'fas fa-utensils', rendered=True
+
+Saved C:\Users\Alex\Documents\hse_master\rec-sys\hw1\tests\results.json

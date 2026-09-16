@@ -1,0 +1,52 @@
+--- starter/index.html	2026-09-16 12:55:16.679465300 +0300
++++ fixed/index.html	2026-09-16 12:55:31.108657200 +0300
+@@ -159,17 +159,32 @@
+                 { name: "Burger", icon: "fas fa-hamburger" },
+                 { name: "Salad", icon: "fas fa-leaf" },
+                 { name: "Tacos", icon: "fas fa-utensil-spoon" },
+-                { name: "Ramen", icon: "fas fa-bowl-hot" },
++                // FIX: fa-bowl-hot, fa-pasta and fa-bowl do not exist in Font Awesome 6.4.0 Free,
++                // so these items rendered an empty icon. Replaced with classes present in 6.4.0 Free.
++                { name: "Ramen", icon: "fas fa-bowl-rice" },
+                 { name: "Sandwich", icon: "fas fa-bread-slice" },
+-                { name: "Pasta", icon: "fas fa-pasta" },
++                { name: "Pasta", icon: "fas fa-plate-wheat" },
+                 { name: "Curry", icon: "fas fa-mortar-pestle" },
+                 { name: "Steak", icon: "fas fa-drumstick-bite" },
+-                { name: "Soup", icon: "fas fa-bowl" },
++                { name: "Soup", icon: "fas fa-bowl-food" },
+                 { name: "BBQ", icon: "fas fa-fire" }
+             ];
+-            
++
++            const FALLBACK_ICON = "fas fa-utensils";
++            let pendingTimer = null;
++
++            // FIX: an unknown Font Awesome class has no ::before glyph, so the icon is blank.
++            // Show a generic icon instead of an empty space.
++            function iconRendered(iconEl) {
++                const content = window.getComputedStyle(iconEl, '::before').content;
++                return content !== 'none' && content !== 'normal' && content !== '""';
++            }
++
+             // Function to generate random lunch
+             function generateRandomLunch() {
++                // FIX: cancel the previous pending result on fast repeated clicks
++                clearTimeout(pendingTimer);
++
+                 // Remove fade-in class if it exists
+                 lunchDisplay.classList.remove('fade-in');
+                 
+@@ -182,8 +197,11 @@
+                 foodName.textContent = "Thinking...";
+                 
+                 // After a short delay, show the selected lunch
+-                setTimeout(() => {
++                pendingTimer = setTimeout(() => {
+                     foodIcon.innerHTML = `<i class="${selectedLunch.icon}"></i>`;
++                    if (!iconRendered(foodIcon.firstElementChild)) {
++                        foodIcon.innerHTML = `<i class="${FALLBACK_ICON}"></i>`;
++                    }
+                     foodName.textContent = selectedLunch.name;
+                     
+                     // Add animation class
