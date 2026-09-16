@@ -45,9 +45,9 @@ MDN documentation of `getComputedStyle` and `::before` [4], [5]; Playwright for 
 
 **Alternatives considered.**
 
-- *Emoji instead of icons* — no external dependency, but this means redesigning the given app rather than fixing it.
-- *Local image files (`assets/food-icons/`, as the README suggests)* — full control, but the images do not exist and would have to be created; out of scope.
-- *Self-hosting Font Awesome* — avoids CDN outages, but does not fix wrong class names by itself.
+- *Emoji instead of icons* — no dependency, but it redesigns the given app instead of fixing it.
+- *Local images (`assets/food-icons/` from the README)* — the files do not exist; out of scope.
+- *Self-hosting Font Awesome* — avoids CDN outages, but does not fix wrong class names.
 
 ## 3. Method
 
@@ -96,8 +96,7 @@ from disk in headless Chrome with the live cdnjs stylesheet. For each of the 12 
 | Ramen | `fa-bowl-hot` | **blank** (`none`, 0 px) | `fa-bowl-rice` | OK (`\ue2eb`, 64 px) |
 | Pasta | `fa-pasta` | **blank** (`none`, 0 px) | `fa-plate-wheat` | OK (`\ue55a`, 64 px) |
 | Soup | `fa-bowl` | **blank** (`none`, 0 px) | `fa-bowl-food` | OK (`\ue4c6`, 64 px) |
-| **Rendered** | | **9 / 12** | | **12 / 12** |
-| **Blank rate, 10,000 clicks** | | **24.91 %** | | **0 %** |
+| **Rendered / blank rate (10,000 clicks)** | | **9 / 12, 24.91 %** | | **12 / 12, 0 %** |
 
 <div class="fig">
 <img src="figures/starter_ramen.png"><img src="figures/fixed_ramen.png">
@@ -130,9 +129,8 @@ relevant icon or image" without fixing a version or asking for a check, so the m
 plausible names — the "hallucinated API" failure mode. The word "sometimes" comes only from `Math.random()`:
 the defect is always there, and a user hits it on 1 of 4 clicks.
 
-**Fix + verification.** Detection: per-item browser test (9/12) and the CSS class search (3 missing names).
-Change: three class names, a `::before` fallback, `clearTimeout`, and the corrected prompt.
-Confirmation: 12/12 rendered, 0% blank rate, fallback and timer tests pass (Section 4).
+**Fix + verification.** Detection: per-item browser test (9/12) and CSS class search (3 missing names) →
+change: three class names, `::before` fallback, `clearTimeout`, corrected prompt → confirmation: 12/12, 0% blank, fallback and timer tests pass (Section 4).
 
 **What worked.**
 
@@ -171,7 +169,7 @@ still shows a picture offline.
 - Read the whole report and made small corrections and additions.
 - Deployed the fixed app to GitHub Pages: https://ak1232320.github.io/rec-sys-hw1/ (code: https://github.com/ak1232320/rec-sys-hw1).
 
-<div class="fig">
+<div class="fig wide">
 <img src="../manual-verification/check-1.png"><img src="../manual-verification/check-2.png">
 <p><em>Fig. 2. Manual check in the Font Awesome 6.4.0 CSS: <code>fa-bowl-hot</code> — no results (left); <code>fa-bowl-food</code> — 1 of 1 (right).</em></p>
 </div>

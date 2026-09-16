@@ -12,7 +12,7 @@ OUT_PDF = HERE / "kosychev_a01_report.pdf"
 
 CSS = """
 @page { size: A4; margin: 18mm 17mm 16mm 17mm; }
-body { font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; line-height: 1.32; color: #111; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; line-height: 1.28; color: #111; }
 h1 { font-size: 16.5pt; text-align: center; margin: 0 0 6px; line-height: 1.2; }
 .meta { text-align: center; font-style: italic; font-size: 9.5pt; margin-bottom: 10px; }
 h2 { font-size: 12pt; margin: 12px 0 4px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
@@ -24,7 +24,8 @@ table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4px 0 8p
 th, td { border: 1px solid #8fa3bf; padding: 2px 5px; text-align: left; vertical-align: top; }
 th { background: #dde6f2; }
 .fig { text-align: center; margin: 6px 0; page-break-inside: avoid; }
-.fig img { width: 44%; margin: 0 1.5%; border: 1px solid #ccc; }
+.fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
+.fig.wide img { width: 47%; }
 .fig p { text-align: center; font-size: 9pt; }
 .todo { background: #fff3a8; font-style: italic; }
 """
