@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>A02 report — Aleksei Kosychev</title><style>
+@page { size: A4; margin: 15mm 15mm 14mm 15mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.6pt; line-height: 1.2; color: #111; }
+h1 { font-size: 15pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 8.4pt; margin: 3px 0 6px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+.fig { text-align: center; margin: 5px 0; page-break-inside: avoid; }
+.fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
+.fig.wide img { width: 47%; }
+.fig.full img { width: 92%; border: none; }
+.fig.shot img { width: 62%; border: 1px solid #ccc; }
+.fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }
+.fig.pair img:first-child { width: 33%; }
+.fig.pair img:last-child { width: 58%; }
+.fig p { text-align: center; font-size: 8.4pt; margin-top: 2px; }
+.todo { background: #fff3a8; font-style: italic; }
+</style></head>
+<body><h1>One Movie or a Whole Profile? Cosine Similarity, Tie-Breaks and Long-Tail Discovery in a Content-Based Movie Recommender</h1>
+<div class="meta">
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: Individual<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-09-22<br>
+Assignment: A02 — Content-Based Movie Recommender, MovieLens 100k (Week 2)
+</div>
+
+<h2>Abstract</h2>
+<p>The Week 2 task is to replace the starter's naive Jaccard matching with cosine similarity, to build a user
+profile by averaging several watched movies, and to return a Top-5. I did that and then measured what each
+change buys, over all 1,682 movies and 940 real MovieLens users. Three results stand out. First, the
+starter mislabels the genres of <strong>100% of the movies</strong>: it zips 18 genre names against 19 genre flags, so
+every label is shifted by one and Toy Story is stored as a <em>Crime</em> film. Second, what removes the
+multi-genre blockbuster bias is <em>normalisation</em>, not cosine specifically — the unnormalised dot product
+recommends movies with 2.84 genres and 236 ratings on average, cosine 1.69 and 136, but cosine and Jaccard
+return <strong>the identical Top-5 for all 1,680 queries</strong>, so cosine's real payoff is that it accepts a
+real-valued profile vector, which Jaccard cannot score at all. Third, 126 movies on average tie at the top
+cosine score, so the tie-break rule, not the similarity measure, picks the list the user sees: switching it
+moves long-tail share from 24% to 57%. Profile-based ranking beats item-to-item on hit-rate@5 (46.5% vs
+38.4%) while being slightly <em>more</em> head-leaning — it improves relevance, not discovery.</p>
+<p><em>Index Terms</em> — content-based filtering, cosine similarity, user profile, popularity bias, long tail, MovieLens</p>
+<h2>1. Introduction</h2>
+<p><strong>Problem statement.</strong> The course provides a prompt and a four-file web app that recommends movies from
+MovieLens 100k by Jaccard similarity on genre sets, returning the Top-2 for one selected movie [1]. The
+assignment asks to (i) replace the naive matching with cosine similarity, (ii) build a profile vector by
+averaging several watched titles and return a Top-5, and (iii) analyse item-to-item vs profile-based
+ranking, the effect of normalisation on multi-genre blockbusters, and which approach surfaces long-tail
+catalogue better. Those three questions are stated as business claims, and a screenshot cannot settle them,
+so the app runs both modes side by side on the same watch history and the same scoring rules are
+re-implemented offline in Python to measure them over the whole catalogue.</p>
+<p><strong>Concrete example.</strong> Watch history = Toy Story (1995), Star Wars (1977), Sense and Sensibility (1995),
+the last one active. Item-to-item returns five Drama/Romance films <em>all scoring exactly 1.000</em> and ignores
+the other two tastes; the averaged profile returns The Empire Strikes Back (0.825), Return of the Jedi
+(0.775), The Princess Bride (0.722) — a blend, with strictly decreasing scores (Fig. 2).</p>
+<p><strong>Contributions.</strong> (i) Cosine similarity, an averaged profile vector and a Top-5 with an explicit,
+deterministic tie-break, written as pure functions that the offline evaluation and the browser test share.
+(ii) Two data bugs found in the starter and fixed: a genre off-by-one that corrupts every movie, and a
+<code>\r</code>-truncated last field that deletes the Western genre on a Windows checkout. (iii) An offline evaluation
+over 1,680 query movies and 940 users that answers the three analysis questions with numbers, plus a
+28-check browser test pinning the live UI to the offline reference lists.</p>
+<h2>2. Related Work</h2>
+<p>Sources: the course starter [1]; the MovieLens 100k dataset and its README, which documents the 19 genre
+fields and the <code>u.genre</code> ordering [2], [3]; Aggarwal on content-based filtering for the vector-space
+formulation [4]; Abdollahpouri et al. on popularity bias and re-ranking [5]; Herlocker et al. for catalogue
+coverage as an evaluation metric [6]; Playwright [7].</p>
+<p><strong>Alternatives considered.</strong> <em>IDF-weighted genre vectors</em> — Drama covers 725 of 1,682 movies and carries
+almost no information, so TF-IDF weighting would spread the scores and cut the tie mass; it changes the
+specified similarity, so it stays as the next step (Section 5). <em>Rating-weighted profile</em> — a small change,
+but the assignment specifies an average, and the unweighted mean stays interpretable as "share of my movies
+carrying this genre". <em>Collaborative filtering from <code>u.data</code></em> — out of scope for a content-based week; the
+ratings are used only for popularity, the tie-break and the head / long-tail split.</p>
+<h2>3. Method</h2>
+<p><strong>Approach.</strong> Each movie becomes an 18-dimensional binary genre vector. Item-to-item mode scores every
+candidate against the active movie's vector; profile mode scores every candidate against the element-wise
+mean of the watch history's vectors. Both call the same <code>recommend()</code>, so the only difference between the
+two columns is the query vector. Similarity is <code>cos(a,b) = (a·b) / (|a| · |b|)</code>, where <code>|a|</code> is the vector
+length; that denominator is what stops a six-genre film from winning on overlap alone. Two movies in
+<code>u.item</code> carry no genre, so their cosine is undefined and returned as 0. Because cosine is scale-invariant,
+averaging rather than summing the watched vectors changes no ranking — it matters for interpretability.</p>
+<p><strong>Ranking is deterministic by construction.</strong> There are only 216 distinct genre vectors among 1,682 movies,
+and an average movie has 125 exact genre twins, so sorting by score alone leaves the Top-5 at the mercy of
+array order. The app sorts by (1) similarity descending, (2) a tie-break key descending, (3) movie id
+ascending, and exposes three tie-break keys: shrunk average rating (default), rating count, and movie id.
+The shrunk rating is <code>(n·mean + 25·globalMean) / (n + 25)</code>, so a film with three 5.0 ratings does not
+outrank a known favourite. Both columns exclude every movie already in the watch history.</p>
+<p><strong>Bug fixes in the starter.</strong> (i) Fields 5–23 of <code>u.item</code> are <em>19</em> flags — <code>[unknown, Action, …, Western]</code> —
+but the starter zips them against the 18 genre names, shifting every label by one and never reading the
+Western flag. The result is not noise: Toy Story becomes <code>Children's, Comedy, Crime</code>, Star Wars becomes
+<code>Adventure, Animation, Sci-Fi, Thriller, Western</code>, and the catalogue gains 71 Westerns instead of 27. The
+fix reads genre <em>i</em> from flag <em>i+1</em>. (ii) The data files are stored with LF, but a git checkout with
+<code>core.autocrlf=true</code> — the Windows default — rewrites them to CRLF, so splitting on <code>'\n'</code> leaves a <code>\r</code> on
+the last field, again the Western flag, which my own first implementation read as <code>"0\r"</code> and dropped. The
+browser test caught it; the parser now splits on <code>/\r?\n/</code> and trims, and a <code>.gitattributes</code> rule keeps the
+committed copies byte-identical to the course repository.</p>
+<p><strong>Tools.</strong> Vanilla HTML/CSS/JS (no framework, no build step); Python 3.12 with NumPy 2.3 and Matplotlib 3.10
+for the offline evaluation; Playwright for Python 1.58 driving Google Chrome 152 headless; Claude Code
+2.1.278 with Claude Opus 5. Files: <code>recommender.js</code> (pure scoring), <code>data.js</code> (parsing), <code>script.js</code> (UI),
+<code>experiments/run_experiment.py</code> (offline reference), <code>tests/check_recommender.py</code> (browser test).</p>
+<h2>4. Experiments</h2>
+<p><strong>Setup.</strong> MovieLens 100k: 1,682 movies, 100,000 ratings, 943 users. The <em>head</em> is the 20% most-rated movies
+(336 titles), which collect 64.6% of all ratings; the rest is the long tail. Experiment 1 runs all 1,680
+genre-carrying movies as item-to-item queries. Experiment 3 uses a temporal split per user: of the movies a
+user rated ≥ 4, the three earliest form the profile, the third of them is the "single active item", and the
+remaining liked movies are held out; 940 users have enough history. Metrics are averaged over queries:
+genres per recommended movie, its rating count, the share of recommendations in the long tail, catalogue
+coverage (distinct movies ever recommended), the Gini of the recommendation distribution, and the number of
+candidates tied at the top score.</p>
+<p><strong>Result 1 — normalisation, not cosine, removes the multi-genre bias.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item-to-item scorer</th>
+<th>Genres/rec</th>
+<th>Rating count</th>
+<th>Long tail</th>
+<th>Coverage</th>
+<th>Gini</th>
+<th>Tied at top</th>
+<th>Top-5 = cosine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw overlap <code>a·b</code></td>
+<td>2.84</td>
+<td>236.2</td>
+<td>14.2%</td>
+<td>18.8%</td>
+<td>0.957</td>
+<td>266</td>
+<td>33%</td>
+</tr>
+<tr>
+<td>Jaccard (starter)</td>
+<td>1.69</td>
+<td>136.4</td>
+<td>42.9%</td>
+<td>32.9%</td>
+<td>0.893</td>
+<td>126</td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td>Cosine</td>
+<td>1.69</td>
+<td>136.4</td>
+<td>42.9%</td>
+<td>32.9%</td>
+<td>0.893</td>
+<td>126</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="fig full">
+<img src="figures/bias.png">
+<p><em>Fig. 1. Item-to-item recommendations over all 1,680 query movies. Dropping the normaliser (top bar of
+each panel) doubles the genre count and the popularity of what gets recommended; Jaccard and cosine coincide exactly.</em></p>
+</div>
+
+<p>The unnormalised dot product is exactly the failure the assignment describes: it ranks by the <em>number</em> of
+shared genres, so movies tagged with many genres — disproportionately big productions — win everywhere, and
+the recommender collapses onto 18.8% of the catalogue at a Gini of 0.957. Dividing by the vector lengths
+removes it. But Jaccard normalises too, and here the two agree on the Top-5 for <strong>every one of the 1,680
+queries</strong> (99.9% at Top-20; exactly 1 query where Jaccard is not monotone in cosine's order). With 1.72
+genres per movie, the top of both lists is filled by exact genre-set matches that score 1.0 under either
+formula. Cosine is therefore not a better <em>item</em> ranker here; its value is that <code>cos(profile, movie)</code> is
+defined at all, whereas Jaccard needs sets and cannot score a profile made of 0.33s.</p>
+<p><strong>Result 2 — item-to-item vs profile-based (940 users, shrunk-rating tie-break).</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Genres/rec</th>
+<th>Rating count</th>
+<th>Long tail</th>
+<th>Coverage</th>
+<th>Gini</th>
+<th>Tied at top</th>
+<th>Hit-rate@5</th>
+<th>Precision@5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item-to-item (active movie)</td>
+<td>2.27</td>
+<td>148.3</td>
+<td>39.0%</td>
+<td>20.8%</td>
+<td>0.922</td>
+<td>80.8</td>
+<td>38.4%</td>
+<td>13.2%</td>
+</tr>
+<tr>
+<td>Profile-based (average of 3)</td>
+<td>2.90</td>
+<td>159.0</td>
+<td>36.1%</td>
+<td>18.7%</td>
+<td>0.933</td>
+<td>52.0</td>
+<td><strong>46.5%</strong></td>
+<td><strong>15.7%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The two modes are not variants of one another: their Top-5 lists share on average <strong>0.88 of 5 titles</strong>
+(17.6% overlap), are completely disjoint for 67.3% of users and identical for 9.4%. Profile-based wins on
+relevance by a wide margin — 21% relative on hit-rate@5 — and has a quieter second advantage: averaging
+three binary vectors produces fractional entries, which cuts the tied-at-top group from 81 candidates to 52
+and gives the similarity itself more say. It does <em>not</em> win on discovery: it is slightly more head-leaning
+on every measure and prefers movies with more genres (2.90 vs 2.27), because a candidate covering several of
+the profile's non-zero genres scores higher. The top profile recommendation in Fig. 2 is The Empire Strikes
+Back — six genres, 367 ratings — a multi-genre blockbuster arriving through the back door with cosine in place.</p>
+<div class="fig pair">
+<img src="figures/starter_app.png"><img src="figures/comparison.png">
+<p><em>Fig. 2. Left: the starter, Top-2 from one movie. Right: the fixed app, same active movie plus Toy Story
+and Star Wars in the history. Item-to-item returns five exact Drama/Romance clones at 1.000; the profile
+blends all three tastes and separates the scores.</em></p>
+</div>
+
+<p><strong>Result 3 — the tie-break decides the long tail, not the similarity.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tie-break (cosine, item-to-item)</th>
+<th>Rating count</th>
+<th>Long tail</th>
+<th>Coverage</th>
+<th>Gini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rating count (popularity)</td>
+<td>203.9</td>
+<td>24.3%</td>
+<td>32.7%</td>
+<td>0.895</td>
+</tr>
+<tr>
+<td>Shrunk average rating (default)</td>
+<td>136.4</td>
+<td>42.9%</td>
+<td>32.9%</td>
+<td>0.893</td>
+</tr>
+<tr>
+<td>Movie id (neutral)</td>
+<td>117.7</td>
+<td>57.4%</td>
+<td>33.1%</td>
+<td>0.894</td>
+</tr>
+</tbody>
+</table>
+<p>Same similarity, same Top-5 <em>scores</em>, and long-tail share moves by 33 percentage points. The item-vs-profile
+ordering is robust to the choice — profile-based leads on hit-rate@5 under all three tie-breaks
+(46.5 / 50.3 / 40.7% vs 38.4 / 43.7 / 34.4%) and trails on long-tail share under all three — but the absolute
+discovery numbers are a property of the tie-break, not of the recommender.</p>
+<div class="fig full">
+<img src="figures/concentration.png">
+<p><em>Fig. 3. Cumulative share of recommendations against the catalogue ordered from most to least rated; the
+dashed diagonal is a popularity-blind recommender. Left: profile-based sits slightly above item-to-item.
+Right: the three tie-breaks spread far wider than the two modes do.</em></p>
+</div>
+
+<p><strong>Verification.</strong> <code>tests/check_recommender.py</code> serves the app over http, drives it in headless Chrome and runs
+28 checks, all passing: the Top-5 of both columns for 5 single movies and 3 three-movie histories equals the
+offline Python reference to three decimals; a one-movie profile reproduces item-to-item exactly; the rendered
+profile-vector weights equal the averaged vector; both non-default tie-breaks reproduce their offline rankings;
+switching to raw overlap raises the genre count of the recommendations from 2.00 to 3.40 in the browser,
+reproducing Fig. 1 live; Jaccard leaves the profile column empty with an explanation; and the starter page,
+loaded from the same server, still reports Toy Story as <code>Children's, Comedy, Crime</code>.</p>
+<h2>5. Discussion</h2>
+<p><strong>Answers to the three business questions.</strong></p>
+<ul>
+<li><em>Item-to-item vs profile-based.</em> Use the profile for the logged-in home screen: 21% better on hit-rate@5,
+  and the only one of the two that represents a user with more than one taste. Keep item-to-item for the
+  "more like this" slot on a detail page, where the user has just said what they mean — and note the two
+  lists are nearly disjoint, so shipping both is not redundant.</li>
+<li><em>Bias mitigation.</em> Normalisation does fix the failure it is meant to fix: without it, movies with many
+  genres and many ratings dominate everywhere (Table 1). Two caveats matter commercially. Jaccard already
+  did this, so a Jaccard → cosine migration buys profile support, not de-biasing; and the averaged profile
+  re-introduces a mild multi-genre preference of its own (2.90 genres per recommendation vs 2.27). Cosine is
+  a necessary condition for a fair content ranker, not a sufficient one.</li>
+<li><em>Catalogue discovery.</em> Neither mode is a discovery mechanism: coverage is 19–21% of the catalogue at a Gini
+  above 0.92, and profile-based is the slightly <em>narrower</em> of the two. If long-tail exposure is the goal, the
+  lever is the tie-break (24% → 57%) or explicit re-ranking [5], not the choice between these two modes. Note
+  also that the popularity tie-break scores best on hit-rate@5 (50.3%), which is a warning about the metric:
+  offline accuracy on a rating log partly rewards recommending what is already popular, so optimising it will
+  quietly cost catalogue breadth.</li>
+</ul>
+<p><strong>Failure case and root cause.</strong> Starter, any movie: every genre label is shifted by one because 19 flags are
+zipped against 18 names. It is silent — the app still returns plausible titles, because Drama+Romance movies
+consistently mislabelled as Fantasy+Sci-Fi still cluster together. The prompt caused it: it says "define an
+array of the 18 genre names" and "iterate through the last 19 fields" in adjacent sentences and never mentions
+the <code>unknown</code> placeholder. The corrected <code>prompt.md</code> states the flag layout explicitly, requires the <code>/\r?\n/</code>
+split, and specifies the tie-break.</p>
+<p><strong>What worked.</strong> Writing the offline evaluation and the UI against the same scoring rules, then having the
+browser test compare them, turned "is the app right?" into a diff; it caught the <code>\r</code> bug immediately.
+Reporting the tied-at-top count in the UI was also worth it — it makes the app honest about the fact that five
+1.000s are not five best matches.</p>
+<p><strong>What surprised me.</strong> That Jaccard and cosine agree on 100% of the Top-5 lists: I expected the assignment's
+premise (cosine fixes blockbuster domination <em>relative to Jaccard</em>) to be measurable, and it is not on this
+data — the real comparison is against the unnormalised dot product. That the tie-break outweighs the
+similarity measure was the second surprise, and it only became visible because I made the tie-break explicit
+instead of relying on sort order.</p>
+<p><strong>Next improvement.</strong> Replace the binary genre vector with an IDF-weighted one. The tie mass is the limiting
+factor — 126 candidates at the top score on 18 binary dimensions — and down-weighting Drama and Comedy would
+both spread the scores and push the ranking away from the head without the blunt instrument of a popularity
+re-rank.</p>
+<h2>6. AI Usage Disclosure</h2>
+<p><strong>AI tools used.</strong> Claude Code 2.1.278 (VS Code extension), model Claude Opus 5, one session.</p>
+<p><strong>How AI was used.</strong> <em>Search / reading:</em> cloning [1] and reading <code>week2/</code>; locating the <code>u.item</code> genre layout
+in [3]. <em>Code generation:</em> <code>recommender.js</code>, the rewritten <code>data.js</code> / <code>script.js</code> / <code>index.html</code> /
+<code>style.css</code>, <code>experiments/run_experiment.py</code>, <code>experiments/make_figures.py</code>, <code>tests/check_recommender.py</code>,
+and the corrected <code>prompt.md</code>. <em>Analysis:</em> running the offline evaluation and the browser test, and drafting
+this report.</p>
+<p><strong>What I personally verified.</strong> I served the repository myself with <code>python -m http.server</code>, opened the
+starter at <code>/hw2/starter/</code> and then the fixed app at <code>/hw2/</code>, and ran a recommendation by hand (Fig. 4). I
+checked the genre bug on screen: the starter labels Toy Story <code>Children's, Comedy, Crime</code>, the fixed app
+<code>Animation, Children's, Comedy</code>. The fixed page loads the data over http and ranks 1,679 candidates; the
+profile vector it draws gives Romance a weight of 0.67 — the 2-of-3 share predicted by averaging the three
+watched vectors, i.e. the arithmetic of Section 3 visible on screen. Screenshots are in <code>hw2/manual/</code>.</p>
+<div class="fig shot">
+<img src="figures/manual_check.png">
+<p><em>Fig. 4. Manual check: the local server, and the fixed app answering at <code>localhost:8000/hw2/</code>
+for the three-movie history of Fig. 2.</em></p>
+</div>
+
+<p><strong>What I trusted without verification.</strong> That MovieLens' own genre flags are correct (they are the ground truth
+here, not a measurement); that the held-out-liked-movies protocol is a reasonable relevance proxy — its bias
+towards popular items is discussed in Section 5 rather than corrected.</p>
+<p><strong>Session log.</strong> <code>kosychev_a02_session.json</code> is the unmodified Claude Code log of this work.</p>
+<h2>References</h2>
+<p>[1] S. Jin, "RecSys-LLMs: Recommender Systems course repository (week2)," GitHub, commit <code>af8c98a</code>, 2026. [Online]. Available: https://github.com/dryjins/RecSys-LLMs/tree/main/week2. [Accessed: 2026-09-22].</p>
+<p>[2] F. M. Harper and J. A. Konstan, "The MovieLens Datasets: History and Context," <em>ACM Trans. Interact. Intell. Syst.</em>, vol. 5, no. 4, pp. 1–19, 2015.</p>
+<p>[3] GroupLens Research, "MovieLens 100K Dataset (README: <code>u.item</code>, <code>u.genre</code>)," University of Minnesota. [Online]. Available: https://grouplens.org/datasets/movielens/100k/. [Accessed: 2026-09-22].</p>
+<p>[4] C. C. Aggarwal, <em>Recommender Systems: The Textbook</em>, ch. 4, "Content-Based Recommender Systems." Springer, 2016.</p>
+<p>[5] H. Abdollahpouri, R. Burke, and B. Mobasher, "Managing Popularity Bias in Recommender Systems with Personalized Re-ranking," in <em>Proc. 32nd Int. FLAIRS Conf.</em>, 2019, pp. 413–418.</p>
+<p>[6] J. L. Herlocker, J. A. Konstan, L. G. Terveen, and J. T. Riedl, "Evaluating Collaborative Filtering Recommender Systems," <em>ACM Trans. Inf. Syst.</em>, vol. 22, no. 1, pp. 5–53, 2004.</p>
+<p>[7] Microsoft, "Playwright for Python — Installation," Playwright Docs. [Online]. Available: https://playwright.dev/python/docs/intro. [Accessed: 2026-09-22].</p></body></html>

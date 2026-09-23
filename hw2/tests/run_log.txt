@@ -1,0 +1,35 @@
+serving C:\Users\Alex\Documents\rec-sys-hw1\hw2 at http://127.0.0.1:52955
+chrome 152.0.7977.84, playwright playwright
+[PASS] data loads over http — Loaded 1682 movies, 100,000 ratings from 943 users. The top 20% most-rated movies collect 65% of all ratings.
+[PASS] genres match u.genre order in the fixed app — Toy Story -> ['Animation', "Children's", 'Comedy']
+[PASS] Western is no longer over-assigned — 27 movies (starter: 71)
+[PASS] item-to-item Top-5 for movie 1 matches the offline reference — ['Aladdin and the King of Thieves (1996)', 'Aladdin (1992)', 'Goofy Movie, A (1995)', 'Wrong Trousers, The (1993)', 'Grand Day Out, A (1992)']
+[PASS] a one-movie profile reproduces item-to-item for movie 1
+[PASS] item-to-item Top-5 for movie 50 matches the offline reference — ['Return of the Jedi (1983)', 'Empire Strikes Back, The (1980)', 'African Queen, The (1951)', 'Starship Troopers (1997)', 'Star Trek: The Wrath of Khan (1982)']
+[PASS] a one-movie profile reproduces item-to-item for movie 50
+[PASS] item-to-item Top-5 for movie 121 matches the offline reference — ['Aliens (1986)', 'Starship Troopers (1997)', 'Mars Attacks! (1996)', 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963)', 'Fifth Element, The (1997)']
+[PASS] a one-movie profile reproduces item-to-item for movie 121
+[PASS] item-to-item Top-5 for movie 275 matches the offline reference — ['Graduate, The (1967)', 'Postino, Il (1994)', 'Room with a View, A (1986)', 'Chasing Amy (1997)', 'Mrs. Brown (Her Majesty, Mrs. Brown) (1997)']
+[PASS] a one-movie profile reproduces item-to-item for movie 275
+[PASS] item-to-item Top-5 for movie 313 matches the offline reference — ['Cyrano de Bergerac (1990)', 'Man in the Iron Mask, The (1998)', 'Crying Game, The (1992)', 'First Knight (1995)', 'Graduate, The (1967)']
+[PASS] a one-movie profile reproduces item-to-item for movie 313
+[PASS] item-to-item Top-5 for history 1+50+275 matches the offline reference
+[PASS] profile-based Top-5 for history 1+50+275 matches the offline reference — ['Empire Strikes Back, The (1980)', 'Return of the Jedi (1983)', 'Princess Bride, The (1987)', 'African Queen, The (1951)', 'Crying Game, The (1992)']
+[PASS] profile vector shown for history 1+50+275 equals the averaged vector
+[PASS] item-to-item Top-5 for history 7+98+181 matches the offline reference
+[PASS] profile-based Top-5 for history 7+98+181 matches the offline reference — ['Empire Strikes Back, The (1980)', 'Gattaca (1997)', 'Day the Earth Stood Still, The (1951)', 'Contact (1997)', 'Until the End of the World (Bis ans Ende der Welt) (1991)']
+[PASS] profile vector shown for history 7+98+181 equals the averaged vector
+[PASS] item-to-item Top-5 for history 100+258+286 matches the offline reference
+[PASS] profile-based Top-5 for history 100+258+286 matches the offline reference — ['Shawshank Redemption, The (1994)', "One Flew Over the Cuckoo's Nest (1975)", 'To Kill a Mockingbird (1962)', '12 Angry Men (1957)', 'Citizen Kane (1941)']
+[PASS] profile vector shown for history 100+258+286 equals the averaged vector
+[PASS] tie-break 'popularity' reproduces the offline ranking — ['Empire Strikes Back, The (1980)', 'Return of the Jedi (1983)', 'Princess Bride, The (1987)', 'True Lies (1994)', 'African Queen, The (1951)']
+[PASS] tie-break 'id' reproduces the offline ranking — ['Empire Strikes Back, The (1980)', 'Return of the Jedi (1983)', 'Princess Bride, The (1987)', 'True Lies (1994)', 'African Queen, The (1951)']
+[PASS] raw overlap recommends more multi-genre movies than cosine — genres per recommendation: overlap 3.40 vs cosine 2.00
+[PASS] Jaccard disables the profile column with an explanation
+[PASS] the app reports how many candidates tie at the top score — 66 of 1681 candidates share the top cosine score of 1.000, so the tie-break decides which five you see.
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw2\report\figures\fixed_app.png and comparison.png
+[PASS] the starter really does shift every genre label — Toy Story -> ["Children's", 'Comedy', 'Crime']
+starter output: Because you liked "Sense and Sensibility (1995)", we recommend: Postino, Il (1994), Angels and Insects (1995)
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw2\report\figures\starter_app.png
+
+28/28 checks passed

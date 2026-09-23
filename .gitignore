@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Claude Code session logs: submitted alongside the report, not stored in the repo
+# (the A01 log is not committed either). Remove this line to keep them in git.
+*_session.json

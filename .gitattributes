@@ -1,0 +1,6 @@
+# The MovieLens data files are parsed field by field; keep them byte-identical to
+# the course repository instead of letting git rewrite their line endings.
+hw2/u.item -text
+hw2/u.data -text
+hw2/starter/u.item -text
+hw2/starter/u.data -text

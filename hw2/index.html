@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content-Based Movie Recommender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Content-Based Movie Recommender</h1>
+        <p class="subtitle">
+            Tell us what you have watched. We build a genre profile out of it and compare two ways
+            of turning that into a Top&#8209;5: similarity to one active movie, or similarity to your
+            averaged profile.
+        </p>
+
+        <section class="panel">
+            <h2>1 &middot; Your watch history</h2>
+            <div id="watch-history"></div>
+            <div class="row-actions">
+                <button type="button" id="add-movie">+ Add a movie</button>
+                <span class="hint">The movie marked <strong>active</strong> is the one the
+                    item&#8209;to&#8209;item column uses on its own.</span>
+            </div>
+
+            <h2>2 &middot; Scoring</h2>
+            <div class="settings">
+                <label for="metric">Similarity
+                    <select id="metric">
+                        <option value="cosine" selected>Cosine (normalised)</option>
+                        <option value="jaccard">Jaccard &mdash; starter</option>
+                        <option value="overlap">Raw overlap &mdash; unnormalised</option>
+                    </select>
+                </label>
+                <label for="tiebreak">Tie&#8209;break
+                    <select id="tiebreak">
+                        <option value="quality" selected>Shrunk average rating</option>
+                        <option value="popularity">Rating count</option>
+                        <option value="id">Movie id</option>
+                    </select>
+                </label>
+            </div>
+            <button id="recommend-btn" onclick="getRecommendations()">Get Recommendations</button>
+            <p id="status" class="loading">Please wait, loading data&hellip;</p>
+        </section>
+
+        <section class="panel" id="profile-panel" hidden>
+            <h2>3 &middot; Your profile vector</h2>
+            <p class="hint" id="profile-formula"></p>
+            <div id="profile-bars"></div>
+        </section>
+
+        <div class="results" id="results" hidden>
+            <section class="result-column">
+                <h2>A &middot; Item&#8209;to&#8209;item</h2>
+                <p class="column-subtitle" id="item-subtitle"></p>
+                <ol class="recommendations" id="item-results"></ol>
+                <p class="diagnostics" id="item-diagnostics"></p>
+            </section>
+            <section class="result-column">
+                <h2>B &middot; Profile&#8209;based</h2>
+                <p class="column-subtitle" id="profile-subtitle"></p>
+                <ol class="recommendations" id="profile-results"></ol>
+                <p class="diagnostics" id="profile-diagnostics"></p>
+            </section>
+        </div>
+
+        <div id="result-box">
+            <p id="result">Please wait, loading data&hellip;</p>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="recommender.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

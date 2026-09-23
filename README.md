@@ -1,34 +1,14 @@
-# LLM4Rec A01 — Random Lunch Generator: fixing missing icons
+# LLM4Rec homework — Aleksei Kosychev
 
-Aleksei Kosychev (amkosychev@edu.hse.ru), HSE LLM4Rec, Week 1.
+HSE, Recommender Systems with LLMs. Course starter code: [dryjins/RecSys-LLMs](https://github.com/dryjins/RecSys-LLMs).
 
-**Live demo:** https://ak1232320.github.io/rec-sys-hw1/
+**Live:** https://ak1232320.github.io/rec-sys-hw1/
 
-Starter code and prompt: [dryjins/RecSys-LLMs `week1/`](https://github.com/dryjins/RecSys-LLMs/tree/main/week1) (commit `d8a178a`).
-Task: understand and fix "images sometimes not displaying".
+| | Assignment | What it is | Links |
+|---|---|---|---|
+| **A01** | Week 1 — Random Lunch Generator | Finding and fixing the "images sometimes not displaying" bug: three invented Font Awesome class names that do not exist in the loaded stylesheet, hit on ~25% of clicks. | [app](https://ak1232320.github.io/rec-sys-hw1/hw1/) · [report](hw1/report/kosychev_a01_report.pdf) · [`hw1/`](hw1/) |
+| **A02** | Week 2 — Content-Based Movie Recommender | Cosine similarity instead of Jaccard, a user profile averaged over several watched movies, Top-5, and a measured comparison of item-to-item vs profile-based ranking on MovieLens 100k. | [app](https://ak1232320.github.io/rec-sys-hw1/hw2/) · [report](hw2/report/kosychev_a02_report.pdf) · [`hw2/`](hw2/) |
 
-**Root cause.** Ramen (`fa-bowl-hot`), Pasta (`fa-pasta`) and Soup (`fa-bowl`) use icon classes that do not exist
-in Font Awesome 6.4.0 Free, so 3 of 12 random picks (~25%) show an empty box. The prompt never pinned the icon
-library version or asked to check icon names.
-
-| | Starter | Fixed |
-|---|---|---|
-| Icons rendered | 9 / 12 | 12 / 12 |
-| Blank rate, 10,000 clicks | 24.91 % | 0 % |
-
-## Layout
-
-| Path | What |
-|---|---|
-| `index.html`, `prompt.md` | Fixed version (served by GitHub Pages) |
-| `starter/` | Unchanged copies of the course files |
-| `fixed/` | Same as root; compare with `starter/` |
-| `report/index.diff`, `report/prompt.diff` | Exact changes |
-| `tests/check_icons.py` | Headless Chrome test (Playwright); output in `tests/run_log.txt` |
-| `report/kosychev_a01_report.pdf` | Report (source `report/report.md`, build `python report/build_report.py`) |
-| `manual-verification/` | Screenshots of the manual CSS check |
-
-## Run locally
-
-Open `starter/index.html` or `fixed/index.html` in a browser (internet needed for the Font Awesome CDN).
-Test: `pip install playwright` then `python tests/check_icons.py` (uses local Google Chrome).
+Each folder keeps the same layout: the fixed app at its root, unchanged course files in `starter/`,
+per-file diffs and the report in `report/`, and automated checks in `tests/`. See the README inside each
+folder for how to run it.

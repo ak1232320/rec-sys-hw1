@@ -1,0 +1,146 @@
+/* Data loading and parsing for the MovieLens 100k files (u.item, u.data). */
+
+// Global data, filled in by loadData()
+let movies = [];
+let ratings = [];
+let datasetStats = null;
+
+// The 18 genre names, in the order they appear in u.item / u.genre.
+const genreNames = [
+    "Action", "Adventure", "Animation", "Children's", "Comedy",
+    "Crime", "Documentary", "Drama", "Fantasy", "Film-Noir",
+    "Horror", "Musical", "Mystery", "Romance", "Sci-Fi",
+    "Thriller", "War", "Western"
+];
+
+// Strength of the Bayesian shrinkage used for the quality tie-break: a movie with
+// few ratings is pulled towards the global mean instead of trusting its average.
+const SHRINKAGE_PRIOR = 25;
+
+// Share of the catalogue (by rating count) treated as the popular "head";
+// everything else is the long tail.
+const HEAD_FRACTION = 0.20;
+
+async function loadData() {
+    try {
+        const itemResponse = await fetch('u.item');
+        if (!itemResponse.ok) {
+            throw new Error(`Failed to load movie data: ${itemResponse.status}`);
+        }
+        parseItemData(await itemResponse.text());
+
+        const dataResponse = await fetch('u.data');
+        if (!dataResponse.ok) {
+            throw new Error(`Failed to load rating data: ${dataResponse.status}`);
+        }
+        parseRatingData(await dataResponse.text());
+
+        computePopularity();
+    } catch (error) {
+        console.error('Error loading data:', error);
+        const resultElement = document.getElementById('status');
+        if (resultElement) {
+            resultElement.textContent = `Error: ${error.message}. u.item and u.data must be served ` +
+                `over http:// (open the folder with "python -m http.server"), not from file://.`;
+            resultElement.className = 'error';
+        }
+        throw error;
+    }
+}
+
+/**
+ * Parse u.item: id | title | release | video release | IMDb url | 19 genre flags.
+ *
+ * The 19 flags are [unknown, Action, Adventure, ..., Western] — one "unknown"
+ * placeholder followed by the 18 real genres. Genre i therefore lives at flag
+ * i + 1. Zipping the 18 names against all 19 flags (what the starter did) shifts
+ * every label by one position and silently drops Western.
+ */
+function parseItemData(text) {
+    movies = [];
+    // Split on \r\n as well as \n: the files are stored with LF, but a git checkout
+    // with core.autocrlf=true (the Windows default) rewrites them to CRLF, and the
+    // trailing \r then lands on the last genre flag (Western) and blanks it out.
+    for (const rawLine of text.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        if (line === '') continue;
+
+        const fields = line.split('|');
+        if (fields.length < 24) continue;
+
+        const flags = fields.slice(5, 24);
+        const vector = genreNames.map((_, index) => (flags[index + 1] === '1' ? 1 : 0));
+        const genres = genreNames.filter((_, index) => vector[index] === 1);
+
+        movies.push({
+            id: parseInt(fields[0], 10),
+            title: fields[1],
+            genres: genres,
+            vector: vector,
+            ratingCount: 0,
+            meanRating: 0,
+            quality: 0,
+            isLongTail: true
+        });
+    }
+}
+
+function parseRatingData(text) {
+    ratings = [];
+    for (const rawLine of text.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        if (line === '') continue;
+
+        const fields = line.split('\t');
+        if (fields.length < 4) continue;
+
+        ratings.push({
+            userId: parseInt(fields[0], 10),
+            itemId: parseInt(fields[1], 10),
+            rating: parseFloat(fields[2]),
+            timestamp: parseInt(fields[3], 10)
+        });
+    }
+}
+
+/**
+ * Attach rating count, mean rating, shrunk quality and a head / long-tail flag to
+ * every movie. The genre vectors say nothing about how known a movie is, so these
+ * numbers are what makes the tie-break and the long-tail reporting possible.
+ */
+function computePopularity() {
+    const byId = new Map(movies.map(movie => [movie.id, movie]));
+    let total = 0;
+
+    for (const rating of ratings) {
+        const movie = byId.get(rating.itemId);
+        if (!movie) continue;
+        movie.ratingCount++;
+        movie.meanRating += rating.rating;
+        total += rating.rating;
+    }
+
+    const globalMean = ratings.length > 0 ? total / ratings.length : 0;
+    for (const movie of movies) {
+        movie.meanRating = movie.ratingCount > 0 ? movie.meanRating / movie.ratingCount : globalMean;
+        movie.quality = (movie.ratingCount * movie.meanRating + SHRINKAGE_PRIOR * globalMean) /
+            (movie.ratingCount + SHRINKAGE_PRIOR);
+    }
+
+    // The head is the most-rated HEAD_FRACTION of the catalogue; ties in rating
+    // count are split by id so the split is reproducible.
+    const byPopularity = [...movies].sort((a, b) =>
+        b.ratingCount - a.ratingCount || a.id - b.id);
+    const headSize = Math.round(HEAD_FRACTION * movies.length);
+    byPopularity.forEach((movie, rank) => { movie.isLongTail = rank >= headSize; });
+
+    datasetStats = {
+        movies: movies.length,
+        ratings: ratings.length,
+        users: new Set(ratings.map(rating => rating.userId)).size,
+        globalMean: globalMean,
+        headSize: headSize,
+        headShareOfRatings: byPopularity.slice(0, headSize)
+            .reduce((sum, movie) => sum + movie.ratingCount, 0) / ratings.length
+    };
+}

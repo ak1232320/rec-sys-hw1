@@ -1,0 +1,832 @@
+{
+  "dataset": {
+    "movies": 1682,
+    "ratings": 100000,
+    "users": 943,
+    "genres": 18,
+    "movies_without_genre": 2,
+    "mean_genres_per_movie": 1.7187871581450653,
+    "head_items": 336,
+    "head_share_of_ratings_pct": 64.619,
+    "global_mean_rating": 3.52986
+  },
+  "genre_bug": {
+    "movies_with_wrong_genres": 1682,
+    "movies_with_wrong_genres_pct": 100.0,
+    "western_movies_correct": 27,
+    "western_movies_starter": 71,
+    "examples": [
+      {
+        "title": "Toy Story (1995)",
+        "correct": [
+          "Animation",
+          "Children's",
+          "Comedy"
+        ],
+        "starter": [
+          "Children's",
+          "Comedy",
+          "Crime"
+        ]
+      },
+      {
+        "title": "Star Wars (1977)",
+        "correct": [
+          "Action",
+          "Adventure",
+          "Romance",
+          "Sci-Fi",
+          "War"
+        ],
+        "starter": [
+          "Adventure",
+          "Animation",
+          "Sci-Fi",
+          "Thriller",
+          "Western"
+        ]
+      },
+      {
+        "title": "Independence Day (ID4) (1996)",
+        "correct": [
+          "Action",
+          "Sci-Fi",
+          "War"
+        ],
+        "starter": [
+          "Adventure",
+          "Thriller",
+          "Western"
+        ]
+      }
+    ]
+  },
+  "experiment_1_item_to_item": {
+    "overlap": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 2.8383333333333334,
+      "mean_popularity": 236.2027380952381,
+      "median_popularity": 243.0,
+      "long_tail_share_pct": 14.202380952380953,
+      "catalog_coverage_pct": 18.846611177170036,
+      "gini": 0.95726487741351,
+      "top_item_share_pct": 6.154761904761905,
+      "queries": 1680,
+      "mean_top_score_ties": 266.4797619047619,
+      "median_top_score_ties": 96.0
+    },
+    "jaccard": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 1.6926190476190477,
+      "mean_popularity": 136.44190476190477,
+      "median_popularity": 121.0,
+      "long_tail_share_pct": 42.892857142857146,
+      "catalog_coverage_pct": 32.877526753864444,
+      "gini": 0.8931511522563841,
+      "top_item_share_pct": 4.571428571428571,
+      "queries": 1680,
+      "mean_top_score_ties": 126.1922619047619,
+      "median_top_score_ties": 42.0
+    },
+    "cosine": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 1.6926190476190477,
+      "mean_popularity": 136.44190476190477,
+      "median_popularity": 121.0,
+      "long_tail_share_pct": 42.892857142857146,
+      "catalog_coverage_pct": 32.877526753864444,
+      "gini": 0.8931511522563841,
+      "top_item_share_pct": 4.571428571428571,
+      "queries": 1680,
+      "mean_top_score_ties": 126.1922619047619,
+      "median_top_score_ties": 42.0
+    }
+  },
+  "experiment_1_agreement": {
+    "top5_jaccard_vs_cosine": 1.0,
+    "top5_overlap_vs_cosine": 0.32571428571428573,
+    "top5_overlap_vs_jaccard": 0.32571428571428573,
+    "top20_jaccard_vs_cosine": 0.9986904761904764,
+    "top20_overlap_vs_cosine": 0.45318452380952384,
+    "top20_overlap_vs_jaccard": 0.45416666666666666,
+    "queries_where_jaccard_not_monotone_in_cosine_top20": 1,
+    "distinct_genre_vectors": 216,
+    "exact_genre_twins_mean": 125.48214285714286
+  },
+  "experiment_2_tiebreak": {
+    "id": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 1.6947619047619047,
+      "mean_popularity": 117.74892857142858,
+      "median_popularity": 74.0,
+      "long_tail_share_pct": 57.38095238095238,
+      "catalog_coverage_pct": 33.055885850178356,
+      "gini": 0.8941602966989411,
+      "top_item_share_pct": 4.571428571428571
+    },
+    "popularity": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 1.6951190476190476,
+      "mean_popularity": 203.9352380952381,
+      "median_popularity": 244.0,
+      "long_tail_share_pct": 24.333333333333336,
+      "catalog_coverage_pct": 32.69916765755053,
+      "gini": 0.8946681954589207,
+      "top_item_share_pct": 4.571428571428571
+    },
+    "quality": {
+      "recommendations": 8400,
+      "mean_genres_per_rec": 1.6926190476190477,
+      "mean_popularity": 136.44190476190477,
+      "median_popularity": 121.0,
+      "long_tail_share_pct": 42.892857142857146,
+      "catalog_coverage_pct": 32.877526753864444,
+      "gini": 0.8931511522563841,
+      "top_item_share_pct": 4.571428571428571
+    }
+  },
+  "experiment_3_item_vs_profile": {
+    "users_evaluated": 940,
+    "tiebreak_id": {
+      "item_to_item": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.2727659574468086,
+        "mean_popularity": 131.49595744680852,
+        "median_popularity": 97.0,
+        "long_tail_share_pct": 50.93617021276595,
+        "catalog_coverage_pct": 20.98692033293698,
+        "gini": 0.9218463328863815,
+        "top_item_share_pct": 2.872340425531915,
+        "hit_rate_at_5_pct": 34.361702127659576,
+        "precision_at_5_pct": 10.48936170212766,
+        "mean_top_score_ties": 80.76808510638298,
+        "median_top_score_ties": 10.0
+      },
+      "profile_based": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.903404255319149,
+        "mean_popularity": 140.26127659574468,
+        "median_popularity": 115.0,
+        "long_tail_share_pct": 46.51063829787234,
+        "catalog_coverage_pct": 18.846611177170036,
+        "gini": 0.9344782047714221,
+        "top_item_share_pct": 2.4680851063829787,
+        "hit_rate_at_5_pct": 40.74468085106383,
+        "precision_at_5_pct": 12.53191489361702,
+        "mean_top_score_ties": 51.952127659574465,
+        "median_top_score_ties": 5.0
+      },
+      "mean_top5_overlap": 0.17702127659574468,
+      "identical_top5_pct": 9.25531914893617,
+      "disjoint_top5_pct": 67.23404255319149
+    },
+    "tiebreak_popularity": {
+      "item_to_item": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.274042553191489,
+        "mean_popularity": 196.90510638297872,
+        "median_popularity": 211.0,
+        "long_tail_share_pct": 25.978723404255323,
+        "catalog_coverage_pct": 21.22473246135553,
+        "gini": 0.9195357603663319,
+        "top_item_share_pct": 2.8297872340425534,
+        "hit_rate_at_5_pct": 43.723404255319146,
+        "precision_at_5_pct": 14.872340425531917,
+        "mean_top_score_ties": 80.76808510638298,
+        "median_top_score_ties": 10.0
+      },
+      "profile_based": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.90531914893617,
+        "mean_popularity": 193.15255319148937,
+        "median_popularity": 171.0,
+        "long_tail_share_pct": 26.29787234042553,
+        "catalog_coverage_pct": 19.322235434007133,
+        "gini": 0.9297214562197991,
+        "top_item_share_pct": 2.425531914893617,
+        "hit_rate_at_5_pct": 50.31914893617021,
+        "precision_at_5_pct": 16.74468085106383,
+        "mean_top_score_ties": 51.952127659574465,
+        "median_top_score_ties": 5.0
+      },
+      "mean_top5_overlap": 0.1793617021276596,
+      "identical_top5_pct": 9.25531914893617,
+      "disjoint_top5_pct": 67.76595744680851
+    },
+    "tiebreak_quality": {
+      "item_to_item": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.270851063829787,
+        "mean_popularity": 148.3031914893617,
+        "median_popularity": 131.0,
+        "long_tail_share_pct": 39.0,
+        "catalog_coverage_pct": 20.808561236623067,
+        "gini": 0.9215556455081337,
+        "top_item_share_pct": 2.8297872340425534,
+        "hit_rate_at_5_pct": 38.40425531914894,
+        "precision_at_5_pct": 13.234042553191491,
+        "mean_top_score_ties": 80.76808510638298,
+        "median_top_score_ties": 10.0
+      },
+      "profile_based": {
+        "recommendations": 4700,
+        "mean_genres_per_rec": 2.9014893617021276,
+        "mean_popularity": 159.00489361702128,
+        "median_popularity": 136.0,
+        "long_tail_share_pct": 36.1063829787234,
+        "catalog_coverage_pct": 18.72770511296076,
+        "gini": 0.932671085587067,
+        "top_item_share_pct": 2.574468085106383,
+        "hit_rate_at_5_pct": 46.48936170212766,
+        "precision_at_5_pct": 15.723404255319151,
+        "mean_top_score_ties": 51.952127659574465,
+        "median_top_score_ties": 5.0
+      },
+      "mean_top5_overlap": 0.17617021276595743,
+      "identical_top5_pct": 9.361702127659575,
+      "disjoint_top5_pct": 67.34042553191489
+    }
+  },
+  "worked_example": {
+    "seed_movies": [
+      {
+        "id": 1,
+        "title": "Toy Story (1995)",
+        "genres": [
+          "Animation",
+          "Children's",
+          "Comedy"
+        ]
+      },
+      {
+        "id": 50,
+        "title": "Star Wars (1977)",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Romance",
+          "Sci-Fi",
+          "War"
+        ]
+      },
+      {
+        "id": 275,
+        "title": "Sense and Sensibility (1995)",
+        "genres": [
+          "Drama",
+          "Romance"
+        ]
+      }
+    ],
+    "item_to_item": [
+      {
+        "id": 197,
+        "title": "Graduate, The (1967)",
+        "score": 1.0,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "ratings": 239
+      },
+      {
+        "id": 14,
+        "title": "Postino, Il (1994)",
+        "score": 1.0,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "ratings": 183
+      },
+      {
+        "id": 213,
+        "title": "Room with a View, A (1986)",
+        "score": 1.0,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "ratings": 134
+      },
+      {
+        "id": 246,
+        "title": "Chasing Amy (1997)",
+        "score": 1.0,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "ratings": 124
+      },
+      {
+        "id": 306,
+        "title": "Mrs. Brown (Her Majesty, Mrs. Brown) (1997)",
+        "score": 1.0,
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "ratings": 96
+      }
+    ],
+    "profile_based": [
+      {
+        "id": 172,
+        "title": "Empire Strikes Back, The (1980)",
+        "score": 0.825,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Romance",
+          "Sci-Fi",
+          "War"
+        ],
+        "ratings": 367
+      },
+      {
+        "id": 181,
+        "title": "Return of the Jedi (1983)",
+        "score": 0.7746,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Romance",
+          "Sci-Fi",
+          "War"
+        ],
+        "ratings": 507
+      },
+      {
+        "id": 173,
+        "title": "Princess Bride, The (1987)",
+        "score": 0.7217,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Romance"
+        ],
+        "ratings": 324
+      },
+      {
+        "id": 498,
+        "title": "African Queen, The (1951)",
+        "score": 0.7217,
+        "genres": [
+          "Action",
+          "Adventure",
+          "Romance",
+          "War"
+        ],
+        "ratings": 152
+      },
+      {
+        "id": 631,
+        "title": "Crying Game, The (1992)",
+        "score": 0.7217,
+        "genres": [
+          "Action",
+          "Drama",
+          "Romance",
+          "War"
+        ],
+        "ratings": 119
+      }
+    ],
+    "profile_vector": {
+      "Action": 0.3333,
+      "Adventure": 0.3333,
+      "Animation": 0.3333,
+      "Children's": 0.3333,
+      "Comedy": 0.3333,
+      "Drama": 0.3333,
+      "Romance": 0.6667,
+      "Sci-Fi": 0.3333,
+      "War": 0.3333
+    },
+    "active_item": {
+      "id": 275,
+      "title": "Sense and Sensibility (1995)"
+    }
+  },
+  "reference_top5": {
+    "single_movie": {
+      "1": [
+        {
+          "id": 422,
+          "title": "Aladdin and the King of Thieves (1996)",
+          "score": 1.0
+        },
+        {
+          "id": 95,
+          "title": "Aladdin (1992)",
+          "score": 0.866025
+        },
+        {
+          "id": 1219,
+          "title": "Goofy Movie, A (1995)",
+          "score": 0.866025
+        },
+        {
+          "id": 169,
+          "title": "Wrong Trousers, The (1993)",
+          "score": 0.816497
+        },
+        {
+          "id": 189,
+          "title": "Grand Day Out, A (1992)",
+          "score": 0.816497
+        }
+      ],
+      "50": [
+        {
+          "id": 181,
+          "title": "Return of the Jedi (1983)",
+          "score": 1.0
+        },
+        {
+          "id": 172,
+          "title": "Empire Strikes Back, The (1980)",
+          "score": 0.912871
+        },
+        {
+          "id": 498,
+          "title": "African Queen, The (1951)",
+          "score": 0.894427
+        },
+        {
+          "id": 271,
+          "title": "Starship Troopers (1997)",
+          "score": 0.894427
+        },
+        {
+          "id": 228,
+          "title": "Star Trek: The Wrath of Khan (1982)",
+          "score": 0.774597
+        }
+      ],
+      "121": [
+        {
+          "id": 176,
+          "title": "Aliens (1986)",
+          "score": 0.866025
+        },
+        {
+          "id": 271,
+          "title": "Starship Troopers (1997)",
+          "score": 0.866025
+        },
+        {
+          "id": 235,
+          "title": "Mars Attacks! (1996)",
+          "score": 0.866025
+        },
+        {
+          "id": 474,
+          "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963)",
+          "score": 0.816497
+        },
+        {
+          "id": 250,
+          "title": "Fifth Element, The (1997)",
+          "score": 0.816497
+        }
+      ],
+      "275": [
+        {
+          "id": 197,
+          "title": "Graduate, The (1967)",
+          "score": 1.0
+        },
+        {
+          "id": 14,
+          "title": "Postino, Il (1994)",
+          "score": 1.0
+        },
+        {
+          "id": 213,
+          "title": "Room with a View, A (1986)",
+          "score": 1.0
+        },
+        {
+          "id": 246,
+          "title": "Chasing Amy (1997)",
+          "score": 1.0
+        },
+        {
+          "id": 306,
+          "title": "Mrs. Brown (Her Majesty, Mrs. Brown) (1997)",
+          "score": 1.0
+        }
+      ],
+      "313": [
+        {
+          "id": 207,
+          "title": "Cyrano de Bergerac (1990)",
+          "score": 1.0
+        },
+        {
+          "id": 1483,
+          "title": "Man in the Iron Mask, The (1998)",
+          "score": 1.0
+        },
+        {
+          "id": 631,
+          "title": "Crying Game, The (1992)",
+          "score": 0.866025
+        },
+        {
+          "id": 720,
+          "title": "First Knight (1995)",
+          "score": 0.866025
+        },
+        {
+          "id": 197,
+          "title": "Graduate, The (1967)",
+          "score": 0.816497
+        }
+      ]
+    },
+    "history": {
+      "1+50+275": {
+        "active": 275,
+        "item_to_item": [
+          {
+            "id": 197,
+            "title": "Graduate, The (1967)",
+            "score": 1.0
+          },
+          {
+            "id": 14,
+            "title": "Postino, Il (1994)",
+            "score": 1.0
+          },
+          {
+            "id": 213,
+            "title": "Room with a View, A (1986)",
+            "score": 1.0
+          },
+          {
+            "id": 246,
+            "title": "Chasing Amy (1997)",
+            "score": 1.0
+          },
+          {
+            "id": 306,
+            "title": "Mrs. Brown (Her Majesty, Mrs. Brown) (1997)",
+            "score": 1.0
+          }
+        ],
+        "profile_based": [
+          {
+            "id": 172,
+            "title": "Empire Strikes Back, The (1980)",
+            "score": 0.824958
+          },
+          {
+            "id": 181,
+            "title": "Return of the Jedi (1983)",
+            "score": 0.774597
+          },
+          {
+            "id": 173,
+            "title": "Princess Bride, The (1987)",
+            "score": 0.721688
+          },
+          {
+            "id": 498,
+            "title": "African Queen, The (1951)",
+            "score": 0.721688
+          },
+          {
+            "id": 631,
+            "title": "Crying Game, The (1992)",
+            "score": 0.721688
+          }
+        ],
+        "profile_vector": [
+          0.333333,
+          0.333333,
+          0.333333,
+          0.333333,
+          0.333333,
+          0.0,
+          0.0,
+          0.333333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.666667,
+          0.333333,
+          0.0,
+          0.333333,
+          0.0
+        ]
+      },
+      "7+98+181": {
+        "active": 181,
+        "item_to_item": [
+          {
+            "id": 50,
+            "title": "Star Wars (1977)",
+            "score": 1.0
+          },
+          {
+            "id": 172,
+            "title": "Empire Strikes Back, The (1980)",
+            "score": 0.912871
+          },
+          {
+            "id": 498,
+            "title": "African Queen, The (1951)",
+            "score": 0.894427
+          },
+          {
+            "id": 271,
+            "title": "Starship Troopers (1997)",
+            "score": 0.894427
+          },
+          {
+            "id": 228,
+            "title": "Star Trek: The Wrath of Khan (1982)",
+            "score": 0.774597
+          }
+        ],
+        "profile_based": [
+          {
+            "id": 172,
+            "title": "Empire Strikes Back, The (1980)",
+            "score": 0.905822
+          },
+          {
+            "id": 270,
+            "title": "Gattaca (1997)",
+            "score": 0.800641
+          },
+          {
+            "id": 429,
+            "title": "Day the Earth Stood Still, The (1951)",
+            "score": 0.784465
+          },
+          {
+            "id": 258,
+            "title": "Contact (1997)",
+            "score": 0.784465
+          },
+          {
+            "id": 1006,
+            "title": "Until the End of the World (Bis ans Ende der Welt) (1991)",
+            "score": 0.784465
+          }
+        ],
+        "profile_vector": [
+          0.333333,
+          0.333333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.666667,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.666667,
+          0.333333,
+          0.333333,
+          0.0
+        ]
+      },
+      "100+258+286": {
+        "active": 286,
+        "item_to_item": [
+          {
+            "id": 483,
+            "title": "Casablanca (1942)",
+            "score": 1.0
+          },
+          {
+            "id": 133,
+            "title": "Gone with the Wind (1939)",
+            "score": 1.0
+          },
+          {
+            "id": 549,
+            "title": "Rob Roy (1995)",
+            "score": 1.0
+          },
+          {
+            "id": 1485,
+            "title": "Colonel Chabert, Le (1994)",
+            "score": 1.0
+          },
+          {
+            "id": 631,
+            "title": "Crying Game, The (1992)",
+            "score": 0.866025
+          }
+        ],
+        "profile_based": [
+          {
+            "id": 64,
+            "title": "Shawshank Redemption, The (1994)",
+            "score": 0.801784
+          },
+          {
+            "id": 357,
+            "title": "One Flew Over the Cuckoo's Nest (1975)",
+            "score": 0.801784
+          },
+          {
+            "id": 427,
+            "title": "To Kill a Mockingbird (1962)",
+            "score": 0.801784
+          },
+          {
+            "id": 178,
+            "title": "12 Angry Men (1957)",
+            "score": 0.801784
+          },
+          {
+            "id": 134,
+            "title": "Citizen Kane (1941)",
+            "score": 0.801784
+          }
+        ],
+        "profile_vector": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.333333,
+          0.333333,
+          0.333333,
+          0.333333,
+          0.0
+        ]
+      }
+    },
+    "tiebreaks": {
+      "popularity": [
+        {
+          "id": 172,
+          "title": "Empire Strikes Back, The (1980)"
+        },
+        {
+          "id": 181,
+          "title": "Return of the Jedi (1983)"
+        },
+        {
+          "id": 173,
+          "title": "Princess Bride, The (1987)"
+        },
+        {
+          "id": 385,
+          "title": "True Lies (1994)"
+        },
+        {
+          "id": 498,
+          "title": "African Queen, The (1951)"
+        }
+      ],
+      "id": [
+        {
+          "id": 172,
+          "title": "Empire Strikes Back, The (1980)"
+        },
+        {
+          "id": 181,
+          "title": "Return of the Jedi (1983)"
+        },
+        {
+          "id": 173,
+          "title": "Princess Bride, The (1987)"
+        },
+        {
+          "id": 385,
+          "title": "True Lies (1994)"
+        },
+        {
+          "id": 498,
+          "title": "African Queen, The (1951)"
+        }
+      ]
+    }
+  }
+}
