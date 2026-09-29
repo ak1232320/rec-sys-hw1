@@ -15,11 +15,12 @@ th { background: #dde6f2; }
 .fig { text-align: center; margin: 4px 0; page-break-inside: avoid; }
 .fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
 .fig.wide img { width: 47%; }
-.fig.full img { width: 84%; border: none; }
+.fig.full img { width: 76%; border: none; }
+.fig.manual img { width: 66%; border: 1px solid #ccc; }
 .fig.shot img { width: 62%; border: 1px solid #ccc; }
 .fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }
-.fig.pair img:first-child { width: 30%; }
-.fig.pair img:last-child { width: 53%; }
+.fig.pair img:first-child { width: 27%; }
+.fig.pair img:last-child { width: 48%; }
 .fig p { text-align: center; font-size: 8.4pt; margin-top: 2px; }
 .todo { background: #fff3a8; font-style: italic; }
 </style></head>
@@ -35,7 +36,7 @@ Assignment: A03 — Collaborative Filtering, MovieLens 100k (Week 3)
 both recommenders. I filled them in, declared <em>significance weighting</em> as the missing-value strategy,
 and measured what each choice is worth on a per-user temporal split of MovieLens 100k. <strong>User-based
 wins on both axes at once</strong> here: with 1,682 movies against 943 users the item side has 3.2× more pairs
-and costs 173× more per request in the browser (4 ms vs 624 ms), and it is also the worse recommender
+and costs 20–170× more per request in the browser, and it is also the worse recommender
 under every co-rated strategy. <strong>The specified formulas lose to not personalising at all</strong> — a
 most-rated list reaches Precision@5 of 7.9%, user-based 1.5%, item-based 0.0% — and the cause is
 evidence, not the similarity: requiring 10 ratings behind a prediction instead of 1 lifts user-based to
@@ -58,8 +59,7 @@ files — so the algorithm is the only thing that changes.</p>
 <p><strong>Concrete example.</strong> User 405, the heaviest rater in the dataset with 737 ratings. User-based returns
 five films all predicted at exactly 5.000, three of them backed by a <em>single</em> neighbour. Item-based
 returns five films that have <strong>one rating each in the entire dataset</strong> — Big Bang Theory (1994),
-Other Voices Other Rooms (1997), Chairman of the Board (1998) — and takes 624 ms to do it against the
-user-based column's 4 ms (Fig. 3).</p>
+Other Voices Other Rooms (1997), Chairman of the Board (1998) — and needs 1,240,371 movie-to-movie comparisons against the user-based column's 942 (Fig. 3).</p>
 <p><strong>Contributions.</strong> (i) Both recommenders, three missing-value strategies and a deterministic tie-break,
 as pure functions that a NumPy port reproduces number for number. (ii) A sparse formulation — including a
 closed form for the imputed part of mean imputation — algebraically identical to the readable dense
@@ -140,7 +140,7 @@ recommended.</p>
 <td>444,153</td>
 <td>3.4 MB</td>
 <td>0.07 s</td>
-<td><strong>4 ms</strong> per request</td>
+<td>942 comparisons, <strong>4–5 ms</strong></td>
 </tr>
 <tr>
 <td>Item-based</td>
@@ -148,14 +148,12 @@ recommended.</p>
 <td>1,413,721 (<strong>3.2×</strong>)</td>
 <td>10.8 MB</td>
 <td>0.11 s</td>
-<td><strong>624 ms</strong> per request</td>
+<td>1,240,371 comparisons, <strong>95–624 ms</strong></td>
 </tr>
 </tbody>
 </table>
 <p>The lecture's rule is that item-based pays off when there are more users than items. MovieLens 100k is
-the other way round, and the measurement follows: the item side has 3.2× the pairs, 3.2× the memory, and
-in the browser — where only the active user's rated movies are compared, not the whole matrix — 173× the
-latency, because each of the user's 737 movies must be scored against all 1,682.</p>
+the other way round, and the measurement follows: the item side has 3.2× the pairs and 3.2× the memory, and for user 405 in the browser it needs 1,317× as many comparisons, because each of the user's 737 movies must be scored against all 1,682. The latency that produces varies with the machine — 20× to 170× across the runs recorded here — but its sign never does.</p>
 <div class="fig full">
 <img src="figures/models.png">
 <p><em>Fig. 1. Every configuration on the same temporal split. Only item-based with mean imputation beats
@@ -310,11 +308,10 @@ pick γ≈5. The two objectives do not agree, which is Cremonesi's point [7].</p
 <p>Nothing about the similarity changes across that table; only the requirement that a prediction rest on
 more than one rating. It takes user-based from well below the popularity baseline to just above it — and
 takes the long tail from 62.8% to 1.6%, so the accuracy is bought by retreating to the head.</p>
-<p>Item-based needs the mirror-image guard, on the candidate rather than the neighbours. Restricting
-candidates to movies with at least 25 training ratings moves item-based Precision@5 from 0.0% to 1.1%,
-and aggregating over only the 20 most similar rated movies instead of all of them moves it to 1.6% with
-catalogue coverage of 56.7% — the broadest of any configuration measured, and still a quarter of the
-popularity baseline's precision.</p>
+<p>Item-based needs the mirror-image guard, on the candidate rather than the neighbours: restricting
+candidates to movies with at least 25 training ratings moves its Precision@5 from 0.0% to 1.1%, and
+aggregating over only the 20 most similar rated movies moves it to 1.6% at 56.7% catalogue coverage — the
+broadest configuration measured, and still a quarter of the popularity baseline's precision.</p>
 <div class="fig full">
 <img src="figures/evidence.png">
 <p><em>Fig. 2. Left: Precision@5 against how much the active user has rated — CF has nothing to say to the
@@ -334,21 +331,20 @@ ignorance.</p>
 <img src="figures/starter_app.png"><img src="figures/comparison.png">
 <p><em>Fig. 3. Left: the starter, whose four stubs return nothing. Right: the finished app for user 405 —
 five predictions of exactly 5.000 backed by one or two neighbours, and an item-based column of films with
-a single rating each, at 173× the cost.</em></p>
+a single rating each.</em></p>
 </div>
 
-<p><strong>Verification.</strong> <code>tests/check_cf.py</code> serves the app over http, drives it in headless Chrome and runs 36
-checks, all passing: the sparse similarity equals the dense definition to 3×10⁻⁸ for all three strategies
-in both directions; both Top-5 columns match the NumPy reference exactly for all 24 <code>corated</code> and
-<code>weighted</code> configurations; the <code>mean</code> configurations are checked numerically instead, because the 1.7×10⁻⁴
-spread makes the neighbour cut genuinely unstable between float32 implementations; the evidence threshold
-is enforced; accented titles survive the ISO-8859-1 decode; and the starter still reports Toy Story as
-<code>Children's, Comedy, Crime</code> and returns "Implement the TODO above".</p>
+<p><strong>Verification.</strong> <code>tests/check_cf.py</code> drives the page in headless Chrome and runs 36 checks, all passing:
+the sparse similarity equals the dense definition to 3×10⁻⁸ for all three strategies in both directions;
+both Top-5 columns match the NumPy reference exactly for all 24 <code>corated</code> and <code>weighted</code> configurations
+(the <code>mean</code> ones are checked numerically instead, since the 1.7×10⁻⁴ spread makes the neighbour cut
+unstable between float32 implementations); the evidence threshold is enforced; and accented titles survive
+the ISO-8859-1 decode.</p>
 <h2>5. Discussion</h2>
 <p><strong>Answers to the three analysis questions.</strong></p>
 <ul>
 <li><em>User-based vs item-based.</em> On MovieLens 100k, user-based, on both counts: items outnumber users
-  1,682 to 943, so the item-item space is 3.2× larger and the browser pays 173× more latency, and
+  1,682 to 943, so the item-item space is 3.2× larger and one request costs 1,317× more comparisons, and
   quality points the same way under every co-rated strategy. The lecture's rule is about the ratio, not
   the method — at Amazon's shape it reverses, and item-based also wins on stability, since a movie's
   rating column changes far more slowly than a user's row. What never reverses is that item-item
@@ -376,34 +372,40 @@ not, which is why weighting improves user-based coverage by 55 points and does n
 An obscure film co-rated by one enthusiast inherits that enthusiast's 5 however hard the similarity is
 damped: the guard has to be on the count, not the weight.</p>
 <p><strong>What worked.</strong> Writing the readable dense definition first and the sparse one second, then having the
-browser test compare them, made a 15× speed-up safe to adopt; it also caught the ISO-8859-1 bug, because
-NumPy and the page disagreed on one title. Printing the evidence beside every prediction changed how the
+browser test compare them, made a 15× speed-up safe to adopt and caught the ISO-8859-1 bug, because NumPy
+and the page disagreed on one title. Printing the evidence beside every prediction also changed how the
 app reads: "5.000" and "5.000 from one neighbour" are not the same claim.</p>
 <p><strong>What surprised me.</strong> That a non-personalised most-rated list beats almost every configuration in the
 specification, and that the one which beats it does so by imitating it. And that mean imputation's
 similarities are numerically unstable enough for the browser and NumPy to disagree on the neighbour set —
 I expected a bias, not a loss of resolution.</p>
-<p><strong>Next improvement.</strong> Mean-centre the ratings before averaging. Much of the error here is that users
-disagree about what "4" means, and the co-rated cosine of two raw rating vectors is dominated by both
-being positive numbers around 3.5 — which is also why every similarity sits above 0.9 to begin with.</p>
+<p><strong>Next improvement.</strong> Mean-centre the ratings before averaging: much of the error here is that users
+disagree about what "4" means, and the cosine of two raw rating vectors is dominated by both being
+positive numbers around 3.5 — which is also why every similarity sits above 0.9 to begin with.</p>
 <h2>6. AI Usage Disclosure</h2>
 <p><strong>AI tools used.</strong> Claude Code 2.1.278 (VS Code extension), model Claude Opus 5, one session.</p>
 <p><strong>How AI was used.</strong> <em>Search / reading:</em> cloning [1] and reading <code>week3/</code>; the <code>u.item</code> layout in [3].
-<em>Code generation:</em> <code>cf.js</code>, the rewritten <code>data.js</code> / <code>script.js</code> / <code>index.html</code> / <code>style.css</code>,
-<code>experiments/run_experiment.py</code>, <code>experiments/make_figures.py</code>, <code>tests/check_cf.py</code>, and the corrected
-<code>prompt.md</code>. <em>Analysis:</em> running the offline evaluation and the browser test, and drafting this report.</p>
-<p><strong>What I personally verified.</strong></p>
-<div class="todo">
-TODO (to be completed before submission): run <code>python -m http.server</code> in <code>hw3/</code>, open
-<code>starter/index.html</code> and confirm it returns "Implement the TODO above"; open
-<code>index.html</code>, reproduce the user 405 columns of Fig. 3 and the 4 ms / 624 ms split; switch the
-strategy to mean imputation and confirm the item-based column turns into well-known films; re-run
-<code>tests/check_cf.py</code> and confirm 36/36.
+<em>Code generation:</em> <code>cf.js</code>, the rewritten <code>data.js</code>, <code>script.js</code>, <code>index.html</code> and <code>style.css</code>, the
+<code>experiments/</code> scripts, <code>tests/check_cf.py</code> and the corrected <code>prompt.md</code>. <em>Analysis:</em> running the offline evaluation and the browser test, and drafting this report.</p>
+<p><strong>What I personally verified.</strong> I ran every check by hand against a local <code>python -m http.server</code>;
+screenshots are in <code>manual-test/</code>. The starter returns "Implement the TODO above" in both columns and still
+reports Toy Story as <code>Children's, Comedy, Crime</code>. The finished app reproduces the user 405 columns of
+Fig. 3 exactly — the five predictions of 5.000 on one or two neighbours, and the item-based films with a
+single rating each. Switching to mean imputation replaces that column with Independence Day, Mission:
+Impossible and Toy Story, all at 1.833; raising the evidence threshold to 5 replaces the user-based column
+with Casablanca, Citizen Kane and Ransom, every badge green (Fig. 4). The accented title reads
+<code>C'est arrivé près de chez vous</code>, and <code>tests/check_cf.py</code> reported 36/36. My own cost ratio was 23×
+(4 ms against 95 ms) where the instrumented run recorded 173×, which is why Section 4 quotes a range.</p>
+<div class="fig manual">
+<img src="figures/manual_check.png">
+<p><em>Fig. 4. The two switches, checked by hand on user 405. Left: mean imputation collapses item-based
+onto the blockbusters, every score identical at 1.833. Right: requiring five ratings behind a prediction
+turns the user-based column from 5.000-on-one-neighbour into well-evidenced classics.</em></p>
 </div>
 
-<p><strong>What I trusted without verification.</strong> That the MovieLens timestamps order each user's ratings
-correctly, since the whole split depends on them; that 30 SGD epochs are enough for the matrix
-factorisation baseline to be a fair reference point rather than an undertrained one.</p>
+<p><strong>What I trusted without verification.</strong> That the MovieLens timestamps order each user's ratings correctly,
+since the split depends on them; that 30 SGD epochs leave the matrix-factorisation baseline fairly
+trained rather than short-changed.</p>
 <p><strong>Session log.</strong> <code>kosychev_a03_session.json</code> is the unmodified Claude Code log of this work.</p>
 <h2>References</h2>
 <p>[1] S. Jin, "RecSys-LLMs: Recommender Systems course repository (week3)," GitHub, commit <code>c00cfa1</code>, 2026. [Online]. Available: https://github.com/dryjins/RecSys-LLMs/tree/main/week3. [Accessed: 2026-09-29].</p>

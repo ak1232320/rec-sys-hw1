@@ -168,7 +168,7 @@
     {
       "name": "item-based is measurably the expensive direction",
       "passed": true,
-      "detail": "user-based 3 ms vs item-based 352 ms"
+      "detail": "user-based 2 ms vs item-based 408 ms"
     },
     {
       "name": "the starter still shifts every genre label",
@@ -211,7 +211,7 @@
     "mean": 407.2
   },
   "browser_ms": {
-    "user_based": 3,
-    "item_based": 352
+    "user_based": 2,
+    "item_based": 408
   }
 }

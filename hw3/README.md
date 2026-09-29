@@ -20,7 +20,7 @@ were fixed: the 19-flag genre off-by-one carried over from Week 2, the CRLF-trun
 | | User-based | Item-based |
 |---|---|---|
 | Pairs to compare | 444,153 | **1,413,721** (3.2×) |
-| Per request in the browser | **4 ms** | 624 ms (173×) |
+| Comparisons per request (user 405) | 942 | **1,240,371** (1,317×) |
 | Precision@5 (`weighted`) | 1.5% | 0.0% |
 | Precision@5 (`mean` imputation) | 4.1% | 10.6% |
 
@@ -41,9 +41,10 @@ neighbour ranking is decided by floating-point noise. Full analysis in
 | `starter/` | Unchanged copies of the course files, TODO stubs included; compare with the root |
 | `report/*.diff` | Exact changes per file (`cf.js` is new, so it has no diff) |
 | `experiments/run_experiment.py` | Offline evaluation; output in `experiments/results.json` |
-| `experiments/make_figures.py` | Figures for the report |
+| `experiments/make_figures.py` | Figures for the report (`make_manual_figure.py` composes Fig. 4) |
 | `tests/check_cf.py` | Browser test (Playwright); output in `tests/results.json` and `tests/run_log.txt` |
 | `report/kosychev_a03_report.pdf` | Report (source `report/report.md`, build `python report/build_report.py`) |
+| `manual-test/` | Screenshots of the checks run by hand |
 | `task-slide.png` | The assignment slide (the lecture `.pptx` sits in this folder but is git-ignored) |
 
 ## Run locally
