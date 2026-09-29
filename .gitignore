@@ -4,3 +4,7 @@ __pycache__/
 # Claude Code session logs: submitted alongside the report, not stored in the repo
 # (the A01 log is not committed either). Remove this line to keep them in git.
 *_session.json
+
+# Lecture decks: course material, 15 MB each, not mine to republish.
+# Delete this line to keep them in the repository.
+*.pptx

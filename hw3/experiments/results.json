@@ -1,0 +1,1803 @@
+{
+  "dataset": {
+    "users": 943,
+    "items": 1682,
+    "ratings": 100000,
+    "train_ratings": 80000,
+    "test_ratings": 20000,
+    "density_pct": 5.043735491379626,
+    "users_with_relevant_test_items": 907,
+    "mean_profile": 84.83563096500531,
+    "median_profile": 52.0,
+    "items_with_under_5_ratings": 443,
+    "gamma": 25,
+    "neighbours": 20,
+    "top_k": 5
+  },
+  "experiments": {
+    "cost": {
+      "user_based": {
+        "rows": 943,
+        "pairs": 444153,
+        "similarity_seconds": 0.06260799989104271,
+        "matrix_mb": 3.3922157287597656,
+        "nonzero_similarity_pct": 94.11807041672243
+      },
+      "item_based": {
+        "rows": 1682,
+        "pairs": 1413721,
+        "similarity_seconds": 0.11064590001478791,
+        "matrix_mb": 10.792251586914062,
+        "nonzero_similarity_pct": 55.7097532663821
+      },
+      "item_to_user_pair_ratio": 3.1829594756761748
+    },
+    "baselines": {
+      "item_mean": {
+        "label": "Item mean (no personalisation)",
+        "rmse": 1.070636633764997,
+        "mae": 0.8572368828671636,
+        "prediction_coverage_pct": 99.57,
+        "hit_rate_at_5_pct": 0.4410143329658214,
+        "precision_at_5_pct": 0.08820286659316427,
+        "recall_at_5_pct": 0.04219625774201299,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 0.356718192627824,
+        "gini": 0.9970231532524807,
+        "mean_popularity_of_rec": 1.1995589856670341,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 1.0,
+        "seconds": 0.2703064999077469
+      },
+      "popularity": {
+        "label": "Most-rated items",
+        "rmse": 1.070636633764997,
+        "mae": 0.8572368828671636,
+        "prediction_coverage_pct": 99.57,
+        "hit_rate_at_5_pct": 28.44542447629548,
+        "precision_at_5_pct": 7.872105843439934,
+        "recall_at_5_pct": 4.320023972247126,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 2.5564803804994054,
+        "gini": 0.9925928208005642,
+        "mean_popularity_of_rec": 430.0269018743109,
+        "long_tail_share_pct": 0.0,
+        "median_evidence": 442.0,
+        "seconds": 0.17786309984512627
+      }
+    },
+    "strategies": {
+      "user_based/corated": {
+        "label": "User-based / corated",
+        "rmse": 1.3239238415129357,
+        "mae": 1.0069846297444651,
+        "prediction_coverage_pct": 22.775,
+        "hit_rate_at_5_pct": 7.82800441014333,
+        "precision_at_5_pct": 1.7420066152149924,
+        "recall_at_5_pct": 0.7619716253333662,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 23.18668252080856,
+        "gini": 0.9107112470453744,
+        "mean_popularity_of_rec": 141.4141124586549,
+        "long_tail_share_pct": 31.686879823594268,
+        "median_evidence": 2.0,
+        "seconds": 0.4181987000629306
+      },
+      "item_based/corated": {
+        "label": "Item-based / corated",
+        "rmse": 1.1462525070859046,
+        "mae": 0.9139570007252483,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 13.258026159334126,
+        "gini": 0.9594399222849891,
+        "mean_popularity_of_rec": 1.4687982359426681,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 5.0,
+        "seconds": 7.169456199975684
+      },
+      "user_based/weighted": {
+        "label": "User-based / weighted",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.953693495038589,
+        "precision_at_5_pct": 1.4773980154355006,
+        "recall_at_5_pct": 0.4986887650927173,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 30.202140309155766,
+        "gini": 0.8825563361724833,
+        "mean_popularity_of_rec": 74.04564498346197,
+        "long_tail_share_pct": 62.822491730981255,
+        "median_evidence": 2.0,
+        "seconds": 1.5456710001453757
+      },
+      "item_based/weighted": {
+        "label": "Item-based / weighted",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 13.495838287752676,
+        "gini": 0.9587810227494701,
+        "mean_popularity_of_rec": 1.4796030871003307,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 5.0,
+        "seconds": 7.010416799923405
+      },
+      "user_based/mean": {
+        "label": "User-based / mean",
+        "rmse": 1.3398149752491515,
+        "mae": 1.0084953387667484,
+        "prediction_coverage_pct": 33.66,
+        "hit_rate_at_5_pct": 18.30209481808159,
+        "precision_at_5_pct": 4.145534729878721,
+        "recall_at_5_pct": 2.058553248967754,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 13.020214030915577,
+        "gini": 0.9753167004681517,
+        "mean_popularity_of_rec": 188.50562293274533,
+        "long_tail_share_pct": 21.45534729878721,
+        "median_evidence": 2.0,
+        "seconds": 1.1598710999824107
+      },
+      "item_based/mean": {
+        "label": "Item-based / mean",
+        "rmse": 1.1387017651979336,
+        "mae": 0.9089575290342483,
+        "prediction_coverage_pct": 99.57,
+        "hit_rate_at_5_pct": 36.38368246968027,
+        "precision_at_5_pct": 10.628445424476338,
+        "recall_at_5_pct": 5.552039217158347,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 22.889417360285375,
+        "gini": 0.9229985566088568,
+        "mean_popularity_of_rec": 234.3819184123484,
+        "long_tail_share_pct": 5.490628445424476,
+        "median_evidence": 54.0,
+        "seconds": 7.041783799882978
+      }
+    },
+    "matrix_factorisation": {
+      "label": "Matrix factorisation (k=20)",
+      "rmse": 0.9724132675570557,
+      "mae": 0.7692758625445602,
+      "prediction_coverage_pct": 100.0,
+      "hit_rate_at_5_pct": 20.61742006615215,
+      "precision_at_5_pct": 5.5788313120176465,
+      "recall_at_5_pct": 2.366322334361957,
+      "users_evaluated": 907,
+      "catalogue_coverage_pct": 6.539833531510107,
+      "gini": 0.9892461460407689,
+      "mean_popularity_of_rec": 177.574421168688,
+      "long_tail_share_pct": 9.68026460859978,
+      "median_evidence": 10000.0,
+      "seconds": 0.6655666998121887,
+      "train_seconds": 189.43547839997336
+    },
+    "gamma_sweep": {
+      "1": {
+        "label": "User-based / weighted, gamma=1",
+        "rmse": 1.3239238415129357,
+        "mae": 1.0069846297444651,
+        "prediction_coverage_pct": 22.775,
+        "hit_rate_at_5_pct": 7.82800441014333,
+        "precision_at_5_pct": 1.7420066152149924,
+        "recall_at_5_pct": 0.7619716253333662,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 23.18668252080856,
+        "gini": 0.9107112470453744,
+        "mean_popularity_of_rec": 141.4141124586549,
+        "long_tail_share_pct": 31.686879823594268,
+        "median_evidence": 2.0,
+        "seconds": 1.31680510006845
+      },
+      "5": {
+        "label": "User-based / weighted, gamma=5",
+        "rmse": 1.2176072167820176,
+        "mae": 0.9177799794273925,
+        "prediction_coverage_pct": 43.565,
+        "hit_rate_at_5_pct": 16.31753031973539,
+        "precision_at_5_pct": 3.858875413450931,
+        "recall_at_5_pct": 1.579712467365161,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 28.478002378121285,
+        "gini": 0.8892929480969131,
+        "mean_popularity_of_rec": 144.49459757442116,
+        "long_tail_share_pct": 22.513781697905184,
+        "median_evidence": 2.0,
+        "seconds": 1.4307122000027448
+      },
+      "10": {
+        "label": "User-based / weighted, gamma=10",
+        "rmse": 1.1760084245720164,
+        "mae": 0.8963977861228449,
+        "prediction_coverage_pct": 58.07,
+        "hit_rate_at_5_pct": 13.561190738699008,
+        "precision_at_5_pct": 3.263506063947072,
+        "recall_at_5_pct": 1.2200986843852875,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 31.98573127229489,
+        "gini": 0.8658148342853247,
+        "mean_popularity_of_rec": 117.05909592061742,
+        "long_tail_share_pct": 35.83241455347299,
+        "median_evidence": 2.0,
+        "seconds": 1.506094800075516
+      },
+      "25": {
+        "label": "User-based / weighted, gamma=25",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.953693495038589,
+        "precision_at_5_pct": 1.4773980154355006,
+        "recall_at_5_pct": 0.4986887650927173,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 30.202140309155766,
+        "gini": 0.8825563361724833,
+        "mean_popularity_of_rec": 74.04564498346197,
+        "long_tail_share_pct": 62.822491730981255,
+        "median_evidence": 2.0,
+        "seconds": 1.5823667999356985
+      },
+      "50": {
+        "label": "User-based / weighted, gamma=50",
+        "rmse": 1.1150793647514867,
+        "mae": 0.872400445748559,
+        "prediction_coverage_pct": 87.28,
+        "hit_rate_at_5_pct": 4.5203969128996695,
+        "precision_at_5_pct": 0.9922822491730984,
+        "recall_at_5_pct": 0.21735639721389957,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 25.564803804994053,
+        "gini": 0.9131987042254259,
+        "mean_popularity_of_rec": 61.14156560088203,
+        "long_tail_share_pct": 72.41455347298788,
+        "median_evidence": 2.0,
+        "seconds": 1.476903700036928
+      },
+      "100": {
+        "label": "User-based / weighted, gamma=100",
+        "rmse": 1.10697614514304,
+        "mae": 0.8728619544349963,
+        "prediction_coverage_pct": 94.275,
+        "hit_rate_at_5_pct": 1.7640573318632855,
+        "precision_at_5_pct": 0.3748621830209483,
+        "recall_at_5_pct": 0.08646886279340812,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 20.03567181926278,
+        "gini": 0.9400122183519122,
+        "mean_popularity_of_rec": 52.97750826901874,
+        "long_tail_share_pct": 77.61852260198457,
+        "median_evidence": 1.0,
+        "seconds": 1.628298700088635
+      }
+    },
+    "evidence_threshold": {
+      "user_based/1": {
+        "label": "User-based, >= 1",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.953693495038589,
+        "precision_at_5_pct": 1.4773980154355006,
+        "recall_at_5_pct": 0.4986887650927173,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 30.202140309155766,
+        "gini": 0.8825563361724833,
+        "mean_popularity_of_rec": 74.04564498346197,
+        "long_tail_share_pct": 62.822491730981255,
+        "median_evidence": 2.0,
+        "seconds": 1.4114069999195635
+      },
+      "item_based/1": {
+        "label": "Item-based, >= 1",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 13.495838287752676,
+        "gini": 0.9587810227494701,
+        "mean_popularity_of_rec": 1.4796030871003307,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 5.0,
+        "seconds": 7.115548700094223
+      },
+      "user_based/3": {
+        "label": "User-based, >= 3",
+        "rmse": 1.0382658260911095,
+        "mae": 0.8129125567030739,
+        "prediction_coverage_pct": 53.23,
+        "hit_rate_at_5_pct": 12.679162072767365,
+        "precision_at_5_pct": 3.175303197353908,
+        "recall_at_5_pct": 1.2174124433241726,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 21.819262782401903,
+        "gini": 0.9284687599552693,
+        "mean_popularity_of_rec": 148.39426681367144,
+        "long_tail_share_pct": 28.335170893054023,
+        "median_evidence": 4.0,
+        "seconds": 1.633857100037858
+      },
+      "item_based/3": {
+        "label": "Item-based, >= 3",
+        "rmse": 1.1637557651733128,
+        "mae": 0.9234913999241242,
+        "prediction_coverage_pct": 99.54,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 15.576694411414982,
+        "gini": 0.94781098786424,
+        "mean_popularity_of_rec": 1.663947078280044,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 8.0,
+        "seconds": 6.873890899820253
+      },
+      "user_based/5": {
+        "label": "User-based, >= 5",
+        "rmse": 1.0090050853821162,
+        "mae": 0.7918440663517928,
+        "prediction_coverage_pct": 39.36,
+        "hit_rate_at_5_pct": 19.955898566703418,
+        "precision_at_5_pct": 5.292171995589865,
+        "recall_at_5_pct": 2.2688601817441127,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 15.695600475624257,
+        "gini": 0.9581923918472653,
+        "mean_popularity_of_rec": 201.21389195148842,
+        "long_tail_share_pct": 8.952590959206175,
+        "median_evidence": 7.0,
+        "seconds": 1.364454000024125
+      },
+      "item_based/5": {
+        "label": "Item-based, >= 5",
+        "rmse": 1.1634089485934862,
+        "mae": 0.9232930806404105,
+        "prediction_coverage_pct": 99.525,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 19.500594530321045,
+        "gini": 0.9360302417319645,
+        "mean_popularity_of_rec": 1.968026460859978,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 10.0,
+        "seconds": 6.885907500050962
+      },
+      "user_based/10": {
+        "label": "User-based, >= 10",
+        "rmse": 0.9804277233572501,
+        "mae": 0.7682162239257655,
+        "prediction_coverage_pct": 18.495,
+        "hit_rate_at_5_pct": 30.8710033076075,
+        "precision_at_5_pct": 8.445424476295505,
+        "recall_at_5_pct": 4.655411952245765,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 11.414982164090368,
+        "gini": 0.9684665457554875,
+        "mean_popularity_of_rec": 265.95634095634097,
+        "long_tail_share_pct": 1.593901593901594,
+        "median_evidence": 12.0,
+        "seconds": 1.1650462998077273
+      },
+      "item_based/10": {
+        "label": "Item-based, >= 10",
+        "rmse": 1.1625386389537888,
+        "mae": 0.9227630646513351,
+        "prediction_coverage_pct": 99.445,
+        "hit_rate_at_5_pct": 0.2205071664829107,
+        "precision_at_5_pct": 0.044101433296582136,
+        "recall_at_5_pct": 0.018375597206909226,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 28.59690844233056,
+        "gini": 0.9032305217577121,
+        "mean_popularity_of_rec": 2.8185226019845646,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 15.0,
+        "seconds": 6.9798343000002205
+      }
+    },
+    "item_evidence": {
+      "user_based/0": {
+        "label": "User-based, candidates with >= 0 ratings",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.953693495038589,
+        "precision_at_5_pct": 1.4773980154355006,
+        "recall_at_5_pct": 0.4986887650927173,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 30.202140309155766,
+        "gini": 0.8825563361724833,
+        "mean_popularity_of_rec": 74.04564498346197,
+        "long_tail_share_pct": 62.822491730981255,
+        "median_evidence": 2.0,
+        "seconds": 1.5129907000809908
+      },
+      "item_based/0": {
+        "label": "Item-based, candidates with >= 0 ratings",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 0.11025358324145534,
+        "precision_at_5_pct": 0.022050716648291068,
+        "recall_at_5_pct": 0.0073502388827636905,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 13.495838287752676,
+        "gini": 0.9587810227494701,
+        "mean_popularity_of_rec": 1.4796030871003307,
+        "long_tail_share_pct": 100.0,
+        "median_evidence": 5.0,
+        "seconds": 6.870748500106856
+      },
+      "user_based/5": {
+        "label": "User-based, candidates with >= 5 ratings",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.953693495038589,
+        "precision_at_5_pct": 1.4773980154355006,
+        "recall_at_5_pct": 0.4986887650927173,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 30.083234244946492,
+        "gini": 0.8832519432030174,
+        "mean_popularity_of_rec": 74.29768467475193,
+        "long_tail_share_pct": 62.73428886438809,
+        "median_evidence": 2.0,
+        "seconds": 1.6689663000870496
+      },
+      "item_based/5": {
+        "label": "Item-based, candidates with >= 5 ratings",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 1.3230429988974641,
+        "precision_at_5_pct": 0.26460859977949286,
+        "recall_at_5_pct": 0.07867762882165448,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 18.608799048751486,
+        "gini": 0.9505262937097775,
+        "mean_popularity_of_rec": 7.446306504961411,
+        "long_tail_share_pct": 99.95589856670341,
+        "median_evidence": 27.0,
+        "seconds": 4.307154000038281
+      },
+      "user_based/10": {
+        "label": "User-based, candidates with >= 10 ratings",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 5.843439911797134,
+        "precision_at_5_pct": 1.4553472987872098,
+        "recall_at_5_pct": 0.4960636797774444,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 29.48870392390012,
+        "gini": 0.8867055940911421,
+        "mean_popularity_of_rec": 75.8901874310915,
+        "long_tail_share_pct": 62.27122381477398,
+        "median_evidence": 2.0,
+        "seconds": 0.46425810013897717
+      },
+      "item_based/10": {
+        "label": "Item-based, candidates with >= 10 ratings",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 3.197353914002205,
+        "precision_at_5_pct": 0.7276736493936058,
+        "recall_at_5_pct": 0.24239403552746377,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 24.31629013079667,
+        "gini": 0.9327973602067157,
+        "mean_popularity_of_rec": 19.182800441014333,
+        "long_tail_share_pct": 99.07386990077177,
+        "median_evidence": 45.0,
+        "seconds": 3.159068600041792
+      },
+      "user_based/25": {
+        "label": "User-based, candidates with >= 25 ratings",
+        "rmse": 1.1281706558526001,
+        "mae": 0.870559195789711,
+        "prediction_coverage_pct": 77.51,
+        "hit_rate_at_5_pct": 6.284454244762955,
+        "precision_at_5_pct": 1.5214994487320828,
+        "recall_at_5_pct": 0.5981272343995309,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 27.40784780023781,
+        "gini": 0.8902439344141942,
+        "mean_popularity_of_rec": 86.80022050716649,
+        "long_tail_share_pct": 57.15545755237045,
+        "median_evidence": 2.0,
+        "seconds": 0.47681750007905066
+      },
+      "item_based/25": {
+        "label": "Item-based, candidates with >= 25 ratings",
+        "rmse": 1.164882100645038,
+        "mae": 0.9241132320438641,
+        "prediction_coverage_pct": 99.565,
+        "hit_rate_at_5_pct": 4.630650496141125,
+        "precision_at_5_pct": 1.1025358324145536,
+        "recall_at_5_pct": 0.34869834067423644,
+        "users_evaluated": 907,
+        "catalogue_coverage_pct": 22.948870392390013,
+        "gini": 0.9388860848441308,
+        "mean_popularity_of_rec": 39.85402425578831,
+        "long_tail_share_pct": 96.78059536934951,
+        "median_evidence": 51.0,
+        "seconds": 3.105078099993989
+      }
+    },
+    "item_based_knn": {
+      "label": "Item-based, 20 most similar rated movies per candidate",
+      "rmse": 1.2265441848203715,
+      "mae": 0.9606481128755192,
+      "prediction_coverage_pct": 99.565,
+      "hit_rate_at_5_pct": 7.276736493936053,
+      "precision_at_5_pct": 1.6317530319735374,
+      "recall_at_5_pct": 0.5624806590599811,
+      "users_evaluated": 907,
+      "catalogue_coverage_pct": 56.71819262782402,
+      "gini": 0.7880751769497907,
+      "mean_popularity_of_rec": 28.0438809261301,
+      "long_tail_share_pct": 87.47519294377068,
+      "median_evidence": 7.0,
+      "seconds": 9.13696450018324
+    },
+    "cold_start": {
+      "by_profile_size": {
+        "0-20": {
+          "users": 137,
+          "user_based": 0.0,
+          "item_based": 0.0
+        },
+        "21-50": {
+          "users": 327,
+          "user_based": 0.06369426751592357,
+          "item_based": 0.0
+        },
+        "51-100": {
+          "users": 191,
+          "user_based": 1.7894736842105265,
+          "item_based": 0.0
+        },
+        "101-200": {
+          "users": 197,
+          "user_based": 2.2680412371134024,
+          "item_based": 0.10309278350515463
+        },
+        "201-+": {
+          "users": 91,
+          "user_based": 5.934065934065935,
+          "item_based": 0.0
+        }
+      },
+      "similarity_evidence": {
+        "user_pairs": 418472,
+        "share_with_at_most_2_co_rated_pct": 16.977479974765338,
+        "share_exactly_1_0_pct": 10.060410254449522,
+        "co_rated_of_perfect_pairs_median": 1.0,
+        "mean_similarity_by_co_rated": {
+          "1": 1.0,
+          "2": 0.9568235278129578,
+          "3-5": 0.943740963935852,
+          "6-25": 0.9415861964225769,
+          "26+": 0.9456591606140137
+        }
+      },
+      "cold_items": {
+        "items_with_no_train_rating": 69,
+        "items_with_under_5_train_ratings": 443,
+        "share_of_catalogue_pct": 26.33769322235434
+      }
+    }
+  },
+  "reference_top5": {
+    "1/corated/1": {
+      "user_based": [
+        {
+          "id": 902,
+          "title": "Big Lebowski, The (1998)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 904,
+          "title": "Ma vie en rose (My Life in Pink) (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 1025,
+          "title": "Fire Down Below (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 309,
+          "title": "Deceiver (1997)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 318,
+          "title": "Schindler's List (1993)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1156,
+          "title": "Cyclo (1995)",
+          "score": 4.378378,
+          "support": 37
+        },
+        {
+          "id": 1653,
+          "title": "Entertaining Angels: The Dorothy Day Story (1996)",
+          "score": 4.375,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 4.27907,
+          "support": 43
+        },
+        {
+          "id": 1618,
+          "title": "King of New York (1990)",
+          "score": 4.222222,
+          "support": 27
+        },
+        {
+          "id": 1656,
+          "title": "Little City (1998)",
+          "score": 4.184058,
+          "support": 108
+        }
+      ]
+    },
+    "1/corated/5": {
+      "user_based": [
+        {
+          "id": 304,
+          "title": "Fly Away Home (1996)",
+          "score": 4.001166,
+          "support": 6
+        },
+        {
+          "id": 292,
+          "title": "Rosewood (1997)",
+          "score": 3.998361,
+          "support": 5
+        },
+        {
+          "id": 286,
+          "title": "English Patient, The (1996)",
+          "score": 3.920218,
+          "support": 13
+        },
+        {
+          "id": 315,
+          "title": "Apt Pupil (1998)",
+          "score": 3.8738,
+          "support": 8
+        },
+        {
+          "id": 326,
+          "title": "G.I. Jane (1997)",
+          "score": 3.858182,
+          "support": 7
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1156,
+          "title": "Cyclo (1995)",
+          "score": 4.378378,
+          "support": 37
+        },
+        {
+          "id": 1653,
+          "title": "Entertaining Angels: The Dorothy Day Story (1996)",
+          "score": 4.375,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 4.27907,
+          "support": 43
+        },
+        {
+          "id": 1618,
+          "title": "King of New York (1990)",
+          "score": 4.222222,
+          "support": 27
+        },
+        {
+          "id": 1656,
+          "title": "Little City (1998)",
+          "score": 4.184058,
+          "support": 108
+        }
+      ]
+    },
+    "100/corated/1": {
+      "user_based": [
+        {
+          "id": 8,
+          "title": "Babe (1995)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 116,
+          "title": "Cold Comfort Farm (1995)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 199,
+          "title": "Bridge on the River Kwai, The (1957)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 212,
+          "title": "Unbearable Lightness of Being, The (1988)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 418,
+          "title": "Cinderella (1950)",
+          "score": 5.0,
+          "support": 2
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1619,
+          "title": "All Things Fair (1996)",
+          "score": 4.333333,
+          "support": 3
+        },
+        {
+          "id": 1556,
+          "title": "Condition Red (1995)",
+          "score": 4.0,
+          "support": 7
+        },
+        {
+          "id": 1674,
+          "title": "Mamma Roma (1962)",
+          "score": 4.0,
+          "support": 3
+        },
+        {
+          "id": 1661,
+          "title": "New Age, The (1994)",
+          "score": 3.923077,
+          "support": 13
+        },
+        {
+          "id": 1306,
+          "title": "Delta of Venus (1994)",
+          "score": 3.905969,
+          "support": 4
+        }
+      ]
+    },
+    "100/corated/5": {
+      "user_based": [
+        {
+          "id": 216,
+          "title": "When Harry Met Sally... (1989)",
+          "score": 4.8,
+          "support": 5
+        },
+        {
+          "id": 174,
+          "title": "Raiders of the Lost Ark (1981)",
+          "score": 4.75,
+          "support": 8
+        },
+        {
+          "id": 195,
+          "title": "Terminator, The (1984)",
+          "score": 4.666667,
+          "support": 6
+        },
+        {
+          "id": 137,
+          "title": "Big Night (1996)",
+          "score": 4.6,
+          "support": 5
+        },
+        {
+          "id": 196,
+          "title": "Dead Poets Society (1989)",
+          "score": 4.6,
+          "support": 5
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1556,
+          "title": "Condition Red (1995)",
+          "score": 4.0,
+          "support": 7
+        },
+        {
+          "id": 1661,
+          "title": "New Age, The (1994)",
+          "score": 3.923077,
+          "support": 13
+        },
+        {
+          "id": 1616,
+          "title": "Desert Winds (1995)",
+          "score": 3.888889,
+          "support": 9
+        },
+        {
+          "id": 1627,
+          "title": "Wife, The (1995)",
+          "score": 3.8,
+          "support": 15
+        },
+        {
+          "id": 1519,
+          "title": "New Jersey Drive (1995)",
+          "score": 3.726946,
+          "support": 7
+        }
+      ]
+    },
+    "405/corated/1": {
+      "user_based": [
+        {
+          "id": 275,
+          "title": "Sense and Sensibility (1995)",
+          "score": 5.0,
+          "support": 3
+        },
+        {
+          "id": 306,
+          "title": "Mrs. Brown (Her Majesty, Mrs. Brown) (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 339,
+          "title": "Mad City (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 116,
+          "title": "Cold Comfort Farm (1995)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 150,
+          "title": "Swingers (1996)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1235,
+          "title": "Big Bang Theory, The (1994)",
+          "score": 4.25,
+          "support": 4
+        },
+        {
+          "id": 1236,
+          "title": "Other Voices, Other Rooms (1997)",
+          "score": 4.25,
+          "support": 4
+        },
+        {
+          "id": 1654,
+          "title": "Chairman of the Board (1998)",
+          "score": 3.8,
+          "support": 20
+        },
+        {
+          "id": 1606,
+          "title": "Deceiver (1997)",
+          "score": 3.625,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 3.5,
+          "support": 30
+        }
+      ]
+    },
+    "405/corated/5": {
+      "user_based": [
+        {
+          "id": 475,
+          "title": "Trainspotting (1996)",
+          "score": 4.2,
+          "support": 5
+        },
+        {
+          "id": 300,
+          "title": "Air Force One (1997)",
+          "score": 4.111111,
+          "support": 9
+        },
+        {
+          "id": 286,
+          "title": "English Patient, The (1996)",
+          "score": 4.0,
+          "support": 8
+        },
+        {
+          "id": 117,
+          "title": "Rock, The (1996)",
+          "score": 4.0,
+          "support": 6
+        },
+        {
+          "id": 268,
+          "title": "Chasing Amy (1997)",
+          "score": 3.857143,
+          "support": 7
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1654,
+          "title": "Chairman of the Board (1998)",
+          "score": 3.8,
+          "support": 20
+        },
+        {
+          "id": 1606,
+          "title": "Deceiver (1997)",
+          "score": 3.625,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 3.5,
+          "support": 30
+        },
+        {
+          "id": 1673,
+          "title": "Mirage (1995)",
+          "score": 3.305085,
+          "support": 59
+        },
+        {
+          "id": 1675,
+          "title": "Sunchaser, The (1996)",
+          "score": 3.083333,
+          "support": 48
+        }
+      ]
+    },
+    "1/weighted/1": {
+      "user_based": [
+        {
+          "id": 318,
+          "title": "Schindler's List (1993)",
+          "score": 5.0,
+          "support": 6
+        },
+        {
+          "id": 408,
+          "title": "Close Shave, A (1995)",
+          "score": 5.0,
+          "support": 3
+        },
+        {
+          "id": 638,
+          "title": "Return of Martin Guerre, The (Retour de Martin Guerre, Le) (1982)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 641,
+          "title": "Paths of Glory (1957)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 299,
+          "title": "Hoodlum (1997)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1156,
+          "title": "Cyclo (1995)",
+          "score": 4.378378,
+          "support": 37
+        },
+        {
+          "id": 1653,
+          "title": "Entertaining Angels: The Dorothy Day Story (1996)",
+          "score": 4.375,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 4.27907,
+          "support": 43
+        },
+        {
+          "id": 1618,
+          "title": "King of New York (1990)",
+          "score": 4.222222,
+          "support": 27
+        },
+        {
+          "id": 1656,
+          "title": "Little City (1998)",
+          "score": 4.197823,
+          "support": 108
+        }
+      ]
+    },
+    "1/weighted/5": {
+      "user_based": [
+        {
+          "id": 318,
+          "title": "Schindler's List (1993)",
+          "score": 5.0,
+          "support": 6
+        },
+        {
+          "id": 483,
+          "title": "Casablanca (1942)",
+          "score": 4.833431,
+          "support": 6
+        },
+        {
+          "id": 654,
+          "title": "Chinatown (1974)",
+          "score": 4.800575,
+          "support": 5
+        },
+        {
+          "id": 474,
+          "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963)",
+          "score": 4.750076,
+          "support": 8
+        },
+        {
+          "id": 603,
+          "title": "Rear Window (1954)",
+          "score": 4.635839,
+          "support": 11
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1156,
+          "title": "Cyclo (1995)",
+          "score": 4.378378,
+          "support": 37
+        },
+        {
+          "id": 1653,
+          "title": "Entertaining Angels: The Dorothy Day Story (1996)",
+          "score": 4.375,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 4.27907,
+          "support": 43
+        },
+        {
+          "id": 1618,
+          "title": "King of New York (1990)",
+          "score": 4.222222,
+          "support": 27
+        },
+        {
+          "id": 1656,
+          "title": "Little City (1998)",
+          "score": 4.197823,
+          "support": 108
+        }
+      ]
+    },
+    "100/weighted/1": {
+      "user_based": [
+        {
+          "id": 603,
+          "title": "Rear Window (1954)",
+          "score": 5.0,
+          "support": 5
+        },
+        {
+          "id": 156,
+          "title": "Reservoir Dogs (1992)",
+          "score": 5.0,
+          "support": 3
+        },
+        {
+          "id": 520,
+          "title": "Great Escape, The (1963)",
+          "score": 5.0,
+          "support": 3
+        },
+        {
+          "id": 136,
+          "title": "Mr. Smith Goes to Washington (1939)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 60,
+          "title": "Three Colors: Blue (1993)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1619,
+          "title": "All Things Fair (1996)",
+          "score": 4.333333,
+          "support": 3
+        },
+        {
+          "id": 1556,
+          "title": "Condition Red (1995)",
+          "score": 4.0,
+          "support": 7
+        },
+        {
+          "id": 1674,
+          "title": "Mamma Roma (1962)",
+          "score": 4.0,
+          "support": 3
+        },
+        {
+          "id": 1661,
+          "title": "New Age, The (1994)",
+          "score": 3.923077,
+          "support": 13
+        },
+        {
+          "id": 1616,
+          "title": "Desert Winds (1995)",
+          "score": 3.888889,
+          "support": 9
+        }
+      ]
+    },
+    "100/weighted/5": {
+      "user_based": [
+        {
+          "id": 603,
+          "title": "Rear Window (1954)",
+          "score": 5.0,
+          "support": 5
+        },
+        {
+          "id": 12,
+          "title": "Usual Suspects, The (1995)",
+          "score": 4.874995,
+          "support": 8
+        },
+        {
+          "id": 50,
+          "title": "Star Wars (1977)",
+          "score": 4.84531,
+          "support": 13
+        },
+        {
+          "id": 183,
+          "title": "Alien (1979)",
+          "score": 4.83556,
+          "support": 6
+        },
+        {
+          "id": 174,
+          "title": "Raiders of the Lost Ark (1981)",
+          "score": 4.835386,
+          "support": 6
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1556,
+          "title": "Condition Red (1995)",
+          "score": 4.0,
+          "support": 7
+        },
+        {
+          "id": 1661,
+          "title": "New Age, The (1994)",
+          "score": 3.923077,
+          "support": 13
+        },
+        {
+          "id": 1616,
+          "title": "Desert Winds (1995)",
+          "score": 3.888889,
+          "support": 9
+        },
+        {
+          "id": 1627,
+          "title": "Wife, The (1995)",
+          "score": 3.8,
+          "support": 15
+        },
+        {
+          "id": 1104,
+          "title": "C'est arriv\u00e9 pr\u00e8s de chez vous (1992)",
+          "score": 3.692506,
+          "support": 18
+        }
+      ]
+    },
+    "405/weighted/1": {
+      "user_based": [
+        {
+          "id": 485,
+          "title": "My Fair Lady (1964)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 607,
+          "title": "Rebecca (1940)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 17,
+          "title": "From Dusk Till Dawn (1996)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 220,
+          "title": "Mirror Has Two Faces, The (1996)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 242,
+          "title": "Kolya (1996)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1235,
+          "title": "Big Bang Theory, The (1994)",
+          "score": 4.25,
+          "support": 4
+        },
+        {
+          "id": 1236,
+          "title": "Other Voices, Other Rooms (1997)",
+          "score": 4.25,
+          "support": 4
+        },
+        {
+          "id": 1654,
+          "title": "Chairman of the Board (1998)",
+          "score": 3.8,
+          "support": 20
+        },
+        {
+          "id": 1606,
+          "title": "Deceiver (1997)",
+          "score": 3.625,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 3.5,
+          "support": 30
+        }
+      ]
+    },
+    "405/weighted/5": {
+      "user_based": [
+        {
+          "id": 483,
+          "title": "Casablanca (1942)",
+          "score": 4.700949,
+          "support": 10
+        },
+        {
+          "id": 134,
+          "title": "Citizen Kane (1941)",
+          "score": 4.599687,
+          "support": 5
+        },
+        {
+          "id": 742,
+          "title": "Ransom (1996)",
+          "score": 4.501597,
+          "support": 8
+        },
+        {
+          "id": 223,
+          "title": "Sling Blade (1996)",
+          "score": 4.198868,
+          "support": 5
+        },
+        {
+          "id": 591,
+          "title": "Primal Fear (1996)",
+          "score": 4.197795,
+          "support": 5
+        }
+      ],
+      "item_based": [
+        {
+          "id": 1654,
+          "title": "Chairman of the Board (1998)",
+          "score": 3.8,
+          "support": 20
+        },
+        {
+          "id": 1606,
+          "title": "Deceiver (1997)",
+          "score": 3.625,
+          "support": 8
+        },
+        {
+          "id": 1601,
+          "title": "Office Killer (1997)",
+          "score": 3.5,
+          "support": 30
+        },
+        {
+          "id": 1673,
+          "title": "Mirage (1995)",
+          "score": 3.305085,
+          "support": 59
+        },
+        {
+          "id": 1675,
+          "title": "Sunchaser, The (1996)",
+          "score": 3.083333,
+          "support": 48
+        }
+      ]
+    },
+    "1/mean/1": {
+      "user_based": [
+        {
+          "id": 316,
+          "title": "As Good As It Gets (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 480,
+          "title": "North by Northwest (1959)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 515,
+          "title": "Boot, Das (1981)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 604,
+          "title": "It Happened One Night (1934)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 285,
+          "title": "Secrets & Lies (1996)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 276,
+          "title": "Leaving Las Vegas (1995)",
+          "score": 3.610664,
+          "support": 272
+        },
+        {
+          "id": 435,
+          "title": "Butch Cassidy and the Sundance Kid (1969)",
+          "score": 3.610608,
+          "support": 272
+        },
+        {
+          "id": 508,
+          "title": "People vs. Larry Flynt, The (1996)",
+          "score": 3.610592,
+          "support": 272
+        },
+        {
+          "id": 654,
+          "title": "Chinatown (1974)",
+          "score": 3.610578,
+          "support": 272
+        },
+        {
+          "id": 428,
+          "title": "Harold and Maude (1971)",
+          "score": 3.610543,
+          "support": 272
+        }
+      ]
+    },
+    "1/mean/5": {
+      "user_based": [
+        {
+          "id": 275,
+          "title": "Sense and Sensibility (1995)",
+          "score": 4.59999,
+          "support": 5
+        },
+        {
+          "id": 288,
+          "title": "Scream (1996)",
+          "score": 4.000022,
+          "support": 8
+        },
+        {
+          "id": 328,
+          "title": "Conspiracy Theory (1997)",
+          "score": 4.000002,
+          "support": 7
+        },
+        {
+          "id": 294,
+          "title": "Liar Liar (1997)",
+          "score": 3.857152,
+          "support": 7
+        },
+        {
+          "id": 748,
+          "title": "Saint, The (1997)",
+          "score": 3.714289,
+          "support": 7
+        }
+      ],
+      "item_based": [
+        {
+          "id": 276,
+          "title": "Leaving Las Vegas (1995)",
+          "score": 3.610664,
+          "support": 272
+        },
+        {
+          "id": 435,
+          "title": "Butch Cassidy and the Sundance Kid (1969)",
+          "score": 3.610608,
+          "support": 272
+        },
+        {
+          "id": 508,
+          "title": "People vs. Larry Flynt, The (1996)",
+          "score": 3.610592,
+          "support": 272
+        },
+        {
+          "id": 654,
+          "title": "Chinatown (1974)",
+          "score": 3.610578,
+          "support": 272
+        },
+        {
+          "id": 428,
+          "title": "Harold and Maude (1971)",
+          "score": 3.610543,
+          "support": 272
+        }
+      ]
+    },
+    "100/mean/1": {
+      "user_based": [
+        {
+          "id": 118,
+          "title": "Twister (1996)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 10,
+          "title": "Richard III (1995)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 27,
+          "title": "Bad Boys (1995)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 38,
+          "title": "Net, The (1995)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 86,
+          "title": "Remains of the Day, The (1993)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 748,
+          "title": "Saint, The (1997)",
+          "score": 3.067678,
+          "support": 59
+        },
+        {
+          "id": 121,
+          "title": "Independence Day (ID4) (1996)",
+          "score": 3.067508,
+          "support": 59
+        },
+        {
+          "id": 405,
+          "title": "Mission: Impossible (1996)",
+          "score": 3.06748,
+          "support": 59
+        },
+        {
+          "id": 161,
+          "title": "Top Gun (1986)",
+          "score": 3.067454,
+          "support": 59
+        },
+        {
+          "id": 181,
+          "title": "Return of the Jedi (1983)",
+          "score": 3.067424,
+          "support": 59
+        }
+      ]
+    },
+    "100/mean/5": {
+      "user_based": [
+        {
+          "id": 327,
+          "title": "Cop Land (1997)",
+          "score": 4.000001,
+          "support": 6
+        },
+        {
+          "id": 331,
+          "title": "Edge, The (1997)",
+          "score": 4.0,
+          "support": 5
+        },
+        {
+          "id": 301,
+          "title": "In & Out (1997)",
+          "score": 3.875006,
+          "support": 8
+        },
+        {
+          "id": 304,
+          "title": "Fly Away Home (1996)",
+          "score": 3.833345,
+          "support": 6
+        },
+        {
+          "id": 303,
+          "title": "Ulee's Gold (1997)",
+          "score": 3.600019,
+          "support": 5
+        }
+      ],
+      "item_based": [
+        {
+          "id": 748,
+          "title": "Saint, The (1997)",
+          "score": 3.067678,
+          "support": 59
+        },
+        {
+          "id": 121,
+          "title": "Independence Day (ID4) (1996)",
+          "score": 3.067508,
+          "support": 59
+        },
+        {
+          "id": 405,
+          "title": "Mission: Impossible (1996)",
+          "score": 3.06748,
+          "support": 59
+        },
+        {
+          "id": 161,
+          "title": "Top Gun (1986)",
+          "score": 3.067454,
+          "support": 59
+        },
+        {
+          "id": 181,
+          "title": "Return of the Jedi (1983)",
+          "score": 3.067424,
+          "support": 59
+        }
+      ]
+    },
+    "405/mean/1": {
+      "user_based": [
+        {
+          "id": 478,
+          "title": "Philadelphia Story, The (1940)",
+          "score": 5.0,
+          "support": 3
+        },
+        {
+          "id": 963,
+          "title": "Some Folks Call It a Sling Blade (1993)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 1189,
+          "title": "Prefontaine (1997)",
+          "score": 5.0,
+          "support": 2
+        },
+        {
+          "id": 236,
+          "title": "Citizen Ruth (1996)",
+          "score": 5.0,
+          "support": 1
+        },
+        {
+          "id": 534,
+          "title": "Traveller (1997)",
+          "score": 5.0,
+          "support": 1
+        }
+      ],
+      "item_based": [
+        {
+          "id": 121,
+          "title": "Independence Day (ID4) (1996)",
+          "score": 1.833408,
+          "support": 737
+        },
+        {
+          "id": 405,
+          "title": "Mission: Impossible (1996)",
+          "score": 1.833385,
+          "support": 737
+        },
+        {
+          "id": 1,
+          "title": "Toy Story (1995)",
+          "score": 1.833268,
+          "support": 737
+        },
+        {
+          "id": 294,
+          "title": "Liar Liar (1997)",
+          "score": 1.833239,
+          "support": 737
+        },
+        {
+          "id": 151,
+          "title": "Willy Wonka and the Chocolate Factory (1971)",
+          "score": 1.833169,
+          "support": 737
+        }
+      ]
+    },
+    "405/mean/5": {
+      "user_based": [
+        {
+          "id": 483,
+          "title": "Casablanca (1942)",
+          "score": 4.750113,
+          "support": 8
+        },
+        {
+          "id": 496,
+          "title": "It's a Wonderful Life (1946)",
+          "score": 4.692271,
+          "support": 13
+        },
+        {
+          "id": 498,
+          "title": "African Queen, The (1951)",
+          "score": 4.500013,
+          "support": 6
+        },
+        {
+          "id": 531,
+          "title": "Shine (1996)",
+          "score": 4.444478,
+          "support": 9
+        },
+        {
+          "id": 293,
+          "title": "Donnie Brasco (1997)",
+          "score": 4.428593,
+          "support": 7
+        }
+      ],
+      "item_based": [
+        {
+          "id": 121,
+          "title": "Independence Day (ID4) (1996)",
+          "score": 1.833408,
+          "support": 737
+        },
+        {
+          "id": 405,
+          "title": "Mission: Impossible (1996)",
+          "score": 1.833385,
+          "support": 737
+        },
+        {
+          "id": 1,
+          "title": "Toy Story (1995)",
+          "score": 1.833268,
+          "support": 737
+        },
+        {
+          "id": 294,
+          "title": "Liar Liar (1997)",
+          "score": 1.833239,
+          "support": 737
+        },
+        {
+          "id": 151,
+          "title": "Willy Wonka and the Chocolate Factory (1971)",
+          "score": 1.833169,
+          "support": 737
+        }
+      ]
+    }
+  },
+  "reference_popularity": {
+    "50": 583,
+    "258": 509,
+    "100": 508,
+    "181": 507,
+    "294": 485
+  }
+}

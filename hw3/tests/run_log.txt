@@ -1,0 +1,43 @@
+serving C:\Users\Alex\Documents\rec-sys-hw1\hw3 at http://127.0.0.1:60824
+chrome 152.0.7977.84
+[PASS] data loads over http - Loaded 943 users × 1682 movies = 100,000 ratings. The matrix is 6.3% full, so 93.7% of it is the missing values both columns have to cope with.
+[PASS] genres follow the u.genre order in the fixed app - Toy Story -> ['Animation', "Children's", 'Comedy']
+[PASS] accented titles survive the ISO-8859-1 decode - C'est arrivé près de chez vous (1992)
+[PASS] sparse similarity equals the dense definition (corated) - max difference 2.97e-08 over 91 pairs
+[PASS] sparse similarity equals the dense definition (weighted) - max difference 2.97e-08 over 91 pairs
+[PASS] sparse similarity equals the dense definition (mean) - max difference 2.83e-08 over 91 pairs
+[PASS] user-based Top-5 matches the offline reference for 1/corated/1 - Big Lebowski, The (1998), Ma vie en rose (My Life in Pink) (1997), Fire Down Below (1997), Deceiver (1997), Schindler's List (1993)
+[PASS] item-based Top-5 matches the offline reference for 1/corated/1 - Cyclo (1995), Entertaining Angels: The Dorothy Day Story (1996), Office Killer (1997), King of New York (1990), Little City (1998)
+[PASS] user-based Top-5 matches the offline reference for 1/corated/5 - Fly Away Home (1996), Rosewood (1997), English Patient, The (1996), Apt Pupil (1998), G.I. Jane (1997)
+[PASS] item-based Top-5 matches the offline reference for 1/corated/5 - Cyclo (1995), Entertaining Angels: The Dorothy Day Story (1996), Office Killer (1997), King of New York (1990), Little City (1998)
+[PASS] user-based Top-5 matches the offline reference for 100/corated/1 - Babe (1995), Cold Comfort Farm (1995), Bridge on the River Kwai, The (1957), Unbearable Lightness of Being, The (1988), Cinderella (1950)
+[PASS] item-based Top-5 matches the offline reference for 100/corated/1 - All Things Fair (1996), Condition Red (1995), Mamma Roma (1962), New Age, The (1994), Delta of Venus (1994)
+[PASS] user-based Top-5 matches the offline reference for 100/corated/5 - When Harry Met Sally... (1989), Raiders of the Lost Ark (1981), Terminator, The (1984), Big Night (1996), Dead Poets Society (1989)
+[PASS] item-based Top-5 matches the offline reference for 100/corated/5 - Condition Red (1995), New Age, The (1994), Desert Winds (1995), Wife, The (1995), New Jersey Drive (1995)
+[PASS] user-based Top-5 matches the offline reference for 405/corated/1 - Sense and Sensibility (1995), Mrs. Brown (Her Majesty, Mrs. Brown) (1997), Mad City (1997), Cold Comfort Farm (1995), Swingers (1996)
+[PASS] item-based Top-5 matches the offline reference for 405/corated/1 - Big Bang Theory, The (1994), Other Voices, Other Rooms (1997), Chairman of the Board (1998), Deceiver (1997), Office Killer (1997)
+[PASS] user-based Top-5 matches the offline reference for 405/corated/5 - Trainspotting (1996), Air Force One (1997), English Patient, The (1996), Rock, The (1996), Chasing Amy (1997)
+[PASS] item-based Top-5 matches the offline reference for 405/corated/5 - Chairman of the Board (1998), Deceiver (1997), Office Killer (1997), Mirage (1995), Sunchaser, The (1996)
+[PASS] user-based Top-5 matches the offline reference for 1/weighted/1 - Schindler's List (1993), Close Shave, A (1995), Return of Martin Guerre, The (Retour de Martin Guerre, Le) (1982), Paths of Glory (1957), Hoodlum (1997)
+[PASS] item-based Top-5 matches the offline reference for 1/weighted/1 - Cyclo (1995), Entertaining Angels: The Dorothy Day Story (1996), Office Killer (1997), King of New York (1990), Little City (1998)
+[PASS] user-based Top-5 matches the offline reference for 1/weighted/5 - Schindler's List (1993), Casablanca (1942), Chinatown (1974), Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963), Rear Window (1954)
+[PASS] item-based Top-5 matches the offline reference for 1/weighted/5 - Cyclo (1995), Entertaining Angels: The Dorothy Day Story (1996), Office Killer (1997), King of New York (1990), Little City (1998)
+[PASS] user-based Top-5 matches the offline reference for 100/weighted/1 - Rear Window (1954), Reservoir Dogs (1992), Great Escape, The (1963), Mr. Smith Goes to Washington (1939), Three Colors: Blue (1993)
+[PASS] item-based Top-5 matches the offline reference for 100/weighted/1 - All Things Fair (1996), Condition Red (1995), Mamma Roma (1962), New Age, The (1994), Desert Winds (1995)
+[PASS] user-based Top-5 matches the offline reference for 100/weighted/5 - Rear Window (1954), Usual Suspects, The (1995), Star Wars (1977), Alien (1979), Raiders of the Lost Ark (1981)
+[PASS] item-based Top-5 matches the offline reference for 100/weighted/5 - Condition Red (1995), New Age, The (1994), Desert Winds (1995), Wife, The (1995), C'est arrivé près de chez vous (1992)
+[PASS] user-based Top-5 matches the offline reference for 405/weighted/1 - My Fair Lady (1964), Rebecca (1940), From Dusk Till Dawn (1996), Mirror Has Two Faces, The (1996), Kolya (1996)
+[PASS] item-based Top-5 matches the offline reference for 405/weighted/1 - Big Bang Theory, The (1994), Other Voices, Other Rooms (1997), Chairman of the Board (1998), Deceiver (1997), Office Killer (1997)
+[PASS] user-based Top-5 matches the offline reference for 405/weighted/5 - Casablanca (1942), Citizen Kane (1941), Ransom (1996), Sling Blade (1996), Primal Fear (1996)
+[PASS] item-based Top-5 matches the offline reference for 405/weighted/5 - Chairman of the Board (1998), Deceiver (1997), Office Killer (1997), Mirage (1995), Sunchaser, The (1996)
+reference comparison: 24 of 24 columns matched (the `mean` configurations are checked numerically instead)
+[PASS] mean imputation collapses the similarity range to near-nothing - spread across the top 20 neighbours: mean 1.72e-04, co-rated 1.05e-02 (61x wider)
+[PASS] mean imputation recommends far better-known movies than co-rated cosine - mean 407 ratings vs co-rated 8
+[PASS] raising the evidence threshold removes thinly-backed predictions - evidence values [10, 5, 8, 5, 5, 20, 8, 30, 59, 48]
+[PASS] item-based is measurably the expensive direction - user-based 3 ms vs item-based 352 ms
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw3\report\figures\fixed_app.png and comparison.png
+[PASS] the starter still shifts every genre label - Toy Story -> ["Children's", 'Comedy', 'Crime']
+[PASS] the starter's TODO stubs return nothing - No recommendations. (Implement the TODO above.)
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw3\report\figures\starter_app.png
+
+36/36 checks passed

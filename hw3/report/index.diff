@@ -1,0 +1,66 @@
+diff --git starter/starter/index.html fixed/index.html
+index 5e5a243..8bf0c06 100644
+--- starter/starter/index.html
++++ fixed/index.html
+@@ -9,28 +9,54 @@
+ <body>
+     <div class="container">
+         <h1>Collaborative Filtering Movie Recommender</h1>
+-        <p>Select a user, and we will recommend movies two ways: by similar users (User-Based CF) and by similar movies (Item-Based CF).</p>
++        <p class="subtitle">
++            Pick a user and we recommend movies two ways from the same rating matrix: by comparing
++            that user against other <strong>users</strong>, and by comparing the movies they rated
++            against other <strong>movies</strong>.
++        </p>
+ 
+         <div class="controls">
+-            <select id="user-select">
+-                <option value="" disabled selected>Select a user</option>
+-            </select>
+-            <button id="recommend-btn" onclick="getRecommendations()">Get Recommendations</button>
++            <label for="user-select">Active user
++                <select id="user-select">
++                    <option value="" disabled selected>Select a user</option>
++                </select>
++            </label>
++            <label for="strategy">Missing values
++                <select id="strategy">
++                    <option value="weighted" selected>Weighted by co-rated count</option>
++                    <option value="corated">Co-rated entries only</option>
++                    <option value="mean">Mean imputation</option>
++                </select>
++            </label>
++            <label for="min-support">Minimum evidence
++                <select id="min-support">
++                    <option value="1" selected>1 rating behind a prediction</option>
++                    <option value="3">3 ratings</option>
++                    <option value="5">5 ratings</option>
++                </select>
++            </label>
+         </div>
++        <button id="recommend-btn" onclick="getRecommendations()">Get Recommendations</button>
++        <p id="status" class="loading">Please wait, loading data&hellip;</p>
+ 
+         <div id="result-box">
+             <div class="result-column">
+                 <h2>User-Based CF</h2>
+-                <div id="user-based-result"><p>Please wait, loading data...</p></div>
++                <p class="column-subtitle" id="user-based-subtitle">Compares columns: this user against every other user.</p>
++                <div id="user-based-result"><p>Please wait, loading data&hellip;</p></div>
++                <p class="diagnostics" id="user-based-diagnostics"></p>
+             </div>
+             <div class="result-column">
+                 <h2>Item-Based CF</h2>
+-                <div id="item-based-result"><p>Please wait, loading data...</p></div>
++                <p class="column-subtitle" id="item-based-subtitle">Compares rows: each movie this user rated against every other movie.</p>
++                <div id="item-based-result"><p>Please wait, loading data&hellip;</p></div>
++                <p class="diagnostics" id="item-based-diagnostics"></p>
+             </div>
+         </div>
+     </div>
+ 
+     <script src="data.js"></script>
++    <script src="cf.js"></script>
+     <script src="script.js"></script>
+ </body>
+ </html>
