@@ -8,3 +8,7 @@ __pycache__/
 # Lecture decks: course material, 15 MB each, not mine to republish.
 # Delete this line to keep them in the repository.
 *.pptx
+
+# A04: the raw UCI Online Retail workbook (23 MB) and its pandas caches. Download it
+# into hw4/data_raw/ to rerun the experiments (see hw4/README.md).
+hw4/data_raw/

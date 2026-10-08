@@ -1,0 +1,28 @@
+serving C:\Users\Alex\Documents\rec-sys-hw1\hw4 at http://127.0.0.1:52759
+chrome 154.0.8037.98
+[PASS] starter: harness reports 2 passed / 0 failed / 9 pending, as the course README says - [2, 0, 9]
+[PASS] starter: Run rules fails with the TODO message - TODO(hw4): findFrequentItemsets is not implemented yet.
+[PASS] dataset summary: 17,080 baskets and 3,653 distinct items
+[PASS] anchor fact: 85123A is in 1,959 baskets (11.47%) - 1959
+[PASS] finished: harness reports 11 passed / 0 failed / 0 pending - [11, 0, 0]
+[PASS] fixture: itemsets and rules equal brute-force enumeration at 9 threshold pairs - 38 rules at 20% / 50%
+[PASS] support 0.5% / confidence 10%: page rules equal mlxtend FP-Growth - 19058 rules, identical counts, max metric difference 0.0e+00; mined in 1913 ms
+[PASS] support 1.0% / confidence 30%: page rules equal mlxtend FP-Growth - 950 rules, identical counts, max metric difference 0.0e+00; mined in 520 ms
+[PASS] rules are sorted by lift, strongest first
+[PASS] support 1.0% / confidence 60%: page rules equal mlxtend FP-Growth - 238 rules, identical counts, max metric difference 0.0e+00; mined in 488 ms
+[PASS] support 2.0% / confidence 30%: page rules equal mlxtend FP-Growth - 96 rules, identical counts, max metric difference 0.0e+00; mined in 87 ms
+[PASS] support 3.0% / confidence 60%: page rules equal mlxtend FP-Growth - 5 rules, identical counts, max metric difference 0.0e+00; mined in 44 ms
+[PASS] threshold sweep: rule counts equal the reference at all 24 settings - 24/24
+[PASS] UI at 1% / 30%: the table lists 950 rules - Done — 950 rule(s) at support ≥ 1.0% and confidence ≥ 30%, lift > 1 (0 dropped by the lift filter). Frequent itemsets by size: 691 / 413 / 109 / 6. Mined in 478 ms.
+[PASS] first row shows the reference's strongest rule - 22916 — HERB MARKER THYME -> 22917 — HERB MARKER ROSEMARY: ['176', '186', '190', '1.03%', '94.62%', '85.0617']
+[PASS] every displayed rule meets support >= 1%, confidence >= 30%, lift > 1
+[PASS] detail panel: JUMBO BAG PINK -> RED shows 546 / 869 / 1584, 62.83%, lift 6.7749
+[PASS] detail panel: reverse direction quoted as 34.47% with the same lift
+[PASS] Reverse button: B -> A has confidence 34.47% and lift 6.7749
+[PASS] page counts equal distinct InvoiceNo counted from the raw workbook rows - [869, 1584, 546]
+[PASS] count(A) = 0: the panel says 'undefined' with an inline note, never NaN or Infinity
+[PASS] lift filter at 0.5% / 10% drops exactly the 2 rules with lift <= 1 - 19058 -> 19056
+[PASS] no page or console errors on the finished page
+[PASS] opened from file:// the page loads and passes 11/11 - [11, 0, 0]
+
+24/24 checks passed

@@ -1,0 +1,3204 @@
+{
+ "raw": {
+  "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+  "rawRows": 541909,
+  "keptRows": 394916,
+  "keptInvoiceItemPairs": 384911,
+  "baskets": 17080,
+  "basketsOnlyInRaw": 0,
+  "basketsOnlyInCourse": 0,
+  "dateRange": [
+   "2010-12-01 08:26:00",
+   "2011-12-09 12:50:00"
+  ],
+  "customers": 4229,
+  "ukShare": 0.8991803278688525,
+  "basketsPerMonth": {
+   "2010-12": 1261,
+   "2011-01": 915,
+   "2011-02": 928,
+   "2011-03": 1234,
+   "2011-04": 1052,
+   "2011-05": 1414,
+   "2011-06": 1271,
+   "2011-07": 1237,
+   "2011-08": 1169,
+   "2011-09": 1642,
+   "2011-10": 1769,
+   "2011-11": 2468,
+   "2011-12": 720
+  }
+ },
+ "dataset": {
+  "n": 17080,
+  "items": 3653,
+  "top": [
+   {
+    "stock": "85123A",
+    "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+    "count": 1959,
+    "support": 0.11469555035128806
+   },
+   {
+    "stock": "22423",
+    "description": "REGENCY CAKESTAND 3 TIER",
+    "count": 1681,
+    "support": 0.0984192037470726
+   },
+   {
+    "stock": "85099B",
+    "description": "JUMBO BAG RED RETROSPOT",
+    "count": 1584,
+    "support": 0.09274004683840749
+   },
+   {
+    "stock": "84879",
+    "description": "ASSORTED COLOUR BIRD ORNAMENT",
+    "count": 1373,
+    "support": 0.0803864168618267
+   },
+   {
+    "stock": "47566",
+    "description": "PARTY BUNTING",
+    "count": 1364,
+    "support": 0.07985948477751756
+   }
+  ],
+  "basketSize": {
+   "median": 16.0,
+   "mean": 22.535772833723655,
+   "max": 540
+  },
+  "itemsAtOnePercent": 691,
+  "itemsBelow10Baskets": 796
+ },
+ "sweep": [
+  {
+   "minSupport": 0.005,
+   "minConfidence": 0.1,
+   "itemsets": 5255,
+   "itemsetsBySize": [
+    1320,
+    2206,
+    1161,
+    474,
+    88,
+    6
+   ],
+   "rules": 19058,
+   "rulesLiftAtMostOne": 2,
+   "minLift": 0.9742713075283912,
+   "fpgrowthSeconds": 2.729
+  },
+  {
+   "minSupport": 0.005,
+   "minConfidence": 0.3,
+   "itemsets": 5255,
+   "itemsetsBySize": [
+    1320,
+    2206,
+    1161,
+    474,
+    88,
+    6
+   ],
+   "rules": 10723,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 2.6178966462614137,
+   "fpgrowthSeconds": 2.729
+  },
+  {
+   "minSupport": 0.005,
+   "minConfidence": 0.5,
+   "itemsets": 5255,
+   "itemsetsBySize": [
+    1320,
+    2206,
+    1161,
+    474,
+    88,
+    6
+   ],
+   "rules": 5812,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.229730202610491,
+   "fpgrowthSeconds": 2.729
+  },
+  {
+   "minSupport": 0.005,
+   "minConfidence": 0.6,
+   "itemsets": 5255,
+   "itemsetsBySize": [
+    1320,
+    2206,
+    1161,
+    474,
+    88,
+    6
+   ],
+   "rules": 3958,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.885467444503006,
+   "fpgrowthSeconds": 2.729
+  },
+  {
+   "minSupport": 0.01,
+   "minConfidence": 0.1,
+   "itemsets": 1219,
+   "itemsetsBySize": [
+    691,
+    413,
+    109,
+    6
+   ],
+   "rules": 1555,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 1.2136726753290765,
+   "fpgrowthSeconds": 1.567
+  },
+  {
+   "minSupport": 0.01,
+   "minConfidence": 0.3,
+   "itemsets": 1219,
+   "itemsetsBySize": [
+    691,
+    413,
+    109,
+    6
+   ],
+   "rules": 950,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 2.6365931141668812,
+   "fpgrowthSeconds": 1.567
+  },
+  {
+   "minSupport": 0.01,
+   "minConfidence": 0.5,
+   "itemsets": 1219,
+   "itemsetsBySize": [
+    691,
+    413,
+    109,
+    6
+   ],
+   "rules": 456,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.391414141414142,
+   "fpgrowthSeconds": 1.567
+  },
+  {
+   "minSupport": 0.01,
+   "minConfidence": 0.6,
+   "itemsets": 1219,
+   "itemsetsBySize": [
+    691,
+    413,
+    109,
+    6
+   ],
+   "rules": 238,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.885467444503006,
+   "fpgrowthSeconds": 1.567
+  },
+  {
+   "minSupport": 0.015,
+   "minConfidence": 0.1,
+   "itemsets": 549,
+   "itemsetsBySize": [
+    399,
+    135,
+    15
+   ],
+   "rules": 360,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 1.720886327023724,
+   "fpgrowthSeconds": 1.072
+  },
+  {
+   "minSupport": 0.015,
+   "minConfidence": 0.3,
+   "itemsets": 549,
+   "itemsetsBySize": [
+    399,
+    135,
+    15
+   ],
+   "rules": 275,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 3.0725058201132365,
+   "fpgrowthSeconds": 1.072
+  },
+  {
+   "minSupport": 0.015,
+   "minConfidence": 0.5,
+   "itemsets": 549,
+   "itemsetsBySize": [
+    399,
+    135,
+    15
+   ],
+   "rules": 112,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.405063291139241,
+   "fpgrowthSeconds": 1.072
+  },
+  {
+   "minSupport": 0.015,
+   "minConfidence": 0.6,
+   "itemsets": 549,
+   "itemsetsBySize": [
+    399,
+    135,
+    15
+   ],
+   "rules": 50,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.885467444503006,
+   "fpgrowthSeconds": 1.072
+  },
+  {
+   "minSupport": 0.02,
+   "minConfidence": 0.1,
+   "itemsets": 294,
+   "itemsetsBySize": [
+    242,
+    51,
+    1
+   ],
+   "rules": 108,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 3.5579984628897674,
+   "fpgrowthSeconds": 0.724
+  },
+  {
+   "minSupport": 0.02,
+   "minConfidence": 0.3,
+   "itemsets": 294,
+   "itemsetsBySize": [
+    242,
+    51,
+    1
+   ],
+   "rules": 96,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 3.5579984628897674,
+   "fpgrowthSeconds": 0.724
+  },
+  {
+   "minSupport": 0.02,
+   "minConfidence": 0.5,
+   "itemsets": 294,
+   "itemsetsBySize": [
+    242,
+    51,
+    1
+   ],
+   "rules": 36,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.405063291139241,
+   "fpgrowthSeconds": 0.724
+  },
+  {
+   "minSupport": 0.02,
+   "minConfidence": 0.6,
+   "itemsets": 294,
+   "itemsetsBySize": [
+    242,
+    51,
+    1
+   ],
+   "rules": 20,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 5.885467444503006,
+   "fpgrowthSeconds": 0.724
+  },
+  {
+   "minSupport": 0.03,
+   "minConfidence": 0.1,
+   "itemsets": 115,
+   "itemsetsBySize": [
+    109,
+    6
+   ],
+   "rules": 12,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 6.5293995859213245,
+   "fpgrowthSeconds": 0.265
+  },
+  {
+   "minSupport": 0.03,
+   "minConfidence": 0.3,
+   "itemsets": 115,
+   "itemsetsBySize": [
+    109,
+    6
+   ],
+   "rules": 12,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 6.5293995859213245,
+   "fpgrowthSeconds": 0.265
+  },
+  {
+   "minSupport": 0.03,
+   "minConfidence": 0.5,
+   "itemsets": 115,
+   "itemsetsBySize": [
+    109,
+    6
+   ],
+   "rules": 6,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 6.774941590821914,
+   "fpgrowthSeconds": 0.265
+  },
+  {
+   "minSupport": 0.03,
+   "minConfidence": 0.6,
+   "itemsets": 115,
+   "itemsetsBySize": [
+    109,
+    6
+   ],
+   "rules": 5,
+   "rulesLiftAtMostOne": 0,
+   "minLift": 6.774941590821914,
+   "fpgrowthSeconds": 0.265
+  },
+  {
+   "minSupport": 0.05,
+   "minConfidence": 0.1,
+   "itemsets": 27,
+   "itemsetsBySize": [
+    27
+   ],
+   "rules": 0,
+   "rulesLiftAtMostOne": 0,
+   "minLift": null,
+   "fpgrowthSeconds": 0.148
+  },
+  {
+   "minSupport": 0.05,
+   "minConfidence": 0.3,
+   "itemsets": 27,
+   "itemsetsBySize": [
+    27
+   ],
+   "rules": 0,
+   "rulesLiftAtMostOne": 0,
+   "minLift": null,
+   "fpgrowthSeconds": 0.148
+  },
+  {
+   "minSupport": 0.05,
+   "minConfidence": 0.5,
+   "itemsets": 27,
+   "itemsetsBySize": [
+    27
+   ],
+   "rules": 0,
+   "rulesLiftAtMostOne": 0,
+   "minLift": null,
+   "fpgrowthSeconds": 0.148
+  },
+  {
+   "minSupport": 0.05,
+   "minConfidence": 0.6,
+   "itemsets": 27,
+   "itemsetsBySize": [
+    27
+   ],
+   "rules": 0,
+   "rulesLiftAtMostOne": 0,
+   "minLift": null,
+   "fpgrowthSeconds": 0.148
+  }
+ ],
+ "maxItemSupport": 0.11469555035128806,
+ "confidenceFloorForLift1": 0.11469555035128806,
+ "chosen": {
+  "minSupport": 0.01,
+  "minConfidence": 0.3,
+  "rules": 950,
+  "minLift": 2.6365931141668812,
+  "bottomLiftConsequents": [
+   [
+    "WHITE HANGING HEART T-LIGHT HOLDER",
+    8
+   ],
+   [
+    "REGENCY CAKESTAND 3 TIER",
+    1
+   ],
+   [
+    "JUMBO BAG RED RETROSPOT",
+    1
+   ]
+  ],
+  "top5": [
+   {
+    "a": [
+     "HERB MARKER THYME"
+    ],
+    "b": [
+     "HERB MARKER ROSEMARY"
+    ],
+    "joint": 176,
+    "confidence": 0.946236559139785,
+    "lift": 85.06168647425014
+   },
+   {
+    "a": [
+     "HERB MARKER ROSEMARY"
+    ],
+    "b": [
+     "HERB MARKER THYME"
+    ],
+    "joint": 176,
+    "confidence": 0.9263157894736842,
+    "lift": 85.06168647425014
+   },
+   {
+    "a": [
+     "HERB MARKER THYME"
+    ],
+    "b": [
+     "HERB MARKER PARSLEY"
+    ],
+    "joint": 171,
+    "confidence": 0.9193548387096774,
+    "lift": 83.97101949284112
+   },
+   {
+    "a": [
+     "HERB MARKER PARSLEY"
+    ],
+    "b": [
+     "HERB MARKER THYME"
+    ],
+    "joint": 171,
+    "confidence": 0.9144385026737968,
+    "lift": 83.97101949284112
+   },
+   {
+    "a": [
+     "HERB MARKER PARSLEY"
+    ],
+    "b": [
+     "HERB MARKER ROSEMARY"
+    ],
+    "joint": 174,
+    "confidence": 0.93048128342246,
+    "lift": 83.6453701097664
+   }
+  ],
+  "herbMarkerRules": 12,
+  "maxJoint": 546
+ },
+ "liftAtMostOne": [
+  {
+   "a": [
+    "ALARM CLOCK BAKELIKE RED"
+   ],
+   "b": [
+    "WHITE HANGING HEART T-LIGHT HOLDER"
+   ],
+   "joint": 98,
+   "countA": 877,
+   "countB": 1959,
+   "confidence": 0.11174458380843785,
+   "lift": 0.9742713075283912
+  },
+  {
+   "a": [
+    "ALARM CLOCK BAKELIKE GREEN"
+   ],
+   "b": [
+    "WHITE HANGING HEART T-LIGHT HOLDER"
+   ],
+   "joint": 89,
+   "countA": 784,
+   "countB": 1959,
+   "confidence": 0.11352040816326531,
+   "lift": 0.989754247794064
+  }
+ ],
+ "fixture": [
+  {
+   "minSupport": 0.2,
+   "minConfidence": 0.1,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "eggs"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "eggs",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "ham",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "ham",
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "ham",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "eggs"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "ham",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "ham",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "eggs"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "ham"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "ham",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "eggs"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "ham",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread",
+      "ham"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "ham"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "ham",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "ham",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.2,
+   "minConfidence": 0.5,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread",
+      "ham"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "ham"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.2,
+   "minConfidence": 0.7,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     1
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "eggs",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "ham",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.4,
+   "minConfidence": 0.1,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "eggs"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.4,
+   "minConfidence": 0.5,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread",
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread",
+      "jam"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "jam"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.4,
+   "minConfidence": 0.7,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "eggs"
+     ],
+     2
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     2
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "eggs"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "jam",
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.6,
+   "minConfidence": 0.1,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.6,
+   "minConfidence": 0.5,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "bread"
+     ],
+     [
+      "jam"
+     ]
+    ],
+    [
+     [
+      "bread"
+     ],
+     [
+      "milk"
+     ]
+    ],
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ]
+   ]
+  },
+  {
+   "minSupport": 0.6,
+   "minConfidence": 0.7,
+   "itemsets": [
+    [
+     [
+      "bread"
+     ],
+     5
+    ],
+    [
+     [
+      "bread",
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "bread",
+      "milk"
+     ],
+     3
+    ],
+    [
+     [
+      "jam"
+     ],
+     3
+    ],
+    [
+     [
+      "milk"
+     ],
+     3
+    ]
+   ],
+   "rules": [
+    [
+     [
+      "jam"
+     ],
+     [
+      "bread"
+     ]
+    ],
+    [
+     [
+      "milk"
+     ],
+     [
+      "bread"
+     ]
+    ]
+   ]
+  }
+ ],
+ "useful": {
+  "antecedent": "22386",
+  "consequent": "85099B",
+  "antecedentDescription": "JUMBO BAG PINK POLKADOT",
+  "consequentDescription": "JUMBO BAG RED RETROSPOT",
+  "n": 17080,
+  "countA": 869,
+  "countB": 1584,
+  "joint": 546,
+  "support": 0.031967213114754096,
+  "confidence": 0.6283084004602992,
+  "reverseConfidence": 0.3446969696969697,
+  "lift": 6.774941590821914,
+  "liftUpperBound": 10.782828282828282,
+  "aWithoutB": 323,
+  "distinctCustomers": 255,
+  "customersBuyingA": 372,
+  "topCustomerBaskets": 14,
+  "medianBasketSizeJoint": 27.0,
+  "medianBasketSizeAll": 16.0,
+  "quarters": [
+   {
+    "quarter": "2010Q4",
+    "n": 1261,
+    "countA": 35,
+    "countB": 81,
+    "joint": 23,
+    "confidence": 0.6571428571428571,
+    "lift": 10.230335097001765
+   },
+   {
+    "quarter": "2011Q1",
+    "n": 3077,
+    "countA": 169,
+    "countB": 282,
+    "joint": 100,
+    "confidence": 0.591715976331361,
+    "lift": 6.4564186495446725
+   },
+   {
+    "quarter": "2011Q2",
+    "n": 3737,
+    "countA": 209,
+    "countB": 347,
+    "joint": 132,
+    "confidence": 0.631578947368421,
+    "lift": 6.801759441832246
+   },
+   {
+    "quarter": "2011Q3",
+    "n": 4048,
+    "countA": 266,
+    "countB": 464,
+    "joint": 172,
+    "confidence": 0.6466165413533834,
+    "lift": 5.641171895255379
+   },
+   {
+    "quarter": "2011Q4",
+    "n": 4957,
+    "countA": 190,
+    "countB": 410,
+    "joint": 119,
+    "confidence": 0.6263157894736842,
+    "lift": 7.572310654685493
+   }
+  ],
+  "fromRawRows": {
+   "countA": 869,
+   "countB": 1584,
+   "joint": 546,
+   "n": 17080,
+   "rowsA": 888
+  }
+ },
+ "misleading": {
+  "antecedent": "22916",
+  "consequent": "22917",
+  "antecedentDescription": "HERB MARKER THYME",
+  "consequentDescription": "HERB MARKER ROSEMARY",
+  "n": 17080,
+  "countA": 186,
+  "countB": 190,
+  "joint": 176,
+  "support": 0.010304449648711944,
+  "confidence": 0.946236559139785,
+  "reverseConfidence": 0.9263157894736842,
+  "lift": 85.06168647425014,
+  "liftUpperBound": 89.89473684210526,
+  "aWithoutB": 10,
+  "distinctCustomers": 125,
+  "customersBuyingA": 130,
+  "topCustomerBaskets": 8,
+  "medianBasketSizeJoint": 38.0,
+  "medianBasketSizeAll": 16.0,
+  "quarters": [
+   {
+    "quarter": "2010Q4",
+    "n": 1261,
+    "countA": 12,
+    "countB": 10,
+    "joint": 10,
+    "confidence": 0.8333333333333334,
+    "lift": 105.08333333333334
+   },
+   {
+    "quarter": "2011Q1",
+    "n": 3077,
+    "countA": 52,
+    "countB": 51,
+    "joint": 49,
+    "confidence": 0.9423076923076923,
+    "lift": 56.8525641025641
+   },
+   {
+    "quarter": "2011Q2",
+    "n": 3737,
+    "countA": 76,
+    "countB": 80,
+    "joint": 71,
+    "confidence": 0.9342105263157895,
+    "lift": 43.639309210526314
+   },
+   {
+    "quarter": "2011Q3",
+    "n": 4048,
+    "countA": 22,
+    "countB": 23,
+    "joint": 22,
+    "confidence": 1.0,
+    "lift": 176.0
+   },
+   {
+    "quarter": "2011Q4",
+    "n": 4957,
+    "countA": 24,
+    "countB": 26,
+    "joint": 24,
+    "confidence": 1.0,
+    "lift": 190.65384615384616
+   }
+  ],
+  "fromRawRows": {
+   "countA": 186,
+   "countB": 190,
+   "joint": 176,
+   "n": 17080,
+   "rowsA": 194
+  },
+  "herbMarkerLine": {
+   "codes": {
+    "22919": "HERB MARKER MINT",
+    "22917": "HERB MARKER ROSEMARY",
+    "22918": "HERB MARKER PARSLEY",
+    "22920": "HERB MARKER BASIL",
+    "22916": "HERB MARKER THYME",
+    "22921": "HERB MARKER CHIVES"
+   },
+   "basketsWithAny": 219,
+   "basketsWithAtLeastFive": 162
+  }
+ },
+ "temporal": {
+  "split": "2011-09-01",
+  "earlyBaskets": 10481,
+  "lateBaskets": 6599,
+  "earlyRange": [
+   "2010-12-01 08:26:00",
+   "2011-08-31 17:16:00"
+  ],
+  "lateRange": [
+   "2011-09-01 08:25:00",
+   "2011-12-09 12:50:00"
+  ],
+  "bySupport": [
+   {
+    "minSupport": 0.005,
+    "minConfidence": 0.3,
+    "earlyRules": 13199,
+    "lateRules": 16467,
+    "replicated": 5030,
+    "replicatedShare": 0.3810894764754906,
+    "liftAboveOneLate": 13134,
+    "confidenceHoldsLate": 11423,
+    "supportHoldsLate": 5416,
+    "medianConfidenceChange": -0.026948710518690244,
+    "medianAbsConfidenceChange": 0.06878306878306878,
+    "lateOnlyRules": 10759,
+    "lateOnlyExamples": [
+     {
+      "antecedent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7630922693266833,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7536945812807881,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "CHOCOLATE HOT WATER BOTTLE"
+      ],
+      "consequent": [
+       "HOT WATER BOTTLE KEEP CALM"
+      ],
+      "jointLate": 243,
+      "confidenceLate": 0.5305676855895196,
+      "earlyJoint": 3
+     },
+     {
+      "antecedent": [
+       "HOT WATER BOTTLE KEEP CALM"
+      ],
+      "consequent": [
+       "CHOCOLATE HOT WATER BOTTLE"
+      ],
+      "jointLate": 243,
+      "confidenceLate": 0.34714285714285714,
+      "earlyJoint": 3
+     },
+     {
+      "antecedent": [
+       "HAND WARMER OWL DESIGN"
+      ],
+      "consequent": [
+       "HAND WARMER SCOTTY DOG DESIGN"
+      ],
+      "jointLate": 230,
+      "confidenceLate": 0.4811715481171548,
+      "earlyJoint": 51
+     }
+    ]
+   },
+   {
+    "minSupport": 0.01,
+    "minConfidence": 0.3,
+    "earlyRules": 1845,
+    "lateRules": 1379,
+    "replicated": 467,
+    "replicatedShare": 0.25311653116531163,
+    "liftAboveOneLate": 1845,
+    "confidenceHoldsLate": 1698,
+    "supportHoldsLate": 508,
+    "medianConfidenceChange": -0.01790123456790127,
+    "medianAbsConfidenceChange": 0.05040057543964088,
+    "lateOnlyRules": 878,
+    "lateOnlyExamples": [
+     {
+      "antecedent": [
+       "PAPER CHAIN KIT 50'S CHRISTMAS"
+      ],
+      "consequent": [
+       "PAPER CHAIN KIT VINTAGE CHRISTMAS"
+      ],
+      "jointLate": 366,
+      "confidenceLate": 0.4680306905370844,
+      "earlyJoint": 85
+     },
+     {
+      "antecedent": [
+       "PAPER CHAIN KIT VINTAGE CHRISTMAS"
+      ],
+      "consequent": [
+       "PAPER CHAIN KIT 50'S CHRISTMAS"
+      ],
+      "jointLate": 366,
+      "confidenceLate": 0.6678832116788321,
+      "earlyJoint": 85
+     },
+     {
+      "antecedent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7630922693266833,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7536945812807881,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "CHOCOLATE HOT WATER BOTTLE"
+      ],
+      "consequent": [
+       "HOT WATER BOTTLE KEEP CALM"
+      ],
+      "jointLate": 243,
+      "confidenceLate": 0.5305676855895196,
+      "earlyJoint": 3
+     }
+    ]
+   },
+   {
+    "minSupport": 0.02,
+    "minConfidence": 0.3,
+    "earlyRules": 127,
+    "lateRules": 189,
+    "replicated": 49,
+    "replicatedShare": 0.3858267716535433,
+    "liftAboveOneLate": 127,
+    "confidenceHoldsLate": 119,
+    "supportHoldsLate": 49,
+    "medianConfidenceChange": -0.03457775035260929,
+    "medianAbsConfidenceChange": 0.051208888273091,
+    "lateOnlyRules": 136,
+    "lateOnlyExamples": [
+     {
+      "antecedent": [
+       "PAPER CHAIN KIT 50'S CHRISTMAS"
+      ],
+      "consequent": [
+       "PAPER CHAIN KIT VINTAGE CHRISTMAS"
+      ],
+      "jointLate": 366,
+      "confidenceLate": 0.4680306905370844,
+      "earlyJoint": 85
+     },
+     {
+      "antecedent": [
+       "PAPER CHAIN KIT VINTAGE CHRISTMAS"
+      ],
+      "consequent": [
+       "PAPER CHAIN KIT 50'S CHRISTMAS"
+      ],
+      "jointLate": 366,
+      "confidenceLate": 0.6678832116788321,
+      "earlyJoint": 85
+     },
+     {
+      "antecedent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7630922693266833,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "WOODEN STAR CHRISTMAS SCANDINAVIAN"
+      ],
+      "consequent": [
+       "WOODEN HEART CHRISTMAS SCANDINAVIAN"
+      ],
+      "jointLate": 306,
+      "confidenceLate": 0.7536945812807881,
+      "earlyJoint": 13
+     },
+     {
+      "antecedent": [
+       "CHOCOLATE HOT WATER BOTTLE"
+      ],
+      "consequent": [
+       "HOT WATER BOTTLE KEEP CALM"
+      ],
+      "jointLate": 243,
+      "confidenceLate": 0.5305676855895196,
+      "earlyJoint": 3
+     }
+    ]
+   }
+  ],
+  "useful": {
+   "early": {
+    "n": 10481,
+    "countA": 578,
+    "countB": 992,
+    "joint": 367,
+    "support": 0.0350157427726362,
+    "confidence": 0.6349480968858131,
+    "lift": 6.708559479294563
+   },
+   "late": {
+    "n": 6599,
+    "countA": 291,
+    "countB": 592,
+    "joint": 179,
+    "support": 0.02712532201848765,
+    "confidence": 0.6151202749140894,
+    "lift": 6.856720767158912
+   }
+  },
+  "misleading": {
+   "early": {
+    "n": 10481,
+    "countA": 156,
+    "countB": 158,
+    "joint": 146,
+    "support": 0.013929968514454728,
+    "confidence": 0.9358974358974359,
+    "lift": 62.083171048360924
+   },
+   "late": {
+    "n": 6599,
+    "countA": 30,
+    "countB": 32,
+    "joint": 30,
+    "support": 0.004546143355053796,
+    "confidence": 1.0,
+    "lift": 206.21875
+   }
+  }
+ },
+ "seasonal": {
+  "lateShareOfAllBaskets": 0.3863583138173302,
+  "itemsetsMostlyLate": 15,
+  "itemsetsInTable": 438,
+  "top": [
+   {
+    "items": [
+     "HAND WARMER SCOTTY DOG DESIGN",
+     "HAND WARMER RED LOVE HEART"
+    ],
+    "joint": 181,
+    "lateShare": 1.0,
+    "lift": 17.729425933360098
+   },
+   {
+    "items": [
+     "HOT WATER BOTTLE TEA AND SYMPATHY",
+     "HOT WATER BOTTLE KEEP CALM"
+    ],
+    "joint": 228,
+    "lateShare": 0.9956140350877193,
+    "lift": 10.637674825174825
+   },
+   {
+    "items": [
+     "HAND WARMER OWL DESIGN",
+     "HAND WARMER RED LOVE HEART"
+    ],
+    "joint": 203,
+    "lateShare": 0.9950738916256158,
+    "lift": 16.367181046161978
+   },
+   {
+    "items": [
+     "HAND WARMER UNION JACK",
+     "HAND WARMER RED LOVE HEART"
+    ],
+    "joint": 180,
+    "lateShare": 0.9944444444444445,
+    "lift": 18.790912591451676
+   },
+   {
+    "items": [
+     "HOT WATER BOTTLE I AM SO POORLY",
+     "HOT WATER BOTTLE KEEP CALM"
+    ],
+    "joint": 187,
+    "lateShare": 0.9893048128342246,
+    "lift": 8.845696877380046
+   },
+   {
+    "items": [
+     "CHOCOLATE HOT WATER BOTTLE",
+     "HOT WATER BOTTLE KEEP CALM"
+    ],
+    "joint": 246,
+    "lateShare": 0.9878048780487805,
+    "lift": 8.467543983394128
+   }
+  ]
+ },
+ "newProducts": {
+  "23321 SMALL WHITE HEART OF WICKER first seen": "2011-06-09 12:21:00",
+  "23245 SET OF 3 REGENCY CAKE TINS first seen": "2011-06-08 12:02:00"
+ },
+ "seconds": 16.9
+}

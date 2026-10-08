@@ -1,0 +1,376 @@
+diff --git a/starter/script.js b/script.js
+index 3bd6dc4..4270f08 100644
+--- a/starter/script.js
++++ b/script.js
+@@ -25,6 +25,14 @@
+  * readout, the DOM wiring, all formatting and rendering helpers, and the test
+  * harness. Leave the provided code as-is and implement only the stubs above.
+  *
++ * IMPLEMENTATION (A04): all seven stubs are filled in. The miner is Apriori —
++ * level-wise join of itemsets sharing a prefix, then downward-closure pruning —
++ * with candidates counted on per-stock basket bitsets (AND + popcount) instead of
++ * rescanning 17,080 baskets per level. `generateRules` emits every split of every
++ * frequent itemset, sorted by lift; `keepPositiveLift` applies the lift > 1 filter
++ * behind the "Keep only rules with lift > 1" checkbox. tests/check_rules.py
++ * checks the output against mlxtend's FP-Growth at 24 threshold settings.
++ *
+  * Metrics (see week4/readme.md for definitions):
+  *   support(A -> B)    = count(A union B) / N
+  *   confidence(A -> B) = count(A union B) / count(A)
+@@ -184,8 +192,24 @@ function asIndex(basketsOrIndex) {
+  * @returns {number} count(A) for a single-element `stocks`, count(A union B) for two.
+  */
+ function countItemset(basketsOrIndex, stocks) {
+-  // TODO(hw4): intersect the posting lists and return the number of baskets.
+-  throw new Error("TODO(hw4): countItemset is not implemented yet.");
++  const wanted = dedupeBasket(stocks);
++  if (wanted.length === 0) return 0;
++  const index = asIndex(basketsOrIndex);
++  const postings = [];
++  for (const stock of wanted) {
++    const posting = index.byStock.get(stock);
++    if (!posting) return 0;
++    postings.push(posting);
++  }
++  // Walk the shortest posting list and probe the others: the cost is bounded by
++  // the rarest item, not by the number of baskets.
++  postings.sort((a, b) => a.size - b.size);
++  const [shortest, ...others] = postings;
++  let count = 0;
++  for (const basketId of shortest) {
++    if (others.every((posting) => posting.has(basketId))) count += 1;
++  }
++  return count;
+ }
+ 
+ /**
+@@ -228,8 +252,16 @@ function countPair(basketsOrIndex, stockA, stockB) {
+  * @returns {Array<string>} unique stock codes, in first-appearance order.
+  */
+ function dedupeBasket(rawItems) {
+-  // TODO(hw4): return the unique stock codes in first-appearance order.
+-  throw new Error("TODO(hw4): dedupeBasket is not implemented yet.");
++  const seen = new Set();
++  const unique = [];
++  for (const item of rawItems || []) {
++    const stock = stockOf(item);
++    if (!seen.has(stock)) {
++      seen.add(stock);
++      unique.push(stock);
++    }
++  }
++  return unique;
+ }
+ 
+ /**
+@@ -246,8 +278,8 @@ function dedupeBasket(rawItems) {
+  * @returns {{value: number, defined: boolean}} `defined` is false when `n === 0`.
+  */
+ function computeSupport(jointCount, n) {
+-  // TODO(hw4): support = jointCount / n, undefined when n === 0.
+-  throw new Error("TODO(hw4): computeSupport is not implemented yet.");
++  if (!(n > 0)) return { value: 0, defined: false };
++  return { value: jointCount / n, defined: true };
+ }
+ 
+ /**
+@@ -265,8 +297,8 @@ function computeSupport(jointCount, n) {
+  * @returns {{value: number, defined: boolean}}
+  */
+ function computeConfidence(jointCount, antecedentCount) {
+-  // TODO(hw4): confidence = jointCount / antecedentCount, undefined when count(A) === 0.
+-  throw new Error("TODO(hw4): computeConfidence is not implemented yet.");
++  if (!(antecedentCount > 0)) return { value: 0, defined: false };
++  return { value: jointCount / antecedentCount, defined: true };
+ }
+ 
+ /**
+@@ -287,8 +319,10 @@ function computeConfidence(jointCount, antecedentCount) {
+  * @returns {{value: number, defined: boolean}}
+  */
+ function computeLift(confidence, consequentCount, n) {
+-  // TODO(hw4): lift = confidence / (consequentCount / n), guarded.
+-  throw new Error("TODO(hw4): computeLift is not implemented yet.");
++  if (!confidence || !confidence.defined || !(n > 0) || !(consequentCount > 0)) {
++    return { value: 0, defined: false };
++  }
++  return { value: confidence.value / (consequentCount / n), defined: true };
+ }
+ 
+ /**
+@@ -333,8 +367,144 @@ function validateThresholds(minSupport, minConfidence) {
+  * @returns {Array<{items: string[], count: number, support: number}>} frequent itemsets
+  */
+ function findFrequentItemsets(transactions, minSupport) {
+-  // TODO(hw4): implement Apriori (or an equivalent frequent-itemset miner).
+-  throw new Error("TODO(hw4): findFrequentItemsets is not implemented yet.");
++  const n = transactions.length;
++  if (n === 0) return [];
++  // Smallest basket count whose support reaches the threshold. The epsilon keeps
++  // a product such as 0.07 * 100 = 7.000000000000001 from rounding up to 8.
++  const minCount = Math.max(1, Math.ceil(minSupport * n - 1e-9));
++
++  // Vertical layout: one bitset of basket ids per stock. Counting a candidate is
++  // then an AND of two parent bitsets plus a popcount — no rescan of the baskets.
++  const words = Math.ceil(n / 32);
++  /** @type {Map<string, Uint32Array>} */
++  const bitsByStock = new Map();
++  transactions.forEach((basket, basketId) => {
++    for (const stock of dedupeBasket(basket)) {
++      let bits = bitsByStock.get(stock);
++      if (!bits) {
++        bits = new Uint32Array(words);
++        bitsByStock.set(stock, bits);
++      }
++      bits[basketId >>> 5] |= 1 << (basketId & 31);
++    }
++  });
++
++  // Level 1: frequent single items, kept in code order so that level k is
++  // sorted lexicographically and itemsets sharing a (k-1)-prefix sit together.
++  let level = [];
++  for (const [stock, bits] of bitsByStock) {
++    const count = popcount(bits);
++    if (count >= minCount) level.push({ items: [stock], bits, count });
++  }
++  level.sort((a, b) => compareCodes(a.items[0], b.items[0]));
++
++  const frequent = [];
++  while (level.length > 0) {
++    for (const set of level) {
++      frequent.push({ items: set.items, count: set.count, support: set.count / n });
++    }
++    const known = new Set(level.map((set) => itemsetKey(set.items)));
++    const next = [];
++    for (let i = 0; i < level.length; i += 1) {
++      const left = level[i];
++      for (let j = i + 1; j < level.length; j += 1) {
++        const right = level[j];
++        // Join step: merge two k-itemsets that agree on their first k-1 items.
++        // The level is sorted, so the first mismatch ends the block.
++        if (!samePrefix(left.items, right.items)) break;
++        const candidate = [...left.items, right.items[right.items.length - 1]];
++        // Prune step (downward closure): a candidate with an infrequent subset
++        // cannot be frequent, so it is dropped before it is counted.
++        if (!everySubsetKnown(candidate, known)) continue;
++        const bits = andBits(left.bits, right.bits);
++        const count = popcount(bits);
++        if (count >= minCount) next.push({ items: candidate, bits, count });
++      }
++    }
++    level = next;
++  }
++  return frequent;
++}
++
++/**
++ * Order stock codes by code point, so the result does not depend on the locale.
++ *
++ * @param {string} a
++ * @param {string} b
++ * @returns {number}
++ */
++function compareCodes(a, b) {
++  return a < b ? -1 : a > b ? 1 : 0;
++}
++
++/**
++ * Canonical key of an itemset: its codes in code-point order, joined.
++ *
++ * @param {string[]} items
++ * @returns {string}
++ */
++function itemsetKey(items) {
++  return [...items].sort(compareCodes).join("\u0001");
++}
++
++/**
++ * Whether two sorted k-itemsets share their first k-1 items.
++ *
++ * @param {string[]} a
++ * @param {string[]} b
++ * @returns {boolean}
++ */
++function samePrefix(a, b) {
++  for (let i = 0; i < a.length - 1; i += 1) {
++    if (a[i] !== b[i]) return false;
++  }
++  return true;
++}
++
++/**
++ * Whether every subset obtained by dropping one item is a known frequent itemset.
++ * The two subsets the candidate was joined from are frequent by construction.
++ *
++ * @param {string[]} candidate sorted (k+1)-itemset
++ * @param {Set<string>} known keys of the frequent k-itemsets
++ * @returns {boolean}
++ */
++function everySubsetKnown(candidate, known) {
++  for (let drop = 0; drop < candidate.length - 2; drop += 1) {
++    const subset = candidate.filter((_, i) => i !== drop);
++    if (!known.has(subset.join("\u0001"))) return false;
++  }
++  return true;
++}
++
++/**
++ * Bitwise AND of two equally long bitsets.
++ *
++ * @param {Uint32Array} a
++ * @param {Uint32Array} b
++ * @returns {Uint32Array}
++ */
++function andBits(a, b) {
++  const out = new Uint32Array(a.length);
++  for (let i = 0; i < a.length; i += 1) out[i] = a[i] & b[i];
++  return out;
++}
++
++/**
++ * Number of set bits in a bitset.
++ *
++ * @param {Uint32Array} bits
++ * @returns {number}
++ */
++function popcount(bits) {
++  let total = 0;
++  for (let i = 0; i < bits.length; i += 1) {
++    let v = bits[i];
++    v -= (v >>> 1) & 0x55555555;
++    v = (v & 0x33333333) + ((v >>> 2) & 0x33333333);
++    total += Math.imul((v + (v >>> 4)) & 0x0f0f0f0f, 0x01010101) >>> 24;
++  }
++  return total;
+ }
+ 
+ /**
+@@ -360,9 +530,78 @@ function findFrequentItemsets(transactions, minSupport) {
+  * @returns {Rule[]}
+  */
+ function generateRules(frequentItemsets, minConfidence) {
+-  // TODO(hw4): generate candidate rules from each frequent itemset, compute
+-  // confidence in both directions, then keep the rules that pass the threshold.
+-  throw new Error("TODO(hw4): generateRules is not implemented yet.");
++  // By downward closure every subset of a frequent itemset is itself frequent,
++  // so count(A) and count(B) are both already in the miner's output.
++  const countByKey = new Map(
++    frequentItemsets.map((set) => [itemsetKey(set.items), set.count]),
++  );
++  const rules = [];
++  for (const set of frequentItemsets) {
++    const k = set.items.length;
++    if (k < 2) continue;
++    // The miner does not receive N separately; every itemset carries it as
++    // count / support.
++    const n = Math.round(set.count / set.support);
++    // Every non-empty proper subset is an antecedent once, so A -> B and B -> A
++    // are both generated from the same itemset.
++    for (let mask = 1; mask < (1 << k) - 1; mask += 1) {
++      const antecedent = set.items.filter((_, i) => mask & (1 << i));
++      const consequent = set.items.filter((_, i) => !(mask & (1 << i)));
++      const antecedentCount = countByKey.get(itemsetKey(antecedent));
++      const consequentCount = countByKey.get(itemsetKey(consequent));
++      if (antecedentCount === undefined || consequentCount === undefined) {
++        throw new Error(
++          `generateRules: a subset of {${set.items.join(", ")}} is missing from the frequent itemsets.`,
++        );
++      }
++      const confidence = computeConfidence(set.count, antecedentCount);
++      if (!confidence.defined || confidence.value < minConfidence) continue;
++      rules.push({
++        antecedent,
++        consequent,
++        jointCount: set.count,
++        antecedentCount,
++        consequentCount,
++        support: computeSupport(set.count, n).value,
++        confidence: confidence.value,
++        lift: computeLift(confidence, consequentCount, n).value,
++      });
++    }
++  }
++  // Strongest association first; ties fall back to evidence, then to the codes,
++  // so the order never depends on how the miner happened to enumerate.
++  rules.sort(
++    (a, b) =>
++      b.lift - a.lift ||
++      b.confidence - a.confidence ||
++      b.jointCount - a.jointCount ||
++      compareCodes(ruleKey(a), ruleKey(b)),
++  );
++  return rules;
++}
++
++/**
++ * Stable identity of a rule, used only to break ties when sorting.
++ *
++ * @param {Rule} rule
++ * @returns {string}
++ */
++function ruleKey(rule) {
++  return `${itemsetKey(rule.antecedent)}\u0002${itemsetKey(rule.consequent)}`;
++}
++
++/**
++ * Keep only the rules whose items co-occur more often than independence predicts.
++ *
++ * Note: lift = confidence / support(B), and no item reaches 12% support in this
++ * dataset, so any rule with confidence above the consequent's own support already
++ * has lift > 1. The filter only bites at the lowest confidence settings.
++ *
++ * @param {Rule[]} rules
++ * @returns {Rule[]}
++ */
++function keepPositiveLift(rules) {
++  return rules.filter((rule) => rule.lift > 1);
+ }
+ 
+ // ---------------------------------------------------------------------------
+@@ -490,7 +729,8 @@ function enrichRule(rule, index) {
+  * Swap the antecedent and consequent of a rule and recompute the metrics.
+  *
+  * Confidence is not symmetric, so `B -> A` usually has a different confidence
+- * and support value from `A -> B` even though lift is unchanged.
++ * from `A -> B`. Support and lift are symmetric: both directions count the same
++ * baskets, count(A union B), against the same N.
+  *
+  * @param {Rule} rule
+  * @param {BasketIndex} index
+@@ -720,8 +960,8 @@ function renderRuleDetail(rule, index, container) {
+       <dt>count(A)</dt><dd class="num">${enriched.antecedentCount}</dd>
+       <dt>count(B)</dt><dd class="num">${enriched.consequentCount}</dd>
+       <dt>support</dt><dd class="num">${formatPercent(enriched.support)}</dd>
+-      <dt>confidence</dt><dd class="num">${formatPercent(enriched.confidence)}</dd>
+-      <dt>lift</dt><dd class="num">${formatMetric(enriched.lift)}</dd>
++      <dt>confidence</dt><dd class="num">${enriched.confidenceDefined ? formatPercent(enriched.confidence) : "undefined"}</dd>
++      <dt>lift</dt><dd class="num">${enriched.liftDefined ? formatMetric(enriched.lift) : "undefined"}</dd>
+     </dl>
+     <p class="comparison">
+       Reverse direction (B → A): confidence
+@@ -1037,10 +1277,23 @@ function runPipeline() {
+   }
+   try {
+     if (status) status.textContent = "Mining frequent itemsets…";
++    const started = performance.now();
+     const itemsets = findFrequentItemsets(TRANSACTIONS, minSupport);
+-    const rules = generateRules(itemsets, minConfidence);
++    const candidateRules = generateRules(itemsets, minConfidence);
++    const elapsed = performance.now() - started;
++    const liftFilter = document.getElementById("lift-filter");
++    const onlyPositiveLift = !liftFilter || liftFilter.checked;
++    const rules = onlyPositiveLift ? keepPositiveLift(candidateRules) : candidateRules;
+     renderResults(rules, DATASET_INDEX);
+-    if (status) status.textContent = `Done — ${rules.length} rule(s) at support \u2265 ${(minSupport * 100).toFixed(1)}% and confidence \u2265 ${(minConfidence * 100).toFixed(0)}%.`;
++    const bySize = [];
++    for (const set of itemsets) {
++      bySize[set.items.length - 1] = (bySize[set.items.length - 1] || 0) + 1;
++    }
++    const liftNote = onlyPositiveLift
++      ? `, lift > 1 (${candidateRules.length - rules.length} dropped by the lift filter)`
++      : "";
++    const runNote = ` Frequent itemsets by size: ${bySize.join(" / ")}. Mined in ${elapsed.toFixed(0)} ms.`;
++    if (status) status.textContent = `Done — ${rules.length} rule(s) at support \u2265 ${(minSupport * 100).toFixed(1)}% and confidence \u2265 ${(minConfidence * 100).toFixed(0)}%${liftNote}.${runNote}`;
+   } catch (error) {
+     const message = String(error && error.message ? error.message : error);
+     const resultsEl = document.getElementById("results");

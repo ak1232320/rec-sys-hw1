@@ -1,0 +1,20 @@
+diff --git a/starter/index.html b/index.html
+index 5f78f63..efd87b2 100644
+--- a/starter/index.html
++++ b/index.html
+@@ -47,6 +47,15 @@
+         <p class="hint" id="min-confidence-hint">10% – 100%.</p>
+       </div>
+ 
++      <div class="control">
++        <label for="lift-filter" class="checkbox">
++          <input type="checkbox" id="lift-filter" name="lift-filter" checked
++                 aria-describedby="lift-filter-hint">
++          Keep only rules with lift &gt; 1
++        </label>
++        <p class="hint" id="lift-filter-hint">Applied after both thresholds.</p>
++      </div>
++
+       <div class="button-row">
+         <button type="button" id="run-rules">Run rules</button>
+         <button type="button" id="run-tests" class="secondary">Run tests</button>

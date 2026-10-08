@@ -1,0 +1,16 @@
+diff --git a/starter/style.css b/style.css
+index 5e35605..822bf77 100644
+--- a/starter/style.css
++++ b/style.css
+@@ -137,6 +137,11 @@ section[aria-labelledby="results-heading"] {
+   color: var(--muted);
+ }
+ 
++.control label.checkbox {
++  justify-content: flex-start;
++  align-items: center;
++}
++
+ .control input[type="range"] {
+   width: 100%;
+   margin: 0.25rem 0;

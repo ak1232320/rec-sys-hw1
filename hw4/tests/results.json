@@ -1,0 +1,133 @@
+{
+ "passed": 24,
+ "total": 24,
+ "timingsMs": {
+  "0.005/0.1": 1913,
+  "0.01/0.3": 520,
+  "0.01/0.6": 488,
+  "0.02/0.3": 87,
+  "0.03/0.6": 44
+ },
+ "checks": [
+  {
+   "name": "starter: harness reports 2 passed / 0 failed / 9 pending, as the course README says",
+   "passed": true,
+   "detail": "[2, 0, 9]"
+  },
+  {
+   "name": "starter: Run rules fails with the TODO message",
+   "passed": true,
+   "detail": "TODO(hw4): findFrequentItemsets is not implemented yet."
+  },
+  {
+   "name": "dataset summary: 17,080 baskets and 3,653 distinct items",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "anchor fact: 85123A is in 1,959 baskets (11.47%)",
+   "passed": true,
+   "detail": "1959"
+  },
+  {
+   "name": "finished: harness reports 11 passed / 0 failed / 0 pending",
+   "passed": true,
+   "detail": "[11, 0, 0]"
+  },
+  {
+   "name": "fixture: itemsets and rules equal brute-force enumeration at 9 threshold pairs",
+   "passed": true,
+   "detail": "38 rules at 20% / 50%"
+  },
+  {
+   "name": "support 0.5% / confidence 10%: page rules equal mlxtend FP-Growth",
+   "passed": true,
+   "detail": "19058 rules, identical counts, max metric difference 0.0e+00; mined in 1913 ms"
+  },
+  {
+   "name": "support 1.0% / confidence 30%: page rules equal mlxtend FP-Growth",
+   "passed": true,
+   "detail": "950 rules, identical counts, max metric difference 0.0e+00; mined in 520 ms"
+  },
+  {
+   "name": "rules are sorted by lift, strongest first",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "support 1.0% / confidence 60%: page rules equal mlxtend FP-Growth",
+   "passed": true,
+   "detail": "238 rules, identical counts, max metric difference 0.0e+00; mined in 488 ms"
+  },
+  {
+   "name": "support 2.0% / confidence 30%: page rules equal mlxtend FP-Growth",
+   "passed": true,
+   "detail": "96 rules, identical counts, max metric difference 0.0e+00; mined in 87 ms"
+  },
+  {
+   "name": "support 3.0% / confidence 60%: page rules equal mlxtend FP-Growth",
+   "passed": true,
+   "detail": "5 rules, identical counts, max metric difference 0.0e+00; mined in 44 ms"
+  },
+  {
+   "name": "threshold sweep: rule counts equal the reference at all 24 settings",
+   "passed": true,
+   "detail": "24/24"
+  },
+  {
+   "name": "UI at 1% / 30%: the table lists 950 rules",
+   "passed": true,
+   "detail": "Done — 950 rule(s) at support ≥ 1.0% and confidence ≥ 30%, lift > 1 (0 dropped by the lift filter). Frequent itemsets by size: 691 / 413 / 109 / 6. Mined in 478 ms."
+  },
+  {
+   "name": "first row shows the reference's strongest rule",
+   "passed": true,
+   "detail": "22916 — HERB MARKER THYME -> 22917 — HERB MARKER ROSEMARY: ['176', '186', '190', '1.03%', '94.62%', '85.0617']"
+  },
+  {
+   "name": "every displayed rule meets support >= 1%, confidence >= 30%, lift > 1",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "detail panel: JUMBO BAG PINK -> RED shows 546 / 869 / 1584, 62.83%, lift 6.7749",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "detail panel: reverse direction quoted as 34.47% with the same lift",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "Reverse button: B -> A has confidence 34.47% and lift 6.7749",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "page counts equal distinct InvoiceNo counted from the raw workbook rows",
+   "passed": true,
+   "detail": "[869, 1584, 546]"
+  },
+  {
+   "name": "count(A) = 0: the panel says 'undefined' with an inline note, never NaN or Infinity",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "lift filter at 0.5% / 10% drops exactly the 2 rules with lift <= 1",
+   "passed": true,
+   "detail": "19058 -> 19056"
+  },
+  {
+   "name": "no page or console errors on the finished page",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "name": "opened from file:// the page loads and passes 11/11",
+   "passed": true,
+   "detail": "[11, 0, 0]"
+  }
+ ]
+}
