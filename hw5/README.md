@@ -70,7 +70,12 @@ python -m http.server 8000
 
 Open http://localhost:8000/ for the finished page and http://localhost:8000/starter/ for the skeleton. Press
 **Run tests**, then **Train**, **Recommend Top-10** and **Evaluate Recall@10**. Training with the shipped
-defaults takes about four minutes on the WebGL backend; batch 1,024 does ten epochs in under a minute.
+defaults takes two to six minutes on the WebGL backend; batch 1,024 does ten epochs in about fifteen seconds
+and lands on a better model (test RMSE 1.0144, Recall@10 3.72%).
+
+The status line *before* the first Train click still reads "Implement the TODO(hw5) functions" — that
+sentence lives in the provided `init()` scaffolding, which §7.1 of the course brief says to leave as-is, so
+it is untouched. Pressing **Train** replaces it with the trained summary.
 
 Reproduce the numbers (`pip install playwright numpy matplotlib markdown`, plus a local Google Chrome):
 
