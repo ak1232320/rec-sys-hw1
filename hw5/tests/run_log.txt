@@ -1,0 +1,16 @@
+serving C:\Users\Alex\Documents\rec-sys-hw1\hw5 at http://127.0.0.1:60075
+chrome 154.0.8037.98
+[PASS] page loads the dataset and a TensorFlow.js backend - backend webgl, 943 users x 1682 movies, split 79619/9596/10785
+[PASS] all 11 self-checks pass (0 pending stubs) - 11 passed, 0 failed, 0 pending
+[PASS] every user is split 80/10/10 with training strictly before test - 943/943 users, 100000 ratings kept
+[PASS] two runs with the same hyper-parameters produce the same curve - val RMSE [1.174247, 1.057465, 0.994072]
+[PASS] repeated training does not leak tensors - live tensors 27 -> 27 -> 27
+[PASS] after training the model is the best-validation checkpoint, not the last epoch - epoch 3 val 0.994072, model now 0.994072
+[PASS] predictRating equals the dot product recomputed in Python - user 196, movie 411: page 3.532276 vs hand 3.532276
+[PASS] out-of-range ids return the global mean and an empty list - globalMean 3.5806
+[PASS] 40 Top-10 lists exclude train/val items, stay in the catalogue and are sorted - 40 lists checked
+[PASS] Recall@10 bookkeeping is complete and the mean matches a manual recomputation - 861 reported + 82 without relevant = 943 test users; recall 0.0402
+[PASS] the untouched starter reports 4 passed / 7 pending - 4 passed, 0 failed, 7 pending
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw5\report\figures\fixed_checks.png, starter_checks.png and fixed_topk.png
+
+11/11 checks passed

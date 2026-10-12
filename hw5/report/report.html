@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>A05 report — Aleksei Kosychev</title><style>
+@page { size: A4; margin: 15mm 15mm 14mm 15mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.4pt; line-height: 1.17; color: #111; }
+h1 { font-size: 15pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+.fig { text-align: center; margin: 4px 0; page-break-inside: avoid; }
+.fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
+.fig.wide img { width: 47%; }
+.fig.full img { width: 68%; border: none; }
+.fig.manual img { width: 62%; border: 1px solid #ccc; }
+.fig.shot img { width: 62%; border: 1px solid #ccc; }
+.fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }
+.fig.pair img:first-child { width: 27%; }
+.fig.pair img:last-child { width: 48%; }
+.fig p { text-align: center; font-size: 8.4pt; margin-top: 2px; }
+.todo { background: #fff3a8; font-style: italic; }
+</style></head>
+<body><h1>Familiar Genre, Unfamiliar Title: What a 16-Factor Model Recommends When Almost Nobody Has Rated the Film</h1>
+<div class="meta">
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: Individual<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-10-12<br>
+Assignment: A05 — From Ratings to Recommendations (Matrix Factorization), MovieLens 100k (Week 5)
+</div>
+
+<h2>Abstract</h2>
+<p>The Week 5 starter is a TensorFlow.js page with six <code>TODO(hw5)</code> stubs: the factor variables, a batched
+training loop, the scalar prediction, checkpoint selection, Top-10 retrieval and Recall@10. I implemented
+all six; the page's own 11 self-checks pass, and an independent browser test adds 11 more. With the
+hyper-parameters <code>index.html</code> ships with, the model reaches a <strong>test RMSE of 1.0432 against a mean-rating
+baseline of 1.2289</strong> — 15.1% better — but <strong>Recall@10 is only 1.63%</strong>, and 91 of 861 evaluable users get a
+single hit. The reason is visible in the lists themselves. They are <strong>familiar in genre and unfamiliar in
+title</strong>: 6.6 of every 10 recommended films carry one of the user's three most-liked genres, yet the average
+recommended film has <strong>63.5 training ratings against 170.8 for the films the user already rated</strong>, and for
+<strong>96.4% of users the whole Top-10 is less known than their own history</strong>. The argmax over 1,611 candidates
+systematically selects the films whose 16 factors are least constrained by data. Requiring a candidate to
+carry at least 100 training ratings multiplies Recall@10 by <strong>4.9×</strong>, to 7.92%. Two departures from the
+assignment's own code sketch were needed and are measured: its L2 term squares the whole factor matrices on
+every mini-batch, which drives the factors to a norm of 1.7×10⁻¹⁹ and the model exactly back to the
+baseline; and selecting a checkpoint without restoring it leaves 0.0336 RMSE on the table.</p>
+<p><em>Index Terms</em> — matrix factorization, TensorFlow.js, implicit evaluation, Recall@K, popularity bias, MovieLens</p>
+<h2>1. Introduction</h2>
+<p><strong>Problem statement.</strong> The course provides a page whose scaffolding — the TensorFlow.js bootstrap, the RMSE
+helpers, every renderer and an 11-check harness — is complete, and whose six algorithmic functions are
+empty stubs [1]. The task is to build the user–movie matrix treating a missing rating as <em>unobserved rather
+than zero</em>, split each user's ratings by timestamp 80/10/10, learn 16-dimensional user and movie vectors
+whose dot product predicts a rating, select a checkpoint by validation RMSE, report test RMSE against a
+mean-rating baseline, produce Top-10 lists for two users, and evaluate Recall@10 with test ratings ≥ 4.0 as
+relevant. The single analysis question is whether those lists help users <strong>discover</strong> films or merely
+<strong>repeat</strong> what they already like.</p>
+<p><strong>Concrete example.</strong> User 655 has rated 616 films; their favourites include <em>The Godfather</em>, <em>The
+Fugitive</em> and <em>Belle de jour</em>, and their three most-liked genres are Drama, Thriller and Romance. The
+Top-10 the trained model returns is led by <em>C'est arrivé près de chez vous</em> (3 training ratings), <em>Aiqing
+wansui</em> (1), <em>Santa with Muscles</em> (2) and <em>Police Story 4</em> (1). Six of the ten do carry a top-three genre —
+and not one of them has been rated by more than seven people in the training split.</p>
+<p><strong>Contributions.</strong> (i) The six stubs implemented with TensorFlow.js tensor operations, with a fixed seed so
+that a re-run reproduces every number in this report. (ii) Two corrections to the assignment's own sketch —
+a regulariser that penalises the rows a batch touches rather than the whole matrices, and a checkpoint that
+is restored rather than merely named — each measured against the sketch's behaviour. (iii) An evaluation
+run through the real page, including a prediction recomputed outside the browser, and an analysis of what
+the Top-10 lists contain that answers the assignment's business question with numbers.</p>
+<h2>2. Related Work</h2>
+<p>Sources: the course starter [1]; MovieLens 100k and its documentation [2], [3]; Koren et al. for the
+latent-factor model this implements [4]; Cremonesi et al. for the gap between squared-error accuracy and
+top-N retrieval, which is exactly the gap measured here [5]; Smilkov et al. for the TensorFlow.js runtime
+and its WebGL backend [6]; Kingma and Ba for Adam [7]; Prechelt for checkpoint selection on a validation
+split [8].</p>
+<p><strong>Alternatives considered.</strong> <em>Biases per user and per movie</em> (<code>mu + b_u + b_i + p_u·q_i</code>) are the standard
+next term in [4] and would cost two more variables, but §6 of the assignment defines the prediction as
+<code>mu + p_u·q_i</code> and the self-checks encode that, so the bias terms stay out. <em>Ranking losses</em> (BPR, WARP)
+optimise what Recall@10 measures instead of squared error; they are the principled fix for the retrieval
+result in §4, not a variant of the specified model. <em>Implicit-feedback weighting</em> would treat the unobserved
+entries as weak negatives rather than as missing — explicitly excluded by the assignment's "unobserved, not
+zeros" rule.</p>
+<h2>3. Method</h2>
+<p><strong>Structures.</strong> <code>data.js</code> is provided and unmodified: it parses <code>u.item</code> and <code>u.data</code>, builds the dense
+<code>(943 + 1) × (1682 + 1)</code> matrix with <code>0</code> marking an unobserved pair, and splits each user's ratings by
+ascending timestamp (ties broken by movie id) into 80 / 10 / 10. Only the ratings that exist are ever fed to
+the optimizer — the zeros are never treated as training targets, which is what "missing, not zero" means in
+practice. Both factor matrices are indexed by <strong>raw id</strong>, so row <em>k</em> belongs to user or movie <em>k</em>; this is
+why <code>tf.topk</code> returns movie ids directly and no reverse mapping is needed anywhere.</p>
+<p><strong>TensorFlow.js use.</strong> The functions this implementation actually calls are <code>tf.variable</code>,
+<code>tf.randomNormal(shape, mean, std, dtype, seed)</code>, <code>tf.gather</code>, <code>tf.tensor1d</code>, <code>tf.scalar</code>, <code>tf.mul</code>,
+<code>tf.sum</code>, <code>tf.mean</code>, <code>tf.square</code>, <code>tf.topk</code>, <code>tf.losses.meanSquaredError</code>, <code>tf.train.adam</code>,
+<code>optimizer.minimize(fn, returnCost, varList)</code>, <code>tf.tidy</code> and <code>tf.dispose</code>, plus the tensor methods
+<code>slice</code>, <code>matMul</code>, <code>squeeze</code>, <code>clone</code>, <code>assign</code> and <code>dataSync</code>. <code>tf.train.sgd</code> is named in the stub
+comments but is not used. Every rating in a mini-batch is scored by one <code>gather</code> + <code>mul</code> + <code>sum</code>; there is
+no per-rating <code>tf</code> call anywhere. The browser reports the <strong>WebGL</strong> backend, so these are GPU timings.</p>
+<p><strong>Two departures from the stub sketch, both measured in §4.</strong></p>
+<ol>
+<li><em>The regulariser.</em> The sketch adds <code>userFactors.square().sum() + itemFactors.square().sum()</code> times
+   <code>reg</code> to <strong>every mini-batch</strong> loss. At the shipped <code>reg = 0.05</code> and 1,245 batches per epoch that is a
+   weight decay three orders of magnitude stronger than the squared-error term it is meant to balance. I
+   penalise only the rows the batch gathered, averaged like the loss itself.</li>
+<li><em>The checkpoint.</em> <code>selectBestCheckpoint</code> returns a history row; nothing in the scaffolding puts those
+   weights back. Validation RMSE bottoms out at epoch 2 of 20, so a model left at the last epoch is not the
+   model the selection chose. <code>trainMF</code> keeps a clone of the factors at the best epoch and <code>assign</code>s it back
+   when the loop ends, in place, so the reported test RMSE, both Top-10 lists and Recall@10 all describe the
+   same selected model.</li>
+</ol>
+<p><strong>Reproducibility.</strong> <code>tf.randomNormal</code> is seeded and the epoch shuffle uses a seeded mulberry32 generator
+rather than <code>Math.random</code>, so two runs with the same hyper-parameters produce bit-identical curves — checked
+in the test suite. Every number below comes from one such run.</p>
+<p><strong>Tools.</strong> Vanilla HTML/CSS/JS with TensorFlow.js 4.22.0 from a CDN, no build step; Python 3.12 with
+Playwright 1.58 driving Google Chrome headless for the evaluation harness; Matplotlib 3.10 for the figures;
+Claude Code with Claude Opus 5. Only <code>script.js</code> differs from the course files — <code>index.html</code>, <code>style.css</code>
+and <code>data.js</code> are byte-identical to the starter.</p>
+<h2>4. Experiments</h2>
+<p><strong>Setup.</strong> MovieLens 100k: 943 users × 1,682 movies, 100,000 ratings, a matrix 6.30% full (1,588,752 cells).
+The per-user chronological split yields <strong>79,619 train / 9,596 validation / 10,785 test</strong> ratings and
+excludes <strong>no</strong> users — every user has at least five ratings. 1,611 of the 1,682 movies appear in training,
+so 71 can never be recommended from a training-only pool; 46 distinct movies in the test split are among
+them. Training uses the page's shipped defaults: 16 factors, 20 epochs, Adam at lr 0.01, <code>reg</code> 0.05 and
+batch 64 (1,245 optimizer steps per epoch).</p>
+<p><strong>Result 1 — the model beats the baseline, and the checkpoint is worth a third of that gain.</strong></p>
+<div class="fig full">
+<img src="figures/training.png">
+<p><em>Fig. 1. Left: training RMSE keeps falling while validation RMSE bottoms out at epoch 2 and then drifts
+up — 18 of the 20 epochs are spent overfitting. Right: the test RMSE of the baseline, of the last epoch, and
+of the checkpoint that was actually selected and restored.</em></p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Train</th>
+<th>Validation</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean-rating baseline (predict <code>mu</code> = 3.5806)</td>
+<td>1.1052</td>
+<td>1.1830</td>
+<td>1.2289</td>
+</tr>
+<tr>
+<td>Factorization, last epoch (epoch 20)</td>
+<td>0.6977</td>
+<td>1.0403</td>
+<td>1.0768</td>
+</tr>
+<tr>
+<td><strong>Factorization, selected checkpoint (epoch 2)</strong></td>
+<td><strong>0.8027</strong></td>
+<td><strong>1.0026</strong></td>
+<td><strong>1.0432</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The factorization beats the baseline by 0.1857 RMSE (15.1%). Of that, 0.0336 — 18% of the total gain —
+comes from restoring epoch 2 rather than keeping epoch 20; the difference is measured in one run by
+switching the snapshot off with an empty validation split, which leaves training otherwise identical.</p>
+<p><strong>Result 2 — the lists are genre-familiar and title-obscure.</strong> Recall@10 over the test split is <strong>1.63%</strong>,
+averaged over the <strong>861</strong> users who have at least one relevant test film inside the training pool. The
+evaluation excludes <strong>82</strong> users with no such film and <strong>13</strong> distinct relevant test films that never appear
+in training. Only <strong>91 of 861</strong> users get a single hit in ten.</p>
+<table>
+<thead>
+<tr>
+<th>Over the 861 evaluated users, per Top-10 list</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Films sharing one of the user's three most-liked genres</td>
+<td><strong>6.6 of 10</strong> (65.8%)</td>
+</tr>
+<tr>
+<td>Films from a genre the user has never rated</td>
+<td>0.7 of 10 (7.2%)</td>
+</tr>
+<tr>
+<td>Films in the top 20% by training popularity (≥ 79 ratings)</td>
+<td>2.4 of 10 (24.2%)</td>
+</tr>
+<tr>
+<td>Mean training ratings: recommended film vs film the user rated</td>
+<td><strong>63.5 vs 170.8</strong></td>
+</tr>
+<tr>
+<td>Users whose whole list is less known than their own history</td>
+<td><strong>96.4%</strong></td>
+</tr>
+<tr>
+<td>Distinct films ever recommended / Gini of that distribution</td>
+<td>746 of 1,611 (46.3%) / 0.867</td>
+</tr>
+</tbody>
+</table>
+<div class="fig full">
+<img src="figures/discovery.png">
+<p><em>Fig. 2. Left: the average film the model recommends has been rated by a third as many people as the
+average film the user themselves rated. Right: Recall@10 when a candidate must carry a minimum number of
+training ratings; the number of surviving candidates is printed under each point.</em></p>
+</div>
+
+<p>Restricting candidates to films with at least 100 training ratings — 266 of 1,611 — raises Recall@10 from
+1.63% to <strong>7.92%</strong> while the mean popularity of a recommendation rises from 63.5 to 182.7 and the familiar
+share from 65.8% to 75.6%. Nothing about the model changes across that sweep; only which films are allowed
+to be ranked.</p>
+<p><strong>Result 3 — the sketch's regulariser deletes the model.</strong> Holding everything else equal (10 epochs, batch
+1024), the two penalties give:</p>
+<table>
+<thead>
+<tr>
+<th>L2 term</th>
+<th>Mean item-factor norm</th>
+<th>Validation RMSE</th>
+<th>Test RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rows gathered by the batch (this implementation)</td>
+<td>1.015</td>
+<td>0.9741</td>
+<td><strong>1.0144</strong></td>
+</tr>
+<tr>
+<td>Whole factor matrices, as sketched in the readme</td>
+<td><strong>1.7×10⁻¹⁹</strong></td>
+<td>1.1830</td>
+<td>1.2289002</td>
+</tr>
+</tbody>
+</table>
+<p>The second row is not an approximation of the baseline — it <em>is</em> the baseline: 1.2289002 against the
+mean-rating baseline's 1.2289001. With the factors annihilated, <code>mu + p·q</code> reduces to <code>mu</code>.</p>
+<p><strong>Result 4 — batch size trades wall-clock against progress per epoch.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Batch</th>
+<th>Optimizer steps per epoch</th>
+<th>Seconds per epoch (WebGL)</th>
+<th>Validation RMSE after 1 epoch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64 (shipped default)</td>
+<td>1,245</td>
+<td>14.1</td>
+<td>1.0292</td>
+</tr>
+<tr>
+<td>256</td>
+<td>312</td>
+<td>5.8</td>
+<td>1.0491</td>
+</tr>
+<tr>
+<td>1,024</td>
+<td>78</td>
+<td>1.4</td>
+<td>1.1742</td>
+</tr>
+</tbody>
+</table>
+<p>Wall-clock varies by machine and GPU scheduling — the four full runs recorded here spent 152 s, 222 s,
+382 s and 383 s on the same 20 epochs, while every RMSE they produced was identical to the last decimal — so
+the step count is the stable figure. A smaller batch buys more progress per epoch at proportionally more time.</p>
+<p><strong>Verification.</strong> <code>tests/check_mf.py</code> drives the real page and runs 11 checks, all passing, on top of the
+page's own 11: the split is exactly 80/10/10 for all 943 users with training strictly before test; two runs
+with the same hyper-parameters give identical curves; three consecutive runs hold the live tensor count at
+27, so nothing leaks; after training, <code>computeRMSEFor(valSet)</code> equals the selected checkpoint's validation
+RMSE to 10⁻⁶, which is what proves the restore happened; 40 Top-10 lists contain no film the user rated in
+training or validation and are sorted; and Recall@10's bookkeeping closes — 861 reported + 82 excluded = 943
+test users. One prediction was recomputed outside the browser: for the first test rating (user 196, movie
+411, stored rating 4) the page returns <strong>3.291459</strong>, and the dot product of the two exported 16-element
+factor rows, −0.289143, plus <code>mu</code> = 3.580603 gives <strong>3.291459</strong> in Python — agreement 4.1×10⁻¹⁰, and a
+squared error of 0.502030 against the stored rating. The test suite repeats the same check independently on
+its own shorter run.</p>
+<div class="fig full">
+<img src="figures/app.png">
+<p><em>Fig. 3. The page's own harness, before and after. Left: the untouched starter reports 4 passed and 7
+pending — the four provided helpers pass, the seven stub-backed checks cannot run. Right: with the six stubs
+implemented it reports 11 passed, 0 pending.</em></p>
+</div>
+
+<h2>5. Discussion</h2>
+<p><strong>Familiar choices vs. new discoveries — the assignment's question.</strong> Both of the showcased users get lists
+that <strong>stay inside their taste but leave the catalogue they know</strong>. User 655 (616 ratings; Drama, Thriller,
+Romance) receives six Drama/Thriller/Romance titles out of ten, none rated by more than seven people. User
+55 (18 ratings; Action, Adventure, War) receives <em>Paradise Lost</em>, <em>Bad Taste</em> and <em>The Killing Fields</em> — two
+of ten in a top-three genre, one film from a genre they have never rated. Aggregated over 861 users the
+pattern is unambiguous: 65.8% genre-familiar, 7.2% genre-new, and 96.4% of users handed a list that is on
+average less known than their own viewing history.</p>
+<p>So the answer is neither "repeats" nor "discovers": the model <strong>repeats the genre and randomises the
+title</strong>. That is a predictable consequence of the objective. A film with three ratings contributes three
+squared-error terms, so its 16 factors stay close to their random initialisation; a ranking that takes the
+maximum over 1,611 candidates is therefore biased towards exactly those films, because an unconstrained
+vector is free to point wherever the user's vector points. Recall@10 of 1.63% is the same fact measured
+against ground truth, and it is the gap Cremonesi et al. describe between error metrics and top-N tasks [5].</p>
+<p>For a streaming platform that is the worst of both worlds. The list is not reassuring — a subscriber who
+liked <em>The Godfather</em> is shown <em>Santa with Muscles</em> — and it is not trustworthy discovery either, because
+the model has no evidence about those titles at all. It would not survive contact with a homepage. The
+cheapest fix is an evidence floor on the candidate rather than a better model: at ≥ 100 training ratings
+recall is 4.9× higher. But that floor is itself the trade-off the question is about — it buys relevance by
+making the lists more familiar (75.6% in a top-three genre) and more mainstream (182.7 mean ratings), which
+is the opposite of discovery. Genuine discovery needs a stated novelty objective and a budget of slots to
+spend on it, not a squared-error model and a hope.</p>
+<p><strong>Failure case and root cause.</strong> Starting from the stub sketch verbatim gives a model that is <em>exactly</em> the
+mean-rating baseline, and silently so: the page trains, the curve renders, and the RMSE simply never
+improves. The cause is that a per-batch penalty on the entire parameter matrix scales with the number of
+batches, not with the data in the batch; at 1,245 batches per epoch it wins against the loss by three orders
+of magnitude.</p>
+<p><strong>What worked.</strong> Seeding both random sources first. Every later comparison — checkpoint vs last epoch,
+regulariser vs regulariser, batch size vs batch size — is a one-variable experiment only because the rest of
+the run is bit-identical, and the test suite can assert that as a property rather than hoping for it.</p>
+<p><strong>What surprised me.</strong> That the shipped defaults are not the best configuration on either metric: the same
+code at batch 1,024 for 10 epochs reaches validation RMSE 0.9741, test RMSE 1.0144 and <strong>Recall@10 of
+3.72%</strong> — against 1.0026, 1.0432 and 1.63% — in 15 seconds instead of 152. Twenty epochs at batch 64 spends
+18 of them moving away from the checkpoint it will eventually restore, and the extra fitting lands hardest
+on exactly the thinly-rated films that then win the argmax.</p>
+<p><strong>A defect I did not fix.</strong> <code>data.js</code> reads <code>u.item</code> with <code>Response.text()</code>, which decodes as UTF-8, while
+the file is ISO-8859-1; <strong>9 of the 1,682 titles</strong> are corrupted, including the top recommendation for user
+655, <em>C'est arrivé près de chez vous</em>. The submission instructions list <code>data.js</code> as provided and not to be
+modified, so it is unmodified here; the one-line fix is to read <code>arrayBuffer()</code> and decode with
+<code>new TextDecoder('iso-8859-1')</code>.</p>
+<p><strong>Next improvement.</strong> Add per-user and per-movie bias terms [4]. Half of the remaining squared error is
+users and films disagreeing about where the middle of the scale is, and biases absorb that with 2,627 extra
+parameters instead of asking 16-dimensional vectors to encode it.</p>
+<h2>6. AI Usage Disclosure</h2>
+<p><strong>AI tools used.</strong> Claude Code (VS Code extension), model Claude Opus 5, one session.</p>
+<p><strong>How AI was used.</strong> <em>Search / reading:</em> cloning [1] and reading <code>week5/</code>; checking each TensorFlow.js
+signature against the library before use. <em>Code generation:</em> the six <code>TODO(hw5)</code> implementations in
+<code>script.js</code>, <code>experiments/run_experiment.py</code>, <code>experiments/make_figures.py</code> and <code>tests/check_mf.py</code>.
+<em>Analysis:</em> running the evaluation and drafting this report.</p>
+<p><strong>What I personally verified.</strong></p>
+<div class="todo">
+TODO (to be completed before submission): serve <code>hw5/</code> with <code>python -m http.server</code>,
+open <code>starter/index.html</code> and confirm "Run tests" reports 4 passed / 7 pending; open
+<code>index.html</code>, confirm 11 passed / 0 pending, press Train with the shipped defaults and confirm the
+status line names epoch 2, then reproduce the user 655 Top-10 of §5 and the Recall@10 panel; re-run
+<code>tests/check_mf.py</code> and confirm 11/11.
+</div>
+
+<p><strong>What I trusted without verification.</strong> That <code>tf.randomNormal</code>'s seed is honoured identically by the WebGL
+backend on other machines — it is reproducible on this one, which is all the test asserts; and that the
+MovieLens timestamps order each user's ratings correctly, since the whole split rests on them.</p>
+<p><strong>Session log.</strong> <code>kosychev_a05_session.json</code> is the unmodified Claude Code log of this work.</p>
+<h2>References</h2>
+<p>[1] S. Jin, "RecSys-LLMs: Recommender Systems course repository (week5)," GitHub, commit <code>a4f53be</code>, 2026. [Online]. Available: https://github.com/dryjins/RecSys-LLMs/tree/main/week5. [Accessed: 2026-10-12].</p>
+<p>[2] F. M. Harper and J. A. Konstan, "The MovieLens Datasets: History and Context," <em>ACM Trans. Interact. Intell. Syst.</em>, vol. 5, no. 4, pp. 1–19, 2015.</p>
+<p>[3] GroupLens Research, "MovieLens 100K Dataset," University of Minnesota. [Online]. Available: https://grouplens.org/datasets/movielens/100k/. [Accessed: 2026-10-12].</p>
+<p>[4] Y. Koren, R. Bell, and C. Volinsky, "Matrix Factorization Techniques for Recommender Systems," <em>Computer</em>, vol. 42, no. 8, pp. 30–37, 2009.</p>
+<p>[5] P. Cremonesi, Y. Koren, and R. Turrin, "Performance of Recommender Algorithms on Top-N Recommendation Tasks," in <em>Proc. 4th ACM Conf. Recommender Systems (RecSys)</em>, 2010, pp. 39–46.</p>
+<p>[6] D. Smilkov et al., "TensorFlow.js: Machine Learning for the Web and Beyond," in <em>Proc. Machine Learning and Systems (MLSys)</em>, vol. 1, 2019, pp. 309–321.</p>
+<p>[7] D. P. Kingma and J. Ba, "Adam: A Method for Stochastic Optimization," in <em>Proc. 3rd Int. Conf. Learning Representations (ICLR)</em>, 2015.</p>
+<p>[8] L. Prechelt, "Early Stopping — But When?," in <em>Neural Networks: Tricks of the Trade</em>, LNCS 1524, Springer, 1998, pp. 55–69.</p></body></html>

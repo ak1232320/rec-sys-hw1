@@ -1,0 +1,364 @@
+diff --git starter/starter/script.js fixed/script.js
+index a650073..20628b7 100644
+--- starter/starter/script.js
++++ fixed/script.js
+@@ -373,10 +373,54 @@ function computeBaselineRMSE(split) {
+  * @param {number} movieId
+  * @returns {number} predicted rating in `[1, 5]`
+  */
++/**
++ * Seed for `tf.randomNormal`, so a re-run of the pipeline reproduces the same
++ * numbers. Every figure in the report comes from this seed; without it the
++ * factors are redrawn on each click and the reported RMSE moves in the third
++ * decimal, which makes "the numbers match the code's output" uncheckable.
++ */
++const INIT_SEED = 20260112;
++
++/**
++ * mulberry32 — a 32-bit PRNG used to shuffle the mini-batch order.
++ *
++ * `Math.random()` cannot be seeded, so the epoch shuffle would be the one
++ * remaining source of run-to-run drift. Four lines of arithmetic remove it.
++ *
++ * @param {number} seed
++ * @returns {() => number} generator of floats in [0, 1)
++ */
++function makeRng(seed) {
++  let a = seed >>> 0;
++  return function next() {
++    a = (a + 0x6d2b79f5) >>> 0;
++    let t = Math.imul(a ^ (a >>> 15), 1 | a);
++    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
++    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
++  };
++}
++
+ function predictRating(userId, movieId) {
+-  // TODO(hw5): gather the two factor rows, take their dot product, add
+-  // globalMean and clamp the result to [1, 5].
+-  throw new Error("TODO(hw5): predictRating is not implemented yet.");
++  if (!isTfModel(model)) return 0;
++
++  const uid = Number(userId);
++  const mid = Number(movieId);
++  const userRows = model.userFactors.shape[0];
++  const itemRows = model.itemFactors.shape[0];
++  const inRange = (id, rows) => Number.isFinite(id) && id >= 0 && id < rows;
++
++  // An id with no allocated factor row carries no evidence, so the honest
++  // prediction is the training mean rather than a dot product with row 0.
++  if (!inRange(uid, userRows) || !inRange(mid, itemRows)) return model.globalMean;
++
++  const f = model.userFactors.shape[1];
++  return tf.tidy(() => {
++    const u = model.userFactors.slice([uid, 0], [1, f]);
++    const i = model.itemFactors.slice([mid, 0], [1, f]);
++    // dataSync() copies the scalar to the CPU, so the number survives tf.tidy.
++    const dot = tf.sum(tf.mul(u, i)).dataSync()[0];
++    return clamp(model.globalMean + dot, 1, 5);
++  });
+ }
+ 
+ /**
+@@ -408,8 +452,35 @@ function predictRating(userId, movieId) {
+  * @returns {Model}
+  */
+ function initializeFactors(train, numFactors = NUM_FACTORS) {
+-  // TODO(hw5): compute globalMean, create the two tf.Variables, assign to model.
+-  throw new Error("TODO(hw5): initializeFactors is not implemented yet.");
++  // Pressing "Train" twice must not leak the previous variables: TF.js tensors
++  // live outside the JS heap, so they are not garbage collected.
++  if (isTfModel(model)) tf.dispose([model.userFactors, model.itemFactors]);
++  model = null;
++
++  const rows = train && train.length ? train : [];
++  const globalMean = rows.length
++    ? rows.reduce((acc, r) => acc + r.rating, 0) / rows.length
++    : 0;
++
++  // Both matrices are indexed by RAW id, so row k belongs to user/movie k and
++  // no id mapping is needed anywhere else (tf.topk indices are movie ids).
++  const maxUserId = rows.reduce((m, r) => Math.max(m, r.userId), numUsers);
++  const maxMovieId = movies.reduce((m, x) => Math.max(m, x.id), 0);
++
++  // tf.tidy releases the two randomNormal tensors once they have been wrapped;
++  // tf.Variables are exempt from tidy, so the factors themselves survive.
++  // Without this each "Train" click leaks two tensors (measured: 4, 6, 8, ...).
++  const std = 0.05;
++  model = tf.tidy(() => ({
++    userFactors: tf.variable(
++      tf.randomNormal([maxUserId + 1, numFactors], 0, std, "float32", INIT_SEED),
++    ),
++    itemFactors: tf.variable(
++      tf.randomNormal([maxMovieId + 1, numFactors], 0, std, "float32", INIT_SEED + 1),
++    ),
++    globalMean,
++  }));
++  return model;
+ }
+ 
+ /**
+@@ -462,8 +533,123 @@ function initializeFactors(train, numFactors = NUM_FACTORS) {
+  * @returns {HistoryRow[]}
+  */
+ function trainMF(train, val, opts) {
+-  // TODO(hw5): batched tensor training loop; update model in place; return history.
+-  throw new Error("TODO(hw5): trainMF is not implemented yet.");
++  trainingHistory = [];
++  if (!train || train.length === 0) return trainingHistory;
++  if (!isTfModel(model)) initializeFactors(train, NUM_FACTORS);
++
++  const settings = Object.assign({ epochs: 20, lr: 0.01, reg: 0.05, batchSize: 64 }, opts || {});
++  const epochs = Math.max(1, Math.round(settings.epochs));
++  const size = Math.max(1, Math.min(Math.round(settings.batchSize), train.length));
++  const reg = Math.max(0, settings.reg);
++  const n = train.length;
++
++  // Upload-ready copies of the split, built once instead of per batch.
++  const userIds = new Int32Array(n);
++  const itemIds = new Int32Array(n);
++  const targets = new Float32Array(n);
++  for (let k = 0; k < n; k++) {
++    userIds[k] = train[k].userId;
++    itemIds[k] = train[k].movieId;
++    targets[k] = train[k].rating;
++  }
++
++  const order = new Int32Array(n);
++  for (let k = 0; k < n; k++) order[k] = k;
++  const rng = makeRng(INIT_SEED);
++  const optimizer = tf.train.adam(settings.lr);
++  // Early stopping by snapshot rather than by stopping: validation RMSE bottoms
++  // out long before the last epoch, and `selectBestCheckpoint` only names that
++  // epoch. Keeping a copy of the factors at the best epoch and assigning it back
++  // at the end is what makes the model actually BE the selected checkpoint, so
++  // the reported test RMSE, the Top-10 lists and Recall@K all describe it.
++  const tracksValidation = Array.isArray(val) && val.length > 0;
++  let snapshot = null;
++  const batchU = new Int32Array(size);
++  const batchI = new Int32Array(size);
++  const batchY = new Float32Array(size);
++
++  try {
++    for (let epoch = 1; epoch <= epochs; epoch++) {
++      // Fisher-Yates with the seeded generator: a different batch composition
++      // every epoch, the same one on every run.
++      for (let k = n - 1; k > 0; k--) {
++        const j = Math.floor(rng() * (k + 1));
++        const tmp = order[k];
++        order[k] = order[j];
++        order[j] = tmp;
++      }
++
++      for (let start = 0; start < n; start += size) {
++        const count = Math.min(size, n - start);
++        for (let k = 0; k < count; k++) {
++          const idx = order[start + k];
++          batchU[k] = userIds[idx];
++          batchI[k] = itemIds[idx];
++          batchY[k] = targets[idx];
++        }
++        const uIdx = tf.tensor1d(batchU.subarray(0, count), "int32");
++        const iIdx = tf.tensor1d(batchI.subarray(0, count), "int32");
++        const y = tf.tensor1d(batchY.subarray(0, count), "float32");
++
++        // One optimizer step per mini-batch: every rating in the batch is
++        // scored by a single gather + multiply + sum, never a per-rating loop.
++        optimizer
++          .minimize(
++            () =>
++              tf.tidy(() => {
++                const u = tf.gather(model.userFactors, uIdx);
++                const i = tf.gather(model.itemFactors, iIdx);
++                const pred = tf.sum(tf.mul(u, i), 1).add(model.globalMean);
++                const mse = tf.losses.meanSquaredError(y, pred);
++                // L2 on the rows THIS batch touched, averaged like the loss.
++                // The readme sketch penalises the whole factor matrices on every
++                // batch; with 1,250 batches per epoch that is a weight decay
++                // three orders of magnitude stronger than intended, and it
++                // drives the factors to zero (measured in the report).
++                const l2 = tf
++                  .mean(tf.sum(tf.square(u), 1))
++                  .add(tf.mean(tf.sum(tf.square(i), 1)))
++                  .mul(reg);
++                return mse.add(l2);
++              }),
++            false,
++            [model.userFactors, model.itemFactors],
++          );
++
++        tf.dispose([uIdx, iIdx, y]);
++      }
++
++      const row = {
++        epoch,
++        trainRMSE: computeRMSEFor(train),
++        valRMSE: computeRMSEFor(val),
++      };
++      trainingHistory.push(row);
++
++      if (tracksValidation && Number.isFinite(row.valRMSE)) {
++        if (snapshot === null || row.valRMSE < snapshot.valRMSE) {
++          if (snapshot) tf.dispose([snapshot.user, snapshot.item]);
++          snapshot = {
++            epoch,
++            valRMSE: row.valRMSE,
++            user: model.userFactors.clone(),
++            item: model.itemFactors.clone(),
++          };
++        }
++      }
++    }
++  } finally {
++    optimizer.dispose();
++    if (snapshot) {
++      // assign() writes into the existing variables, so the model object the
++      // rest of the page holds is updated in place, not replaced.
++      model.userFactors.assign(snapshot.user);
++      model.itemFactors.assign(snapshot.item);
++      tf.dispose([snapshot.user, snapshot.item]);
++    }
++  }
++
++  return trainingHistory;
+ }
+ 
+ /**
+@@ -481,8 +667,20 @@ function trainMF(train, val, opts) {
+  * @returns {HistoryRow|null}
+  */
+ function selectBestCheckpoint(history) {
+-  // TODO(hw5): scan for the minimum valRMSE, breaking ties toward the earliest epoch.
+-  throw new Error("TODO(hw5): selectBestCheckpoint is not implemented yet.");
++  if (!Array.isArray(history) || history.length === 0) return null;
++
++  let best = null;
++  for (const row of history) {
++    if (!row || !Number.isFinite(row.valRMSE)) continue;
++    const better =
++      best === null ||
++      row.valRMSE < best.valRMSE ||
++      // A tie is resolved by epoch number, not by position in the array: the
++      // earlier epoch is the cheaper model that already reached that error.
++      (row.valRMSE === best.valRMSE && row.epoch < best.epoch);
++    if (better) best = row;
++  }
++  return best;
+ }
+ 
+ /**
+@@ -517,8 +715,56 @@ function selectBestCheckpoint(history) {
+  * @returns {Array<{movieId: number, title: string, score: number}>}
+  */
+ function recommendTopK(userId, K = 10) {
+-  // TODO(hw5): matMul + tf.topk, mask train/val items, sort desc, take the top K.
+-  throw new Error("TODO(hw5): recommendTopK is not implemented yet.");
++  const k = Math.round(Number(K));
++  if (!isTfModel(model) || !Number.isFinite(k) || k <= 0) return [];
++
++  const uid = Number(userId);
++  const userRows = model.userFactors.shape[0];
++  const itemRows = model.itemFactors.shape[0];
++  if (!Number.isFinite(uid) || uid < 0 || uid >= userRows) return [];
++
++  // Eligible = a real movie the user has not already rated in train or val.
++  // Test-rated movies stay eligible; they are what Recall@K has to find.
++  const known = new Set(movies.map((m) => m.id));
++  const seen = new Set();
++  for (const r of trainSet) if (r.userId === uid) seen.add(r.movieId);
++  for (const r of valSet) if (r.userId === uid) seen.add(r.movieId);
++
++  const mask = new Float32Array(itemRows);
++  let eligible = 0;
++  for (let id = 0; id < itemRows; id++) {
++    if (known.has(id) && !seen.has(id)) {
++      mask[id] = 1;
++      eligible++;
++    }
++  }
++  if (eligible === 0) return [];
++
++  const f = model.userFactors.shape[1];
++  const take = Math.min(k, eligible);
++  const scored = tf.tidy(() => {
++    const userRow = model.userFactors.slice([uid, 0], [1, f]);
++    // [itemRows, F] x [F, 1] -> every candidate scored in one matMul.
++    const raw = model.itemFactors.matMul(userRow, false, true).squeeze([1]).add(model.globalMean);
++    const keep = tf.tensor1d(mask, "float32");
++    // Ineligible rows are pushed below every real score instead of removed, so
++    // the tf.topk indices stay equal to the raw movie ids.
++    const masked = raw.mul(keep).add(tf.scalar(1).sub(keep).mul(-1e9));
++    const top = tf.topk(masked, take);
++    return { values: Array.from(top.values.dataSync()), indices: Array.from(top.indices.dataSync()) };
++  });
++
++  const out = [];
++  for (let j = 0; j < scored.indices.length; j++) {
++    const movieId = scored.indices[j];
++    if (mask[movieId] !== 1) continue; // never surface a masked row
++    out.push({ movieId, title: movieTitle(movieId), score: scored.values[j] });
++  }
++  // The score is the raw prediction mu + p.q, deliberately NOT clamped to
++  // [1, 5]: clamping would collapse the strongest recommendations into a tie
++  // at 5.000 and make their order arbitrary.
++  out.sort((a, b) => b.score - a.score || a.movieId - b.movieId);
++  return out.slice(0, k);
+ }
+ 
+ /**
+@@ -549,8 +795,53 @@ function recommendTopK(userId, K = 10) {
+  * @returns {{overallRecall: number, perUser: Array<{userId: number, relevant: number, hit: number}>, excluded: {unseenIds: number[], usersWithoutRelevant: number[]}}}
+  */
+ function recallAtK(K = 10) {
+-  // TODO(hw5): evaluate Recall@K with explicit exclusions.
+-  throw new Error("TODO(hw5): recallAtK is not implemented yet.");
++  // Candidate pool = every movie that appears anywhere in training. A relevant
++  // test movie outside this pool can never be retrieved, so it is reported as
++  // an exclusion rather than silently counted as a miss.
++  const candidates = new Set();
++  for (const r of trainSet) candidates.add(r.movieId);
++
++  const testUsers = new Set();
++  const relevantByUser = new Map();
++  const unseenIds = new Set();
++  for (const r of testSet) {
++    testUsers.add(r.userId);
++    if (r.rating < 4.0) continue;
++    if (!candidates.has(r.movieId)) {
++      unseenIds.add(r.movieId);
++      continue;
++    }
++    if (!relevantByUser.has(r.userId)) relevantByUser.set(r.userId, new Set());
++    relevantByUser.get(r.userId).add(r.movieId);
++  }
++
++  const users = Array.from(testUsers).sort((a, b) => a - b);
++  const perUser = [];
++  const usersWithoutRelevant = [];
++  let recallSum = 0;
++
++  for (const userId of users) {
++    const relevant = relevantByUser.get(userId);
++    if (!relevant || relevant.size === 0) {
++      usersWithoutRelevant.push(userId);
++      continue;
++    }
++    let hit = 0;
++    for (const rec of recommendTopK(userId, K)) {
++      if (relevant.has(rec.movieId)) hit++;
++    }
++    perUser.push({ userId, relevant: relevant.size, hit });
++    recallSum += hit / relevant.size;
++  }
++
++  return {
++    overallRecall: perUser.length ? recallSum / perUser.length : 0,
++    perUser,
++    excluded: {
++      unseenIds: Array.from(unseenIds).sort((a, b) => a - b),
++      usersWithoutRelevant,
++    },
++  };
+ }
+ 
+ // ---------------------------------------------------------------------------

@@ -1,0 +1,80 @@
+{
+  "checks": [
+    {
+      "name": "page loads the dataset and a TensorFlow.js backend",
+      "passed": true,
+      "detail": "backend webgl, 943 users x 1682 movies, split 79619/9596/10785"
+    },
+    {
+      "name": "all 11 self-checks pass (0 pending stubs)",
+      "passed": true,
+      "detail": "11 passed, 0 failed, 0 pending"
+    },
+    {
+      "name": "every user is split 80/10/10 with training strictly before test",
+      "passed": true,
+      "detail": "943/943 users, 100000 ratings kept"
+    },
+    {
+      "name": "two runs with the same hyper-parameters produce the same curve",
+      "passed": true,
+      "detail": "val RMSE [1.174247, 1.057465, 0.994072]"
+    },
+    {
+      "name": "repeated training does not leak tensors",
+      "passed": true,
+      "detail": "live tensors 27 -> 27 -> 27"
+    },
+    {
+      "name": "after training the model is the best-validation checkpoint, not the last epoch",
+      "passed": true,
+      "detail": "epoch 3 val 0.994072, model now 0.994072"
+    },
+    {
+      "name": "predictRating equals the dot product recomputed in Python",
+      "passed": true,
+      "detail": "user 196, movie 411: page 3.532276 vs hand 3.532276"
+    },
+    {
+      "name": "out-of-range ids return the global mean and an empty list",
+      "passed": true,
+      "detail": "globalMean 3.5806"
+    },
+    {
+      "name": "40 Top-10 lists exclude train/val items, stay in the catalogue and are sorted",
+      "passed": true,
+      "detail": "40 lists checked"
+    },
+    {
+      "name": "Recall@10 bookkeeping is complete and the mean matches a manual recomputation",
+      "passed": true,
+      "detail": "861 reported + 82 without relevant = 943 test users; recall 0.0402"
+    },
+    {
+      "name": "the untouched starter reports 4 passed / 7 pending",
+      "passed": true,
+      "detail": "4 passed, 0 failed, 7 pending"
+    }
+  ],
+  "passed": 11,
+  "total": 11,
+  "backend": "webgl",
+  "selfChecks": 11,
+  "starterSelfChecks": {
+    "passed": 4,
+    "pending": 7
+  },
+  "handCheck": {
+    "page": 3.5322763437349107,
+    "python": 3.532276338926932
+  },
+  "recall": {
+    "overall": 0.04019685687971358,
+    "manual": 0.04019685687971358,
+    "reported": 861,
+    "without": 82,
+    "testUsers": 943,
+    "unseenReallyUnseen": true,
+    "relevantAllCounted": true
+  }
+}
