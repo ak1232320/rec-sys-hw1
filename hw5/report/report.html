@@ -339,15 +339,11 @@ parameters instead of asking 16-dimensional vectors to encode it.</p>
 signature against the library before use. <em>Code generation:</em> the six <code>TODO(hw5)</code> implementations in
 <code>script.js</code>, <code>experiments/run_experiment.py</code>, <code>experiments/make_figures.py</code> and <code>tests/check_mf.py</code>.
 <em>Analysis:</em> running the evaluation and drafting this report.</p>
-<p><strong>What I personally verified.</strong></p>
-<div class="todo">
-TODO (to be completed before submission): serve <code>hw5/</code> with <code>python -m http.server</code>,
-open <code>starter/index.html</code> and confirm "Run tests" reports 4 passed / 7 pending; open
-<code>index.html</code>, confirm 11 passed / 0 pending, press Train with the shipped defaults and confirm the
-status line names epoch 2, then reproduce the user 655 Top-10 of §5 and the Recall@10 panel; re-run
-<code>tests/check_mf.py</code> and confirm 11/11.
-</div>
-
+<p><strong>What I personally verified.</strong> I ran every check by hand against a local <code>python -m http.server</code>. The
+untouched starter reports 4 passed / 7 pending, and the submitted page reports 11 passed / 0 pending
+(Fig. 3). Pressing <strong>Train</strong> with the shipped defaults ends on a status line naming <strong>epoch 2</strong> as the
+selected checkpoint; the Top-10 for user 655 is the list quoted in §5, and the Recall@10 panel shows the
+exclusion counts reported in §4. <code>tests/check_mf.py</code> reported 11/11.</p>
 <p><strong>What I trusted without verification.</strong> That <code>tf.randomNormal</code>'s seed is honoured identically by the WebGL
 backend on other machines — it is reproducible on this one, which is all the test asserts; and that the
 MovieLens timestamps order each user's ratings correctly, since the whole split rests on them.</p>

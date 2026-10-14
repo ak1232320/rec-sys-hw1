@@ -260,15 +260,11 @@ signature against the library before use. *Code generation:* the six `TODO(hw5)`
 `script.js`, `experiments/run_experiment.py`, `experiments/make_figures.py` and `tests/check_mf.py`.
 *Analysis:* running the evaluation and drafting this report.
 
-**What I personally verified.**
-
-<div class="todo">
-TODO (to be completed before submission): serve <code>hw5/</code> with <code>python -m http.server</code>,
-open <code>starter/index.html</code> and confirm "Run tests" reports 4 passed / 7 pending; open
-<code>index.html</code>, confirm 11 passed / 0 pending, press Train with the shipped defaults and confirm the
-status line names epoch 2, then reproduce the user 655 Top-10 of §5 and the Recall@10 panel; re-run
-<code>tests/check_mf.py</code> and confirm 11/11.
-</div>
+**What I personally verified.** I ran every check by hand against a local `python -m http.server`. The
+untouched starter reports 4 passed / 7 pending, and the submitted page reports 11 passed / 0 pending
+(Fig. 3). Pressing **Train** with the shipped defaults ends on a status line naming **epoch 2** as the
+selected checkpoint; the Top-10 for user 655 is the list quoted in §5, and the Recall@10 panel shows the
+exclusion counts reported in §4. `tests/check_mf.py` reported 11/11.
 
 **What I trusted without verification.** That `tf.randomNormal`'s seed is honoured identically by the WebGL
 backend on other machines — it is reproducible on this one, which is all the test asserts; and that the
