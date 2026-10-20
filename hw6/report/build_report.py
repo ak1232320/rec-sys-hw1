@@ -27,7 +27,7 @@ th { background: #dde6f2; }
 .fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
 .fig.wide img { width: 47%; }
 .fig.full img { width: 68%; border: none; }
-.fig.manual img { width: 62%; border: 1px solid #ccc; }
+.fig.manual img { width: 78%; border: 1px solid #ccc; }
 .fig.shot img { width: 62%; border: 1px solid #ccc; }
 .fig.app img { width: 88%; border: 1px solid #ccc; }
 .fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }

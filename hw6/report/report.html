@@ -16,7 +16,7 @@ th { background: #dde6f2; }
 .fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
 .fig.wide img { width: 47%; }
 .fig.full img { width: 68%; border: none; }
-.fig.manual img { width: 62%; border: 1px solid #ccc; }
+.fig.manual img { width: 78%; border: 1px solid #ccc; }
 .fig.shot img { width: 62%; border: 1px solid #ccc; }
 .fig.app img { width: 88%; border: 1px solid #ccc; }
 .fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }
@@ -280,14 +280,21 @@ restart mass in the right place rather than a larger α.</p>
 signature before use. <em>Code generation:</em> the seven <code>TODO(hw6)</code> implementations in <code>graph.js</code> and
 <code>script.js</code>, <code>experiments/run_experiment.py</code>, <code>experiments/make_figures.py</code> and <code>tests/check_ppr.py</code>.
 <em>Analysis:</em> running the evaluation and drafting this report.</p>
-<p><strong>What I personally verified.</strong></p>
-<div class="todo">
-TODO (to be completed before submission): serve <code>hw6/</code> with <code>python -m http.server</code>,
-open <code>starter/index.html</code> and confirm "Run self-checks" reports 2 passed / 10 pending; open
-<code>index.html</code>, press Build graph and confirm 2,554 nodes, then Run self-checks for 12 passed / 0
-pending; run the α sweep and confirm it selects 0.95; run the comparison and the two-user demonstration and
-confirm the Recall@10 values and the 0-of-10 / 9-of-10 overlaps of §4; re-run
-<code>tests/check_ppr.py</code> and confirm 14/14.
+<p><strong>What I personally verified.</strong> I ran the checks myself against the <strong>published</strong> build rather than a
+local copy, so what I confirmed is the artefact a reader can open. The starter at <code>/hw6/starter/</code> reports
+<strong>2 passed, 0 failed, 10 pending</strong> and the submitted build at <code>/hw6/</code> reports <strong>12 passed, 0 failed, 0
+pending</strong> (Fig. 4) — including the two readme §4.1 reference-graph checks, whose log lines name the
+student's own <code>pageRank</code> and <code>personalizedPageRank</code> as the code that produced the match. After <strong>Build
+graph</strong> the summary panel shows 943 user nodes + 1,611 movie nodes = <strong>2,554 nodes with no padding node</strong>,
+<strong>45,602</strong> positive edges and <strong>1 / 253</strong> zero-degree users / movies, which are the numbers §4 opens with.
+Running the retrieval evaluation returns <strong>Recall@10 = 0.0760 over 861 users</strong> for popularity, with the
+per-user table visible. I also inspected the MF reference's own training record on the page and it matches
+§4: the selected checkpoint is epoch 1 of 30 and its validation RMSE is the mean-rating baseline's.</p>
+<div class="fig manual">
+<img src="figures/manual_check.png">
+<p><em>Fig. 4. The same harness on the published site, checked by hand. Top: the starter at
+<code>/hw6/starter/</code> — 2 passed, 10 pending. Bottom: the submitted build at <code>/hw6/</code> —
+12 passed, 0 pending, with both readme §4.1 reference vectors matched by the student's own functions.</em></p>
 </div>
 
 <p><strong>What I trusted without verification.</strong> That the course's <code>data.js</code> splits each user's ratings exactly as

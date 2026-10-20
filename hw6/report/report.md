@@ -254,15 +254,22 @@ signature before use. *Code generation:* the seven `TODO(hw6)` implementations i
 `script.js`, `experiments/run_experiment.py`, `experiments/make_figures.py` and `tests/check_ppr.py`.
 *Analysis:* running the evaluation and drafting this report.
 
-**What I personally verified.**
+**What I personally verified.** I ran the checks myself against the **published** build rather than a
+local copy, so what I confirmed is the artefact a reader can open. The starter at `/hw6/starter/` reports
+**2 passed, 0 failed, 10 pending** and the submitted build at `/hw6/` reports **12 passed, 0 failed, 0
+pending** (Fig. 4) — including the two readme §4.1 reference-graph checks, whose log lines name the
+student's own `pageRank` and `personalizedPageRank` as the code that produced the match. After **Build
+graph** the summary panel shows 943 user nodes + 1,611 movie nodes = **2,554 nodes with no padding node**,
+**45,602** positive edges and **1 / 253** zero-degree users / movies, which are the numbers §4 opens with.
+Running the retrieval evaluation returns **Recall@10 = 0.0760 over 861 users** for popularity, with the
+per-user table visible. I also inspected the MF reference's own training record on the page and it matches
+§4: the selected checkpoint is epoch 1 of 30 and its validation RMSE is the mean-rating baseline's.
 
-<div class="todo">
-TODO (to be completed before submission): serve <code>hw6/</code> with <code>python -m http.server</code>,
-open <code>starter/index.html</code> and confirm "Run self-checks" reports 2 passed / 10 pending; open
-<code>index.html</code>, press Build graph and confirm 2,554 nodes, then Run self-checks for 12 passed / 0
-pending; run the α sweep and confirm it selects 0.95; run the comparison and the two-user demonstration and
-confirm the Recall@10 values and the 0-of-10 / 9-of-10 overlaps of §4; re-run
-<code>tests/check_ppr.py</code> and confirm 14/14.
+<div class="fig manual">
+<img src="figures/manual_check.png">
+<p><em>Fig. 4. The same harness on the published site, checked by hand. Top: the starter at
+<code>/hw6/starter/</code> — 2 passed, 10 pending. Bottom: the submitted build at <code>/hw6/</code> —
+12 passed, 0 pending, with both readme §4.1 reference vectors matched by the student's own functions.</em></p>
 </div>
 
 **What I trusted without verification.** That the course's `data.js` splits each user's ratings exactly as
