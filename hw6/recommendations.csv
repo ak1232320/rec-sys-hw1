@@ -1,0 +1,31 @@
+user_id,method,alpha,rank,movie_id,title,genres,score,training_popularity
+1,ppr,0.85,1,100,Fargo (1996),Crime;Drama;Thriller,0.007247528526932001,377
+1,ppr,0.85,2,286,"English Patient, The (1996)",Drama;Romance;War,0.0067816078662872314,279
+1,ppr,0.85,3,275,Sense and Sensibility (1995),Drama;Romance,0.00573007995262742,178
+1,ppr,0.85,4,276,Leaving Las Vegas (1995),Drama;Romance,0.005473278928548098,154
+1,ppr,0.85,5,285,Secrets & Lies (1996),Drama,0.005270523484796286,121
+1,ppr,0.85,6,111,"Truth About Cats & Dogs, The (1996)",Comedy;Romance,0.005181398708373308,131
+1,ppr,0.85,7,301,In & Out (1997),Comedy,0.00509994849562645,101
+1,ppr,0.85,8,303,Ulee's Gold (1997),Drama,0.005058565177023411,85
+1,ppr,0.85,9,282,"Time to Kill, A (1996)",Drama,0.005023752339184284,113
+1,ppr,0.85,10,283,Emma (1996),Drama;Romance,0.0050116972997784615,100
+2,ppr,0.85,1,327,Cop Land (1997),Crime;Drama;Mystery,0.027947764843702316,70
+2,ppr,0.85,2,321,Mother (1996),Comedy,0.027862582355737686,52
+2,ppr,0.85,3,344,"Apostle, The (1997)",Drama,0.02756319008767605,29
+2,ppr,0.85,4,342,"Man Who Knew Too Little, The (1997)",Comedy;Mystery,0.027048621326684952,16
+2,ppr,0.85,5,260,Event Horizon (1997),Action;Mystery;Sci-Fi;Thriller,0.02687440998852253,26
+2,ppr,0.85,6,181,Return of the Jedi (1983),Action;Adventure;Romance;Sci-Fi;War,0.0023020447697490454,339
+2,ppr,0.85,7,328,Conspiracy Theory (1997),Action;Mystery;Romance;Thriller,0.00214215274900198,136
+2,ppr,0.85,8,174,Raiders of the Lost Ark (1981),Action;Adventure,0.0018578582676127553,312
+2,ppr,0.85,9,333,"Game, The (1997)",Mystery;Thriller,0.0018459026468917727,119
+2,ppr,0.85,10,268,Chasing Amy (1997),Drama;Romance,0.0018335134955123067,146
+1,ppr,0.50,1,100,Fargo (1996),Crime;Drama;Thriller,0.008806685917079449,377
+1,ppr,0.50,2,286,"English Patient, The (1996)",Drama;Romance;War,0.008750070817768574,279
+1,ppr,0.50,3,275,Sense and Sensibility (1995),Drama;Romance,0.008408250287175179,178
+1,ppr,0.50,4,276,Leaving Las Vegas (1995),Drama;Romance,0.008313864469528198,154
+1,ppr,0.50,5,285,Secrets & Lies (1996),Drama,0.008274327963590622,121
+1,ppr,0.50,6,303,Ulee's Gold (1997),Drama,0.00823237281292677,85
+1,ppr,0.50,7,301,In & Out (1997),Comedy,0.008215442299842834,101
+1,ppr,0.50,8,111,"Truth About Cats & Dogs, The (1996)",Comedy;Romance,0.00819791667163372,131
+1,ppr,0.50,9,242,Kolya (1996),Comedy,0.008185755461454391,78
+1,ppr,0.50,10,283,Emma (1996),Drama;Romance,0.008177381940186024,100

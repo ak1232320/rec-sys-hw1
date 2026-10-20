@@ -1,0 +1,1006 @@
+{
+  "dataset": {
+    "users": 943,
+    "movies": 1682,
+    "ratings": 100000,
+    "trainUsers": 943,
+    "candidateMovies": 1611,
+    "positivePairs": 45602,
+    "splitCounts": null,
+    "sparsityPct": 6.304669364224532,
+    "graph": {
+      "nUsers": 943,
+      "nMovies": 1611,
+      "nodeCount": 2554,
+      "positiveEdges": 45602,
+      "zeroDegreeUsers": 1,
+      "zeroDegreeMovies": 253,
+      "meanUserDegree": 48.35843054082715,
+      "meanMovieDegree": 28.306641837368094,
+      "maxUserDegree": 298,
+      "maxMovieDegree": 449,
+      "graphDensityPct": 3.001764775966924
+    },
+    "backend": "webgl",
+    "tfVersion": "4.22.0",
+    "cohortTest": 861,
+    "cohortVal": 846,
+    "exclusionsTest": {
+      "candidateUsers": 943,
+      "cohortSize": 861,
+      "excludedUnseen": 13,
+      "excludedNoEligible": 82,
+      "excludedNoPositiveEdge": 1,
+      "unseenIds": [
+        913,
+        1106,
+        1130,
+        1458,
+        1498,
+        1525,
+        1613,
+        1625,
+        1645,
+        1646,
+        1650,
+        1651,
+        1674
+      ]
+    },
+    "exclusionsVal": {
+      "candidateUsers": 943,
+      "cohortSize": 846,
+      "excludedUnseen": 4,
+      "excludedNoEligible": 97,
+      "excludedNoPositiveEdge": 1,
+      "unseenIds": [
+        814,
+        1106,
+        1526,
+        1653
+      ]
+    },
+    "buildSeconds": 0.10610771179199219
+  },
+  "self_checks": {
+    "passed": 12,
+    "failed": 0,
+    "pending": 0,
+    "names": [
+      "PASS reference graph: uniform alpha=0.85 matches readme 4.1 values",
+      "PASS reference graph: restart at A alpha=0.85 matches readme 4.1 values",
+      "PASS row normalization: every nonzero-degree row sums to 1",
+      "PASS restart distributions: nonnegative and summing to 1",
+      "PASS iterations preserve total probability (sum approx 1)",
+      "PASS stationary scores are nonnegative",
+      "PASS one extra update produces approximately the same distribution",
+      "PASS zero-degree node fixture preserves probability mass",
+      "PASS matrix orientation: probability collects at the pointed-to node, not the source",
+      "PASS recommendTopK: excludes previously rated movies and breaks ties by ascending id",
+      "PASS graph mapping: node count equals observed users plus observed movies",
+      "PASS public surface: every required name is defined"
+    ]
+  },
+  "hand_step": {
+    "Q": [
+      [
+        0,
+        0.5,
+        0.5,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ]
+    ],
+    "v": [
+      0.25,
+      0.25,
+      0.25,
+      0.25
+    ],
+    "firstStep": [
+      0.25,
+      0.14375,
+      0.56875,
+      0.037500000000000006
+    ],
+    "final": [
+      0.37252693031282147,
+      0.1958237399073885,
+      0.39414932977979,
+      0.037500000000000006
+    ],
+    "iterations": 28,
+    "residual": 9.669438148229847e-07,
+    "converged": true
+  },
+  "batch_agreement": {
+    "worst": 3.725290298461914e-09,
+    "checked": 8
+  },
+  "alpha_sweep": {
+    "rows": [
+      {
+        "alpha": 0.5,
+        "recall": 0.04919155475381346,
+        "cohortSize": 846,
+        "error": null
+      },
+      {
+        "alpha": 0.7,
+        "recall": 0.049109583927161776,
+        "cohortSize": 846,
+        "error": null
+      },
+      {
+        "alpha": 0.85,
+        "recall": 0.04942916354638679,
+        "cohortSize": 846,
+        "error": null
+      },
+      {
+        "alpha": 0.95,
+        "recall": 0.057173887122929826,
+        "cohortSize": 846,
+        "error": null
+      }
+    ],
+    "best": 0.95,
+    "note": "",
+    "seconds": 35.15824365615845
+  },
+  "comparison": [
+    {
+      "method": "popularity",
+      "split": "test",
+      "alpha": null,
+      "recall": 0.07602291343770759,
+      "cohortSize": 861,
+      "excludedUnseen": 13,
+      "excludedNoEligible": 82,
+      "meanPopularity": 271.99686411149816,
+      "iterations": null,
+      "residual": null,
+      "converged": null,
+      "error": null,
+      "note": null
+    },
+    {
+      "method": "pagerank",
+      "split": "test",
+      "alpha": 0.95,
+      "recall": 0.07462359760749743,
+      "cohortSize": 861,
+      "excludedUnseen": 13,
+      "excludedNoEligible": 82,
+      "meanPopularity": 271.3428571428572,
+      "iterations": null,
+      "residual": null,
+      "converged": null,
+      "error": null,
+      "note": null
+    },
+    {
+      "method": "ppr",
+      "split": "test",
+      "alpha": 0.95,
+      "recall": 0.061906738653263106,
+      "cohortSize": 861,
+      "excludedUnseen": 13,
+      "excludedNoEligible": 82,
+      "meanPopularity": 216.05377468060414,
+      "iterations": null,
+      "residual": null,
+      "converged": null,
+      "error": null,
+      "note": null
+    },
+    {
+      "method": "mf",
+      "split": "test",
+      "alpha": null,
+      "recall": 0.021137488852036153,
+      "cohortSize": 861,
+      "excludedUnseen": 13,
+      "excludedNoEligible": 82,
+      "meanPopularity": 96.76085946573689,
+      "iterations": null,
+      "residual": null,
+      "converged": null,
+      "error": null,
+      "note": null
+    }
+  ],
+  "comparison_seconds": 80.53273749351501,
+  "mf_info": {
+    "factors": 16,
+    "epochs": 30,
+    "learningRate": 0.01,
+    "regularization": 0.05,
+    "batchSize": 512,
+    "seed": 20261013,
+    "backend": "webgl",
+    "checkpoint": 1,
+    "validationRMSE": 1.1829947287151048,
+    "trainedAt": "2026-10-20T21:27:33.142Z",
+    "history": [
+      {
+        "epoch": 1,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 2,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 3,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 4,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 5,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 6,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 7,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 8,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 9,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 10,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 11,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 12,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 13,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 14,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 15,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 16,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 17,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 18,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 19,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 20,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 21,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 22,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 23,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 24,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 25,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 26,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 27,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 28,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 29,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      },
+      {
+        "epoch": 30,
+        "trainRMSE": 1.1052085111847403,
+        "valRMSE": 1.1829947287151048
+      }
+    ]
+  },
+  "two_user_demo": {
+    "error": null,
+    "users": [
+      1,
+      2
+    ],
+    "settings": [
+      {
+        "label": "baseline",
+        "user": 1,
+        "alpha": 0.85,
+        "changed": "nothing (reference setting)",
+        "recs": [
+          {
+            "movieId": 100,
+            "title": "Fargo (1996)",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Thriller"
+            ],
+            "score": 0.007247528526932001,
+            "popularity": 377
+          },
+          {
+            "movieId": 286,
+            "title": "English Patient, The (1996)",
+            "genres": [
+              "Drama",
+              "Romance",
+              "War"
+            ],
+            "score": 0.0067816078662872314,
+            "popularity": 279
+          },
+          {
+            "movieId": 275,
+            "title": "Sense and Sensibility (1995)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.00573007995262742,
+            "popularity": 178
+          },
+          {
+            "movieId": 276,
+            "title": "Leaving Las Vegas (1995)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.005473278928548098,
+            "popularity": 154
+          },
+          {
+            "movieId": 285,
+            "title": "Secrets & Lies (1996)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.005270523484796286,
+            "popularity": 121
+          },
+          {
+            "movieId": 111,
+            "title": "Truth About Cats & Dogs, The (1996)",
+            "genres": [
+              "Comedy",
+              "Romance"
+            ],
+            "score": 0.005181398708373308,
+            "popularity": 131
+          },
+          {
+            "movieId": 301,
+            "title": "In & Out (1997)",
+            "genres": [
+              "Comedy"
+            ],
+            "score": 0.00509994849562645,
+            "popularity": 101
+          },
+          {
+            "movieId": 303,
+            "title": "Ulee's Gold (1997)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.005058565177023411,
+            "popularity": 85
+          },
+          {
+            "movieId": 282,
+            "title": "Time to Kill, A (1996)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.005023752339184284,
+            "popularity": 113
+          },
+          {
+            "movieId": 283,
+            "title": "Emma (1996)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.0050116972997784615,
+            "popularity": 100
+          }
+        ]
+      },
+      {
+        "label": "change seed only",
+        "user": 2,
+        "alpha": 0.85,
+        "changed": "restart user only",
+        "recs": [
+          {
+            "movieId": 327,
+            "title": "Cop Land (1997)",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Mystery"
+            ],
+            "score": 0.027947764843702316,
+            "popularity": 70
+          },
+          {
+            "movieId": 321,
+            "title": "Mother (1996)",
+            "genres": [
+              "Comedy"
+            ],
+            "score": 0.027862582355737686,
+            "popularity": 52
+          },
+          {
+            "movieId": 344,
+            "title": "Apostle, The (1997)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.02756319008767605,
+            "popularity": 29
+          },
+          {
+            "movieId": 342,
+            "title": "Man Who Knew Too Little, The (1997)",
+            "genres": [
+              "Comedy",
+              "Mystery"
+            ],
+            "score": 0.027048621326684952,
+            "popularity": 16
+          },
+          {
+            "movieId": 260,
+            "title": "Event Horizon (1997)",
+            "genres": [
+              "Action",
+              "Mystery",
+              "Sci-Fi",
+              "Thriller"
+            ],
+            "score": 0.02687440998852253,
+            "popularity": 26
+          },
+          {
+            "movieId": 181,
+            "title": "Return of the Jedi (1983)",
+            "genres": [
+              "Action",
+              "Adventure",
+              "Romance",
+              "Sci-Fi",
+              "War"
+            ],
+            "score": 0.0023020447697490454,
+            "popularity": 339
+          },
+          {
+            "movieId": 328,
+            "title": "Conspiracy Theory (1997)",
+            "genres": [
+              "Action",
+              "Mystery",
+              "Romance",
+              "Thriller"
+            ],
+            "score": 0.00214215274900198,
+            "popularity": 136
+          },
+          {
+            "movieId": 174,
+            "title": "Raiders of the Lost Ark (1981)",
+            "genres": [
+              "Action",
+              "Adventure"
+            ],
+            "score": 0.0018578582676127553,
+            "popularity": 312
+          },
+          {
+            "movieId": 333,
+            "title": "Game, The (1997)",
+            "genres": [
+              "Mystery",
+              "Thriller"
+            ],
+            "score": 0.0018459026468917727,
+            "popularity": 119
+          },
+          {
+            "movieId": 268,
+            "title": "Chasing Amy (1997)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.0018335134955123067,
+            "popularity": 146
+          }
+        ]
+      },
+      {
+        "label": "change alpha only",
+        "user": 1,
+        "alpha": 0.5,
+        "changed": "alpha only",
+        "recs": [
+          {
+            "movieId": 100,
+            "title": "Fargo (1996)",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Thriller"
+            ],
+            "score": 0.008806685917079449,
+            "popularity": 377
+          },
+          {
+            "movieId": 286,
+            "title": "English Patient, The (1996)",
+            "genres": [
+              "Drama",
+              "Romance",
+              "War"
+            ],
+            "score": 0.008750070817768574,
+            "popularity": 279
+          },
+          {
+            "movieId": 275,
+            "title": "Sense and Sensibility (1995)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.008408250287175179,
+            "popularity": 178
+          },
+          {
+            "movieId": 276,
+            "title": "Leaving Las Vegas (1995)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.008313864469528198,
+            "popularity": 154
+          },
+          {
+            "movieId": 285,
+            "title": "Secrets & Lies (1996)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.008274327963590622,
+            "popularity": 121
+          },
+          {
+            "movieId": 303,
+            "title": "Ulee's Gold (1997)",
+            "genres": [
+              "Drama"
+            ],
+            "score": 0.00823237281292677,
+            "popularity": 85
+          },
+          {
+            "movieId": 301,
+            "title": "In & Out (1997)",
+            "genres": [
+              "Comedy"
+            ],
+            "score": 0.008215442299842834,
+            "popularity": 101
+          },
+          {
+            "movieId": 111,
+            "title": "Truth About Cats & Dogs, The (1996)",
+            "genres": [
+              "Comedy",
+              "Romance"
+            ],
+            "score": 0.00819791667163372,
+            "popularity": 131
+          },
+          {
+            "movieId": 242,
+            "title": "Kolya (1996)",
+            "genres": [
+              "Comedy"
+            ],
+            "score": 0.008185755461454391,
+            "popularity": 78
+          },
+          {
+            "movieId": 283,
+            "title": "Emma (1996)",
+            "genres": [
+              "Drama",
+              "Romance"
+            ],
+            "score": 0.008177381940186024,
+            "popularity": 100
+          }
+        ]
+      }
+    ],
+    "common": [
+      {
+        "pair": "baseline vs change seed only",
+        "shared": 0,
+        "of": 10
+      },
+      {
+        "pair": "baseline vs change alpha only",
+        "shared": 9,
+        "of": 10
+      },
+      {
+        "pair": "change seed only vs change alpha only",
+        "shared": 0,
+        "of": 10
+      }
+    ]
+  },
+  "user_profiles": [
+    {
+      "userId": 1,
+      "positiveTrainEdges": 131,
+      "topGenres": [
+        "Drama (61)",
+        "Comedy (39)",
+        "Action (36)",
+        "Sci-Fi (27)"
+      ],
+      "favourites": [
+        {
+          "movieId": 50,
+          "rating": 5,
+          "title": "Star Wars (1977)",
+          "genres": [
+            "Action",
+            "Adventure",
+            "Romance",
+            "Sci-Fi",
+            "War"
+          ],
+          "popularity": 449
+        },
+        {
+          "movieId": 181,
+          "rating": 5,
+          "title": "Return of the Jedi (1983)",
+          "genres": [
+            "Action",
+            "Adventure",
+            "Romance",
+            "Sci-Fi",
+            "War"
+          ],
+          "popularity": 339
+        },
+        {
+          "movieId": 174,
+          "rating": 5,
+          "title": "Raiders of the Lost Ark (1981)",
+          "genres": [
+            "Action",
+            "Adventure"
+          ],
+          "popularity": 312
+        },
+        {
+          "movieId": 98,
+          "rating": 4,
+          "title": "Silence of the Lambs, The (1991)",
+          "genres": [
+            "Drama",
+            "Thriller"
+          ],
+          "popularity": 308
+        },
+        {
+          "movieId": 127,
+          "rating": 5,
+          "title": "Godfather, The (1972)",
+          "genres": [
+            "Action",
+            "Crime",
+            "Drama"
+          ],
+          "popularity": 308
+        },
+        {
+          "movieId": 1,
+          "rating": 5,
+          "title": "Toy Story (1995)",
+          "genres": [
+            "Animation",
+            "Children's",
+            "Comedy"
+          ],
+          "popularity": 288
+        }
+      ],
+      "relevantTestMovies": 19
+    },
+    {
+      "userId": 2,
+      "positiveTrainEdges": 32,
+      "topGenres": [
+        "Drama (18)",
+        "Comedy (11)",
+        "Romance (11)",
+        "Action (5)"
+      ],
+      "favourites": [
+        {
+          "movieId": 50,
+          "rating": 5,
+          "title": "Star Wars (1977)",
+          "genres": [
+            "Action",
+            "Adventure",
+            "Romance",
+            "Sci-Fi",
+            "War"
+          ],
+          "popularity": 449
+        },
+        {
+          "movieId": 100,
+          "rating": 5,
+          "title": "Fargo (1996)",
+          "genres": [
+            "Crime",
+            "Drama",
+            "Thriller"
+          ],
+          "popularity": 377
+        },
+        {
+          "movieId": 127,
+          "rating": 5,
+          "title": "Godfather, The (1972)",
+          "genres": [
+            "Action",
+            "Crime",
+            "Drama"
+          ],
+          "popularity": 308
+        },
+        {
+          "movieId": 1,
+          "rating": 4,
+          "title": "Toy Story (1995)",
+          "genres": [
+            "Animation",
+            "Children's",
+            "Comedy"
+          ],
+          "popularity": 288
+        },
+        {
+          "movieId": 286,
+          "rating": 4,
+          "title": "English Patient, The (1996)",
+          "genres": [
+            "Drama",
+            "Romance",
+            "War"
+          ],
+          "popularity": 279
+        },
+        {
+          "movieId": 237,
+          "rating": 4,
+          "title": "Jerry Maguire (1996)",
+          "genres": [
+            "Drama",
+            "Romance"
+          ],
+          "popularity": 217
+        }
+      ],
+      "relevantTestMovies": 2
+    }
+  ],
+  "popularity_profile": {
+    "popularity": {
+      "lists": 861,
+      "items": 8610,
+      "meanPopularity": 271.99686411149827,
+      "zeroScoreItems": 0,
+      "shortLists": 0,
+      "distinctRecommended": 82,
+      "coveragePct": 5.0900062073246435,
+      "gini": 0.985966399701241
+    },
+    "pagerank": {
+      "lists": 861,
+      "items": 8610,
+      "meanPopularity": 271.34285714285716,
+      "zeroScoreItems": 0,
+      "shortLists": 0,
+      "distinctRecommended": 79,
+      "coveragePct": 4.903786468032278,
+      "gini": 0.9863286017802982
+    },
+    "ppr": {
+      "lists": 861,
+      "items": 8610,
+      "meanPopularity": 216.05377468060394,
+      "zeroScoreItems": 10,
+      "shortLists": 0,
+      "distinctRecommended": 457,
+      "coveragePct": 28.367473618870267,
+      "gini": 0.940551997698748
+    },
+    "mf": {
+      "lists": 861,
+      "items": 8610,
+      "meanPopularity": 96.76085946573751,
+      "zeroScoreItems": 0,
+      "shortLists": 0,
+      "distinctRecommended": 39,
+      "coveragePct": 2.4208566108007448,
+      "gini": 0.9920573640426481
+    }
+  },
+  "convergence": {
+    "pagerank": {
+      "alpha": 0.95,
+      "userId": null,
+      "iterations": 243,
+      "residual": 9.653085726313293e-07,
+      "converged": true,
+      "source": "graph.js",
+      "at": "2026-10-20T21:28:31.295Z"
+    },
+    "ppr": {
+      "alpha": 0.95,
+      "userId": 1,
+      "iterations": 280,
+      "residual": 8.153438102453947e-08,
+      "converged": true,
+      "source": "graph.js",
+      "at": "2026-10-20T21:28:31.304Z"
+    }
+  },
+  "mf_reference": {
+    "info": {
+      "factors": 16,
+      "epochs": 30,
+      "learningRate": 0.01,
+      "regularization": 0.05,
+      "batchSize": 512,
+      "seed": 20261013,
+      "backend": "webgl",
+      "checkpoint": 1,
+      "validationRMSE": 1.1829947287151048,
+      "trainedAt": "2026-10-20T21:27:33.142Z",
+      "history": null
+    },
+    "epochs": 30,
+    "rmseConstantAcrossEpochs": true,
+    "trainRMSE": 1.1052085111847403,
+    "valRMSE": 1.1829947287151048,
+    "distinctCandidateScores": 1,
+    "candidatesScored": 1611,
+    "scoreMin": 3.5806026458740234,
+    "scoreMax": 3.5806026458740234,
+    "globalMean": 3.5806026199776437,
+    "factorNorms": {
+      "user": 3.640477720352003e-05,
+      "item": 3.6268064728700345e-05
+    }
+  },
+  "cohort_comparability": {
+    "withRule": 861,
+    "withoutRule": 861
+  },
+  "tensors_live": 15,
+  "page_errors": []
+}

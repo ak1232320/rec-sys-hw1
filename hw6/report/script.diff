@@ -1,0 +1,137 @@
+diff --git starter/starter/script.js fixed/script.js
+index ca2d9bf..b0f1502 100644
+--- starter/starter/script.js
++++ fixed/script.js
+@@ -1110,8 +1110,23 @@ function mfScores(userId) {
+  * @returns {Float64Array} Movie scores in `graph.movieIds` order.
+  */
+ function movieScores(p, graph) {
+-  // TODO(hw6): select the movie-node entries of `p`, in `graph.movieIds` order.
+-  throw new Error("TODO(hw6): movieScores is not implemented yet.");
++  const movieIds = graph && Array.isArray(graph.movieIds) ? graph.movieIds : [];
++  const out = new Float64Array(movieIds.length);
++  if (!p || movieIds.length === 0) return out;
++
++  // `movieNodes[k]` is the global node index of `movieIds[k]`. Without it the
++  // convention is users first, then movies, so movie k sits at userCount + k.
++  const nodes = Array.isArray(graph.movieNodes) ? graph.movieNodes : null;
++  const userCount = Array.isArray(graph.userIds)
++    ? graph.userIds.length
++    : Number(graph.nUsers) || 0;
++
++  for (let k = 0; k < movieIds.length; k++) {
++    const node = nodes ? Number(nodes[k]) : userCount + k;
++    const value = Number(p[node]);
++    out[k] = Number.isFinite(value) ? value : 0;
++  }
++  return out;
+ }
+ 
+ /**
+@@ -1148,8 +1163,51 @@ function movieScores(p, graph) {
+  * @returns {RecommendedMovie[]}
+  */
+ function recommendTopK(method, userId, K, split) {
+-  // TODO(hw6): filter the candidate pool, sort by score desc / id asc, slice to K.
+-  throw new Error("TODO(hw6): recommendTopK is not implemented yet.");
++  const limit = Math.round(Number(K === undefined ? HW6_K : K));
++  if (!Number.isFinite(limit) || limit <= 0) return [];
++  if (["popularity", "pagerank", "ppr", "mf"].indexOf(method) === -1) return [];
++
++  const splitName = split === "val" ? "val" : "test";
++  // Candidate-aligned scores for this method. An unimplemented student stub
++  // further down the chain throws, and that error is deliberately allowed to
++  // propagate so the harness can report it instead of showing an empty list.
++  const vector = hw6ScoreVector(method, userId, hw6ReadAlpha(), splitName);
++  const ids = vector.movieIds;
++  const scores = vector.scores;
++  if (!ids || ids.length === 0) return [];
++
++  // "test" drops movies rated in training OR validation, whatever the value;
++  // "val" drops training-rated movies only (readme 5).
++  const excluded = hw6ExclusionSet(splitName, userId);
++
++  const eligible = [];
++  for (let i = 0; i < ids.length; i++) {
++    const movieId = ids[i];
++    if (excluded.has(movieId)) continue;
++    const score = Number(scores[i]);
++    // -Infinity marks a movie this method cannot place at all; including it
++    // would pad the list with a candidate that was never really ranked.
++    if (!Number.isFinite(score)) continue;
++    eligible.push({ movieId: movieId, score: score });
++  }
++  if (eligible.length === 0) return [];
++
++  eligible.sort(function (a, b) {
++    if (b.score !== a.score) return b.score - a.score;
++    return a.movieId - b.movieId;        // ties resolved by ascending raw id
++  });
++
++  return eligible.slice(0, limit).map(function (entry) {
++    return {
++      movieId: entry.movieId,
++      title: hw6Title(entry.movieId),
++      genres: hw6Genres(entry.movieId),
++      // A PPR score is a long-run walk probability, not a rating and not a
++      // purchase probability; the renderer labels it accordingly.
++      score: entry.score,
++      popularity: hw6PopularityOf(entry.movieId),
++    };
++  });
+ }
+ 
+ /**
+@@ -1181,8 +1239,50 @@ function recommendTopK(method, userId, K, split) {
+  * @returns {RecallReport}
+  */
+ function recallAtK(method, K, split) {
+-  // TODO(hw6): macro-average Recall@K over the shared cohort, with exclusions.
+-  throw new Error("TODO(hw6): recallAtK is not implemented yet.");
++  const limit = Math.round(Number(K === undefined ? HW6_K : K));
++  const splitName = split === "val" ? "val" : "test";
++  // One cohort for all four methods, so the comparison is like-for-like.
++  const cohort = hw6SharedCohort(splitName);
++  const exclusions = hw6CohortExclusions(splitName);
++  const grades = HW6_STATE.gradesBySplit[splitName];
++
++  const perUser = [];
++  let recallSum = 0;
++
++  for (let c = 0; c < cohort.length; c++) {
++    const userId = cohort[c];
++    const gradeMap = grades.get(userId);
++    if (!gradeMap) continue;
++
++    // Relevant = rated >= 4.0 in this split, inside the training candidate
++    // pool, and still eligible under this split's exclusion rule.
++    const excluded = hw6ExclusionSet(splitName, userId);
++    const relevant = new Set();
++    gradeMap.forEach(function (rating, movieId) {
++      if (rating < 4.0) return;
++      if (!HW6_STATE.candidateSet.has(movieId)) return;
++      if (excluded.has(movieId)) return;
++      relevant.add(movieId);
++    });
++    if (relevant.size === 0) continue;
++
++    // Lists are recomputed for this split: the validation run must never reuse
++    // a list built with the test exclusion rule.
++    const recs = recommendTopK(method, userId, limit, splitName);
++    let hit = 0;
++    for (let i = 0; i < recs.length; i++) if (relevant.has(recs[i].movieId)) hit++;
++
++    perUser.push({ userId: userId, relevant: relevant.size, hit: hit });
++    recallSum += hit / relevant.size;
++  }
++
++  return {
++    recall: perUser.length > 0 ? recallSum / perUser.length : 0,
++    cohort: cohort,
++    excludedUnseen: exclusions.excludedUnseen,
++    excludedNoEligible: exclusions.excludedNoEligible,
++    perUser: perUser,
++  };
+ }
+ 
+ // ---------------------------------------------------------------------------

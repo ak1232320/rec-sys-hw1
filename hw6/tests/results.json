@@ -1,0 +1,112 @@
+{
+  "checks": [
+    {
+      "name": "the graph has one node per observed training id and no padding node",
+      "passed": true,
+      "detail": "2554 nodes = 943 users + 1611 movies, 45602 positive edges, backend webgl"
+    },
+    {
+      "name": "all 12 page self-checks pass (0 pending stubs)",
+      "passed": true,
+      "detail": "12 passed, 0 failed, 0 pending"
+    },
+    {
+      "name": "the 4-node reference graph reproduces both readme 4.1 vectors",
+      "passed": true,
+      "detail": "max |diff| uniform 1.72e-07 (28 iterations), restart-at-A 8.28e-08 (30)"
+    },
+    {
+      "name": "a node nothing points to keeps only its restart share",
+      "passed": true,
+      "detail": "D = 0.037500 under uniform restart, 0.000000 under restart at A"
+    },
+    {
+      "name": "probability is conserved and nonnegative, including a zero-degree seed",
+      "passed": true,
+      "detail": "masses [1.00000021, 1.0000004, 1]; seeding the zero-degree user 685 still sums to 1"
+    },
+    {
+      "name": "global PageRank converges below the 1e-6 tolerance inside the cap",
+      "passed": true,
+      "detail": "78 iterations, residual 9.53e-07"
+    },
+    {
+      "name": "the memoised all-seeds batch reproduces the single-seed walk",
+      "passed": true,
+      "detail": "max |diff| 3.73e-09 over 10 users (iteration counts differ by at most 4)"
+    },
+    {
+      "name": "global PageRank scores every user alike while PPR does not",
+      "passed": true,
+      "detail": "users 1 / 2: global PageRank score gap 0.00e+00 (identical ranking), PPR gap 2.73e-02"
+    },
+    {
+      "name": "both splits exclude the right movies, stay in the pool and sort correctly",
+      "passed": true,
+      "detail": "50 lists; validation excludes 217 films and test 244 for the first cohort user"
+    },
+    {
+      "name": "Recall@10 is the macro-average over the shared cohort",
+      "passed": true,
+      "detail": "861 users reported out of a 861-user cohort, recall 0.0760"
+    },
+    {
+      "name": "the four methods are evaluated on one shared cohort",
+      "passed": true,
+      "detail": "popularity 861, pagerank 861, ppr 861, mf 861"
+    },
+    {
+      "name": "the three readme section 9 exports are produced and well formed",
+      "passed": true,
+      "detail": "verification.json carries 12 checks; results.csv 2 rows; recommendations.csv 10 rows"
+    },
+    {
+      "name": "repeated propagation does not accumulate tensors",
+      "passed": true,
+      "detail": "live tensors 5 -> 5"
+    },
+    {
+      "name": "the untouched starter reports pending stubs rather than passes",
+      "passed": true,
+      "detail": "2 passed, 0 failed, 10 pending"
+    }
+  ],
+  "passed": 14,
+  "total": 14,
+  "backend": "webgl",
+  "graph": {
+    "nUsers": 943,
+    "nMovies": 1611,
+    "nodeCount": 2554,
+    "edges": 45602,
+    "zeroU": 1,
+    "zeroM": 253,
+    "trainUsers": 943,
+    "candidates": 1611
+  },
+  "selfChecks": 12,
+  "starterSelfChecks": {
+    "passed": 2,
+    "pending": 10
+  },
+  "referenceAgreement": {
+    "uniform": 1.7189261150574175e-07,
+    "restartAtA": 8.277794122379944e-08
+  },
+  "batchAgreement": {
+    "worst": 3.725290298461914e-09,
+    "checked": 10,
+    "iterGap": 4
+  },
+  "mass": {
+    "globalMass": 1.0000002102169674,
+    "seededMass": 1.0000004016228559,
+    "danglingMass": 1,
+    "danglingUserId": 685,
+    "minGlobal": 6.415465759346262e-05,
+    "minSeeded": 0,
+    "globalIter": 78,
+    "globalConv": true,
+    "globalResidual": 9.534487617202103e-07
+  }
+}

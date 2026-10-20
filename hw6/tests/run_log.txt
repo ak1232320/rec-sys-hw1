@@ -1,0 +1,19 @@
+serving C:\Users\Alex\Documents\rec-sys-hw1\hw6 at http://127.0.0.1:63626
+chrome 155.0.8059.84
+[PASS] the graph has one node per observed training id and no padding node - 2554 nodes = 943 users + 1611 movies, 45602 positive edges, backend webgl
+[PASS] all 12 page self-checks pass (0 pending stubs) - 12 passed, 0 failed, 0 pending
+[PASS] the 4-node reference graph reproduces both readme 4.1 vectors - max |diff| uniform 1.72e-07 (28 iterations), restart-at-A 8.28e-08 (30)
+[PASS] a node nothing points to keeps only its restart share - D = 0.037500 under uniform restart, 0.000000 under restart at A
+[PASS] probability is conserved and nonnegative, including a zero-degree seed - masses [1.00000021, 1.0000004, 1]; seeding the zero-degree user 685 still sums to 1
+[PASS] global PageRank converges below the 1e-6 tolerance inside the cap - 78 iterations, residual 9.53e-07
+[PASS] the memoised all-seeds batch reproduces the single-seed walk - max |diff| 3.73e-09 over 10 users (iteration counts differ by at most 4)
+[PASS] global PageRank scores every user alike while PPR does not - users 1 / 2: global PageRank score gap 0.00e+00 (identical ranking), PPR gap 2.73e-02
+[PASS] both splits exclude the right movies, stay in the pool and sort correctly - 50 lists; validation excludes 217 films and test 244 for the first cohort user
+[PASS] Recall@10 is the macro-average over the shared cohort - 861 users reported out of a 861-user cohort, recall 0.0760
+[PASS] the four methods are evaluated on one shared cohort - popularity 861, pagerank 861, ppr 861, mf 861
+[PASS] the three readme section 9 exports are produced and well formed - verification.json carries 12 checks; results.csv 2 rows; recommendations.csv 10 rows
+[PASS] repeated propagation does not accumulate tensors - live tensors 5 -> 5
+saved C:\Users\Alex\Documents\rec-sys-hw1\hw6\report\figures\fixed_checks.png and fixed_topk.png
+[PASS] the untouched starter reports pending stubs rather than passes - 2 passed, 0 failed, 10 pending
+
+14/14 checks passed
