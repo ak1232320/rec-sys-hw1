@@ -1,0 +1,64 @@
+cbf       log-minute profile, all fields       cohort=0.0212 all=0.0317
+cbf       category + genres + people           cohort=0.1147 all=0.1080
+cbf       + channel                            cohort=0.1581 all=0.1456
+cbf       + title                              cohort=0.1634 all=0.1483
+cbf       all fields                           cohort=0.1966 all=0.1753
+rules     basket>=5 min, support>=10           cohort=0.2704 all=0.2468
+rules     basket>=5 min, support>=20           cohort=0.2703 all=0.2468
+rules     basket>=5 min, support>=50           cohort=0.2701 all=0.2467
+rules     basket>=10 min, support>=10          cohort=0.2693 all=0.2459
+rules     basket>=10 min, support>=20          cohort=0.2691 all=0.2458
+rules     basket>=10 min, support>=50          cohort=0.2690 all=0.2455
+rules     basket>=30 min, support>=10          cohort=0.2672 all=0.2444
+rules     basket>=30 min, support>=20          cohort=0.2670 all=0.2443
+rules     basket>=30 min, support>=50          cohort=0.2669 all=0.2437
+mf_als    positives>=0 min, alpha=2            cohort=0.1001 all=0.1180
+mf_als    positives>=0 min, alpha=10           cohort=0.0298 all=0.0469
+mf_als    positives>=120 min, alpha=2          cohort=0.1767 all=0.1763
+mf_als    positives>=120 min, alpha=10         cohort=0.1226 all=0.1316
+mf_als    positives>=600 min, alpha=2          cohort=0.2483 all=0.2293
+mf_als    positives>=600 min, alpha=10         cohort=0.2480 all=0.2291
+mf_als    positives>=1200 min, alpha=2         cohort=0.2561 all=0.2373
+mf_als    positives>=1200 min, alpha=10        cohort=0.2582 all=0.2395
+mf_svd    k=16                                 cohort=0.2875 all=0.2665
+mf_svd    k=32                                 cohort=0.2684 all=0.2488
+mf_svd    k=64                                 cohort=0.2536 all=0.2321
+mf_svd    k=128                                cohort=0.2457 all=0.2246
+mf_svd    k=256                                cohort=0.2529 all=0.2265
+ppr       cosine, alpha=0.15                   cohort=0.2656 all=0.2363
+ppr       cosine, alpha=0.3                    cohort=0.2693 all=0.2401
+ppr       cosine, alpha=0.5                    cohort=0.2752 all=0.2456
+ppr       cosine, alpha=0.7                    cohort=0.2788 all=0.2503
+ppr       cosine, alpha=0.85                   cohort=0.2847 all=0.2593
+ppr       count, alpha=0.15                    cohort=0.2683 all=0.2393
+ppr       count, alpha=0.3                     cohort=0.2765 all=0.2468
+ppr       count, alpha=0.5                     cohort=0.2870 all=0.2579
+ppr       count, alpha=0.7                     cohort=0.3033 all=0.2735
+ppr       count, alpha=0.85                    cohort=0.3048 all=0.2780
+exposure  60-min slots                         cohort=0.2614 all=0.2398
+exposure  30-min slots                         cohort=0.2735 all=0.2513
+exposure  15-min slots                         cohort=0.2791 all=0.2563
+habit     half-life 5.0 wk, prior 10.0         cohort=0.3927 all=0.3509
+habit     half-life 5.0 wk, prior 30.0         cohort=0.3974 all=0.3544
+habit     half-life 5.0 wk, prior 100.0        cohort=0.3981 all=0.3559
+habit     half-life 10.0 wk, prior 10.0        cohort=0.3933 all=0.3515
+habit     half-life 10.0 wk, prior 30.0        cohort=0.3997 all=0.3564
+habit     half-life 10.0 wk, prior 100.0       cohort=0.3992 all=0.3572
+habit     half-life 20.0 wk, prior 10.0        cohort=0.3931 all=0.3511
+habit     half-life 20.0 wk, prior 30.0        cohort=0.3987 all=0.3561
+habit     half-life 20.0 wk, prior 100.0       cohort=0.3991 all=0.3570
+popularity                                   cohort=0.3035 all=0.2758 fallback=0 0.0s
+history (re-watch baseline)                  cohort=0.2632 all=0.2337 fallback=3 0.1s
+CBF                                          cohort=0.1966 all=0.1753 fallback=0 1.4s
+association rules                            cohort=0.2704 all=0.2468 fallback=0 2.5s
+MF: implicit ALS                             cohort=0.2582 all=0.2395 fallback=801 0.1s
+MF: PureSVD                                  cohort=0.2875 all=0.2665 fallback=0 0.2s
+PPR (co-view graph)                          cohort=0.3048 all=0.2780 fallback=0 17.5s
+habit x schedule (seconds, channel-hours)    cohort=0.2791 all=0.2563 fallback=1 1.7s
+habit x schedule (watched-airing rate)       cohort=0.3997 all=0.3564 fallback=65 2.0s
+  habit full model                   cohort=0.3997 all=0.3564
+  habit no recency weighting         cohort=0.3967 all=0.3553
+  habit no active-day correction     cohort=0.4001 all=0.3558
+  habit no target-week schedule      cohort=0.1868 all=0.1683
+  habit no prior (rate = q / e)      cohort=0.3670 all=0.3266
+saved C:\Users\Alex\Documents\rec-sys-hw1\midterm\experiments\results_watched.json

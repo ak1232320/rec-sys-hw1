@@ -1,0 +1,56 @@
+{
+ "seconds (>=60 s)": {
+  "popularity (seconds)": 0.18112547119009156,
+  "popularity (viewers)": 0.17806408185245018,
+  "history": 0.3031017770597738,
+  "exposure": 0.3240333871836295,
+  "ppr": 0.3076144318793753
+ },
+ "views (>=60 s)": {
+  "popularity (seconds)": 0.2837722132471729,
+  "popularity (viewers)": 0.2762762520193861,
+  "history": 0.33457727517501346,
+  "exposure": 0.36809639203015615,
+  "ppr": 0.3525551965535811
+ },
+ "views (any overlap)": {
+  "popularity (seconds)": 0.2855654281098546,
+  "popularity (viewers)": 0.277924071082391,
+  "history": 0.33406031233171785,
+  "exposure": 0.3690845449649974,
+  "ppr": 0.3522320947765213
+ },
+ "airings (>=60 s)": {
+  "popularity (seconds)": 0.3283144857296715,
+  "popularity (viewers)": 0.31753096392030156,
+  "history": 0.34124394184168017,
+  "exposure": 0.3776575121163166,
+  "ppr": 0.36313677975228864
+ },
+ "airings (any overlap)": {
+  "popularity (seconds)": 0.3318524501884761,
+  "popularity (viewers)": 0.3207700592353258,
+  "history": 0.33954765751211635,
+  "exposure": 0.3769063004846527,
+  "ppr": 0.36147819063004843
+ },
+ "days (>=60 s)": {
+  "popularity (seconds)": 0.3391518578352181,
+  "popularity (viewers)": 0.34050080775444264,
+  "history": 0.34462035541195474,
+  "exposure": 0.3856004308023694,
+  "ppr": 0.3692245557350566
+ },
+ "programme share (>=60 s)": {
+  "popularity (seconds)": 0.3022401723209478,
+  "popularity (viewers)": 0.2937587506731287,
+  "history": 0.30628163704900374,
+  "exposure": 0.32573236402800215,
+  "ppr": 0.3188260635433495
+ },
+ "public_test": {
+  "popularity (seconds)": 0.28361,
+  "exposure": 0.29113,
+  "ppr": 0.29038
+ }
+}

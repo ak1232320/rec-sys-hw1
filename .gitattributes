@@ -16,3 +16,5 @@ hw6/u.item -text
 hw6/u.data -text
 hw6/starter/u.item -text
 hw6/starter/u.data -text
+# Midterm: the files sent to Kaggle are kept byte-identical (md5 checked by tests/check_pipeline.py --repro).
+midterm/submissions/*.csv -text

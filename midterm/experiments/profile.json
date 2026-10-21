@@ -1,0 +1,48 @@
+{
+ "schedule_rows_labelled": {
+  "11-20": 0.10762356467625799,
+  "21-30": 0.11309165911202036,
+  "31-42": 0.11176197218109309
+ },
+ "schedule_rows_labelled_all": 0.11088595348383438,
+ "schedule_airtime_labelled_all": 0.16525499065661756,
+ "watched_seconds_on_labelled_programmes": 0.5308201605478322,
+ "categories": 9,
+ "channels_in_schedule": 405,
+ "submission_users": 1260,
+ "submission_users_in_log": 1260,
+ "log_users": 4914,
+ "submission_sessions_quantiles": {
+  "0.0": 3.0,
+  "0.1": 494.6,
+  "0.5": 1377.0,
+  "0.9": 3293.4000000000005,
+  "1.0": 16879.0
+ },
+ "submission_users_active_in_weeks_21_30": 1246,
+ "submission_users_active_in_weeks_11_20": 1256,
+ "shows_per_slice": {
+  "11-20": 5847,
+  "21-30": 6363,
+  "31-42": 6636
+ },
+ "test_shows_seen_in_11_30_schedule": 5199,
+ "valid_shows_seen_in_11_20_schedule": 3976,
+ "test_airtime_share_on_returning_shows": 0.9271740986531495,
+ "valid_truth_rows": 23887,
+ "valid_truth_users": 4806,
+ "valid_truth_already_watched_by_same_user": 0.6025871813120107,
+ "valid_truth_show_existed_in_train": 0.8574957089630343,
+ "valid_truth_shows_in_21_30_schedule": 0.999832544898899,
+ "valid_truth_users_from_submission": 1246,
+ "valid_truth_distinct_shows": 1657,
+ "valid_truth_share_top10_shows": 0.3131829028341776,
+ "valid_truth_shows_per_user_hist": {
+  "1": 13,
+  "2": 9,
+  "3": 24,
+  "4": 16,
+  "5": 4744
+ },
+ "favourite_channel_unchanged_21_30_vs_11_20": 0.4479297365119197
+}

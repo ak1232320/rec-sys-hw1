@@ -1,0 +1,701 @@
+{
+ "target": "seconds",
+ "cohort_users": 1238,
+ "all_users": 4752,
+ "candidates": 6376,
+ "fill": "total seconds",
+ "sweeps": {
+  "cbf": [
+   {
+    "setting": "log-minute profile, all fields",
+    "params": {
+     "weighting": "log",
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.016068928379106086,
+    "map_all": 0.022753577441077442,
+    "hit_cohort": 0.03297236140294165,
+    "fallback_users_cohort": 0,
+    "seconds": 1.4
+   },
+   {
+    "setting": "category + genres + people",
+    "params": {
+     "fields": [
+      "category",
+      "genre",
+      "people"
+     ]
+    },
+    "map_cohort": 0.10703554119547659,
+    "map_all": 0.09119809203142537,
+    "hit_cohort": 0.14142556974300954,
+    "fallback_users_cohort": 0,
+    "seconds": 1.2
+   },
+   {
+    "setting": "+ channel",
+    "params": {
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people"
+     ]
+    },
+    "map_cohort": 0.15118739903069467,
+    "map_all": 0.1309480218855219,
+    "hit_cohort": 0.1986423145304671,
+    "fallback_users_cohort": 0,
+    "seconds": 1.2
+   },
+   {
+    "setting": "+ title",
+    "params": {
+     "fields": [
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.155032310177706,
+    "map_all": 0.12939692059483726,
+    "hit_cohort": 0.19961208986584775,
+    "fallback_users_cohort": 0,
+    "seconds": 1.4
+   },
+   {
+    "setting": "all fields",
+    "params": {
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.18846257404415723,
+    "map_all": 0.15781092171717173,
+    "hit_cohort": 0.2379182156133829,
+    "fallback_users_cohort": 0,
+    "seconds": 1.4
+   }
+  ],
+  "rules": [
+   {
+    "setting": "basket>=5 min, support>=10",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 10
+    },
+    "map_cohort": 0.17829025309639204,
+    "map_all": 0.15373749064721287,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.5
+   },
+   {
+    "setting": "basket>=5 min, support>=20",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 20
+    },
+    "map_cohort": 0.17819332256327408,
+    "map_all": 0.15368698559670782,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.4
+   },
+   {
+    "setting": "basket>=5 min, support>=50",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 50
+    },
+    "map_cohort": 0.17829294561120088,
+    "map_all": 0.15364559951365506,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.4
+   },
+   {
+    "setting": "basket>=10 min, support>=10",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 10
+    },
+    "map_cohort": 0.1798896068928379,
+    "map_all": 0.15518477600074823,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.0
+   },
+   {
+    "setting": "basket>=10 min, support>=20",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 20
+    },
+    "map_cohort": 0.17984114162627893,
+    "map_all": 0.15512304760568651,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.1
+   },
+   {
+    "setting": "basket>=10 min, support>=50",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 50
+    },
+    "map_cohort": 0.17986806677436726,
+    "map_all": 0.1551027052936775,
+    "hit_cohort": 0.2392112493938904,
+    "fallback_users_cohort": 0,
+    "seconds": 2.0
+   },
+   {
+    "setting": "basket>=30 min, support>=10",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 10
+    },
+    "map_cohort": 0.1811470113085622,
+    "map_all": 0.15613566217732883,
+    "hit_cohort": 0.23937287861645384,
+    "fallback_users_cohort": 1,
+    "seconds": 1.4
+   },
+   {
+    "setting": "basket>=30 min, support>=20",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 20
+    },
+    "map_cohort": 0.18115778136779753,
+    "map_all": 0.15612233445566778,
+    "hit_cohort": 0.23937287861645384,
+    "fallback_users_cohort": 1,
+    "seconds": 1.3
+   },
+   {
+    "setting": "basket>=30 min, support>=50",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 50
+    },
+    "map_cohort": 0.1809935379644588,
+    "map_all": 0.15582210998877666,
+    "hit_cohort": 0.23937287861645384,
+    "fallback_users_cohort": 1,
+    "seconds": 1.4
+   }
+  ],
+  "mf_als": [
+   {
+    "setting": "positives>=0 min, alpha=2",
+    "params": {
+     "min_minutes": 0,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.07659396876682821,
+    "map_all": 0.08153642910587355,
+    "hit_cohort": 0.1257475351543559,
+    "fallback_users_cohort": 0,
+    "seconds": 0.6
+   },
+   {
+    "setting": "positives>=0 min, alpha=10",
+    "params": {
+     "min_minutes": 0,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.021047388260635434,
+    "map_all": 0.030390654227459783,
+    "hit_cohort": 0.03911427186035235,
+    "fallback_users_cohort": 0,
+    "seconds": 0.6
+   },
+   {
+    "setting": "positives>=120 min, alpha=2",
+    "params": {
+     "min_minutes": 120,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.17855950457727518,
+    "map_all": 0.1641972385895997,
+    "hit_cohort": 0.2637788912235332,
+    "fallback_users_cohort": 26,
+    "seconds": 0.3
+   },
+   {
+    "setting": "positives>=120 min, alpha=10",
+    "params": {
+     "min_minutes": 120,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.11566505115778136,
+    "map_all": 0.11397382388701834,
+    "hit_cohort": 0.18975270728947793,
+    "fallback_users_cohort": 26,
+    "seconds": 0.3
+   },
+   {
+    "setting": "positives>=600 min, alpha=2",
+    "params": {
+     "min_minutes": 600,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.22550888529886912,
+    "map_all": 0.1846093457725402,
+    "hit_cohort": 0.2759010829157912,
+    "fallback_users_cohort": 405,
+    "seconds": 0.1
+   },
+   {
+    "setting": "positives>=600 min, alpha=10",
+    "params": {
+     "min_minutes": 600,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.22547388260635431,
+    "map_all": 0.18500847596333708,
+    "hit_cohort": 0.27541619524810085,
+    "fallback_users_cohort": 405,
+    "seconds": 0.1
+   },
+   {
+    "setting": "positives>=1200 min, alpha=2",
+    "params": {
+     "min_minutes": 1200,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.1841168551427033,
+    "map_all": 0.15497024644594087,
+    "hit_cohort": 0.23533214805236788,
+    "fallback_users_cohort": 809,
+    "seconds": 0.1
+   },
+   {
+    "setting": "positives>=1200 min, alpha=10",
+    "params": {
+     "min_minutes": 1200,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.1847253634894992,
+    "map_all": 0.15570677843247288,
+    "hit_cohort": 0.23452400193955067,
+    "fallback_users_cohort": 809,
+    "seconds": 0.1
+   }
+  ],
+  "mf_svd": [
+   {
+    "setting": "k=16",
+    "params": {
+     "factors": 16
+    },
+    "map_cohort": 0.24382067851373185,
+    "map_all": 0.21080287832023942,
+    "hit_cohort": 0.3098432196541135,
+    "fallback_users_cohort": 0,
+    "seconds": 0.2
+   },
+   {
+    "setting": "k=32",
+    "params": {
+     "factors": 32
+    },
+    "map_cohort": 0.26119816908993,
+    "map_all": 0.22306508370744482,
+    "hit_cohort": 0.3290770971391628,
+    "fallback_users_cohort": 0,
+    "seconds": 0.4
+   },
+   {
+    "setting": "k=64",
+    "params": {
+     "factors": 64
+    },
+    "map_cohort": 0.265,
+    "map_all": 0.22265765291806958,
+    "hit_cohort": 0.33521900759657347,
+    "fallback_users_cohort": 0,
+    "seconds": 0.7
+   },
+   {
+    "setting": "k=128",
+    "params": {
+     "factors": 128
+    },
+    "map_cohort": 0.26880721593968765,
+    "map_all": 0.22296436588103255,
+    "hit_cohort": 0.34055277194116695,
+    "fallback_users_cohort": 0,
+    "seconds": 1.2
+   },
+   {
+    "setting": "k=256",
+    "params": {
+     "factors": 256
+    },
+    "map_cohort": 0.27648626817447497,
+    "map_all": 0.22804164328469886,
+    "hit_cohort": 0.3491191207370293,
+    "fallback_users_cohort": 0,
+    "seconds": 3.0
+   }
+  ],
+  "ppr": [
+   {
+    "setting": "cosine, alpha=0.15",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.15
+    },
+    "map_cohort": 0.3041653204092623,
+    "map_all": 0.24715488215488216,
+    "hit_cohort": 0.36948440278002265,
+    "fallback_users_cohort": 0,
+    "seconds": 17.4
+   },
+   {
+    "setting": "cosine, alpha=0.3",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.3
+    },
+    "map_cohort": 0.3051211631663974,
+    "map_all": 0.24880120650953982,
+    "hit_cohort": 0.37061580733796673,
+    "fallback_users_cohort": 0,
+    "seconds": 17.8
+   },
+   {
+    "setting": "cosine, alpha=0.5",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.5
+    },
+    "map_cohort": 0.3076144318793753,
+    "map_all": 0.2509147025813693,
+    "hit_cohort": 0.37255535800872797,
+    "fallback_users_cohort": 0,
+    "seconds": 17.3
+   },
+   {
+    "setting": "cosine, alpha=0.7",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.7
+    },
+    "map_cohort": 0.301421647819063,
+    "map_all": 0.24835981341189678,
+    "hit_cohort": 0.36350412154517536,
+    "fallback_users_cohort": 0,
+    "seconds": 17.4
+   },
+   {
+    "setting": "cosine, alpha=0.85",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.85
+    },
+    "map_cohort": 0.28484114162627894,
+    "map_all": 0.23909932659932656,
+    "hit_cohort": 0.34362372716987233,
+    "fallback_users_cohort": 0,
+    "seconds": 17.3
+   },
+   {
+    "setting": "count, alpha=0.15",
+    "params": {
+     "weight": "count",
+     "alpha": 0.15
+    },
+    "map_cohort": 0.3045153473344103,
+    "map_all": 0.24802118406285076,
+    "hit_cohort": 0.3698076612251495,
+    "fallback_users_cohort": 0,
+    "seconds": 18.6
+   },
+   {
+    "setting": "count, alpha=0.3",
+    "params": {
+     "weight": "count",
+     "alpha": 0.3
+    },
+    "map_cohort": 0.3073263327948304,
+    "map_all": 0.25096240179573515,
+    "hit_cohort": 0.37174721189591076,
+    "fallback_users_cohort": 0,
+    "seconds": 18.2
+   },
+   {
+    "setting": "count, alpha=0.5",
+    "params": {
+     "weight": "count",
+     "alpha": 0.5
+    },
+    "map_cohort": 0.3066182014001077,
+    "map_all": 0.25200950476992146,
+    "hit_cohort": 0.3714239534507839,
+    "fallback_users_cohort": 0,
+    "seconds": 18.2
+   },
+   {
+    "setting": "count, alpha=0.7",
+    "params": {
+     "weight": "count",
+     "alpha": 0.7
+    },
+    "map_cohort": 0.2897845988152935,
+    "map_all": 0.24275585718294052,
+    "hit_cohort": 0.3489574915144658,
+    "fallback_users_cohort": 0,
+    "seconds": 18.5
+   },
+   {
+    "setting": "count, alpha=0.85",
+    "params": {
+     "weight": "count",
+     "alpha": 0.85
+    },
+    "map_cohort": 0.24950188476036617,
+    "map_all": 0.2125075991395436,
+    "hit_cohort": 0.30321642152901246,
+    "fallback_users_cohort": 0,
+    "seconds": 18.4
+   }
+  ],
+  "exposure": [
+   {
+    "setting": "60-min slots",
+    "params": {
+     "slot": 3600
+    },
+    "map_cohort": 0.3174394184168013,
+    "map_all": 0.2674050692106248,
+    "hit_cohort": 0.38580895425893,
+    "fallback_users_cohort": 1,
+    "seconds": 1.2
+   },
+   {
+    "setting": "30-min slots",
+    "params": {
+     "slot": 1800
+    },
+    "map_cohort": 0.3240333871836295,
+    "map_all": 0.2730672465394688,
+    "hit_cohort": 0.391304347826087,
+    "fallback_users_cohort": 1,
+    "seconds": 1.3
+   },
+   {
+    "setting": "15-min slots",
+    "params": {
+     "slot": 900
+    },
+    "map_cohort": 0.323338718362951,
+    "map_all": 0.2728879068462402,
+    "hit_cohort": 0.3901729432681429,
+    "fallback_users_cohort": 1,
+    "seconds": 1.7
+   }
+  ]
+ },
+ "methods": {
+  "popularity": {
+   "map_cohort": 0.18112547119009156,
+   "map_all": 0.15530975261878038,
+   "hit_cohort": 0.2493938904153871,
+   "fallback_users_cohort": 0,
+   "seconds": 0.0,
+   "params": {}
+  },
+  "history (re-watch baseline)": {
+   "map_cohort": 0.3031017770597738,
+   "map_all": 0.24526865881032553,
+   "hit_cohort": 0.36786811055438823,
+   "fallback_users_cohort": 3,
+   "seconds": 0.1,
+   "params": {}
+  },
+  "CBF": {
+   "map_cohort": 0.18846257404415723,
+   "map_all": 0.15781092171717173,
+   "hit_cohort": 0.2379182156133829,
+   "fallback_users_cohort": 0,
+   "seconds": 1.5,
+   "params": {
+    "fields": [
+     "channel",
+     "category",
+     "genre",
+     "people",
+     "title"
+    ]
+   }
+  },
+  "association rules": {
+   "map_cohort": 0.18115778136779753,
+   "map_all": 0.15612233445566778,
+   "hit_cohort": 0.23937287861645384,
+   "fallback_users_cohort": 1,
+   "seconds": 1.5,
+   "params": {
+    "min_minutes": 30,
+    "min_support": 20
+   }
+  },
+  "MF: implicit ALS": {
+   "map_cohort": 0.22550888529886912,
+   "map_all": 0.1846093457725402,
+   "hit_cohort": 0.2759010829157912,
+   "fallback_users_cohort": 405,
+   "seconds": 0.1,
+   "params": {
+    "min_minutes": 600,
+    "alpha": 2,
+    "factors": 32
+   }
+  },
+  "MF: PureSVD": {
+   "map_cohort": 0.27648626817447497,
+   "map_all": 0.22804164328469886,
+   "hit_cohort": 0.3491191207370293,
+   "fallback_users_cohort": 0,
+   "seconds": 3.5,
+   "params": {
+    "factors": 256
+   }
+  },
+  "PPR (co-view graph)": {
+   "map_cohort": 0.3076144318793753,
+   "map_all": 0.2509147025813693,
+   "hit_cohort": 0.37255535800872797,
+   "fallback_users_cohort": 0,
+   "seconds": 17.4,
+   "params": {
+    "weight": "cosine",
+    "alpha": 0.5
+   }
+  },
+  "habit x schedule (seconds, channel-hours)": {
+   "map_cohort": 0.3240333871836295,
+   "map_all": 0.2730672465394688,
+   "hit_cohort": 0.391304347826087,
+   "fallback_users_cohort": 1,
+   "seconds": 1.3,
+   "params": {
+    "slot": 1800
+   }
+  }
+ },
+ "hybrid": {
+  "map_cohort": 0.3469763058696823,
+  "map_all": 0.2899199167601945,
+  "trees": 269,
+  "fit_seconds": 17.7,
+  "fallback_users": 0,
+  "pool_recall": 0.7054493146048401,
+  "pool_per_user": 149.70496632996634,
+  "feature_seconds": 56.8,
+  "importance": {
+   "exposure_rank": 0.5777,
+   "air_tgt_pw": 0.0785,
+   "ppr_rank": 0.0747,
+   "decayed_share": 0.0261,
+   "svd_rank": 0.0259,
+   "chan_aff": 0.0235,
+   "user_sec_pw": 0.0177,
+   "exposure": 0.0168,
+   "air_ratio": 0.0132,
+   "expected_conv": 0.0124,
+   "rank_own": 0.0121,
+   "cat_share": 0.0112,
+   "bc_tgt_pw": 0.0111,
+   "prime_share": 0.0091,
+   "air_hist_pw": 0.0088,
+   "cat": 0.0081,
+   "weeks": 0.0076,
+   "pop_pw": 0.0068,
+   "cbf_rank": 0.0064,
+   "cbf": 0.0064,
+   "expected_pw": 0.0059,
+   "user_shows": 0.0055,
+   "recent_share": 0.0049,
+   "viewer_share": 0.0039,
+   "rules_rank": 0.0038,
+   "rules": 0.0035,
+   "ppr": 0.0032,
+   "share": 0.0022,
+   "decayed": 0.002,
+   "conversion": 0.002,
+   "recent": 0.0019,
+   "svd": 0.0019,
+   "exposure_hist": 0.0015,
+   "week_share": 0.0015,
+   "weeks_since": 0.001,
+   "sec": 0.0008,
+   "sec_pw": 0.0002,
+   "is_new": 0.0,
+   "watched": 0.0
+  }
+ },
+ "hybrid_ablations": {
+  "graded labels": {
+   "map_cohort": 0.3459369951534733,
+   "map_all": 0.28871007528993636,
+   "trees": 96,
+   "fit_seconds": 8.3,
+   "fallback_users": 0
+  },
+  "without habit x schedule features": {
+   "map_cohort": 0.34297522886375875,
+   "map_all": 0.28553088757949874,
+   "trees": 211,
+   "fit_seconds": 12.1,
+   "fallback_users": 0
+  },
+  "without the four course methods": {
+   "map_cohort": 0.34832256327409805,
+   "map_all": 0.2905682402731014,
+   "trees": 121,
+   "fit_seconds": 8.2,
+   "fallback_users": 0
+  }
+ },
+ "environment": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "logical_cpus": 12,
+  "python": "3.12.10",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "scipy": "1.17.0",
+  "scikit-learn": "1.8.0",
+  "implicit": "0.7.3",
+  "lightgbm": "4.6.0",
+  "seeds": {
+   "lightgbm": 20260112,
+   "als/svd": 20260112
+  }
+ }
+}

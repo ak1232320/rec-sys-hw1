@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Midterm report — Aleksei Kosychev</title><style>
+@page { size: A4; margin: 15mm 15mm 14mm 15mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.4pt; line-height: 1.17; color: #111; }
+h1 { font-size: 15pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+.fig { text-align: center; margin: 4px 0; page-break-inside: avoid; }
+.fig img { width: 31%; margin: 0 1%; border: 1px solid #ccc; }
+.fig.wide img { width: 47%; }
+.fig.full img { width: 68%; border: none; }
+.fig.manual img { width: 78%; border: 1px solid #ccc; }
+.fig.shot img { width: 62%; border: 1px solid #ccc; }
+.fig.app img { width: 88%; border: 1px solid #ccc; }
+.fig.pair img { border: 1px solid #ccc; vertical-align: top; margin: 0 1%; }
+.fig.pair img:first-child { width: 27%; }
+.fig.pair img:last-child { width: 48%; }
+.fig p { text-align: center; font-size: 8.4pt; margin-top: 2px; }
+.todo { background: #fff3a8; font-style: italic; }
+table.ids td, table.ids th { text-align: center; padding: 0 3px; }
+table.ids td:first-child { text-align: left; white-space: nowrap; }
+table.legend { font-size: 7.4pt; }
+table.legend td { padding: 0 3px; }
+p.tcap { margin: 4px 0 1px; font-size: 8.6pt; text-align: left; }
+.fig.kaggle img { width: 84%; border: none; }
+td.n { white-space: nowrap; }
+sup { line-height: 0; font-size: 70%; }
+.fig.wide2 img { width: 100%; border: none; }
+</style></head>
+<body><h1>Midterm: TV programme recommendation on sweet.tv</h1>
+<div class="meta">Aleksei Kosychev · HSE, LLM4Rec · Kaggle <code>sweettv-tv-program-recommender</code>, MAP@5 ·
+Repository: <a href="https://github.com/ak1232320/rec-sys-hw1/tree/main/midterm">github.com/ak1232320/rec-sys-hw1/tree/main/midterm</a></div>
+
+<p><strong>Result.</strong> The designated submission, <code>submissions/submission_habit.csv</code> (Kaggle ref 57498272), returned
+<strong>public 0.42168</strong> (private 0.41476, Fig. 1). It replaced my first-round final, a LambdaRank hybrid at public
+0.32279, after the public scores showed that the answer key counts <strong>watched airings</strong>, not seconds watched.
+The final model multiplies each user's rate of watching a programme when it airs by how often it airs in weeks
+31–42. It has no learned parameters and runs in about 25 s. The 80% "watched" rule and the idea of the model
+came from material shared with me (§7, Disclosure); the implementation and every number here are my own runs.</p>
+<div class="fig kaggle">
+<img src="figures/kaggle_score.png">
+<p><em>Fig. 1. Returned score of the designated submission (competition page, Leaderboard tab): public 0.42168,
+private 0.41476. All five submissions, refs and dates: <code>submissions/kaggle_scores.json</code>.</em></p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Submission</th>
+<th>Kaggle ref</th>
+<th>Public</th>
+<th>Private</th>
+<th>Hold-out MAP@5 (its own answer key)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Habit × schedule (final)</strong></td>
+<td>57498272</td>
+<td><strong>0.42168</strong></td>
+<td><strong>0.41476</strong></td>
+<td>0.3997 (watched airings)</td>
+</tr>
+<tr>
+<td>LambdaRank hybrid (first round)</td>
+<td>57496713</td>
+<td>0.32279</td>
+<td>0.29662</td>
+<td>0.3470 (seconds)</td>
+</tr>
+<tr>
+<td>Channel-hour exposure</td>
+<td>57496711</td>
+<td>0.29113</td>
+<td>0.26829</td>
+<td>0.3240 (seconds)</td>
+</tr>
+<tr>
+<td>PPR on the co-view graph</td>
+<td>57496709</td>
+<td>0.29038</td>
+<td>0.25733</td>
+<td>0.3076 (seconds)</td>
+</tr>
+<tr>
+<td>Popularity (total seconds)</td>
+<td>57496705</td>
+<td>0.28361</td>
+<td>0.27447</td>
+<td>0.1811 (seconds)</td>
+</tr>
+</tbody>
+</table>
+<h2>1. Data and the join</h2>
+<p>The log has 5,821,987 sessions of 4,914 users on 202 channels in weeks 11–30. A session's <code>duraton</code> is the
+length of the viewing interval (median 396 s, max 342,145 s ≈ 95 h). The schedule has 3,444,007 airings on 405
+channels. All 1,260 test users appear in the log.</p>
+<p><strong>Join rule.</strong> A session (user, channel, start, stop) is matched to every airing on the same channel
+(<code>vsetv_id</code> = <code>channel_id</code>) whose interval [start, start + duration) overlaps it. Each match carries the
+overlap in seconds, so a session that spans three airings credits each with its own share. The join runs per
+channel with two binary searches (<code>src/intervals.py</code>, 8 unit cases). It produces 7,752,424 matches, and 94.1%
+of logged seconds fall on some airing; 5 log channels have no schedule.</p>
+<p><strong><code>tv_show_id = 0</code>.</strong> Only 10.8% of schedule rows in weeks 11–20 carry a programme id (11.1% over all three
+files, 16.5% of airtime). Unlabelled airings stay in the join, so their seconds are not credited to a
+neighbouring labelled airing. The channel-hour habit feature also uses them as context. They are never items.
+Labelled airings still receive 53.1% of all logged seconds: viewers concentrate on what is labelled.</p>
+<p><strong>What counts as watched.</strong> A user's <em>coverage</em> of an airing is their overlap seconds summed over all their
+sessions, divided by the airing's length and capped at 1. The airing counts as <strong>watched at coverage ≥ 0.8</strong>.
+The answer key is each user's five programmes with the most watched airings. This is the organisers' rule as
+relayed in the shared material. I could not read it on the Kaggle page itself, but §4 shows the public scores
+agree with it. The median airing runs 100 min and the median single overlap covers 11.6% of it, so the rule
+keeps deliberate viewing only: 24.9% of user–airing pairs in weeks 21–30 qualify. My first round used an
+absolute cut instead: an overlap counted from 60 s, which drops channel-zapping (2.7% of overlaps, 0.07% of
+seconds). That round also counted preference in seconds.</p>
+<p>One defect surfaced on the way. Reading the log with pandas' <em>pyarrow</em> engine routes the 20-digit user ids,
+which exceed 2⁶³, through float64. It silently rewrote 1,982 of the first 1,999 ids, and only 4 of 1,260 test
+users could be found. The C parser is exact, and <code>tests/check_pipeline.py</code> compares 300,000 parsed ids with
+the raw text.</p>
+<h2>2. Protocol</h2>
+<p><strong>Split.</strong> Hold-out: history in weeks 11–20, answer in weeks 21–30. These are the two training slices of the
+schedule, and the 10-week horizon is close to the test's 12. 4,599 users have both a history and an answer.
+MAP@5 is reported for all of them and for the <strong>cohort</strong> of 1,230 who are also in the Kaggle file; the cohort
+are heavier viewers (median 1,377 sessions). The hold-out is used only for selection. The first round's ranker
+learned on an inner split, weeks 11–15 → 16–20. The final run uses history 11–30 and the schedule of weeks
+31–42. Checks 5 and 6 verify the time boundary: the hold-out features and scores do not change when every log
+row after week 20 is deleted.</p>
+<p><strong>Candidates and repeats.</strong> Every programme with a labelled airing in the target weeks is a candidate: 6,376
+on the hold-out and 6,642 in the test. Already-watched programmes are allowed for every method, since 54.9% of
+hold-out answer pairs are programmes the user had already watched.</p>
+<p><strong>Five ids and the fallback.</strong> Each method scores all candidates. The list is sorted by score, with ties broken
+by popularity and then by id, and the first five are taken; scores from different methods are never mixed.
+Popularity means the number of users who have the programme in their own history top-5. Because it breaks
+every tie, a zero score (no evidence) falls back to it in the same way in every method. In the test, 2 users
+have no labelled history at all. The final model scores no programme for 5 users and fewer than five for 28.
+MAP@5 follows Kaggle's <code>ml_metrics</code> definition and is checked against its reference cases.</p>
+<h2>3. Methods on one hold-out</h2>
+<table><tr><th rowspan=2>Method</th><th rowspan=2>Setting (selected on the hold-out)</th><th colspan=2>Competition key (watched airings)</th><th rowspan=2>&lt;5 scored</th><th rowspan=2>Time</th><th rowspan=2>Seconds key</th></tr><tr><th>cohort (1,230)</th><th>all (4,599)</th></tr><tr><td>Popularity (reference)</td><td>users' history top-5 frequency</td><td class=n>0.3035</td><td class=n>0.2758</td><td class=n>0</td><td class=n>0.0 s</td><td class=n>0.1811</td></tr><tr><td>History (re-watch)</td><td>own seconds per show</td><td class=n>0.2632</td><td class=n>0.2337</td><td class=n>3</td><td class=n>0.1 s</td><td class=n>0.3031</td></tr><tr><td>CBF</td><td>TF-IDF: channel, category, genres, people, title</td><td class=n>0.1966</td><td class=n>0.1753</td><td class=n>0</td><td class=n>1.4 s</td><td class=n>0.1885</td></tr><tr><td>Association rules</td><td>basket &ge;5 min, support &ge;10</td><td class=n>0.2704</td><td class=n>0.2468</td><td class=n>0</td><td class=n>2.5 s</td><td class=n>0.1812</td></tr><tr><td>MF: implicit ALS</td><td>positives &ge;1200 min, &alpha;=10, 32 factors</td><td class=n>0.2582</td><td class=n>0.2395</td><td class=n>801</td><td class=n>0.1 s</td><td class=n>0.2255</td></tr><tr><td>MF: PureSVD</td><td>k=16, log-minutes</td><td class=n>0.2875</td><td class=n>0.2665</td><td class=n>0</td><td class=n>0.2 s</td><td class=n>0.2765</td></tr><tr><td>PPR, co-view graph</td><td>count edges, &alpha;=0.85, 50 neighbours</td><td class=n>0.3048</td><td class=n>0.2780</td><td class=n>0</td><td class=n>17.5 s</td><td class=n>0.3076</td></tr><tr><td>Channel-hour exposure</td><td>15-min slots, channel x slot</td><td class=n>0.2791</td><td class=n>0.2563</td><td class=n>1</td><td class=n>1.7 s</td><td class=n>0.3240</td></tr><tr><td><b>Habit x schedule (final)</b></td><td>half-life 10 wk, prior 30</td><td class=n>0.3997</td><td class=n>0.3564</td><td class=n>65</td><td class=n>2.0 s</td><td class=n>&ndash;</td></tr><tr><td>LambdaRank hybrid (1st round)</td><td>269 trees, pool recall 70.5%</td><td colspan=4><i>fitted to the seconds key only</i></td><td>0.3470</td></tr></table>
+<p class="tcap"><em>Table 1. MAP@5 on the hold-out. The competition key is the top-5 by watched airings. The
+seconds key is the first round's answer (top-5 by seconds), with each method re-selected for it. "&lt;5
+scored" is the number of cohort users with fewer than five non-zero scores (filled by popularity). Time is for
+scoring 4,599 users on an Intel i5-13420H.</em></p>
+
+<ul>
+<li><strong>CBF</strong>: TF-IDF over metadata tokens (main channel, category, three genres, director and actors, title
+  words). The user profile is the seconds-weighted mean of the user's programmes; candidates are scored by
+  cosine. A profile in log-minutes scored only 0.021: a long tail of once-watched films, each with three
+  genres and a director, outvoted the few programmes a person lives on. Weighting by seconds lifted it to
+  0.197. Of the metadata fields, the task's own (category, genres, people) reach 0.115; the channel adds 0.043
+  and title words a further 0.039.</li>
+<li><strong>Association rules</strong>: X → Y over baskets of programmes watched for at least a few minutes, with confidence
+  summed over the rules a user's basket fires. The rule Y → Y is excluded, so this method can only recommend
+  through co-viewing, never through the user's own repeat habit.</li>
+<li><strong>MF</strong>: implicit ALS (Hu, Koren &amp; Volinsky) fits a binary "watched" target and uses time only as confidence,
+  so a sampled film and the daily news both get target 1. It worked only once positives were restricted to
+  habits (≥ 20 h), and that setting leaves 801 of the 1,230 cohort users with no positive at all: their lists
+  are popularity. PureSVD reconstructs the magnitudes and does better.</li>
+<li><strong>PPR</strong> runs on the programme co-view graph (top-50 neighbours) and restarts from the user's own programmes,
+  so α moves the ranking from the user's history (α → 0) towards what their programmes' audiences watch.</li>
+<li><strong>Channel-hour exposure</strong> (first round) multiplies the user's seconds per (channel, half-hour of the week)
+  by each programme's minutes in that slot in the target schedule.</li>
+</ul>
+<p>Under the competition key, none of the four course methods clearly beats popularity (PPR 0.305 vs 0.304), for
+two reasons. They consume seconds, which is the wrong currency for this key: the same history scores 0.263
+counted in seconds and 0.376 counted in watched airings (Fig. 2b). They also ignore the target-week schedule.</p>
+<div class="fig wide2">
+<img src="figures/fig_methods_probe.png">
+<p><em>Fig. 2. (a) Table 1's competition-key column for the cohort. (b) One ranking (each user's own
+history), counted five ways, scored under answer keys counted the same five ways. Bold marks the best ranking
+in each column. Each key is best served by its own count, and counts of airings or days lift plain history to
+0.45.</em></p>
+</div>
+
+<h2>4. Finding the answer key, and the final model</h2>
+<p><strong>First round.</strong> Everything counted seconds. The hybrid generated candidates from the user's own programmes,
+each method's top-N and the exposure feature (70.5% of answer pairs reached the pool), then re-ranked them
+with LambdaRank (LightGBM). On the hold-out it scored 0.347 against 0.324 for the best single signal, and
+0.32279 on Kaggle. The probe was popularity: 0.181 on the hold-out but 0.284 on Kaggle, almost level with the
+personal methods. I re-labelled the hold-out under other plausible keys and scored fixed rankings against each
+(Fig. 2b; <code>experiments/probe_target.py</code>, <code>probe_matrix.py</code>). Count-based keys reproduce the public pattern:
+with a views key, popularity lands at 0.284 on the hold-out. A ranking counted the same way as the key wins its
+column. The key therefore counts airings, not seconds. The shared material then supplied the exact rule
+(≥ 80% coverage).</p>
+<p><strong>Habit × schedule</strong> (<code>src/habit.py</code>), for a user <em>u</em>, programme <em>s</em> and channel <em>c</em>:
+<em>q</em> = watched airings of <em>s</em> on <em>c</em> in the history weeks, each weighted 0.5<sup>age / 10 weeks</sup>;
+<em>e</em> = airings of <em>s</em> on <em>c</em> on days when <em>u</em> appears in the log at all, with the same weights;
+rate = min(1, <em>q</em> / (<em>e</em> + 30)); score(<em>u</em>, <em>s</em>) = Σ<sub><em>c</em></sub> rate × (airings of <em>s</em> on <em>c</em> in the
+target weeks). The top five are taken, and empty slots go to popularity. The schedule factor makes the model
+forward-looking: a programme that is off air, or rarely broadcast, in the target weeks cannot rank.</p>
+<p><strong>What carries it</strong> (cohort MAP@5): full model 0.3997. Without the target-week schedule it falls to 0.187;
+without the prior, 0.367; without recency weighting, 0.397. Without the active-day correction it scores
+0.4001: the June logging gap that motivates the correction lies outside my hold-out history, so this check can
+neither confirm nor refute it. A sweep of half-life {5, 10, 20} weeks × prior {10, 30, 100} stays within
+0.393–0.3997, with the best at the submitted 10 / 30. One choice was my own: the description specifies
+recency weights for <em>q</em> only, and I applied the same weights to <em>e</em>.</p>
+<h2>5. Two users</h2>
+<p>Both users are from the hold-out cohort: the users at the 90th and 10th percentiles of watched airings in
+weeks 11–20. The rule is fixed in <code>experiments/two_users.py</code> and was set before the lists were seen. Ids in
+<strong>bold ✓</strong> are in the user's answer for weeks 21–30, and <sup>n</sup> marks a programme the user had not
+watched to 80% before. Titles and categories are looked up from the schedule as they appear in one of the programme's listings (an
+id groups listings whose titles vary, e.g. <em>ТСН</em> and <em>ТСН. Неделя</em>).</p>
+<p class=tcap><b>Heavy viewer &mdash; 175 watched airings of 89 programmes in weeks 11&ndash;20</b> (user 4558249534785348973)</p>
+<table class=ids><tr><th></th><th>#1</th><th>#2</th><th>#3</th><th>#4</th><th>#5</th><th>hits</th></tr><tr><td><i>history 11&ndash;20 (watched&times;)</i></td><td>2400467 (22)</td><td>240081 (15)</td><td>10003159 (10)</td><td>5200464 (7)</td><td>2400508 (6)</td><td></td></tr><tr><td><i>answer 21&ndash;30</i></td><td>500281</td><td>240081</td><td>200432</td><td>2400480</td><td>2400508</td><td></td></tr><tr><td>popularity</td><td><b>2400480&#10003;</b></td><td><b>240081&#10003;</b></td><td>2400467</td><td>20088<sup>n</sup></td><td><b>2400508&#10003;</b></td><td>3</td></tr><tr><td>CBF</td><td>400335</td><td>700389</td><td>400357</td><td>500331</td><td>400471<sup>n</sup></td><td>0</td></tr><tr><td>association rules</td><td><b>2400480&#10003;</b></td><td><b>240081&#10003;</b></td><td><b>2400508&#10003;</b></td><td>6500479</td><td>2400467</td><td>3</td></tr><tr><td>MF: PureSVD</td><td>700389</td><td>500331</td><td>2400467</td><td>400335</td><td><b>240081&#10003;</b></td><td>1</td></tr><tr><td>PPR (co-view graph)</td><td><b>2400480&#10003;</b></td><td><b>240081&#10003;</b></td><td>2400467</td><td>700389</td><td><b>2400508&#10003;</b></td><td>3</td></tr><tr><td><b>Habit x schedule</b></td><td>2400467</td><td><b>240081&#10003;</b></td><td><b>2400508&#10003;</b></td><td>5200464</td><td>10002893</td><td>2</td></tr></table>
+<p class=tcap><b>Light viewer &mdash; 15 watched airings of 10 programmes in weeks 11&ndash;20</b> (user 52369349052901997)</p>
+<table class=ids><tr><th></th><th>#1</th><th>#2</th><th>#3</th><th>#4</th><th>#5</th><th>hits</th></tr><tr><td><i>history 11&ndash;20 (watched&times;)</i></td><td>2400480 (4)</td><td>240081 (2)</td><td>6200371 (2)</td><td>700389 (1)</td><td>6700482 (1)</td><td></td></tr><tr><td><i>answer 21&ndash;30</i></td><td>1000236</td><td>2400480</td><td>10002253</td><td>200352</td><td>6500479</td><td></td></tr><tr><td>popularity</td><td><b>2400480&#10003;</b></td><td>240081</td><td>2400467<sup>n</sup></td><td>20088<sup>n</sup></td><td>2400508<sup>n</sup></td><td>1</td></tr><tr><td>CBF</td><td><b>2400480&#10003;</b></td><td>240081</td><td>5900319<sup>n</sup></td><td>700389</td><td>90078209<sup>n</sup></td><td>1</td></tr><tr><td>association rules</td><td><b>2400480&#10003;</b></td><td>240081</td><td><b>6500479&#10003;</b><sup>n</sup></td><td>2400467<sup>n</sup></td><td>2400508<sup>n</sup></td><td>2</td></tr><tr><td>MF: PureSVD</td><td><b>2400480&#10003;</b></td><td>240081</td><td>700389</td><td>200469<sup>n</sup></td><td>200432<sup>n</sup></td><td>1</td></tr><tr><td>PPR (co-view graph)</td><td><b>2400480&#10003;</b></td><td>700389</td><td>240081</td><td>10002514</td><td>2400508<sup>n</sup></td><td>1</td></tr><tr><td><b>Habit x schedule</b></td><td><b>2400480&#10003;</b></td><td>240081</td><td>6200371</td><td>700389</td><td>6700482</td><td>1</td></tr></table>
+<table class=legend><tr><th>id</th><th>title</th><th>category</th><th>id</th><th>title</th><th>category</th><th>id</th><th>title</th><th>category</th></tr><tr><td><b>20088</b></td><td>Завтрак с 1+1. Информационно-&hellip;</td><td>Развлечения</td><td><b>200352</b></td><td>Вечерний квартал</td><td>Развлечения</td><td><b>200432</b></td><td>Дизель-шоу. Дайджест</td><td>Развлечения</td></tr><tr><td><b>200469</b></td><td>Варьяты</td><td>Развлечения</td><td><b>240081</b></td><td>Факты. День</td><td>Инфо</td><td><b>400335</b></td><td>Хата на тата, 5 сезон, 18 эп</td><td>Развлечения</td></tr><tr><td><b>400357</b></td><td>Холостяк, 10 сезон, 13 эп. По&hellip;</td><td>Развлечения</td><td><b>400471</b></td><td>Заробітчани, 4 сезон, 19 эп.&hellip;</td><td>Развлечения</td><td><b>500281</b></td><td>Ток-шоу Говорит Украина</td><td>Развлечения</td></tr><tr><td><b>500331</b></td><td>Один за всех</td><td>Развлечения</td><td><b>700389</b></td><td>Кто сверху?</td><td>Развлечения</td><td><b>1000236</b></td><td>Все женщины ведьмы, 8 сезон,&hellip;</td><td>Сериалы</td></tr><tr><td><b>2400467</b></td><td>Викна-Новости</td><td>Инфо</td><td><b>2400480</b></td><td>ТСН</td><td>Инфо</td><td><b>2400508</b></td><td>Сегодня</td><td>Инфо</td></tr><tr><td><b>5200464</b></td><td>В поисках истины</td><td>Познавательное</td><td><b>5900319</b></td><td>Абзац!</td><td>Инфо</td><td><b>6200371</b></td><td>ДжеДАИ</td><td>Познавательное</td></tr><tr><td><b>6500479</b></td><td>Мир наизнанку</td><td>Познавательное</td><td><b>6700482</b></td><td>Секретные материалы</td><td>Другое</td><td><b>10002253</b></td><td>Форс-мажоры, 3 сезон, 7 с. Он&hellip;</td><td>Сериалы</td></tr><tr><td><b>10002514</b></td><td>Кухня</td><td>Сериалы</td><td><b>10002893</b></td><td>Когда мы дома</td><td>Сериалы</td><td><b>10003159</b></td><td>Ничто не случается дважды, 16&hellip;</td><td>Сериалы</td></tr><tr><td><b>90078209</b></td><td>Хоббит: Битва пяти воинств</td><td>Фильмы</td></tr></table>
+
+<h2>6. Which strategy would I select for this platform, and why?</h2>
+<p><strong>Habit × schedule as the default "your programmes this week" list, with popularity filling empty slots, and a
+co-view method (association rules) as a separate "viewers like you also watch" row.</strong></p>
+<ul>
+<li><strong>Validation and test.</strong> Habit × schedule scores 0.400 on the hold-out cohort, against 0.305 for the best
+  course method and 0.304 for popularity. On Kaggle it reached 0.422, against 0.284 for popularity. Its
+  hyperparameters are flat (0.393–0.400 across the sweep), so the score does not hinge on tuning.</li>
+<li><strong>Familiar preferences, not discovery.</strong> All five of its ids are programmes each user already watched. For
+  the heavy viewer it found <em>Факты. День</em> and <em>Сегодня</em> but missed <em>ТСН</em>. Popularity and PPR caught <em>ТСН</em>: the
+  user had watched it to the end only twice in weeks 11–20, and it entered their top-5 in weeks 21–30. For the light
+  viewer, four of the five answer programmes were ones they had never watched to the end (three without a
+  single minute-long overlap in their history), and the model could return only the user's own five. Association rules found <em>Мир наизнанку</em>, which the user had not watched before and did watch in
+  weeks 21–30. Co-viewing reaches where habit has no data. That is one user, not evidence that the rules'
+  other unfamiliar picks are useful.</li>
+<li><strong>How the methods differ.</strong> Association rules capture directional co-viewing and, by construction, nothing
+  of the user's own habit. MF compresses taste into factors and, with ALS, loses the difference between habit
+  and sample. CBF knows what kind of programme a user watches but not which one, so its lists drift to
+  same-category shows (0.197). It is still the only method that can place a programme nobody has watched.
+  PPR's diffusion pulls the list towards what its neighbours' audiences watch; at the selected α = 0.85 it
+  ends level with popularity. Popularity does well because ten programmes make up 45.9% of all answer rows:
+  five news and morning programmes, three children's cartoons and two documentary-style series.</li>
+<li><strong>Cost and experience.</strong> The final model is a few joins and group-bys: about 25 s for 1,260 users, no
+  training, and each item can be explained ("you watch it 3 times in 5 when it airs; it airs 60 times in the
+  coming weeks"). The LambdaRank hybrid took 3–8 min end to end in my runs and scored lower here. The lists it
+  produces are linear-TV habits, mostly news and talk shows, with no exploration. That is what the metric
+  rewards, but a discovery row would need its own evidence, which this data cannot give.</li>
+</ul>
+<p><strong>Limitations.</strong> Only 10.8% of schedule rows carry an id, so 47% of logged seconds can never become an
+interaction. The answer-key rule was inferred from public scores and taken from shared material, not read from
+the organisers. The history (March–July 2020, a lockdown period) and the test (August–October) are different
+seasons, and the hold-out cannot show how much that costs. The log covers this platform only: absence from it
+does not mean a user never saw a programme. Children's cartoons among the most common answers suggest that
+one account is often a household, not a person. 65 cohort users receive fewer than five scored programmes, and
+the four course methods were evaluated on seconds input. Re-counting their input in watched airings is the
+obvious next step, and it is untested. No online test or business outcome is claimed.</p>
+<h2>7. Verification, reproduction and records</h2>
+<p><strong>What I personally verified.</strong></p>
+<div class="todo">
+TODO (to be completed before submission): open the competition page and confirm the designated submission's
+public score 0.42168 (Fig. 1); open <code>submissions/submission_habit.csv</code> and confirm 1,260 rows with
+five ids each; run <code>python tests/check_pipeline.py</code> and confirm the checks pass; spot-check one user
+from Table 2 against the schedule (title and category of one id).
+</div>
+
+<p><strong>Reproduction.</strong> <code>python src/ingest.py</code> (about 1 min) → <code>python src/predict.py</code> (about 25 s) writes the
+designated file. <code>--first-submission</code> rebuilds the four first-round files. <code>tests/check_pipeline.py --repro</code>
+runs 9 checks: unit cases, exact ids, join bounds, time order, leakage for both rounds, file format, the 80%
+rule, and a byte-identical rebuild of all five files sent to Kaggle. Environment: Windows 11, Python 3.12.10,
+12 logical CPUs, 15.7 GB RAM; pandas 2.3.3, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0, implicit 0.7.3,
+LightGBM 4.6.0. Seed 20260112 for ALS, SVD and LightGBM; the final model is deterministic.</p>
+<p><strong>Disclosure.</strong> <em>Shared material:</em> a classmate's write-up of their solution (repository
+<code>Marrrik/sweettv-recsys</code>) gave the 80% rule and the idea of the final model, with its half-life and prior. I
+implemented it from that description. I read the repository's README once, to find where the rule came from,
+and did not read or copy its code. <em>AI assistance:</em> the work was done with Claude Code, and the unmodified
+session export is submitted with this report. <em>Libraries:</em> as listed above, plus Matplotlib. <em>Data:</em> Kaggle
+competition files, not redistributed.</p></body></html>

@@ -1,0 +1,785 @@
+{
+ "target": "watched",
+ "cohort_users": 1230,
+ "all_users": 4599,
+ "candidates": 6376,
+ "fill": "history top-5 frequency",
+ "sweeps": {
+  "cbf": [
+   {
+    "setting": "log-minute profile, all fields",
+    "params": {
+     "weighting": "log",
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.02118157181571816,
+    "map_all": 0.03174349496267305,
+    "hit_cohort": 0.038706434316353885,
+    "fallback_users_cohort": 0,
+    "seconds": 5.2
+   },
+   {
+    "setting": "category + genres + people",
+    "params": {
+     "fields": [
+      "category",
+      "genre",
+      "people"
+     ]
+    },
+    "map_cohort": 0.11465785907859079,
+    "map_all": 0.10796151337247227,
+    "hit_cohort": 0.15616621983914208,
+    "fallback_users_cohort": 0,
+    "seconds": 4.4
+   },
+   {
+    "setting": "+ channel",
+    "params": {
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people"
+     ]
+    },
+    "map_cohort": 0.1580508130081301,
+    "map_all": 0.14562054552922132,
+    "hit_cohort": 0.20810991957104558,
+    "fallback_users_cohort": 0,
+    "seconds": 4.2
+   },
+   {
+    "setting": "+ title",
+    "params": {
+     "fields": [
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.16335456187895211,
+    "map_all": 0.14833073615037085,
+    "hit_cohort": 0.21833109919571045,
+    "fallback_users_cohort": 0,
+    "seconds": 4.6
+   },
+   {
+    "setting": "all fields",
+    "params": {
+     "fields": [
+      "channel",
+      "category",
+      "genre",
+      "people",
+      "title"
+     ]
+    },
+    "map_cohort": 0.19656639566395667,
+    "map_all": 0.17534699572370804,
+    "hit_cohort": 0.25452412868632707,
+    "fallback_users_cohort": 0,
+    "seconds": 4.8
+   }
+  ],
+  "rules": [
+   {
+    "setting": "basket>=5 min, support>=10",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 10
+    },
+    "map_cohort": 0.2703712737127371,
+    "map_all": 0.2468113841173202,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 9.9
+   },
+   {
+    "setting": "basket>=5 min, support>=20",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 20
+    },
+    "map_cohort": 0.27031436314363144,
+    "map_all": 0.24680425696407435,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 9.3
+   },
+   {
+    "setting": "basket>=5 min, support>=50",
+    "params": {
+     "min_minutes": 5,
+     "min_support": 50
+    },
+    "map_cohort": 0.2701327913279133,
+    "map_all": 0.24665603633640162,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 9.6
+   },
+   {
+    "setting": "basket>=10 min, support>=10",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 10
+    },
+    "map_cohort": 0.2693170731707317,
+    "map_all": 0.24593335507719072,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 9.1
+   },
+   {
+    "setting": "basket>=10 min, support>=20",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 20
+    },
+    "map_cohort": 0.26913279132791323,
+    "map_all": 0.24578283926457442,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 8.2
+   },
+   {
+    "setting": "basket>=10 min, support>=50",
+    "params": {
+     "min_minutes": 10,
+     "min_support": 50
+    },
+    "map_cohort": 0.26897831978319786,
+    "map_all": 0.24553266410572347,
+    "hit_cohort": 0.3295911528150134,
+    "fallback_users_cohort": 0,
+    "seconds": 8.1
+   },
+   {
+    "setting": "basket>=30 min, support>=10",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 10
+    },
+    "map_cohort": 0.2671887985546522,
+    "map_all": 0.2444181706168008,
+    "hit_cohort": 0.3297587131367292,
+    "fallback_users_cohort": 1,
+    "seconds": 5.2
+   },
+   {
+    "setting": "basket>=30 min, support>=20",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 20
+    },
+    "map_cohort": 0.26703432700993673,
+    "map_all": 0.24430474016090453,
+    "hit_cohort": 0.3297587131367292,
+    "fallback_users_cohort": 1,
+    "seconds": 5.9
+   },
+   {
+    "setting": "basket>=30 min, support>=50",
+    "params": {
+     "min_minutes": 30,
+     "min_support": 50
+    },
+    "map_cohort": 0.2668925022583559,
+    "map_all": 0.24369428136551424,
+    "hit_cohort": 0.3297587131367292,
+    "fallback_users_cohort": 1,
+    "seconds": 5.4
+   }
+  ],
+  "mf_als": [
+   {
+    "setting": "positives>=0 min, alpha=2",
+    "params": {
+     "min_minutes": 0,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.10009914182475159,
+    "map_all": 0.11800651107728735,
+    "hit_cohort": 0.1554959785522788,
+    "fallback_users_cohort": 0,
+    "seconds": 4.6
+   },
+   {
+    "setting": "positives>=0 min, alpha=10",
+    "params": {
+     "min_minutes": 0,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.02975158084914183,
+    "map_all": 0.04687728008504264,
+    "hit_cohort": 0.05144101876675603,
+    "fallback_users_cohort": 0,
+    "seconds": 4.1
+   },
+   {
+    "setting": "positives>=120 min, alpha=2",
+    "params": {
+     "min_minutes": 120,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.17670392953929542,
+    "map_all": 0.17633012007441232,
+    "hit_cohort": 0.26926943699731903,
+    "fallback_users_cohort": 24,
+    "seconds": 0.9
+   },
+   {
+    "setting": "positives>=120 min, alpha=10",
+    "params": {
+     "min_minutes": 120,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.12263324299909667,
+    "map_all": 0.13162227295788942,
+    "hit_cohort": 0.20123994638069706,
+    "fallback_users_cohort": 24,
+    "seconds": 0.9
+   },
+   {
+    "setting": "positives>=600 min, alpha=2",
+    "params": {
+     "min_minutes": 600,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.24832181571815717,
+    "map_all": 0.22929984779299847,
+    "hit_cohort": 0.30328418230563003,
+    "fallback_users_cohort": 400,
+    "seconds": 0.3
+   },
+   {
+    "setting": "positives>=600 min, alpha=10",
+    "params": {
+     "min_minutes": 600,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.24799728997289971,
+    "map_all": 0.22905583339373298,
+    "hit_cohort": 0.3031166219839142,
+    "fallback_users_cohort": 400,
+    "seconds": 0.4
+   },
+   {
+    "setting": "positives>=1200 min, alpha=2",
+    "params": {
+     "min_minutes": 1200,
+     "alpha": 2,
+     "factors": 32
+    },
+    "map_cohort": 0.2560968834688347,
+    "map_all": 0.2373067212679085,
+    "hit_cohort": 0.3171916890080429,
+    "fallback_users_cohort": 801,
+    "seconds": 0.2
+   },
+   {
+    "setting": "positives>=1200 min, alpha=10",
+    "params": {
+     "min_minutes": 1200,
+     "alpha": 10,
+     "factors": 32
+    },
+    "map_cohort": 0.25824186991869924,
+    "map_all": 0.23947699983088114,
+    "hit_cohort": 0.31618632707774796,
+    "fallback_users_cohort": 801,
+    "seconds": 0.3
+   }
+  ],
+  "mf_svd": [
+   {
+    "setting": "k=16",
+    "params": {
+     "factors": 16
+    },
+    "map_cohort": 0.2875056458897922,
+    "map_all": 0.26645454325819623,
+    "hit_cohort": 0.3615951742627346,
+    "fallback_users_cohort": 0,
+    "seconds": 0.7
+   },
+   {
+    "setting": "k=32",
+    "params": {
+     "factors": 32
+    },
+    "map_cohort": 0.268396793134598,
+    "map_all": 0.24883603923558262,
+    "hit_cohort": 0.3512064343163539,
+    "fallback_users_cohort": 0,
+    "seconds": 1.1
+   },
+   {
+    "setting": "k=64",
+    "params": {
+     "factors": 64
+    },
+    "map_cohort": 0.2536443089430894,
+    "map_all": 0.23205757290232176,
+    "hit_cohort": 0.3374664879356568,
+    "fallback_users_cohort": 0,
+    "seconds": 2.6
+   },
+   {
+    "setting": "k=128",
+    "params": {
+     "factors": 128
+    },
+    "map_cohort": 0.245693315266486,
+    "map_all": 0.22457309560049288,
+    "hit_cohort": 0.3305965147453083,
+    "fallback_users_cohort": 0,
+    "seconds": 5.9
+   },
+   {
+    "setting": "k=256",
+    "params": {
+     "factors": 256
+    },
+    "map_cohort": 0.25290831074977416,
+    "map_all": 0.22651705684810702,
+    "hit_cohort": 0.3316018766756032,
+    "fallback_users_cohort": 0,
+    "seconds": 15.9
+   }
+  ],
+  "ppr": [
+   {
+    "setting": "cosine, alpha=0.15",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.15
+    },
+    "map_cohort": 0.2655948509485095,
+    "map_all": 0.23634817955594212,
+    "hit_cohort": 0.3429959785522788,
+    "fallback_users_cohort": 0,
+    "seconds": 51.5
+   },
+   {
+    "setting": "cosine, alpha=0.3",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.3
+    },
+    "map_cohort": 0.26934959349593496,
+    "map_all": 0.24011065207412238,
+    "hit_cohort": 0.348357908847185,
+    "fallback_users_cohort": 0,
+    "seconds": 46.1
+   },
+   {
+    "setting": "cosine, alpha=0.5",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.5
+    },
+    "map_cohort": 0.27519060523938577,
+    "map_all": 0.24555458916189513,
+    "hit_cohort": 0.3550603217158177,
+    "fallback_users_cohort": 0,
+    "seconds": 43.9
+   },
+   {
+    "setting": "cosine, alpha=0.7",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.7
+    },
+    "map_cohort": 0.27880420054200544,
+    "map_all": 0.2503280906477254,
+    "hit_cohort": 0.3560656836461126,
+    "fallback_users_cohort": 0,
+    "seconds": 45.1
+   },
+   {
+    "setting": "cosine, alpha=0.85",
+    "params": {
+     "weight": "cosine",
+     "alpha": 0.85
+    },
+    "map_cohort": 0.28467953929539297,
+    "map_all": 0.25930890773356524,
+    "hit_cohort": 0.35941689008042893,
+    "fallback_users_cohort": 0,
+    "seconds": 43.9
+   },
+   {
+    "setting": "count, alpha=0.15",
+    "params": {
+     "weight": "count",
+     "alpha": 0.15
+    },
+    "map_cohort": 0.26834688346883473,
+    "map_all": 0.239345811891474,
+    "hit_cohort": 0.34617962466487934,
+    "fallback_users_cohort": 0,
+    "seconds": 44.3
+   },
+   {
+    "setting": "count, alpha=0.3",
+    "params": {
+     "weight": "count",
+     "alpha": 0.3
+    },
+    "map_cohort": 0.2765216802168022,
+    "map_all": 0.2468214708511512,
+    "hit_cohort": 0.35656836461126007,
+    "fallback_users_cohort": 0,
+    "seconds": 34.9
+   },
+   {
+    "setting": "count, alpha=0.5",
+    "params": {
+     "weight": "count",
+     "alpha": 0.5
+    },
+    "map_cohort": 0.2869957091237579,
+    "map_all": 0.25790510014254303,
+    "hit_cohort": 0.3671246648793566,
+    "fallback_users_cohort": 0,
+    "seconds": 17.4
+   },
+   {
+    "setting": "count, alpha=0.7",
+    "params": {
+     "weight": "count",
+     "alpha": 0.7
+    },
+    "map_cohort": 0.30329945799457997,
+    "map_all": 0.27349798265323383,
+    "hit_cohort": 0.3790214477211796,
+    "fallback_users_cohort": 0,
+    "seconds": 17.4
+   },
+   {
+    "setting": "count, alpha=0.85",
+    "params": {
+     "weight": "count",
+     "alpha": 0.85
+    },
+    "map_cohort": 0.30479923215898824,
+    "map_all": 0.27802173177743955,
+    "hit_cohort": 0.36544906166219837,
+    "fallback_users_cohort": 0,
+    "seconds": 17.4
+   }
+  ],
+  "exposure": [
+   {
+    "setting": "60-min slots",
+    "params": {
+     "slot": 3600
+    },
+    "map_cohort": 0.2613834688346883,
+    "map_all": 0.23982067357638134,
+    "hit_cohort": 0.34718498659517427,
+    "fallback_users_cohort": 1,
+    "seconds": 1.3
+   },
+   {
+    "setting": "30-min slots",
+    "params": {
+     "slot": 1800
+    },
+    "map_cohort": 0.2734568654019874,
+    "map_all": 0.25132039573820397,
+    "hit_cohort": 0.3574061662198391,
+    "fallback_users_cohort": 1,
+    "seconds": 1.3
+   },
+   {
+    "setting": "15-min slots",
+    "params": {
+     "slot": 900
+    },
+    "map_cohort": 0.27914814814814815,
+    "map_all": 0.25633887801696026,
+    "hit_cohort": 0.3617627345844504,
+    "fallback_users_cohort": 1,
+    "seconds": 1.6
+   }
+  ],
+  "habit": [
+   {
+    "setting": "half-life 5.0 wk, prior 10.0",
+    "params": {
+     "half_life": 5.0,
+     "prior": 10.0
+    },
+    "map_cohort": 0.3927310298102981,
+    "map_all": 0.3508765794496388,
+    "hit_cohort": 0.45961796246648795,
+    "fallback_users_cohort": 65,
+    "seconds": 2.1
+   },
+   {
+    "setting": "half-life 5.0 wk, prior 30.0",
+    "params": {
+     "half_life": 5.0,
+     "prior": 30.0
+    },
+    "map_cohort": 0.39735727190605236,
+    "map_all": 0.3543560798241163,
+    "hit_cohort": 0.4636394101876676,
+    "fallback_users_cohort": 65,
+    "seconds": 2.1
+   },
+   {
+    "setting": "half-life 5.0 wk, prior 100.0",
+    "params": {
+     "half_life": 5.0,
+     "prior": 100.0
+    },
+    "map_cohort": 0.3981208220415537,
+    "map_all": 0.3559080476432075,
+    "hit_cohort": 0.4656501340482574,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 10.0 wk, prior 10.0",
+    "params": {
+     "half_life": 10.0,
+     "prior": 10.0
+    },
+    "map_cohort": 0.39330103884372175,
+    "map_all": 0.35154230388248653,
+    "hit_cohort": 0.4597855227882037,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 10.0 wk, prior 30.0",
+    "params": {
+     "half_life": 10.0,
+     "prior": 30.0
+    },
+    "map_cohort": 0.39971318879855466,
+    "map_all": 0.3564440941267425,
+    "hit_cohort": 0.4668230563002681,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 10.0 wk, prior 100.0",
+    "params": {
+     "half_life": 10.0,
+     "prior": 100.0
+    },
+    "map_cohort": 0.39920280036133693,
+    "map_all": 0.3571533062743108,
+    "hit_cohort": 0.46615281501340483,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 20.0 wk, prior 10.0",
+    "params": {
+     "half_life": 20.0,
+     "prior": 10.0
+    },
+    "map_cohort": 0.3931194670280036,
+    "map_all": 0.35111237950279045,
+    "hit_cohort": 0.46079088471849866,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 20.0 wk, prior 30.0",
+    "params": {
+     "half_life": 20.0,
+     "prior": 30.0
+    },
+    "map_cohort": 0.39867253839205063,
+    "map_all": 0.35607952211833493,
+    "hit_cohort": 0.46548257372654156,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   },
+   {
+    "setting": "half-life 20.0 wk, prior 100.0",
+    "params": {
+     "half_life": 20.0,
+     "prior": 100.0
+    },
+    "map_cohort": 0.3991074977416441,
+    "map_all": 0.35696546350655944,
+    "hit_cohort": 0.467828418230563,
+    "fallback_users_cohort": 65,
+    "seconds": 2.0
+   }
+  ]
+ },
+ "methods": {
+  "popularity": {
+   "map_cohort": 0.3035386178861788,
+   "map_all": 0.2757990263583871,
+   "hit_cohort": 0.3773458445040214,
+   "fallback_users_cohort": 0,
+   "seconds": 0.0,
+   "params": {}
+  },
+  "history (re-watch baseline)": {
+   "map_cohort": 0.2632086720867209,
+   "map_all": 0.2337421178517069,
+   "hit_cohort": 0.3398123324396783,
+   "fallback_users_cohort": 3,
+   "seconds": 0.1,
+   "params": {}
+  },
+  "CBF": {
+   "map_cohort": 0.19656639566395667,
+   "map_all": 0.17534699572370804,
+   "hit_cohort": 0.25452412868632707,
+   "fallback_users_cohort": 0,
+   "seconds": 1.4,
+   "params": {
+    "fields": [
+     "channel",
+     "category",
+     "genre",
+     "people",
+     "title"
+    ]
+   }
+  },
+  "association rules": {
+   "map_cohort": 0.2703712737127371,
+   "map_all": 0.2468113841173202,
+   "hit_cohort": 0.3295911528150134,
+   "fallback_users_cohort": 0,
+   "seconds": 2.5,
+   "params": {
+    "min_minutes": 5,
+    "min_support": 10
+   }
+  },
+  "MF: implicit ALS": {
+   "map_cohort": 0.25824186991869924,
+   "map_all": 0.23947699983088114,
+   "hit_cohort": 0.31618632707774796,
+   "fallback_users_cohort": 801,
+   "seconds": 0.1,
+   "params": {
+    "min_minutes": 1200,
+    "alpha": 10,
+    "factors": 32
+   }
+  },
+  "MF: PureSVD": {
+   "map_cohort": 0.2875056458897922,
+   "map_all": 0.26645454325819623,
+   "hit_cohort": 0.3615951742627346,
+   "fallback_users_cohort": 0,
+   "seconds": 0.2,
+   "params": {
+    "factors": 16
+   }
+  },
+  "PPR (co-view graph)": {
+   "map_cohort": 0.30479923215898824,
+   "map_all": 0.27802173177743955,
+   "hit_cohort": 0.36544906166219837,
+   "fallback_users_cohort": 0,
+   "seconds": 17.5,
+   "params": {
+    "weight": "count",
+    "alpha": 0.85
+   }
+  },
+  "habit x schedule (seconds, channel-hours)": {
+   "map_cohort": 0.27914814814814815,
+   "map_all": 0.25633887801696026,
+   "hit_cohort": 0.3617627345844504,
+   "fallback_users_cohort": 1,
+   "seconds": 1.7,
+   "params": {
+    "slot": 900
+   }
+  },
+  "habit x schedule (watched-airing rate)": {
+   "map_cohort": 0.39971318879855466,
+   "map_all": 0.3564440941267425,
+   "hit_cohort": 0.4668230563002681,
+   "fallback_users_cohort": 65,
+   "seconds": 2.0,
+   "params": {
+    "half_life": 10.0,
+    "prior": 30.0
+   }
+  }
+ },
+ "habit_ablations": {
+  "full model": {
+   "map_cohort": 0.39971318879855466,
+   "map_all": 0.3564440941267425,
+   "hit_cohort": 0.4668230563002681,
+   "fallback_users_cohort": 65,
+   "seconds": 2.0
+  },
+  "no recency weighting": {
+   "map_cohort": 0.39665018066847335,
+   "map_all": 0.3552638858689087,
+   "hit_cohort": 0.4649798927613941,
+   "fallback_users_cohort": 65,
+   "seconds": 2.0
+  },
+  "no active-day correction": {
+   "map_cohort": 0.40007091237579046,
+   "map_all": 0.3558371989079752,
+   "hit_cohort": 0.46665549597855227,
+   "fallback_users_cohort": 65,
+   "seconds": 1.7
+  },
+  "no target-week schedule": {
+   "map_cohort": 0.18677168021680218,
+   "map_all": 0.16832252180425694,
+   "hit_cohort": 0.26390750670241286,
+   "fallback_users_cohort": 65,
+   "seconds": 2.0
+  },
+  "no prior (rate = q / e)": {
+   "map_cohort": 0.36704923215898827,
+   "map_all": 0.3266135150153415,
+   "hit_cohort": 0.43615951742627346,
+   "fallback_users_cohort": 65,
+   "seconds": 2.0
+  }
+ },
+ "environment": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "logical_cpus": 12,
+  "python": "3.12.10",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "scipy": "1.17.0",
+  "scikit-learn": "1.8.0",
+  "implicit": "0.7.3",
+  "lightgbm": "4.6.0",
+  "seeds": {
+   "lightgbm": 20260112,
+   "als/svd": 20260112
+  }
+ }
+}

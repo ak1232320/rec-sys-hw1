@@ -12,3 +12,15 @@ __pycache__/
 # A04: the raw UCI Online Retail workbook (23 MB) and its pandas caches. Download it
 # into hw4/data_raw/ to rerun the experiments (see hw4/README.md).
 hw4/data_raw/
+
+# Midterm: the Kaggle API token and the competition data (downloaded, not mine to
+# republish). See midterm/README.md for how to fetch the data.
+midterm/kaggle-token.txt
+midterm/data_raw/
+
+# Midterm: parquet caches rebuilt by src/ingest.py from the raw competition files.
+midterm/work/
+
+# Midterm: the exam statement (course material, not mine to republish).
+midterm/LLM4Rec. Midterm Quiz.pdf
+midterm/exam_quiz_GSB.md
