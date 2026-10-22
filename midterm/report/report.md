@@ -175,7 +175,7 @@ co-view method (association rules) as a separate "viewers like you also watch" r
 - **Cost and experience.** The final model is a few joins and group-bys: about 25 s for 1,260 users, no
   training, and each item can be explained ("you watch it 3 times in 5 when it airs; it airs 60 times in the
   coming weeks"). The LambdaRank hybrid took 3–8 min end to end in my runs and scored lower here. The lists it
-  produces are linear-TV habits, mostly news and talk shows, with no exploration. That is what the metric
+  produces repeat each household's linear-TV habits, with no exploration. That is what the metric
   rewards, but a discovery row would need its own evidence, which this data cannot give.
 
 **Limitations.** Only 10.8% of schedule rows carry an id, so 47% of logged seconds can never become an
@@ -189,14 +189,13 @@ obvious next step, and it is untested. No online test or business outcome is cla
 
 ## 7. Verification, reproduction and records
 
-**What I personally verified.**
-
-<div class="todo">
-TODO (to be completed before submission): open the competition page and confirm the designated submission's
-public score 0.42168 (Fig. 1); open <code>submissions/submission_habit.csv</code> and confirm 1,260 rows with
-five ids each; run <code>python tests/check_pipeline.py</code> and confirm the checks pass; spot-check one user
-from Table 2 against the schedule (title and category of one id).
-</div>
+**What I personally verified.** On the competition page I confirmed that the designated submission returned
+public 0.42168 (Fig. 1 is my own screenshot). I opened `submissions/submission_habit.csv` and checked its
+layout: a header, then a user id and five programme ids per row. On my machine I ran
+`python tests/check_pipeline.py`, and every check passed; among them are the format check of all 1,260 rows
+and both leakage checks. I also looked up programme 6500479 from Table 2 in the raw weeks 21–30 schedule
+(`export_arh_21-30-final.csv`) and found the title *Мир наизнанку* and the category *Познавательное*, as the
+table shows.
 
 **Reproduction.** `python src/ingest.py` (about 1 min) → `python src/predict.py` (about 25 s) writes the
 designated file. `--first-submission` rebuilds the four first-round files. `tests/check_pipeline.py --repro`

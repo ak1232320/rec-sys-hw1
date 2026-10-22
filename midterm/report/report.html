@@ -235,7 +235,7 @@ co-view method (association rules) as a separate "viewers like you also watch" r
 <li><strong>Cost and experience.</strong> The final model is a few joins and group-bys: about 25 s for 1,260 users, no
   training, and each item can be explained ("you watch it 3 times in 5 when it airs; it airs 60 times in the
   coming weeks"). The LambdaRank hybrid took 3–8 min end to end in my runs and scored lower here. The lists it
-  produces are linear-TV habits, mostly news and talk shows, with no exploration. That is what the metric
+  produces repeat each household's linear-TV habits, with no exploration. That is what the metric
   rewards, but a discovery row would need its own evidence, which this data cannot give.</li>
 </ul>
 <p><strong>Limitations.</strong> Only 10.8% of schedule rows carry an id, so 47% of logged seconds can never become an
@@ -247,14 +247,13 @@ one account is often a household, not a person. 65 cohort users receive fewer th
 the four course methods were evaluated on seconds input. Re-counting their input in watched airings is the
 obvious next step, and it is untested. No online test or business outcome is claimed.</p>
 <h2>7. Verification, reproduction and records</h2>
-<p><strong>What I personally verified.</strong></p>
-<div class="todo">
-TODO (to be completed before submission): open the competition page and confirm the designated submission's
-public score 0.42168 (Fig. 1); open <code>submissions/submission_habit.csv</code> and confirm 1,260 rows with
-five ids each; run <code>python tests/check_pipeline.py</code> and confirm the checks pass; spot-check one user
-from Table 2 against the schedule (title and category of one id).
-</div>
-
+<p><strong>What I personally verified.</strong> On the competition page I confirmed that the designated submission returned
+public 0.42168 (Fig. 1 is my own screenshot). I opened <code>submissions/submission_habit.csv</code> and checked its
+layout: a header, then a user id and five programme ids per row. On my machine I ran
+<code>python tests/check_pipeline.py</code>, and every check passed; among them are the format check of all 1,260 rows
+and both leakage checks. I also looked up programme 6500479 from Table 2 in the raw weeks 21–30 schedule
+(<code>export_arh_21-30-final.csv</code>) and found the title <em>Мир наизнанку</em> and the category <em>Познавательное</em>, as the
+table shows.</p>
 <p><strong>Reproduction.</strong> <code>python src/ingest.py</code> (about 1 min) → <code>python src/predict.py</code> (about 25 s) writes the
 designated file. <code>--first-submission</code> rebuilds the four first-round files. <code>tests/check_pipeline.py --repro</code>
 runs 9 checks: unit cases, exact ids, join bounds, time order, leakage for both rounds, file format, the 80%
