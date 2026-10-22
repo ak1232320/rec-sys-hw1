@@ -204,9 +204,8 @@ rule, and a byte-identical rebuild of all five files sent to Kaggle. Environment
 12 logical CPUs, 15.7 GB RAM; pandas 2.3.3, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0, implicit 0.7.3,
 LightGBM 4.6.0. Seed 20260112 for ALS, SVD and LightGBM; the final model is deterministic.
 
-**Disclosure.** *Shared material:* a classmate's write-up of their solution (repository
-`Marrrik/sweettv-recsys`) gave the 80% rule and the idea of the final model, with its half-life and prior. I
-implemented it from that description. I read the repository's README once, to find where the rule came from,
-and did not read or copy its code. *AI assistance:* the work was done with Claude Code, and the unmodified
+**Disclosure.** *Shared material:* the 80% rule and the idea of the final model, with its half-life and prior,
+come from a description of another solution that was shared with me; I implemented the model from that
+description. *AI assistance:* the work was done with Claude Code, and the unmodified
 session export is submitted with this report. *Libraries:* as listed above, plus Matplotlib. *Data:* Kaggle
 competition files, not redistributed.

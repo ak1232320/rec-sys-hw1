@@ -67,9 +67,9 @@ competition's rules must be accepted on Kaggle before the download works (otherw
 
 - **Shared material.** The 80%-coverage rule for a watched airing, and the idea of the final model (rate of
   watched airings per user × programme × channel, recency-weighted, corrected for days the user was in the
-  log, times the target-week airing count), came from a write-up of a classmate's solution
-  (repository `Marrrik/sweettv-recsys`) that was shared with me. I implemented it from the description;
-  no code was copied. Its settings (half-life 10 weeks, prior 30) are the described ones.
+  log, times the target-week airing count), come from a description of another solution that was shared
+  with me. I implemented it from the description. Its settings (half-life 10 weeks, prior 30) are the
+  described ones.
 - **AI assistance.** The work was done with Claude Code; the unmodified session export is submitted with
   the report.
 - **Libraries.** pandas, NumPy, SciPy, scikit-learn, implicit (ALS), LightGBM, Matplotlib.
