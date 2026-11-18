@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Session 1 report — Aleksei Kosychev</title><style>
+@page { size: A4; margin: 15mm 15mm 14mm 15mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.4pt; line-height: 1.17; color: #111; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+h3 { font-size: 9.8pt; margin: 7px 0 2px; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+blockquote { margin: 3px 12px; padding: 2px 8px; border-left: 3px solid #1f3b63; background: #f2f4f7; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+pre { font-family: Consolas, 'Courier New', monospace; font-size: 8pt; background: #f2f4f7;
+      padding: 4px 6px; margin: 3px 0 5px; white-space: pre-wrap; }
+pre code { background: none; padding: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+</style></head>
+<body><h1>Who Should Fill the Slots Recency Leaves Empty? A Planned Test of LLM Asset Embeddings vs Categorical Features on FAR-Trans</h1>
+<div class="meta">
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: Individual<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-17<br>
+Assignment: Session 1 — Research Question and Minimal Study Plan (LLM4Rec, Module 2)
+</div>
+
+<h2>Abstract</h2>
+<p>Retail-investment recommendation on FAR-Trans is dominated by repetition: the median customer
+has bought 2 distinct assets, so a recency ranking of past buys fills only ~3 of the 10
+recommendation slots, and the remaining ~70% are decided by whatever <em>fills</em> the list. This
+report fixes one research question for the shared FAR-Trans ranking task (Encoder track, partly
+run): whether frozen LLM text embeddings of as-of asset metadata, used to fill those slots,
+improve nDCG@10 against next-month purchases over the identical pipeline with the starter's
+categorical features, a TF-IDF text space, or a popularity fill. The non-LLM arms are already
+run on nine quarterly cutoffs (7,125–14,926 warm users each): a content-based fill <em>loses</em> to a
+popularity fill on the subgroup whose labels contain an asset new to them (0.246 vs 0.281
+nDCG@10, paired mean difference −0.036, losing 974 user-windows against 424 wins), while an
+oracle fill shows +0.19 of headroom on the same subgroup. The gap the LLM arm must close is
+therefore real and measurable; the arm itself is planned for Session 2 with a pinned embedding
+model, ~7,200 asset texts to encode, and a budget under one US dollar.</p>
+<p><em>Index Terms</em> — financial asset recommendation, large language models, text embeddings, content-based filtering, nDCG, FAR-Trans</p>
+<h2>1. Introduction</h2>
+<p><strong>Problem.</strong> The shared course task asks for a Top-10 asset list per evaluated FAR-Trans
+customer, scored by nDCG@10 against purchases in the following 30 days, under a past-only
+protocol: as-of metadata, pre-cutoff buy history, and an eligibility rule requiring one
+pre-cutoff close price [1], [3]. Profiling the raw archive (388,048 transactions of 29,090
+customers over 320 traded assets, 2018-01-02 … 2022-11-30; metadata for 806 ISINs: 285 stocks,
+312 mutual funds, 209 bonds) shows the task's structural property: across nine quarterly cutoffs
+the median customer holds 2 distinct past assets, 91–94% of customers hold fewer than 10, so the
+recency prefix of the strongest provided baseline (<code>latest_buy</code>) covers on average only ~3 of the
+10 slots — <strong>68–70% of every list is fill</strong>. Meanwhile 28.7% of all label pairs are assets the
+customer never bought before (93.2% of them stocks), and those are exactly the pairs the prefix
+cannot reach. Whatever rule fills the slots is therefore the part of the system that decides a
+quarter of the achievable score, yet the provided baselines fill with raw popularity.</p>
+<p><strong>Research question</strong> (Encoder track; the control arms are run, the LLM arm is planned):</p>
+<blockquote>
+<p>We test whether <strong>frozen LLM text embeddings of the as-of asset description</strong> (intervention)
+improve <strong>nDCG@10 against observed purchases in the next 30 days</strong> (outcome) over <strong>the same
+pipeline whose fill space is the starter's categorical tokens, a TF-IDF text space, or plain
+popularity order</strong> (control) for <strong>the warm-cohort FAR-Trans evaluation customers, overall and
+on the subgroup whose label window contains at least one new-to-them asset</strong> (population).</p>
+</blockquote>
+<p>Control and intervention differ only in the item vector space; users, candidate universe, cutoff,
+horizon, prefix and metric are identical. A direction hypothesis: any gain should concentrate in
+the with-new-asset subgroup, where the fill is the only mechanism that can hit a label; on
+customers whose labels are all repeat purchases every fill ties by construction.</p>
+<p><strong>Research importance.</strong> Published LLM4Rec gains from text representations are measured on
+news, books and e-commerce, where items carry rich descriptions and IDs carry little signal
+[4], [5], [6]. FAR-Trans is the opposite shape: terse categorical metadata, heavy purchase
+repetition, and a popularity/recency prior that is hard to beat. Whether a semantic embedding of
+this metadata helps <em>at all</em> — and whether it can repair the measured failure of sparse text
+features against a popularity fill — is unknown and informative in both directions. A positive
+result gives a cheap, training-free way to surface new-to-user assets; a negative result says
+that in repeat-dominated financial recommendation the fill budget is better spent on priors than
+on semantics, which contradicts the default "embeddings improve content-based recommendation"
+assumption imported from other domains.</p>
+<p><strong>Business value.</strong> The named stakeholder is the <strong>product owner of a retail-investment
+recommendation feature</strong> deciding whether to add LLM-embedding infrastructure (model hosting,
+versioning, re-embedding on metadata updates) or to keep deterministic, auditable categorical
+vectors. The decision changes with either sign of the result: adoption if embeddings beat the
+popularity fill on the new-asset subgroup at cent-level cost, rejection and reallocation of the
+budget to candidate priors or reranking if they do not. A secondary stakeholder is the
+<strong>compliance reviewer</strong>: a semantic component whose behaviour is measured against observed
+purchases under an as-of protocol is auditable in a way a generative LLM advisor is not. No
+profit, return or user-acceptance claim is made or implied anywhere in this work.</p>
+<h2>2. Related Work</h2>
+<table>
+<thead>
+<tr>
+<th>Study (authors, year, venue)</th>
+<th>Method</th>
+<th>Data and evaluation</th>
+<th>Limitations and connection to the question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sanz-Cruzado, Droukas, McCreadie, 2024, IJCAI Fin-RecSys WS [1]</td>
+<td>FAR-Trans dataset release plus a benchmark of 11 classical FAR algorithms</td>
+<td>Retail transactions, prices, profiles from a large European institution; temporal evaluation</td>
+<td>No LLM-based method in the benchmark; supplies the data and the classical reference points this study builds on</td>
+</tr>
+<tr>
+<td>Wu et al., 2024, World Wide Web [4]</td>
+<td>Survey; taxonomy into discriminative and generative LLM4Rec</td>
+<td>Reviews methods using LLM text representations and external knowledge for user–item correlation</td>
+<td>Identifies textual-feature representation as the key lever but reports no measurement on financial data or repeat-purchase regimes</td>
+</tr>
+<tr>
+<td>Liu, Chen, Sakai, Wu, 2024, WSDM (ONCE) [5]</td>
+<td>Deep layers of open-source LLMs as content encoders; closed-source LLMs enrich training text</td>
+<td>News and book recommendation; up to 19.32% relative improvement over SOTA baselines</td>
+<td>Rich-text domains; trained end-to-end; leaves open whether <em>frozen</em> embeddings of terse categorical metadata help, and whether they survive a popularity prior</td>
+</tr>
+<tr>
+<td>Li et al., 2023, KDD (RecFormer) [6]</td>
+<td>Items flattened into "sentences" of key–value attributes; Longformer-like bidirectional encoder; pretrain + fine-tune</td>
+<td>Six sequential-recommendation datasets; strongest gains in low-resource and cold-start settings</td>
+<td>Requires task-specific pretraining and fine-tuning; sequential next-item objective, not a fixed-protocol Top-10 against observed purchases</td>
+</tr>
+<tr>
+<td>Spadea, Seneviratne, 2025, ICAIF (FLARKO) [7]</td>
+<td>LLM fine-tuned with Kahneman–Tversky Optimization over knowledge graphs of histories and trends</td>
+<td>Evaluated on FAR-Trans; behavioural alignment and joint profitability</td>
+<td>The LLM is a fine-tuned generative decision-maker; the contribution of the item representation itself is not isolated, and the metric is not nDCG@10 against next-period purchases</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nearest prior work.</strong> FLARKO [7] is the closest study: same dataset, LLM inside. It answers
+"can a fine-tuned LLM produce behaviourally aligned and profitable asset recommendations" and
+leaves open the question asked here: whether a <em>representation-level</em> change — swapping the item
+vector space for LLM embeddings while everything else stays fixed — moves ranking quality against
+observed purchases, and at what cost. Under our condition (as-of protocol, frozen embeddings,
+nDCG@10, popularity/recency controls) we did not find a study reporting the effect of LLM text
+embeddings on next-purchase ranking over FAR-Trans; no stronger novelty claim is made.</p>
+<h2>3. Method</h2>
+<h3>3.1 One actual data example</h3>
+<p>Read directly from the public archive [2]; the customer id is truncated to a non-identifying
+prefix.</p>
+<pre><code>source: FAR-Trans public release [2], transactions.csv   record id: transactionID 9013789
+fields: customerID, ISIN, transactionID, transactionType, timestamp, totalValue, units, channel, marketID
+values: &quot;6B15…&quot; (truncated), GRF000045002, 9013789, Buy, 2021-06-02, 999.9910544, 52.496, Branch, AEDAK
+window: label window of the 2021-06-01 cutoff (2021-06-01 … 2021-06-30); this purchase is the
+        customer's only label asset and is new to her (not in her pre-cutoff history)
+</code></pre>
+<p>Per-field provenance, with the leakage check:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Status (timestamp)</th>
+<th>Use and leakage check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customerID</td>
+<td>observed, pseudonymised</td>
+<td>join key only; never a feature</td>
+</tr>
+<tr>
+<td>ISIN, transactionType, timestamp</td>
+<td>observed (2021-06-02)</td>
+<td>a pre-cutoff <code>Buy</code> builds history; an in-window <code>Buy</code> is a label — labels never enter inputs</td>
+</tr>
+<tr>
+<td>totalValue, units</td>
+<td>observed (2021-06-02)</td>
+<td>never read: no spending, revenue or return is computed</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>observed</td>
+<td>unused</td>
+</tr>
+<tr>
+<td>assetName, assetCategory, assetSubCategory, marketID</td>
+<td>observed, as-of row dated 2018-01-02 (latest strictly before cutoff)</td>
+<td>the exact text both encoders read: "DHLOS SYNTHESIS BEST FUND OF FUNDS ΜΕΤΟΧΙΚΟ", MTF, Money Market, AEDAK</td>
+</tr>
+<tr>
+<td>sector, industry</td>
+<td><strong>missing</strong> (empty for this fund)</td>
+<td>omitted from the text; 161 of 806 assets have 5 populated categorical fields, 56 have only 2</td>
+</tr>
+<tr>
+<td>closePrice 18.9924</td>
+<td>observed (2021-05-31, last pre-cutoff)</td>
+<td>eligibility only (≥1 pre-cutoff price); never a score</td>
+</tr>
+<tr>
+<td>customerType, riskLevel, investmentCapacity</td>
+<td>observed, as-of row dated 2018-01-02</td>
+<td>display-only context; never a filter or score</td>
+</tr>
+<tr>
+<td>lastQuestionnaireDate</td>
+<td>anomaly: 2021-12-16, <em>after</em> the cutoff, inside the as-of row</td>
+<td>potential future information; excluded from all arms</td>
+</tr>
+<tr>
+<td>Predicted_* customer fields</td>
+<td>predicted/estimated by the data provider</td>
+<td>not used</td>
+</tr>
+<tr>
+<td>Label assets {GRF000045002}</td>
+<td>observed future purchase</td>
+<td>evaluation truth only</td>
+</tr>
+</tbody>
+</table>
+<p>Every input field is knowable strictly before the cutoff; the one anomalous field is excluded.
+For this customer all four provided baselines score 0.0 — the label fund sits at rank 54 in the
+popularity order and rank 39 in the CBF order — because no prefix slot can hit a fund she never
+bought. She is the population the fill rule serves.</p>
+<h3>3.2 Design: change the fill, freeze everything else</h3>
+<p>The pipeline keeps the recency prefix of the provided <code>latest_buy</code> baseline (the customer's own
+past buys, most recent first) and changes only how the remaining Top-10 slots are filled. Arms:</p>
+<ul>
+<li><code>pop_fill</code> — popularity order (control; reproduces the starter's <code>latest_buy</code> exactly, verified:
+  0 of ~106k user-lists differ);</li>
+<li><code>tokens_fill</code> — cosine in the starter's own categorical token space (its CBF features);</li>
+<li><code>tfidf_fill</code> — cosine over unigram TF-IDF of the asset text (name + categorical attributes);</li>
+<li><code>tfidf_topN</code> — the N most popular unseen assets, re-ordered by the TF-IDF cosine
+  (N ∈ {15, 20, 30, 50, 100}); isolates the candidate prior from the order;</li>
+<li><code>oracle_fill</code> — the customer's new-to-user label assets (ceiling, uses the label; not a method);</li>
+<li><code>llm_fill</code> (<strong>planned</strong>) — identical to <code>tfidf_fill</code> with the vector space replaced by frozen
+  embeddings of the same as-of asset text from an LLM-family encoder (candidate:
+  <code>intfloat/multilingual-e5-base</code>, open weight, version pinned; fallback: a hosted
+  <code>text-embedding-3-small</code>; the exact model and version will be recorded in the run's
+  <code>protocol.json</code>).</li>
+</ul>
+<p><strong>Baselines and fair comparison.</strong> All four provided baselines (<code>popularity</code>, <code>cbf</code>,
+<code>latest_buy</code>, <code>latest_buy_or_sell</code>) are retained and reported on the same protocol [3]. Every arm
+sees the same users, the same pre-cutoff information, the same eligible universe and the same
+time split; the only difference between control and intervention is the fill's item vectors.
+Evaluation: nine quarterly cutoffs 2020-09-01 … 2022-09-01, 30-day horizon, warm cohort
+(7,125 → 14,926 users, 732 → 802 eligible assets). <strong>Measure:</strong> common nDCG@10 over the shared
+Top-10, reported on all warm users (empty-truth users frozen at 0.0 and kept), on labelled users,
+and on the with-new-asset subgroup; plus wall-clock runtime and cost per arm. nDCG@10 here
+measures ranking accuracy against observed purchases — a ranking metric, not investment quality
+or profitability.</p>
+<p><strong>Contribution check (ablation).</strong> Removing the LLM component restores <code>tfidf_fill</code>/<code>tokens_fill</code>
+with no other change, so the ablation isolates exactly the item representation. Secondary
+ablations: the shortlist size N (is the effect in the candidate prior or the order?) and the text
+fields fed to the encoder (name only vs full attributes).</p>
+<p><strong>Feasibility.</strong> Session 2: encode ≤ 802 as-of asset texts per cutoff (≈7,200 texts across all
+nine, each &lt; 60 tokens; cent-level API cost or free open-weight inference on CPU), cache
+embeddings keyed by (model, text hash), and re-run the existing pipeline — the pilot below took
+425 s for all nine cutoffs with the standard library only, so the LLM arm adds minutes, not
+hours. Deterministic embeddings need no seeds; model name and version are recorded, and the run
+is repeated once to confirm stability. If a generative scoring variant is added later, three
+repeats per cutoff with reported variance are budgeted. No LLM judge is used anywhere; ground
+truth is observed purchases only.</p>
+<p><strong>Risks.</strong> <em>Leakage</em>: the as-of rule and the excluded questionnaire-date anomaly above; history
+and labels never share rows. <em>Contamination</em>: the embedding model's pretraining may contain
+public descriptions of these assets — mitigated by feeding only as-of metadata text and by the
+frozen, training-free setup; pretraining cannot contain the future purchase labels. <em>Privacy</em>:
+ids are pseudonymised; records are truncated in the report. <em>Ethics</em>: recommendations are ranked
+against past behaviour; no suitability, advice or profitability claim is made.</p>
+<h2>4. Experiments</h2>
+<p><strong>What was run.</strong> The full pipeline and all non-LLM arms on nine quarterly cutoffs
+(<code>experiments/pilot_control_fill.py</code>, numbers in <code>pilot_control_fill.json</code>): 106k user-lists,
+12,163 labelled user-windows, 5,051 of them with at least one new-to-user label asset (7,276
+new-to-user label pairs). The <code>llm_fill</code> arm is <strong>planned</strong>, not run; no numbers for it exist
+yet and none are reported. Both structural invariants hold on every cutoff: <code>pop_fill</code>
+reproduces the starter's <code>latest_buy</code> for 0 mismatched users, and customers whose labels are all
+repeat purchases score identically under every fill (0 invariant violations) — the fill cannot
+help or harm them.</p>
+<p><strong>Baseline context.</strong> On labelled users (macro mean over the nine cutoffs) the provided baselines
+rank <code>latest_buy</code> 0.561 &gt; <code>latest_buy_or_sell</code> 0.552 &gt; <code>cbf</code> 0.312 ≈ <code>popularity</code> 0.307 — the
+recency prefix is the strongest classical component, which is why it is frozen in all arms.</p>
+<p><strong>Pilot results (macro mean over 9 cutoffs; min–max in parentheses).</strong></p>
+<table>
+<thead>
+<tr>
+<th>Arm (fill rule)</th>
+<th>nDCG@10 labelled (12,163)</th>
+<th>nDCG@10 with-new (5,051)</th>
+<th>New-to-user pairs in Top-10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pop_fill</code> (control)</td>
+<td>0.561 (0.465–0.623)</td>
+<td>0.281 (0.203–0.365)</td>
+<td>1,472</td>
+</tr>
+<tr>
+<td><code>tokens_fill</code> (starter CBF space)</td>
+<td>0.547 (0.460–0.621)</td>
+<td>0.248 (0.194–0.295)</td>
+<td>842</td>
+</tr>
+<tr>
+<td><code>tfidf_fill</code> (text TF-IDF)</td>
+<td>0.546 (0.459–0.617)</td>
+<td>0.246 (0.197–0.299)</td>
+<td>796</td>
+</tr>
+<tr>
+<td><code>tfidf_top20</code> (popularity prior + TF-IDF order)</td>
+<td>0.562 (0.469–0.625)</td>
+<td>0.284 (0.218–0.354)</td>
+<td>1,526</td>
+</tr>
+<tr>
+<td><code>oracle_fill</code> (ceiling, uses labels)</td>
+<td>0.639 (0.563–0.690)</td>
+<td>0.470 (0.402–0.541)</td>
+<td>4,463</td>
+</tr>
+</tbody>
+</table>
+<p>Three findings. (i) <strong>A content-based fill loses to a popularity fill exactly where it should
+win</strong>: on the with-new subgroup both sparse spaces score ~0.25 against popularity's 0.281, and
+the paired comparison is consistently negative (424 better / 974 worse / 3,653 equal user-windows,
+mean difference −0.036, negative on all nine cutoffs). Sparse categorical semantics do not just
+fail to help — the personalised order actively demotes assets that popularity would have hit.
+(ii) <strong>The knob that matters so far is the candidate prior, not the order</strong>: re-ordering the
+20 most popular unseen assets by TF-IDF cosine matches the popularity fill on both groups, so the
+TF-IDF order is harmless on a good prior and harmful on the full universe. (iii) <strong>There is real
+headroom</strong>: the oracle fill adds +0.19 nDCG on the with-new subgroup, and the all-user means are
+dominated by the ~89% empty-truth convention, so subgroup reporting is essential.</p>
+<p>Runtime and cost of what was run: 425 s wall-clock for nine cutoffs (≈47 s each, standard library
+only); zero monetary cost. The planned LLM arm adds one embedding pass over ≤ 7,200 short texts.</p>
+<h2>5. Discussion</h2>
+<p><strong>Team discussion</strong> <em>(reported as it happened; joint points marked)</em>. <em>Options considered:</em> a
+Ranker-track question (LLM reranks a fixed candidate list — attractive because the starter ships
+a ranker seam, but it conflates the LLM's ordering with the classical candidate generator and is
+hard to cost per user); a Hybrid question (dropped jointly: two LLM components cannot be ablated
+cleanly within the remaining sessions); a fine-tuning question (dropped: budget and a training
+pipeline we cannot verify end-to-end); and the adopted Encoder question. <em>Agreement and
+differences:</em> we converged (joint) on keeping all four provided baselines, the common Top-10 and
+nDCG@10, and on reporting the with-new subgroup separately because repetition hides fill effects
+in the all-user mean. Still unresolved (joint): whether the with-new subgroup should be the
+primary population in the final write-up or a secondary analysis — the shared task's evaluated
+users are not yet fixed, and the answer may change once they are. <em>My contribution:</em> I proposed
+the prefix/fill decomposition of <code>latest_buy</code>, the oracle fill as a measurable ceiling, the
+invariant that only-repeat users must tie across arms (it caught one early indexing bug), and the
+popularity-prior × personalised-order factorial (<code>tfidf_topN</code>); I also ran the profiling and the
+pilot reported here. <em>My position and reasons:</em> I adopt the Encoder track because it isolates
+exactly one change — the item vector space — inside a pipeline that already runs and is
+invariant-tested, and because its cost (≈7,200 embeddings) fits the remaining sessions with
+margin; the ranker alternative needs a defensible candidate generator before its LLM effect can
+even be attributed.</p>
+<p><strong>Threats to validity.</strong> Label sparsity: only ~11% of warm user-windows are labelled, so all-user
+means are convention-dominated and both means are always reported. Subgroup skew: 93% of
+new-to-user labels are stocks, so any subgroup conclusion may not transfer to funds or bonds.
+Period and institution: nine quarters of 2020–2022 from one European institution; no claim
+beyond it. The subgroup is defined by a property of the label window; the paired design keeps it
+honest (same users across arms), but the selection itself is descriptive, not causal.</p>
+<p><strong>Meaning of the possible outcomes.</strong> Positive (LLM fill &gt; popularity fill on the subgroup):
+frozen semantics repair the measured failure of sparse text features at cent-level cost —
+adopt. Null or negative: the fill budget belongs to priors and recency, not semantics — the
+popularity prior stands, the infrastructure spend is avoided, and the ranker track becomes the
+more promising next question. Either outcome answers the question; none will be hidden.</p>
+<h2>6. AI Usage Disclosure</h2>
+<p><strong>AI tools used.</strong> Kimi Code CLI (Moonshot AI) in this session; earlier groundwork used the same
+assistant in a prior session. <strong>How AI was used:</strong> <em>search/reading</em> — locating and opening the
+five cited studies; <em>code</em> — <code>experiments/profile_data.py</code>, <code>find_record.py</code> and
+<code>pilot_control_fill.py</code> plus their runs; <em>analysis</em> — aggregating the pilot numbers and drafting
+this report. <strong>What I personally verified:</strong> the record of §3.1 against the raw CSVs verbatim;
+both invariants of §4 on all nine cutoffs; the <code>pop_fill</code> = <code>latest_buy</code> identity; every number
+in §4 against <code>pilot_control_fill.json</code>; and that each cited paper's abstract says what §2 claims
+(all five were opened). <strong>What I trusted without verification:</strong> the starter's as-of protocol
+implementation and the dataset's own anonymisation. <strong>Session log:</strong>
+<code>kosychev_session1_session.json</code>, the tool-native export of this session, submitted alongside.</p>
+<h2>References</h2>
+<p>[1] J. Sanz-Cruzado, N. Droukas, and R. McCreadie, "FAR-Trans: An Investment Dataset for Financial Asset Recommendation," in <em>Proc. IJCAI-24 Workshop on Recommender Systems in Finance (Fin-RecSys)</em>, Jeju, 2024. [Online]. Available: https://arxiv.org/abs/2407.08692</p>
+<p>[2] University of Glasgow, "FAR-Trans dataset," research data repository. [Online]. Available: https://researchdata.gla.ac.uk/1658/</p>
+<p>[3] S. Jin, "FAR-Trans student starter," LLM4Rec course repository, GitHub, 2026. [Online]. Available: https://github.com/dryjins</p>
+<p>[4] L. Wu, Z. Zheng, Z. Qiu, H. Wang, H. Gu, T. Shen, C. Qin, C. Zhu, H. Zhu, Q. Liu, H. Xiong, and E. Chen, "A Survey on Large Language Models for Recommendation," <em>World Wide Web</em>, vol. 27, no. 4, p. 60, 2024. [Online]. Available: https://arxiv.org/abs/2305.19860</p>
+<p>[5] Q. Liu, N. Chen, T. Sakai, and X.-M. Wu, "ONCE: Boosting Content-based Recommendation with Both Open- and Closed-source Large Language Models," in <em>Proc. 17th ACM Int. Conf. Web Search and Data Mining (WSDM)</em>, 2024, pp. 452–461. [Online]. Available: https://arxiv.org/abs/2305.06566</p>
+<p>[6] J. Li, M. Wang, J. Li, J. Fu, X. Shen, J. Shang, and J. McAuley, "Text Is All You Need: Learning Language Representations for Sequential Recommendation," in <em>Proc. 29th ACM SIGKDD Conf. Knowledge Discovery and Data Mining (KDD)</em>, 2023, pp. 1258–1267. [Online]. Available: https://arxiv.org/abs/2305.13731</p>
+<p>[7] F. Spadea and O. Seneviratne, "Aligning Language Models with Investor and Market Behavior for Financial Recommendations," in <em>Proc. 6th ACM Int. Conf. AI in Finance (ICAIF)</em>, 2025. [Online]. Available: https://arxiv.org/abs/2510.15993</p></body></html>

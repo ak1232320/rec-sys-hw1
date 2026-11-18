@@ -1,0 +1,738 @@
+{
+  "protocol": "course starter rules (teaching defaults, not the official protocol)",
+  "horizon_days": 30,
+  "raw": {
+    "transactions_rows": 388048,
+    "transaction_types": {
+      "Buy": 228913,
+      "Sell": 159135
+    },
+    "transactions_first_date": "2018-01-02",
+    "transactions_last_date": "2022-11-30",
+    "transactions_customers": 29090,
+    "transactions_assets": 320,
+    "asset_information_rows": 836,
+    "asset_information_distinct_isin": 806,
+    "asset_categories_distinct_isin": {
+      "Stock": 285,
+      "MTF": 312,
+      "Bond": 209
+    },
+    "customer_information_rows": 32468,
+    "customer_information_distinct": 29090
+  },
+  "cutoffs": [
+    {
+      "cutoff": "2020-09-01",
+      "end_exclusive": "2020-10-01",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 732,
+      "warm_users": 7125,
+      "labelled_users": 1131,
+      "labelled_users_only_repeat": 695,
+      "labelled_users_with_new_asset": 436,
+      "label_pairs": 2251,
+      "label_pairs_repeat": 1662,
+      "label_pairs_new_to_user": 589,
+      "share_pairs_new_to_user": 0.26166148378498444,
+      "new_pairs_by_asset_category": {
+        "Stock": 578,
+        "MTF": 10,
+        "Bond": 1
+      },
+      "history_distinct_assets": {
+        "median": 2,
+        "mean": 3.3747368421052633,
+        "share_users_fewer_than_10": 0.9351578947368421,
+        "share_users_at_most_2": 0.6116491228070176
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 7.030035087719298,
+        "share_of_all_slots": 0.7030035087719299
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.062412819764460205,
+        "cbf": 0.05910507710335631,
+        "latest_buy": 0.0988326257296992,
+        "latest_buy_or_sell": 0.09775847597692926,
+        "oracle_fill": 0.10947783523552222
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.39318420939149334,
+        "cbf": 0.37234630801186,
+        "latest_buy": 0.6226193265465134,
+        "latest_buy_or_sell": 0.6158524680244217,
+        "oracle_fill": 0.6896813227701997
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.433081065726826,
+        "cbf": 0.48400357865651134,
+        "latest_buy": 0.7855494971882665,
+        "latest_buy_or_sell": 0.7710589233992079,
+        "oracle_fill": 0.7855494971882665
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.32958715628815344,
+        "cbf": 0.19436052108976679,
+        "latest_buy": 0.3629026554547283,
+        "latest_buy_or_sell": 0.3684476825072739,
+        "oracle_fill": 0.5368639346496574
+      },
+      "new_pairs_in_top10": {
+        "popularity": 253,
+        "cbf": 90,
+        "latest_buy": 168,
+        "latest_buy_or_sell": 176
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 1057,
+        "cbf": 1011,
+        "latest_buy": 1518,
+        "latest_buy_or_sell": 1513
+      }
+    },
+    {
+      "cutoff": "2020-12-01",
+      "end_exclusive": "2020-12-31",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 743,
+      "warm_users": 7790,
+      "labelled_users": 1633,
+      "labelled_users_only_repeat": 781,
+      "labelled_users_with_new_asset": 852,
+      "label_pairs": 3650,
+      "label_pairs_repeat": 2313,
+      "label_pairs_new_to_user": 1337,
+      "share_pairs_new_to_user": 0.3663013698630137,
+      "new_pairs_by_asset_category": {
+        "MTF": 20,
+        "Stock": 1316,
+        "Bond": 1
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.4944801026957637,
+        "share_users_fewer_than_10": 0.9252888318356868,
+        "share_users_at_most_2": 0.6050064184852375
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.971373555840821,
+        "share_of_all_slots": 0.6971373555840822
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.08397343009686274,
+        "cbf": 0.07097551803926802,
+        "latest_buy": 0.12078124916056002,
+        "latest_buy_or_sell": 0.11805043740982364,
+        "oracle_fill": 0.13995382862721917
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.40058360101320317,
+        "cbf": 0.33857886437593254,
+        "latest_buy": 0.5761701965467009,
+        "latest_buy_or_sell": 0.5631432378582524,
+        "oracle_fill": 0.6676303276215783
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.4710186224673321,
+        "cbf": 0.4795553043120746,
+        "latest_buy": 0.806290694336244,
+        "latest_buy_or_sell": 0.7832273211637166,
+        "oracle_fill": 0.806290694336244
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.3360181646802517,
+        "cbf": 0.20935046110113573,
+        "latest_buy": 0.36522640690628627,
+        "latest_buy_or_sell": 0.3613994948282436,
+        "oracle_fill": 0.5405249914664679
+      },
+      "new_pairs_in_top10": {
+        "popularity": 513,
+        "cbf": 207,
+        "latest_buy": 409,
+        "latest_buy_or_sell": 422
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 1479,
+        "cbf": 1368,
+        "latest_buy": 2096,
+        "latest_buy_or_sell": 2085
+      }
+    },
+    {
+      "cutoff": "2021-03-01",
+      "end_exclusive": "2021-03-31",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 757,
+      "warm_users": 8293,
+      "labelled_users": 1699,
+      "labelled_users_only_repeat": 897,
+      "labelled_users_with_new_asset": 802,
+      "label_pairs": 3484,
+      "label_pairs_repeat": 2320,
+      "label_pairs_new_to_user": 1164,
+      "share_pairs_new_to_user": 0.3340987370838117,
+      "new_pairs_by_asset_category": {
+        "Stock": 1141,
+        "MTF": 17,
+        "Bond": 6
+      },
+      "history_distinct_assets": {
+        "median": 2,
+        "mean": 3.740504039551429,
+        "share_users_fewer_than_10": 0.9163149644278307,
+        "share_users_at_most_2": 0.5791631496442783
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.818280477511154,
+        "share_of_all_slots": 0.6818280477511154
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.07690162057185922,
+        "cbf": 0.08355811145651022,
+        "latest_buy": 0.1167857028123513,
+        "latest_buy_or_sell": 0.11399344112941291,
+        "oracle_fill": 0.1324904886285981
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.375365002591188,
+        "cbf": 0.40785604373680945,
+        "latest_buy": 0.5700434569881279,
+        "latest_buy_or_sell": 0.5564141302449802,
+        "oracle_fill": 0.6467001896391783
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.43341397224730505,
+        "cbf": 0.5592924057799316,
+        "latest_buy": 0.7765087290387183,
+        "latest_buy_or_sell": 0.7584378310062972,
+        "oracle_fill": 0.7765087290387183
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.3104399081004936,
+        "cbf": 0.23848145925715797,
+        "latest_buy": 0.3391215754053604,
+        "latest_buy_or_sell": 0.3304599412388686,
+        "oracle_fill": 0.5015153269940571
+      },
+      "new_pairs_in_top10": {
+        "popularity": 447,
+        "cbf": 214,
+        "latest_buy": 346,
+        "latest_buy_or_sell": 341
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 1456,
+        "cbf": 1357,
+        "latest_buy": 2023,
+        "latest_buy_or_sell": 1999
+      }
+    },
+    {
+      "cutoff": "2021-06-01",
+      "end_exclusive": "2021-07-01",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 767,
+      "warm_users": 10404,
+      "labelled_users": 1178,
+      "labelled_users_only_repeat": 581,
+      "labelled_users_with_new_asset": 597,
+      "label_pairs": 2556,
+      "label_pairs_repeat": 1548,
+      "label_pairs_new_to_user": 1008,
+      "share_pairs_new_to_user": 0.39436619718309857,
+      "new_pairs_by_asset_category": {
+        "MTF": 57,
+        "Stock": 945,
+        "Bond": 6
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.6509034986543636,
+        "share_users_fewer_than_10": 0.9182045367166475,
+        "share_users_at_most_2": 0.608323721645521
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.927239523260284,
+        "share_of_all_slots": 0.6927239523260285
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.026172888075933286,
+        "cbf": 0.02855316923423279,
+        "latest_buy": 0.05263282198045577,
+        "latest_buy_or_sell": 0.05091088560550385,
+        "oracle_fill": 0.06372421233099242
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.2311568145517911,
+        "cbf": 0.25217926376312216,
+        "latest_buy": 0.4648487944691526,
+        "latest_buy_or_sell": 0.44964079273315966,
+        "oracle_fill": 0.5628070501626868
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.31167022964776037,
+        "cbf": 0.38928215374728825,
+        "latest_buy": 0.7278971558587055,
+        "latest_buy_or_sell": 0.7031569154692264,
+        "oracle_fill": 0.7278971558587055
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.1528012129257305,
+        "cbf": 0.11875082309176464,
+        "latest_buy": 0.20885030541164804,
+        "latest_buy_or_sell": 0.202919071946468,
+        "oracle_fill": 0.4021414699124576
+      },
+      "new_pairs_in_top10": {
+        "popularity": 137,
+        "cbf": 82,
+        "latest_buy": 80,
+        "latest_buy_or_sell": 83
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 615,
+        "cbf": 648,
+        "latest_buy": 1298,
+        "latest_buy_or_sell": 1268
+      }
+    },
+    {
+      "cutoff": "2021-09-01",
+      "end_exclusive": "2021-10-01",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 785,
+      "warm_users": 11894,
+      "labelled_users": 1316,
+      "labelled_users_only_repeat": 660,
+      "labelled_users_with_new_asset": 656,
+      "label_pairs": 2808,
+      "label_pairs_repeat": 1869,
+      "label_pairs_new_to_user": 939,
+      "share_pairs_new_to_user": 0.3344017094017094,
+      "new_pairs_by_asset_category": {
+        "Stock": 817,
+        "MTF": 112,
+        "Bond": 10
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.6767277618967547,
+        "share_users_fewer_than_10": 0.9197074155036152,
+        "share_users_at_most_2": 0.6150159744408946
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.945686900958466,
+        "share_of_all_slots": 0.6945686900958467
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.01978213706272124,
+        "cbf": 0.024735172081469872,
+        "latest_buy": 0.052208675637048785,
+        "latest_buy_or_sell": 0.051726416038787734,
+        "oracle_fill": 0.0646760380728807
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.17879083451672223,
+        "cbf": 0.22355633490653698,
+        "latest_buy": 0.4718616930296795,
+        "latest_buy_or_sell": 0.4675030337122655,
+        "oracle_fill": 0.5845416389352911
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.2560691620345526,
+        "cbf": 0.3646338228582306,
+        "latest_buy": 0.739439029892602,
+        "latest_buy_or_sell": 0.7233100408018981,
+        "oracle_fill": 0.739439029892602
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.10104129768475877,
+        "cbf": 0.08161861836977201,
+        "latest_buy": 0.20265278703954392,
+        "latest_buy_or_sell": 0.21013622779891558,
+        "oracle_fill": 0.42869975169165503
+      },
+      "new_pairs_in_top10": {
+        "popularity": 121,
+        "cbf": 65,
+        "latest_buy": 64,
+        "latest_buy_or_sell": 72
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 650,
+        "cbf": 706,
+        "latest_buy": 1514,
+        "latest_buy_or_sell": 1489
+      }
+    },
+    {
+      "cutoff": "2021-12-01",
+      "end_exclusive": "2021-12-31",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 786,
+      "warm_users": 13258,
+      "labelled_users": 966,
+      "labelled_users_only_repeat": 583,
+      "labelled_users_with_new_asset": 383,
+      "label_pairs": 1810,
+      "label_pairs_repeat": 1298,
+      "label_pairs_new_to_user": 512,
+      "share_pairs_new_to_user": 0.2828729281767956,
+      "new_pairs_by_asset_category": {
+        "Stock": 436,
+        "MTF": 70,
+        "Bond": 6
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.7139840096545482,
+        "share_users_fewer_than_10": 0.9200482727409866,
+        "share_users_at_most_2": 0.6015236083873887
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.931286770251924,
+        "share_of_all_slots": 0.6931286770251923
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.014196450538598186,
+        "cbf": 0.017790800954931733,
+        "latest_buy": 0.03759371512866748,
+        "latest_buy_or_sell": 0.036699070758903614,
+        "oracle_fill": 0.04352304629268604
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.1948411400007606,
+        "cbf": 0.24417229716406308,
+        "latest_buy": 0.5159601192296827,
+        "latest_buy_or_sell": 0.5036814494011843,
+        "oracle_fill": 0.5973380411474446
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.23114141775586478,
+        "cbf": 0.3423515082100739,
+        "latest_buy": 0.7128570815392775,
+        "latest_buy_or_sell": 0.6938833071371779,
+        "oracle_fill": 0.7128570815392775
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.13958510362680313,
+        "cbf": 0.09472456860055312,
+        "latest_buy": 0.21624489983935952,
+        "latest_buy_or_sell": 0.21415747274300084,
+        "oracle_fill": 0.4214957420653595
+      },
+      "new_pairs_in_top10": {
+        "popularity": 112,
+        "cbf": 49,
+        "latest_buy": 73,
+        "latest_buy_or_sell": 71
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 461,
+        "cbf": 526,
+        "latest_buy": 1081,
+        "latest_buy_or_sell": 1063
+      }
+    },
+    {
+      "cutoff": "2022-03-01",
+      "end_exclusive": "2022-03-31",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 791,
+      "warm_users": 14156,
+      "labelled_users": 1961,
+      "labelled_users_only_repeat": 1238,
+      "labelled_users_with_new_asset": 723,
+      "label_pairs": 4245,
+      "label_pairs_repeat": 3262,
+      "label_pairs_new_to_user": 983,
+      "share_pairs_new_to_user": 0.2315665488810365,
+      "new_pairs_by_asset_category": {
+        "Stock": 903,
+        "MTF": 56,
+        "Bond": 24
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.7961288499576153,
+        "share_users_fewer_than_10": 0.9177027408872563,
+        "share_users_at_most_2": 0.5919044927945747
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.890152585476123,
+        "share_of_all_slots": 0.6890152585476124
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.05175120287066735,
+        "cbf": 0.04700688935925519,
+        "latest_buy": 0.08433361451045433,
+        "latest_buy_or_sell": 0.08423272061520821,
+        "oracle_fill": 0.09413160985164046
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.37357982041670934,
+        "cbf": 0.3393317316520227,
+        "latest_buy": 0.6087846236664924,
+        "latest_buy_or_sell": 0.6080562942523648,
+        "oracle_fill": 0.6795140586740552
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.4354501600717995,
+        "cbf": 0.43576107366430794,
+        "latest_buy": 0.7793538888725047,
+        "latest_buy_or_sell": 0.7715938443756915,
+        "oracle_fill": 0.7793538888725047
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.26763863024658263,
+        "cbf": 0.17421482236957583,
+        "latest_buy": 0.3167171958310246,
+        "latest_buy_or_sell": 0.3280293412057836,
+        "oracle_fill": 0.5085573369787848
+      },
+      "new_pairs_in_top10": {
+        "popularity": 308,
+        "cbf": 141,
+        "latest_buy": 222,
+        "latest_buy_or_sell": 246
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 1559,
+        "cbf": 1670,
+        "latest_buy": 2759,
+        "latest_buy_or_sell": 2743
+      }
+    },
+    {
+      "cutoff": "2022-06-01",
+      "end_exclusive": "2022-07-01",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 795,
+      "warm_users": 14475,
+      "labelled_users": 1268,
+      "labelled_users_only_repeat": 930,
+      "labelled_users_with_new_asset": 338,
+      "label_pairs": 2469,
+      "label_pairs_repeat": 2048,
+      "label_pairs_new_to_user": 421,
+      "share_pairs_new_to_user": 0.17051437829080598,
+      "new_pairs_by_asset_category": {
+        "Stock": 354,
+        "MTF": 11,
+        "Bond": 56
+      },
+      "history_distinct_assets": {
+        "median": 2,
+        "mean": 3.8780656303972365,
+        "share_users_fewer_than_10": 0.9145423143350605,
+        "share_users_at_most_2": 0.585699481865285
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.841381692573402,
+        "share_of_all_slots": 0.6841381692573403
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.029785780210137135,
+        "cbf": 0.02924208778310352,
+        "latest_buy": 0.0545912263819975,
+        "latest_buy_or_sell": 0.05364816646575628,
+        "oracle_fill": 0.05884020440834614
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.34002300358181,
+        "cbf": 0.3338164200791983,
+        "latest_buy": 0.6231924305042695,
+        "latest_buy_or_sell": 0.6124268214446547,
+        "oracle_fill": 0.6716971283996928
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.37772968971829196,
+        "cbf": 0.3949855845690874,
+        "latest_buy": 0.7535627053578356,
+        "latest_buy_or_sell": 0.7376795175883372,
+        "oracle_fill": 0.7535627053578356
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.2362738375849808,
+        "cbf": 0.16551073080228465,
+        "latest_buy": 0.26448131922078894,
+        "latest_buy_or_sell": 0.2677966219960606,
+        "oracle_fill": 0.44644568884030555
+      },
+      "new_pairs_in_top10": {
+        "popularity": 141,
+        "cbf": 79,
+        "latest_buy": 73,
+        "latest_buy_or_sell": 85
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 1040,
+        "cbf": 971,
+        "latest_buy": 1718,
+        "latest_buy_or_sell": 1694
+      }
+    },
+    {
+      "cutoff": "2022-09-01",
+      "end_exclusive": "2022-10-01",
+      "excluded_rows": {
+        "reconstructed_initial_position_rows": 38019
+      },
+      "eligible_assets": 802,
+      "warm_users": 14926,
+      "labelled_users": 1011,
+      "labelled_users_only_repeat": 747,
+      "labelled_users_with_new_asset": 264,
+      "label_pairs": 2059,
+      "label_pairs_repeat": 1736,
+      "label_pairs_new_to_user": 323,
+      "share_pairs_new_to_user": 0.15687226809130647,
+      "new_pairs_by_asset_category": {
+        "Stock": 291,
+        "Bond": 28,
+        "MTF": 4
+      },
+      "history_distinct_assets": {
+        "median": 2.0,
+        "mean": 3.919871365402653,
+        "share_users_fewer_than_10": 0.9139086158381348,
+        "share_users_at_most_2": 0.5815355755058288
+      },
+      "latest_buy_fill_slots": {
+        "mean_per_user": 6.816159721291705,
+        "share_of_all_slots": 0.6816159721291706
+      },
+      "ndcg_all_warm_users": {
+        "popularity": 0.01864265241942266,
+        "cbf": 0.020332809619794133,
+        "latest_buy": 0.040542669360660845,
+        "latest_buy_or_sell": 0.04021603987124848,
+        "oracle_fill": 0.04382408958529405
+      },
+      "ndcg_labelled_users": {
+        "popularity": 0.27523267063531415,
+        "cbf": 0.3001854761474255,
+        "latest_buy": 0.5985557694136733,
+        "latest_buy_or_sell": 0.5937335421545548,
+        "oracle_fill": 0.6470013463403552
+      },
+      "ndcg_labelled_only_repeat": {
+        "popularity": 0.311302234297956,
+        "cbf": 0.3595196511561646,
+        "latest_buy": 0.7196691647194512,
+        "latest_buy_or_sell": 0.7167648015357947,
+        "oracle_fill": 0.7196691647194512
+      },
+      "ndcg_labelled_with_new_asset": {
+        "popularity": 0.173172200726248,
+        "cbf": 0.1322967309522436,
+        "latest_buy": 0.2558599122416427,
+        "latest_buy_or_sell": 0.24561100140536457,
+        "oracle_fill": 0.44138445115404945
+      },
+      "new_pairs_in_top10": {
+        "popularity": 80,
+        "cbf": 35,
+        "latest_buy": 37,
+        "latest_buy_or_sell": 42
+      },
+      "repeat_pairs_in_top10": {
+        "popularity": 770,
+        "cbf": 722,
+        "latest_buy": 1473,
+        "latest_buy_or_sell": 1464
+      }
+    }
+  ],
+  "asset_text_at_main_cutoff": {
+    "eligible_assets": 767,
+    "by_category": {
+      "MTF": 297,
+      "Stock": 277,
+      "Bond": 193
+    },
+    "missing_by_category": {
+      "MTF": {
+        "assets": 297,
+        "sector_missing": 297,
+        "industry_missing": 297,
+        "subcategory_missing": 0
+      },
+      "Stock": {
+        "assets": 277,
+        "sector_missing": 58,
+        "industry_missing": 60,
+        "subcategory_missing": 253
+      },
+      "Bond": {
+        "assets": 193,
+        "sector_missing": 11,
+        "industry_missing": 54,
+        "subcategory_missing": 0
+      }
+    },
+    "names_with_greek_letters": 10,
+    "distinct_token_sets": 280,
+    "assets_sharing_their_token_set_with_another": 585,
+    "largest_identical_token_groups": [
+      {
+        "tokens": [
+          "assetCategory=stock",
+          "marketID=xath"
+        ],
+        "assets": 46
+      },
+      {
+        "tokens": [
+          "assetCategory=mtf",
+          "assetSubCategory=equity",
+          "marketID=xlux"
+        ],
+        "assets": 43
+      },
+      {
+        "tokens": [
+          "assetCategory=mtf",
+          "assetSubCategory=bond",
+          "marketID=xlux"
+        ],
+        "assets": 41
+      },
+      {
+        "tokens": [
+          "assetCategory=mtf",
+          "assetSubCategory=bond",
+          "marketID=cclx"
+        ],
+        "assets": 28
+      },
+      {
+        "tokens": [
+          "assetCategory=mtf",
+          "assetSubCategory=equity",
+          "marketID=cclx"
+        ],
+        "assets": 24
+      }
+    ]
+  },
+  "seconds": 1596.2
+}

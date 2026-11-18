@@ -1,0 +1,329 @@
+{
+  "cutoff": "2021-06-01",
+  "end_exclusive": "2021-07-01",
+  "transaction_row_verbatim": {
+    "customerID": "6B15…",
+    "ISIN": "GRF000045002",
+    "transactionID": "9013789",
+    "transactionType": "Buy",
+    "timestamp": "2021-06-02",
+    "totalValue": "999.9910544",
+    "units": "52.496",
+    "channel": "Branch",
+    "marketID": "AEDAK"
+  },
+  "asset_information_rows_for_isin": [
+    {
+      "ISIN": "GRF000045002",
+      "assetName": "DHLOS SYNTHESIS BEST FUND OF FUNDS ΜΕΤΟΧΙΚΟ",
+      "assetShortName": "DELSBRE",
+      "assetCategory": "MTF",
+      "assetSubCategory": "Money Market",
+      "marketID": "AEDAK",
+      "sector": "",
+      "industry": "",
+      "timestamp": "2018-01-02"
+    }
+  ],
+  "asset_row_as_of_cutoff": {
+    "ISIN": "GRF000045002",
+    "assetName": "DHLOS SYNTHESIS BEST FUND OF FUNDS ΜΕΤΟΧΙΚΟ",
+    "assetShortName": "DELSBRE",
+    "assetCategory": "MTF",
+    "assetSubCategory": "Money Market",
+    "marketID": "AEDAK",
+    "sector": "",
+    "industry": "",
+    "timestamp": "2018-01-02"
+  },
+  "starter_tokens_for_asset": [
+    "assetCategory=mtf",
+    "assetSubCategory=money market",
+    "marketID=aedak"
+  ],
+  "customer_information_rows": [
+    {
+      "customerID": "6B15…",
+      "customerType": "Premium",
+      "riskLevel": "Aggressive",
+      "investmentCapacity": "CAP_30K_80K",
+      "lastQuestionnaireDate": "2021-12-16",
+      "timestamp": "2018-01-02"
+    }
+  ],
+  "customer_row_as_of_cutoff": {
+    "customerID": "6B15…",
+    "customerType": "Premium",
+    "riskLevel": "Aggressive",
+    "investmentCapacity": "CAP_30K_80K",
+    "lastQuestionnaireDate": "2021-12-16",
+    "timestamp": "2018-01-02"
+  },
+  "close_price_rows_for_isin": 1278,
+  "close_price_first_date": "2018-01-02",
+  "last_close_before_cutoff": {
+    "ISIN": "GRF000045002",
+    "timestamp": "2021-05-31",
+    "closePrice": "18.9924"
+  },
+  "customer_past_events_before_cutoff": [
+    {
+      "date": "2020-02-14",
+      "ISIN": "GRF000036001",
+      "type": "Buy",
+      "assetName": "A/K  DHLOS SYNTHESIS BEST YELLOW FUNDS OF FUND ΜΙΚ",
+      "tokens": [
+        "assetCategory=mtf",
+        "assetSubCategory=balanced",
+        "marketID=aedak"
+      ]
+    },
+    {
+      "date": "2021-03-19",
+      "ISIN": "GRC4261213D5",
+      "type": "Buy",
+      "assetName": "MOTOR OIL HELLAS CORINTH REFINERIES SA",
+      "tokens": [
+        "assetCategory=bond",
+        "assetSubCategory=corporate",
+        "industry=oil and gas extraction and refining",
+        "marketID=xath",
+        "sector=corporate"
+      ]
+    }
+  ],
+  "customer_distinct_past_buy_assets": 2,
+  "label_assets": [
+    "GRF000045002"
+  ],
+  "label_assets_new_to_user": [
+    "GRF000045002"
+  ],
+  "top10": {
+    "popularity": [
+      {
+        "ISIN": "GRS003003035",
+        "name": "NATIONAL BANK OF GREECE",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS015003007",
+        "name": "ALPHA SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS014003032",
+        "name": "PIRAEUS FINANCIAL HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRC4261213D5",
+        "name": "MOTOR OIL HELLAS CORINTH REFINERIES SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS323003012",
+        "name": "EUROBANK ERGASIAS SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS434003000",
+        "name": "PPC SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS393503008",
+        "name": "MYTILINAIOS SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS419003009",
+        "name": "OPAP SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS426003000",
+        "name": "MOTOR OIL REFINERIES SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS191213008",
+        "name": "ELLAKTOR S.A. (CR)",
+        "hit": false
+      }
+    ],
+    "cbf": [
+      {
+        "ISIN": "GRF000011004",
+        "name": "DHLOS PET OTE",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000031002",
+        "name": "DHLOS MIKTO AMOIVAIO KEFALAIO",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000032000",
+        "name": "DHLOS STRATEGIC INVESTMENTS",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000034006",
+        "name": "DELOS UNION FUND-BALANCED FD",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000036001",
+        "name": "A/K  DHLOS SYNTHESIS BEST YELLOW FUNDS OF FUND ΜΙΚ",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000084001",
+        "name": "N.P.INSURANCE ΝΕΟΣ ΠΟΣΕΙΔΩΝ ΜΙΚΤΟ",
+        "hit": false
+      },
+      {
+        "ISIN": "GRC4261213D5",
+        "name": "MOTOR OIL HELLAS CORINTH REFINERIES SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRC8161185B1",
+        "name": "CORAL A.E. OIL AND CHEMICALS COMPANY",
+        "hit": false
+      },
+      {
+        "ISIN": "GRC1441197B3",
+        "name": "ATTICA HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRC1451184D4",
+        "name": "GEK TERNA HOLDING, REAL ESTATE, CONSTRUCTION S.A.",
+        "hit": false
+      }
+    ],
+    "latest_buy": [
+      {
+        "ISIN": "GRC4261213D5",
+        "name": "MOTOR OIL HELLAS CORINTH REFINERIES SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000036001",
+        "name": "A/K  DHLOS SYNTHESIS BEST YELLOW FUNDS OF FUND ΜΙΚ",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS003003035",
+        "name": "NATIONAL BANK OF GREECE",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS015003007",
+        "name": "ALPHA SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS014003032",
+        "name": "PIRAEUS FINANCIAL HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS323003012",
+        "name": "EUROBANK ERGASIAS SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS434003000",
+        "name": "PPC SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS393503008",
+        "name": "MYTILINAIOS SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS419003009",
+        "name": "OPAP SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS426003000",
+        "name": "MOTOR OIL REFINERIES SA",
+        "hit": false
+      }
+    ],
+    "latest_buy_or_sell": [
+      {
+        "ISIN": "GRC4261213D5",
+        "name": "MOTOR OIL HELLAS CORINTH REFINERIES SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRF000036001",
+        "name": "A/K  DHLOS SYNTHESIS BEST YELLOW FUNDS OF FUND ΜΙΚ",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS003003035",
+        "name": "NATIONAL BANK OF GREECE",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS015003007",
+        "name": "ALPHA SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS014003032",
+        "name": "PIRAEUS FINANCIAL HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS323003012",
+        "name": "EUROBANK ERGASIAS SERVICES AND HOLDINGS S.A.",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS434003000",
+        "name": "PPC SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS393503008",
+        "name": "MYTILINAIOS SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS419003009",
+        "name": "OPAP SA",
+        "hit": false
+      },
+      {
+        "ISIN": "GRS426003000",
+        "name": "MOTOR OIL REFINERIES SA",
+        "hit": false
+      }
+    ]
+  },
+  "ndcg_at_10": {
+    "popularity": 0.0,
+    "cbf": 0.0,
+    "latest_buy": 0.0,
+    "latest_buy_or_sell": 0.0
+  },
+  "assets_sharing_this_assets_token_set": 2,
+  "rank_of_label_asset": {
+    "popularity": 54,
+    "cbf": 39
+  },
+  "token_set_sizes": {
+    "3": 312,
+    "4": 238,
+    "2": 56,
+    "5": 161
+  }
+}

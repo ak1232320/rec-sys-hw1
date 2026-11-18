@@ -1,0 +1,370 @@
+2020-09-01 {
+ "warm_users": 7125,
+ "labelled_users": 1131,
+ "labelled_with_new_asset": 436,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.6226193265465134,
+  "tfidf_fill": 0.5980467607172789,
+  "tokens_fill": 0.5965538259237103,
+  "oracle_fill": 0.6896813227701997,
+  "tfidf_top15": 0.6199690776932991,
+  "tfidf_top20": 0.6193545340895757,
+  "tfidf_top30": 0.6132038918374002,
+  "tfidf_top50": 0.607846242873277,
+  "tfidf_top100": 0.6041881440418592
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.3629026554547283,
+  "tfidf_fill": 0.2991605179481588,
+  "tokens_fill": 0.2952877903070439,
+  "oracle_fill": 0.5368639346496574,
+  "tfidf_top15": 0.35602781267265143,
+  "tfidf_top20": 0.3544336640125344,
+  "tfidf_top30": 0.3384786722987488,
+  "tfidf_top50": 0.32458073427484185,
+  "tfidf_top100": 0.315091491663985
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 168,
+  "tfidf_fill": 80,
+  "tokens_fill": 75,
+  "oracle_fill": 415,
+  "tfidf_top15": 167,
+  "tfidf_top20": 165,
+  "tfidf_top30": 143,
+  "tfidf_top50": 122,
+  "tfidf_top100": 107
+ },
+ "new_to_user_label_pairs": 589
+}
+2020-12-01 {
+ "warm_users": 7790,
+ "labelled_users": 1633,
+ "labelled_with_new_asset": 852,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.5761701965467009,
+  "tfidf_fill": 0.5381037635107367,
+  "tokens_fill": 0.5390834733569516,
+  "oracle_fill": 0.6676303276215783,
+  "tfidf_top15": 0.5695252344695958,
+  "tfidf_top20": 0.569347309471339,
+  "tfidf_top30": 0.5562729371918745,
+  "tfidf_top50": 0.5501732925781047,
+  "tfidf_top100": 0.548155746289699
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.36522640690628627,
+  "tfidf_fill": 0.29226574358735513,
+  "tokens_fill": 0.2941435207926002,
+  "oracle_fill": 0.5405249914664679,
+  "tfidf_top15": 0.35249022959183485,
+  "tfidf_top20": 0.3521492066785095,
+  "tfidf_top30": 0.3270899931428691,
+  "tfidf_top50": 0.3153990076331437,
+  "tfidf_top100": 0.3115320439136995
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 409,
+  "tfidf_fill": 185,
+  "tokens_fill": 190,
+  "oracle_fill": 913,
+  "tfidf_top15": 397,
+  "tfidf_top20": 394,
+  "tfidf_top30": 317,
+  "tfidf_top50": 273,
+  "tfidf_top100": 260
+ },
+ "new_to_user_label_pairs": 1337
+}
+2021-03-01 {
+ "warm_users": 8293,
+ "labelled_users": 1699,
+ "labelled_with_new_asset": 802,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.5700434569881279,
+  "tfidf_fill": 0.5445252787490387,
+  "tokens_fill": 0.5406871762930653,
+  "oracle_fill": 0.6467001896391783,
+  "tfidf_top15": 0.5671271017892555,
+  "tfidf_top20": 0.5666614554191942,
+  "tfidf_top30": 0.5622113653146085,
+  "tfidf_top50": 0.5529417295185893,
+  "tfidf_top100": 0.5519190060159808
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.3391215754053604,
+  "tfidf_fill": 0.28506249207841206,
+  "tokens_fill": 0.27693164909499707,
+  "oracle_fill": 0.5015153269940571,
+  "tfidf_top15": 0.3329434114616145,
+  "tfidf_top20": 0.33195696110907824,
+  "tfidf_top30": 0.3225296505259221,
+  "tfidf_top50": 0.30289235474358234,
+  "tfidf_top100": 0.30072576218631053
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 346,
+  "tfidf_fill": 205,
+  "tokens_fill": 182,
+  "oracle_fill": 770,
+  "tfidf_top15": 336,
+  "tfidf_top20": 331,
+  "tfidf_top30": 316,
+  "tfidf_top50": 256,
+  "tfidf_top100": 250
+ },
+ "new_to_user_label_pairs": 1164
+}
+2021-06-01 {
+ "warm_users": 10404,
+ "labelled_users": 1178,
+ "labelled_with_new_asset": 597,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.4648487944691526,
+  "tfidf_fill": 0.45934122956775103,
+  "tokens_fill": 0.4604882680110979,
+  "oracle_fill": 0.5628070501626868,
+  "tfidf_top15": 0.46761743826163116,
+  "tfidf_top20": 0.4693852351420832,
+  "tfidf_top30": 0.4681076727376159,
+  "tfidf_top50": 0.4658429780612953,
+  "tfidf_top100": 0.4649952398866478
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.20885030541164804,
+  "tfidf_fill": 0.19798278203836311,
+  "tokens_fill": 0.20024611752624008,
+  "oracle_fill": 0.4021414699124576,
+  "tfidf_top15": 0.2143133914879289,
+  "tfidf_top20": 0.2178016071079833,
+  "tfidf_top30": 0.21528072182747673,
+  "tfidf_top50": 0.2108120278095444,
+  "tfidf_top100": 0.20913927141132857
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 80,
+  "tfidf_fill": 67,
+  "tokens_fill": 69,
+  "oracle_fill": 476,
+  "tfidf_top15": 100,
+  "tfidf_top20": 107,
+  "tfidf_top30": 100,
+  "tfidf_top50": 89,
+  "tfidf_top100": 88
+ },
+ "new_to_user_label_pairs": 1008
+}
+2021-09-01 {
+ "warm_users": 11894,
+ "labelled_users": 1316,
+ "labelled_with_new_asset": 656,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.4718616930296795,
+  "tfidf_fill": 0.46935928100242147,
+  "tokens_fill": 0.47164721332536363,
+  "oracle_fill": 0.5845416389352911,
+  "tfidf_top15": 0.47624883559488496,
+  "tfidf_top20": 0.4805970989212983,
+  "tfidf_top30": 0.48038893687243023,
+  "tfidf_top50": 0.47975240778996237,
+  "tfidf_top100": 0.476062461478291
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.20265278703954392,
+  "tfidf_fill": 0.19763270437510566,
+  "tokens_fill": 0.20222251982783712,
+  "oracle_fill": 0.42869975169165503,
+  "tfidf_top15": 0.211453823039255,
+  "tfidf_top20": 0.22017686349285245,
+  "tfidf_top30": 0.21975927011433055,
+  "tfidf_top50": 0.2184823306745018,
+  "tfidf_top100": 0.21107993837852682
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 64,
+  "tfidf_fill": 52,
+  "tokens_fill": 61,
+  "oracle_fill": 509,
+  "tfidf_top15": 82,
+  "tfidf_top20": 99,
+  "tfidf_top30": 98,
+  "tfidf_top50": 99,
+  "tfidf_top100": 84
+ },
+ "new_to_user_label_pairs": 939
+}
+2021-12-01 {
+ "warm_users": 13258,
+ "labelled_users": 966,
+ "labelled_with_new_asset": 383,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.5159601192296827,
+  "tfidf_fill": 0.5081563509455607,
+  "tokens_fill": 0.507321224777888,
+  "oracle_fill": 0.5973380411474446,
+  "tfidf_top15": 0.5171596879284941,
+  "tfidf_top20": 0.5200071785210352,
+  "tfidf_top30": 0.5179000537781318,
+  "tfidf_top50": 0.5160525227338073,
+  "tfidf_top100": 0.5137294714473646
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.21624489983935952,
+  "tfidf_fill": 0.1965622884491196,
+  "tokens_fill": 0.19445593889827947,
+  "oracle_fill": 0.4214957420653595,
+  "tfidf_top15": 0.21927044386821568,
+  "tfidf_top20": 0.22645236531049925,
+  "tfidf_top30": 0.22113778958818936,
+  "tfidf_top50": 0.21647795933018044,
+  "tfidf_top100": 0.21061877514557556
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 73,
+  "tfidf_fill": 40,
+  "tokens_fill": 39,
+  "oracle_fill": 290,
+  "tfidf_top15": 74,
+  "tfidf_top20": 80,
+  "tfidf_top30": 73,
+  "tfidf_top50": 68,
+  "tfidf_top100": 62
+ },
+ "new_to_user_label_pairs": 512
+}
+2022-03-01 {
+ "warm_users": 14156,
+ "labelled_users": 1961,
+ "labelled_with_new_asset": 723,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.6087846236664924,
+  "tfidf_fill": 0.589094230717563,
+  "tokens_fill": 0.5937836597865773,
+  "oracle_fill": 0.6795140586740552,
+  "tfidf_top15": 0.6051609048459314,
+  "tfidf_top20": 0.6034286609830506,
+  "tfidf_top30": 0.5998987547423513,
+  "tfidf_top50": 0.5972582280461761,
+  "tfidf_top100": 0.5950341102840188
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.3167171958310246,
+  "tfidf_fill": 0.26331074967217166,
+  "tokens_fill": 0.2760299341871611,
+  "oracle_fill": 0.5085573369787848,
+  "tfidf_top15": 0.3068885476883967,
+  "tfidf_top20": 0.3021901656481346,
+  "tfidf_top30": 0.29261596628712333,
+  "tfidf_top50": 0.28545403979860373,
+  "tfidf_top100": 0.27942154335103736
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 222,
+  "tfidf_fill": 95,
+  "tokens_fill": 137,
+  "oracle_fill": 663,
+  "tfidf_top15": 220,
+  "tfidf_top20": 208,
+  "tfidf_top30": 180,
+  "tfidf_top50": 156,
+  "tfidf_top100": 142
+ },
+ "new_to_user_label_pairs": 983
+}
+2022-06-01 {
+ "warm_users": 14475,
+ "labelled_users": 1268,
+ "labelled_with_new_asset": 338,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.6231924305042695,
+  "tfidf_fill": 0.6171852606187815,
+  "tokens_fill": 0.6205229504115257,
+  "oracle_fill": 0.6716971283996928,
+  "tfidf_top15": 0.6264317655184976,
+  "tfidf_top20": 0.6248003218185747,
+  "tfidf_top30": 0.6244166691713249,
+  "tfidf_top50": 0.6242821325911563,
+  "tfidf_top100": 0.6216153310739164
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.26448131922078894,
+  "tfidf_fill": 0.2419455458042243,
+  "tokens_fill": 0.2544668199379511,
+  "oracle_fill": 0.44644568884030555,
+  "tfidf_top15": 0.27663361743984555,
+  "tfidf_top20": 0.27051329018688053,
+  "tfidf_top30": 0.2690740252261918,
+  "tfidf_top50": 0.2685693140319496,
+  "tfidf_top100": 0.2585648633696418
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 73,
+  "tfidf_fill": 50,
+  "tokens_fill": 66,
+  "oracle_fill": 243,
+  "tfidf_top15": 89,
+  "tfidf_top20": 81,
+  "tfidf_top30": 80,
+  "tfidf_top50": 79,
+  "tfidf_top100": 71
+ },
+ "new_to_user_label_pairs": 421
+}
+2022-09-01 {
+ "warm_users": 14926,
+ "labelled_users": 1011,
+ "labelled_with_new_asset": 264,
+ "pop_fill_differs_from_starter_latest_buy_users": 0,
+ "invariant_only_repeat_users_broken": 0,
+ "ndcg_labelled": {
+  "pop_fill": 0.5985557694136733,
+  "tfidf_fill": 0.5941064052177767,
+  "tokens_fill": 0.5940868443615023,
+  "oracle_fill": 0.6470013463403552,
+  "tfidf_top15": 0.6043519141006273,
+  "tfidf_top20": 0.6052768323122322,
+  "tfidf_top30": 0.6035320051290797,
+  "tfidf_top50": 0.5999655885783357,
+  "tfidf_top100": 0.5976534072977948
+ },
+ "ndcg_with_new_asset": {
+  "pop_fill": 0.2558599122416427,
+  "tfidf_fill": 0.2388208698096297,
+  "tokens_fill": 0.2387459606213969,
+  "oracle_fill": 0.44138445115404945,
+  "tfidf_top15": 0.2780565117814552,
+  "tfidf_top20": 0.28159852811453306,
+  "tfidf_top30": 0.27491663310632375,
+  "tfidf_top50": 0.2612588788154062,
+  "tfidf_top100": 0.2524042755024258
+ },
+ "new_pairs_in_top10": {
+  "pop_fill": 37,
+  "tfidf_fill": 22,
+  "tokens_fill": 23,
+  "oracle_fill": 184,
+  "tfidf_top15": 57,
+  "tfidf_top20": 61,
+  "tfidf_top30": 55,
+  "tfidf_top50": 41,
+  "tfidf_top100": 35
+ },
+ "new_to_user_label_pairs": 323
+}
+wrote pilot_control_fill.json in 425.0 s

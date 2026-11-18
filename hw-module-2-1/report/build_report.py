@@ -1,0 +1,57 @@
+"""Build kosychev_session1_report.pdf from report.md (Markdown -> HTML -> PDF via headless Chrome).
+
+Run:  python report/build_report.py
+"""
+from pathlib import Path
+
+import markdown
+from playwright.sync_api import sync_playwright
+
+HERE = Path(__file__).resolve().parent
+OUT_PDF = HERE / "kosychev_session1_report.pdf"
+
+CSS = """
+@page { size: A4; margin: 15mm 15mm 14mm 15mm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.4pt; line-height: 1.17; color: #111; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+h3 { font-size: 9.8pt; margin: 7px 0 2px; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+blockquote { margin: 3px 12px; padding: 2px 8px; border-left: 3px solid #1f3b63; background: #f2f4f7; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+pre { font-family: Consolas, 'Courier New', monospace; font-size: 8pt; background: #f2f4f7;
+      padding: 4px 6px; margin: 3px 0 5px; white-space: pre-wrap; }
+pre code { background: none; padding: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+th { background: #dde6f2; }
+"""
+
+
+def main():
+    md_text = (HERE / "report.md").read_text(encoding="utf-8")
+    body = markdown.markdown(md_text, extensions=["tables", "fenced_code", "md_in_html"])
+    html = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Session 1 report — Aleksei Kosychev</title><style>{CSS}</style></head>
+<body>{body}</body></html>"""
+    html_path = HERE / "report.html"
+    html_path.write_text(html, encoding="utf-8")
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(channel="chrome")
+        page = browser.new_page()
+        page.goto(html_path.as_uri(), wait_until="networkidle")
+        page.pdf(path=str(OUT_PDF), format="A4", print_background=True,
+                 display_header_footer=True, header_template="<span></span>",
+                 footer_template='<div style="font-size:8px;width:100%;text-align:center">'
+                                 '<span class="pageNumber"></span> / <span class="totalPages"></span></div>',
+                 margin={"top": "16mm", "bottom": "16mm", "left": "17mm", "right": "17mm"})
+        browser.close()
+    print(f"Saved {OUT_PDF}")
+
+
+if __name__ == "__main__":
+    main()
