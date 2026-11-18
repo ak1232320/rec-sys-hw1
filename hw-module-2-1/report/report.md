@@ -1,7 +1,7 @@
 # Who Should Fill the Slots Recency Leaves Empty? A Planned Test of LLM Asset Embeddings vs Categorical Features on FAR-Trans
 
 <div class="meta">
-Student: Aleksei Kosychev &nbsp;&nbsp; Team: Individual<br>
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: name<br>
 Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-17<br>
 Assignment: Session 1 — Research Question and Minimal Study Plan (LLM4Rec, Module 2)
 </div>
