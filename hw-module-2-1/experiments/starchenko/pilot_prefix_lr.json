@@ -1,0 +1,136 @@
+{
+  "train_pairs": 22199,
+  "train_positive_rate": 0.26609306725528176,
+  "fit_seconds": 13.0,
+  "weights_standardized": {
+    "log_days_since_last": -0.709,
+    "log_buy_count": 0.415,
+    "log_user_distinct": -0.322,
+    "log_asset_popularity": 0.313,
+    "log_user_days_since_any_buy": 0.156,
+    "log_recency_rank": -0.078,
+    "log_days_since_first": -0.069,
+    "sold_after_last_buy": -0.067,
+    "cat=Bond": -0.035,
+    "single_buy": -0.033,
+    "cat=Stock": 0.023,
+    "log_mean_gap": 0.015,
+    "cat=MTF": 0.005
+  },
+  "per_cutoff": [
+    {
+      "cutoff": "2020-09-01",
+      "labelled": 1131,
+      "ndcg_labelled": {
+        "repeat_first": 0.6226193265465131,
+        "lr_prefix": 0.6263069298342799
+      },
+      "rank_seconds": 1.1
+    },
+    {
+      "cutoff": "2020-12-01",
+      "labelled": 1633,
+      "ndcg_labelled": {
+        "repeat_first": 0.5761701965467004,
+        "lr_prefix": 0.5761831538967505
+      },
+      "rank_seconds": 1.5
+    },
+    {
+      "cutoff": "2021-03-01",
+      "labelled": 1699,
+      "ndcg_labelled": {
+        "repeat_first": 0.5700434569881274,
+        "lr_prefix": 0.5730360540864904
+      },
+      "rank_seconds": 1.6
+    },
+    {
+      "cutoff": "2021-06-01",
+      "labelled": 1178,
+      "ndcg_labelled": {
+        "repeat_first": 0.4648487944691527,
+        "lr_prefix": 0.46611804878139723
+      },
+      "rank_seconds": 1.6
+    },
+    {
+      "cutoff": "2021-09-01",
+      "labelled": 1316,
+      "ndcg_labelled": {
+        "repeat_first": 0.4718616930296795,
+        "lr_prefix": 0.478309998674947
+      },
+      "rank_seconds": 1.8
+    },
+    {
+      "cutoff": "2021-12-01",
+      "labelled": 966,
+      "ndcg_labelled": {
+        "repeat_first": 0.5159601192296831,
+        "lr_prefix": 0.5061802926222082
+      },
+      "rank_seconds": 1.6
+    },
+    {
+      "cutoff": "2022-03-01",
+      "labelled": 1961,
+      "ndcg_labelled": {
+        "repeat_first": 0.608784623666494,
+        "lr_prefix": 0.6236167632578311
+      },
+      "rank_seconds": 2.4
+    },
+    {
+      "cutoff": "2022-06-01",
+      "labelled": 1268,
+      "ndcg_labelled": {
+        "repeat_first": 0.623192430504269,
+        "lr_prefix": 0.6388538797380326
+      },
+      "rank_seconds": 2.0
+    },
+    {
+      "cutoff": "2022-09-01",
+      "labelled": 1011,
+      "ndcg_labelled": {
+        "repeat_first": 0.5985557694136735,
+        "lr_prefix": 0.6088271756370705
+      },
+      "rank_seconds": 1.9
+    }
+  ],
+  "macro_mean_labelled": {
+    "repeat_first": 0.5613373789326992,
+    "lr_prefix": 0.5663813662810008
+  },
+  "pooled_all_labelled": {
+    "n": 12163,
+    "repeat_first": 0.5648052369943206,
+    "lr_prefix": 0.5704896105457693,
+    "better": 2590,
+    "worse": 2086
+  },
+  "pooled_repeat_only": {
+    "n": 7112,
+    "repeat_first": 0.7595582459284286,
+    "lr_prefix": 0.7658343726710843,
+    "better": 1776,
+    "worse": 1455
+  },
+  "pooled_with_new": {
+    "n": 5051,
+    "repeat_first": 0.2905855974102033,
+    "lr_prefix": 0.29543675997454766,
+    "better": 814,
+    "worse": 631
+  },
+  "pooled_over10": {
+    "n": 3688,
+    "repeat_first": 0.4953372411013277,
+    "lr_prefix": 0.5083984400941894,
+    "better": 1432,
+    "worse": 1107
+  },
+  "total_seconds": 33.1
+}
