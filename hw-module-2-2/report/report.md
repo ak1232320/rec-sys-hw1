@@ -2,7 +2,7 @@
 
 <div class="meta">
 Student: Aleksei Kosychev &nbsp;&nbsp; Team: name &nbsp;&nbsp; Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-25<br>
-Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>) &nbsp;&nbsp; Experiment commit: <span class="todo">TODO after commit</span><br>
+Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>) &nbsp;&nbsp; Experiment commit: <code>62e0fdb</code><br>
 Assignment: Session 2 / Homework 2 — Implement and Test Your Idea (LLM4Rec, Module 2)
 </div>
 
