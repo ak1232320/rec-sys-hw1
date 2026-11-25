@@ -1,0 +1,12 @@
+.venv
+data/
+outputs/
+cache/
+logs/
+__pycache__/
+*.pyc
+.DS_Store
+report/*
+*.jsonl
+session*.json
+!report/pack_session_hw2.py

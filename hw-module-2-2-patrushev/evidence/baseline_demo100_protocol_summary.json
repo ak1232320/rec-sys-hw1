@@ -1,0 +1,29 @@
+{
+  "teaching_defaults_not_official_grading_protocol": true,
+  "cutoff": "2021-06-01",
+  "end_exclusive": "2021-07-01",
+  "users": 100,
+  "cohort_selection": "warm",
+  "eligible_assets": 767,
+  "exclude_seen": false,
+  "candidate_count": 50,
+  "k": 10,
+  "empty_truth_policy": "zero in primary mean; nonempty mean also reported",
+  "initial_positions": "excluded",
+  "duplicate_policy": "exact full rows only",
+  "profile_use": "display only in classical baselines",
+  "asset_feature_fields": [
+    "assetCategory",
+    "assetSubCategory",
+    "sector",
+    "industry",
+    "marketID"
+  ],
+  "source_sha256": {
+    "transactions.csv": "358871fa1311a802799df86e56c3d633513566965b01412d058e0f8fbe6cd54b",
+    "asset_information.csv": "33f9897b14087068fba53a0bc9e24a0031b096bd3ad3e977e534153f29b7a590",
+    "customer_information.csv": "c4ad52ebca90e32bf3df5eb64f362b7a3437b77d978b22627cc46927fe7064af",
+    "close_prices.csv": "6ba1fe8390b31dfb3ab4e3e824910f9e8da4684cb6074cdb82eb6422a323656d"
+  },
+  "protocol_hash": "50efd4aeb415ba6f0c66dd0793a7c2033cdc32a42b86b58eebbca3e81eaf3417"
+}

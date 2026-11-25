@@ -1,0 +1,197 @@
+{
+  "independent_recompute_max_abs_diff": {
+    "popularity": 0.0,
+    "cbf": 0.0,
+    "latest_buy": 0.0,
+    "latest_buy_or_sell": 0.0,
+    "A1_rule_encoder_fill": 0.0,
+    "A2_llm_ranker_popularity": 0.0,
+    "A3_llm_ranker_encoder_hybrid": 0.0
+  },
+  "independent_recompute_ok": true,
+  "users": 100,
+  "nonempty_users": 11,
+  "truth_items": 18,
+  "truth_repeat_items": 12,
+  "arms": {
+    "popularity": {
+      "hits_repeat": 6,
+      "hits_new": 1,
+      "mean_repeat_slots": 1.9,
+      "lists_changed_vs_latest_buy": 87,
+      "nonempty_wins": 3,
+      "nonempty_losses": 3,
+      "nonempty_ties": 5
+    },
+    "cbf": {
+      "hits_repeat": 5,
+      "hits_new": 0,
+      "mean_repeat_slots": 2.17,
+      "lists_changed_vs_latest_buy": 100,
+      "nonempty_wins": 2,
+      "nonempty_losses": 4,
+      "nonempty_ties": 5
+    },
+    "latest_buy": {
+      "hits_repeat": 8,
+      "hits_new": 1,
+      "mean_repeat_slots": 3.33
+    },
+    "latest_buy_or_sell": {
+      "hits_repeat": 8,
+      "hits_new": 1,
+      "mean_repeat_slots": 3.32,
+      "lists_changed_vs_latest_buy": 37,
+      "nonempty_wins": 1,
+      "nonempty_losses": 4,
+      "nonempty_ties": 6
+    },
+    "A1_rule_encoder_fill": {
+      "hits_repeat": 8,
+      "hits_new": 1,
+      "mean_repeat_slots": 3.33,
+      "lists_changed_vs_latest_buy": 91,
+      "nonempty_wins": 1,
+      "nonempty_losses": 1,
+      "nonempty_ties": 9
+    },
+    "A2_llm_ranker_popularity": {
+      "hits_repeat": 8,
+      "hits_new": 1,
+      "mean_repeat_slots": 2.98,
+      "lists_changed_vs_latest_buy": 49,
+      "nonempty_wins": 2,
+      "nonempty_losses": 0,
+      "nonempty_ties": 9
+    },
+    "A3_llm_ranker_encoder_hybrid": {
+      "hits_repeat": 8,
+      "hits_new": 2,
+      "mean_repeat_slots": 3.08,
+      "lists_changed_vs_latest_buy": 96,
+      "nonempty_wins": 4,
+      "nonempty_losses": 3,
+      "nonempty_ties": 4
+    }
+  },
+  "llm": {
+    "A2": {
+      "calls": 100,
+      "valid": 72,
+      "failure_reasons": {
+        "ISIN outside the candidate pool": 13,
+        "10 items, 9 unique": 4,
+        "10 items, 4 unique": 3,
+        "no JSON array": 3,
+        "10 items, 8 unique": 2,
+        "10 items, 3 unique": 1,
+        "10 items, 6 unique": 1,
+        "10 items, 5 unique": 1
+      },
+      "calls_invalid_by_past_assets": {
+        "1": [
+          40,
+          9
+        ],
+        "2-3": [
+          23,
+          8
+        ],
+        "4+": [
+          37,
+          11
+        ]
+      },
+      "valid_copies_of_input_order": 23,
+      "valid_with_group_A_order_kept": 63,
+      "valid_keeping_all_group_A": 48,
+      "mean_group_B_picks": 7.29,
+      "valid_with_no_group_B_pick": 3,
+      "seconds_mean": 14.28,
+      "seconds_median": 13.05,
+      "seconds_max": 43.39,
+      "input_tokens_mean": 1364,
+      "output_tokens_mean": 149
+    },
+    "A3": {
+      "calls": 100,
+      "valid": 79,
+      "failure_reasons": {
+        "10 items, 9 unique": 13,
+        "10 items, 8 unique": 1,
+        "ISIN outside the candidate pool": 4,
+        "no JSON array": 2,
+        "10 items, 7 unique": 1
+      },
+      "calls_invalid_by_past_assets": {
+        "1": [
+          40,
+          11
+        ],
+        "2-3": [
+          23,
+          5
+        ],
+        "4+": [
+          37,
+          5
+        ]
+      },
+      "valid_copies_of_input_order": 13,
+      "valid_with_group_A_order_kept": 66,
+      "valid_keeping_all_group_A": 67,
+      "mean_group_B_picks": 6.84,
+      "valid_with_no_group_B_pick": 4,
+      "seconds_mean": 14.24,
+      "seconds_median": 12.95,
+      "seconds_max": 37.38,
+      "input_tokens_mean": 1379,
+      "output_tokens_mean": 148
+    }
+  },
+  "example_user": {
+    "user_id": "0E72D1BF99E858EEE1AA",
+    "user_hash": "5eddd2f3f372",
+    "past_buy_assets": [
+      "GRS087003000",
+      "GRS265003004",
+      "GRS346003007",
+      "GRS518003009"
+    ],
+    "truth": [
+      "GRS372003004"
+    ],
+    "latest_buy": [
+      "GRS087003000",
+      "GRS265003004",
+      "GRS346003007",
+      "GRS518003009",
+      "GRS003003035",
+      "GRS015003007",
+      "GRS014003032",
+      "GRC4261213D5",
+      "GRS323003012",
+      "GRS434003000"
+    ],
+    "A3": [
+      "GRS087003000",
+      "GRS265003004",
+      "GRS346003007",
+      "GRS518003009",
+      "GRS372003004",
+      "GRS432003028",
+      "GRS239003007",
+      "GRS222213001",
+      "GRS403003007",
+      "GRS393503008"
+    ],
+    "latest_buy_hit_ranks": [],
+    "A3_hit_ranks": [
+      5
+    ],
+    "latest_buy_ndcg": 0.0,
+    "A3_ndcg": 0.38685280723454163,
+    "A3_valid": true,
+    "A3_raw_answer": "```json\n[\n  \"GRS087003000\",\n  \"GRS265003004\",\n  \"GRS346003007\",\n  \"GRS518003009\",\n  \"GRS372003004\",\n  \"GRS432003028\",\n  \"GRS239003007\",\n  \"GRS222213001\",\n  \"GRS403003007\",\n  \"GRS393503008\"\n]\n```"
+  }
+}

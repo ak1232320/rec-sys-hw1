@@ -1,0 +1,129 @@
+{
+  "verified_on": "2026-11-18",
+  "verification": "Crossref (DOIs), arXiv abstract pages, DataCite (dataset DOI); full texts opened for fartrans, flarko, li23, llmrank, llamarec, repeatnet (arXiv), takayanagi25 (arXiv), ragflarko; cao26 sections 4-5.1; trex sections 1,5; tois26 abstract only; qwen3/qwen3emb abstract and introduction.",
+  "references": [
+    {
+      "n": 1,
+      "key": "fartrans",
+      "ieee": "J. Sanz-Cruzado, N. Droukas, and R. McCreadie, &ldquo;FAR-Trans: An investment dataset for financial asset recommendation,&rdquo; presented at the IJCAI-2024 Workshop on Recommender Systems in Finance (Fin-RecSys), Jeju, South Korea, Aug. 2024. [Online]. Available: https://arxiv.org/abs/2407.08692. [Accessed: 2026-11-18]."
+    },
+    {
+      "n": 2,
+      "key": "li23",
+      "ieee": "M. Li, A. Vardasbi, A. Yates, and M. de Rijke, &ldquo;Repetition and exploration in sequential recommendation,&rdquo; in Proc. 46th Int. ACM SIGIR Conf. Res. Develop. Inf. Retrieval (SIGIR &rsquo;23), Taipei, Taiwan, 2023, pp. 2532&ndash;2541, doi: 10.1145/3539618.3591914."
+    },
+    {
+      "n": 3,
+      "key": "repeatnet",
+      "ieee": "P. Ren, Z. Chen, J. Li, Z. Ren, J. Ma, and M. de Rijke, &ldquo;RepeatNet: A repeat aware neural recommendation machine for session-based recommendation,&rdquo; in Proc. AAAI Conf. Artif. Intell., vol. 33, no. 1, 2019, pp. 4806&ndash;4813, doi: 10.1609/aaai.v33i01.33014806."
+    },
+    {
+      "n": 4,
+      "key": "trex",
+      "ieee": "M. Li, Y. Liu, S. Jullien, M. Ariannezhad, A. Yates, M. Aliannejadi, and M. de Rijke, &ldquo;Are we really achieving better beyond-accuracy performance in next basket recommendation?,&rdquo; in Proc. 47th Int. ACM SIGIR Conf. Res. Develop. Inf. Retrieval (SIGIR &rsquo;24), Washington, DC, USA, 2024, pp. 924&ndash;934, doi: 10.1145/3626772.3657835."
+    },
+    {
+      "n": 5,
+      "key": "llmrank",
+      "ieee": "Y. Hou, J. Zhang, Z. Lin, H. Lu, R. Xie, J. McAuley, and W. X. Zhao, &ldquo;Large language models are zero-shot rankers for recommender systems,&rdquo; in <i>Advances in Information Retrieval (ECIR 2024), Part II</i>, Lecture Notes in Computer Science. Cham, Switzerland: Springer, 2024, pp. 364&ndash;381, doi: 10.1007/978-3-031-56060-6_24."
+    },
+    {
+      "n": 6,
+      "key": "cao26",
+      "ieee": "Y. Cao et al., &ldquo;Beyond ranking accuracy: Evaluating LLM-cited feature rationales for next basket repurchase recommendation,&rdquo; presented at the RecSys 2026 Workshop on Agentic and Generative AI for E-Commerce, 2026. [Online]. Available: https://arxiv.org/abs/2608.30333. [Accessed: 2026-11-18]."
+    },
+    {
+      "n": 7,
+      "key": "takayanagi25",
+      "ieee": "T. Takayanagi, K. Izumi, J. Sanz-Cruzado, R. McCreadie, and I. Ounis, &ldquo;Are generative AI agents effective personalized financial advisors?,&rdquo; in Proc. 48th Int. ACM SIGIR Conf. Res. Develop. Inf. Retrieval (SIGIR &rsquo;25), Padua, Italy, 2025, pp. 286&ndash;295, doi: 10.1145/3726302.3729897."
+    },
+    {
+      "n": 8,
+      "key": "tois26",
+      "ieee": "J. Sanz-Cruzado, R. McCreadie, N. Droukas, C. Macdonald, and I. Ounis, &ldquo;Investors are (not) always right: A comparison of transaction-based and profitability-based metrics for financial asset recommendations,&rdquo; <i>ACM Trans. Inf. Syst.</i>, vol. 44, no. 2, pp. 1&ndash;56, 2026, doi: 10.1145/3780097."
+    },
+    {
+      "n": 9,
+      "key": "flarko",
+      "ieee": "F. Spadea and O. Seneviratne, &ldquo;Aligning language models with investor and market behavior for financial recommendations,&rdquo; in Proc. 6th ACM Int. Conf. AI in Finance (ICAIF &rsquo;25), Singapore, 2025, pp. 509&ndash;517, doi: 10.1145/3768292.3770399."
+    },
+    {
+      "n": 10,
+      "key": "ragflarko",
+      "ieee": "F. Spadea and O. Seneviratne, &ldquo;Parallel and multi-stage knowledge graph retrieval for behaviorally aligned financial asset recommendations,&rdquo; presented at the 2nd Int. Workshop on Retrieval-Augmented Generation Enabled by Knowledge Graphs (RAGE-KG 2025), co-located with ISWC 2025, Nara, Japan, Nov. 2025. [Online]. Available: https://arxiv.org/abs/2511.11583. [Accessed: 2026-11-18]."
+    },
+    {
+      "n": 11,
+      "key": "llamarec",
+      "ieee": "Z. Yue, S. Rabhi, G. de Souza Pereira Moreira, D. Wang, and E. Oldridge, &ldquo;LlamaRec: Two-stage recommendation using large language models for ranking,&rdquo; presented at the Workshop on Personalized Generative AI (PGAI@CIKM 2023), Birmingham, U.K., Oct. 2023. [Online]. Available: https://arxiv.org/abs/2311.02089. [Accessed: 2026-11-18]."
+    },
+    {
+      "n": 12,
+      "key": "dataset",
+      "ieee": "J. Sanz-Cruzado Puig, N. Droukas, and R. McCreadie, &ldquo;FAR-Trans: An investment dataset for financial asset recommendation,&rdquo; University of Glasgow, 2024. [Dataset]. doi: 10.5525/gla.researchdata.1658."
+    },
+    {
+      "n": 13,
+      "key": "qwen3emb",
+      "ieee": "Y. Zhang et al., &ldquo;Qwen3 Embedding: Advancing text embedding and reranking through foundation models,&rdquo; 2025, arXiv:2506.05176."
+    },
+    {
+      "n": 14,
+      "key": "qwen3",
+      "ieee": "A. Yang et al., &ldquo;Qwen3 technical report,&rdquo; 2025, arXiv:2505.09388."
+    },
+    {
+      "n": 15,
+      "key": "lightgbm",
+      "ieee": "G. Ke et al., &ldquo;LightGBM: A highly efficient gradient boosting decision tree,&rdquo; in Proc. Adv. Neural Inf. Process. Syst. (NIPS), vol. 30, 2017. [Online]. Available: https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html. [Accessed: 2026-11-18]."
+    }
+  ],
+  "table": [
+    {
+      "key": "fartrans",
+      "short": "Sanz-Cruzado et al., 2024, Fin-RecSys",
+      "method": "Dataset and benchmark of 11 recommenders: price-based, collaborative (LightGCN, MF, kNN, association rules), popularity, hybrid LambdaMART.",
+      "data": "29,090 customers, 388,049 transactions (2018-2022); 61 cutoffs, 6-month window; nDCG@10 and ROI@10. Best nDCG@10 LightGCN 0.3404; popularity 0.2710.",
+      "limit": "Ranks only never-bought assets and drops test repurchases, so no recency baseline exists; no LLM. My question keeps repurchases (61% of purchases in my pilot).",
+      "n": 1
+    },
+    {
+      "key": "flarko",
+      "short": "Spadea and Seneviratne, 2025, ICAIF",
+      "method": "Qwen3 (0.6-8B) tuned with KTO; prompt holds the customer's transaction graph and a market graph; the model generates 3 ISINs.",
+      "data": "FAR-Trans; test cutoffs Dec 2021 - Jun 2022, 180-day window; Pref@3, Prof@3, Comb@3; best Pref@3 0.5341 (1.7B).",
+      "limit": "Hits@3, not nDCG@10; no candidate pool, no recency baseline, repeat and new purchases not separated. Nearest prior work.",
+      "n": 9
+    },
+    {
+      "key": "li23",
+      "short": "Li et al., 2023, SIGIR",
+      "method": "Six sequential recommenders analysed separately for repeat-next and explore-next users.",
+      "data": "Diginetica, Yoochoose; leave-one-out; Recall, MRR, NDCG.",
+      "limit": "Repeat-next users are a minority but carry most of the average accuracy; authors advise reporting both groups. E-commerce, no LLM.",
+      "n": 2
+    },
+    {
+      "key": "llmrank",
+      "short": "Hou et al., 2024, ECIR",
+      "method": "Zero-shot LLM ranker (ChatGPT) with sequential, recency-focused and in-context prompts.",
+      "data": "MovieLens-1M, Amazon Games; leave-one-out; NDCG over 20 candidates or candidates from several generators.",
+      "limit": "LLMs struggle to perceive the order of the history and show position and popularity bias. No repurchases, no finance.",
+      "n": 5
+    },
+    {
+      "key": "cao26",
+      "short": "Cao et al., 2026, RecSys workshop",
+      "method": "Off-the-shelf LLMs score repurchase candidates; compared with a frequency heuristic and supervised XGBoost.",
+      "data": "Instacart, Dunnhumby, proprietary retail; 100-user samples; NDCG@10.",
+      "limit": "“LLM scores are not competitive with supervised rankers”: the risk my ranker faces on past assets; groceries, closed models.",
+      "n": 6
+    }
+  ],
+  "nearest": "FLARKO [9] is the closest study: it tunes small open-weight Qwen3 models on FAR-Trans and shows that LLM-generated top-3 lists match later purchases (Pref@3 up to 0.5341 on a 180-day window), with 1.7&ndash;4B models often best; RAG-FLARKO [10] adds knowledge-graph retrieval. It leaves open how an LLM compares with a recency rule when repurchases count, whether its hits are known or new assets, and how a retriever&ndash;ranker split behaves; LlamaRec [11] shows that in such a split the ranker can only improve cases the retriever already found.",
+  "gap": "I did not find a study reporting nDCG@10 of an LLM-based recommender on FAR-Trans under a protocol that keeps repurchases, nor one on financial transactions that separates an LLM encoder&rsquo;s retrieval of never-bought assets from an LLM ranker&rsquo;s ordering of the customer&rsquo;s own past assets against a recency baseline and same-information classical controls.",
+  "models": {
+    "encoder": "Qwen/Qwen3-Embedding-0.6B (revision 97b0c614, Apache-2.0) [13]",
+    "ranker": "Qwen/Qwen3-1.7B (revision 70d244cc, the course baseline’s pinned model) [14]"
+  }
+}
