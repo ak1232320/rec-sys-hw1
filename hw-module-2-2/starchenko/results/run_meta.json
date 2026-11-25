@@ -1,0 +1,35 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "resolved_sha": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "settings": {
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "max_tokens": 512,
+  "seed": 0,
+  "max_model_len": 8192,
+  "dtype": "bfloat16",
+  "gpu_memory_utilization": 0.3,
+  "enable_thinking": false,
+  "chat_template": "model default (tokenizer_config.json)"
+ },
+ "versions": {
+  "vllm": "0.19.1",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.20.2",
+  "python": "3.10.12"
+ },
+ "hardware": {
+  "nvidia_smi": "NVIDIA A100-SXM4-80GB, 580.178.04",
+  "device": "NVIDIA A100-SXM4-80GB MIG 3g.40gb",
+  "note": "A100-SXM4-80GB in MIG mode, one 3g.40gb slice, 30% of its memory"
+ },
+ "users": 60,
+ "prompt_tokens_total": 71265,
+ "output_tokens_total": 1657,
+ "model_load_seconds": 57.5,
+ "generation_seconds_run1": 6.44,
+ "generation_seconds_run2": 1.69,
+ "outputs_changed_between_two_greedy_runs": 5,
+ "total_script_seconds": 76.8
+}

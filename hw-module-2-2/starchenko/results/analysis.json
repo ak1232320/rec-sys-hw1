@@ -1,0 +1,144 @@
+{
+ "llm_status_counts_all_100_users": {
+  "ok": 57,
+  "no_call_single_asset": 40,
+  "fallback_missing_ids": 3
+ },
+ "llm_valid_output_agreement": {
+  "valid": 57,
+  "equals_input_order": 46,
+  "equals_recency_order": 17,
+  "equals_lr_order": 16,
+  "same_first_as_recency": 28,
+  "top10_differs_from_latest_buy": 40
+ },
+ "paired_counts_100_users": {
+  "llm>input_order": 1,
+  "llm<input_order": 2,
+  "input_order>latest": 3,
+  "input_order<latest": 2,
+  "llm>latest": 3,
+  "llm<latest": 3,
+  "llm>lr": 1,
+  "llm<lr": 3,
+  "lr>latest": 5,
+  "lr<latest": 1
+ },
+ "labelled_users": [
+  {
+   "user_id": "29C0592F...",
+   "relevant": 1,
+   "n_past_assets": 20,
+   "llm_status": "fallback_missing_ids",
+   "latest_buy": 0.0,
+   "lr": 0.0,
+   "input_order": 0.0,
+   "llm": 0.0
+  },
+  {
+   "user_id": "6FA5BF73...",
+   "relevant": 6,
+   "n_past_assets": 18,
+   "llm_status": "ok",
+   "latest_buy": 0.4725,
+   "lr": 0.6448,
+   "input_order": 0.2874,
+   "llm": 0.2874
+  },
+  {
+   "user_id": "8A220D47...",
+   "relevant": 1,
+   "n_past_assets": 17,
+   "llm_status": "fallback_missing_ids",
+   "latest_buy": 0.0,
+   "lr": 0.0,
+   "input_order": 0.0,
+   "llm": 0.0
+  },
+  {
+   "user_id": "94A16DE0...",
+   "relevant": 1,
+   "n_past_assets": 14,
+   "llm_status": "ok",
+   "latest_buy": 0.3155,
+   "lr": 0.4307,
+   "input_order": 0.301,
+   "llm": 0.0
+  },
+  {
+   "user_id": "5180B50A...",
+   "relevant": 2,
+   "n_past_assets": 13,
+   "llm_status": "ok",
+   "latest_buy": 0.0,
+   "lr": 0.2372,
+   "input_order": 0.1846,
+   "llm": 0.1846
+  },
+  {
+   "user_id": "6BAA2D5F...",
+   "relevant": 1,
+   "n_past_assets": 6,
+   "llm_status": "ok",
+   "latest_buy": 0.3869,
+   "lr": 0.5,
+   "input_order": 0.3869,
+   "llm": 0.5
+  },
+  {
+   "user_id": "D63DFAE7...",
+   "relevant": 1,
+   "n_past_assets": 6,
+   "llm_status": "ok",
+   "latest_buy": 0.3333,
+   "lr": 0.3333,
+   "input_order": 0.3333,
+   "llm": 0.3333
+  },
+  {
+   "user_id": "870E814D...",
+   "relevant": 2,
+   "n_past_assets": 5,
+   "llm_status": "ok",
+   "latest_buy": 0.8772,
+   "lr": 0.8503,
+   "input_order": 0.9197,
+   "llm": 0.8503
+  },
+  {
+   "user_id": "5087D23F...",
+   "relevant": 1,
+   "n_past_assets": 5,
+   "llm_status": "ok",
+   "latest_buy": 0.3869,
+   "lr": 0.4307,
+   "input_order": 1.0,
+   "llm": 1.0
+  },
+  {
+   "user_id": "0E72D1BF...",
+   "relevant": 1,
+   "n_past_assets": 4,
+   "llm_status": "ok",
+   "latest_buy": 0.0,
+   "lr": 0.0,
+   "input_order": 0.0,
+   "llm": 0.0
+  },
+  {
+   "user_id": "6B15913A...",
+   "relevant": 1,
+   "n_past_assets": 2,
+   "llm_status": "ok",
+   "latest_buy": 0.0,
+   "lr": 0.0,
+   "input_order": 0.0,
+   "llm": 0.0
+  }
+ ],
+ "finish_reason": {
+  "stop": 60
+ },
+ "output_tokens_max": 110,
+ "output_tokens_mean": 27.6
+}

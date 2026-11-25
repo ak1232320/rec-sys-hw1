@@ -1,0 +1,31 @@
+{
+ "train_cutoffs": [
+  "2019-03-01",
+  "2019-06-01",
+  "2019-09-01",
+  "2019-12-01",
+  "2020-03-01",
+  "2020-06-01"
+ ],
+ "train_pairs": 22199,
+ "train_positive_rate": 0.2661,
+ "fit_seconds_incl_data_load": 12.6,
+ "scoring_seconds_incl_data_load": 6.1,
+ "users": 100,
+ "users_where_lr_order_differs_from_recency": 36,
+ "weights_standardized": {
+  "log_days_since_last": -0.709,
+  "log_buy_count": 0.415,
+  "log_user_distinct": -0.322,
+  "log_asset_popularity": 0.313,
+  "log_user_days_since_any_buy": 0.156,
+  "log_recency_rank": -0.078,
+  "log_days_since_first": -0.069,
+  "sold_after_last_buy": -0.067,
+  "cat=Bond": -0.035,
+  "single_buy": -0.033,
+  "cat=Stock": 0.023,
+  "log_mean_gap": 0.015,
+  "cat=MTF": 0.005
+ }
+}

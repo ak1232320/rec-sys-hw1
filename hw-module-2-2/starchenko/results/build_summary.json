@@ -1,0 +1,12 @@
+{
+ "cutoff": "2021-06-01",
+ "users": 100,
+ "protocol_hash": "50efd4aeb415ba6f0c66dd0793a7c2033cdc32a42b86b58eebbca3e81eaf3417",
+ "users_with_prompt (>=2 past assets)": 60,
+ "users_with_1_past_asset": 40,
+ "users_with_more_than_10_past_assets": 9,
+ "max_past_assets": 23,
+ "latest_buy_lists_equal_starter": 100,
+ "users_whose_needed_ids_are_inside_default_50_cbf_pool": 0,
+ "max_prompt_chars": 9346
+}
