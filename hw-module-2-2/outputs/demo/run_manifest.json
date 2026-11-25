@@ -1,0 +1,97 @@
+{
+  "protocol": "starter defaults: cutoff 2021-06-01, 30 days, warm, 100 users, repeats allowed, candidate_count 50 (unused by the fill arms)",
+  "candidate_policy": "prefix = latest_buy recency prefix; fill candidates = all eligible assets not in the prefix; ties by popularity rank, ISIN",
+  "invalid_policy": "missing/non-finite embedding aborts the run; an empty user profile falls back to the popularity fill and is counted as a failed case",
+  "text_template": "assetName | assetCategory | assetSubCategory | sector | industry | marketID  (empty fields omitted)",
+  "fake_embeddings": false,
+  "local_environment": {
+    "python": "3.14.0",
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+  },
+  "embedding_manifest": {
+    "text_template": "assetName | assetCategory | assetSubCategory | sector | industry | marketID  (empty fields omitted)",
+    "asset_information_sha256": "33f9897b14087068fba53a0bc9e24a0031b096bd3ad3e977e534153f29b7a590",
+    "environment": {
+      "python": "3.13.16",
+      "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+      "torch": "2.11.0+cu130",
+      "transformers": "5.20.2",
+      "sentence_transformers": "5.7.0",
+      "numpy": "2.1.3",
+      "cuda_available": true,
+      "gpu": "Tesla T4",
+      "cuda": "13.0",
+      "gpu_count": 2,
+      "cpu": "Intel(R) Xeon(R) CPU @ 2.00GHz"
+    },
+    "device": "cuda",
+    "models": [
+      {
+        "key": "qwen3_embedding_0.6b",
+        "repo": "Qwen/Qwen3-Embedding-0.6B",
+        "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+        "input_prefix": "",
+        "role": "primary: LLM-based embedder (Qwen3-0.6B backbone, last-token pooling); asset texts are encoded as documents, without a query instruction",
+        "resolved_snapshot": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+        "modules": [
+          "Transformer",
+          "Pooling",
+          "Normalize"
+        ],
+        "pooling": null,
+        "max_seq_length": 32768,
+        "padding_side": "right",
+        "parameter_dtype": "torch.float32",
+        "parameters": 595776512,
+        "dimension": 1024,
+        "texts": 736,
+        "input_tokens_max": 60,
+        "input_tokens_mean": 22.60461956521739,
+        "truncated_texts": 0,
+        "normalize_embeddings": true,
+        "batch_size": 32,
+        "load_seconds": 14.83,
+        "encode_seconds_first": 10.323,
+        "encode_seconds_repeat": 7.767,
+        "repeat_max_abs_diff": 0.0,
+        "row_norm_min": 0.9999998807907104,
+        "row_norm_max": 1.0000001192092896,
+        "npy_sha256": "7a6502bf4ca38d5f372f96382c64939a1f62d82d4bba46a996f0b3c391bb4d14"
+      },
+      {
+        "key": "multilingual_e5_base",
+        "repo": "intfloat/multilingual-e5-base",
+        "revision": "835193815a3936a24a0ee7dc9e3d48c1fbb19c55",
+        "input_prefix": "query: ",
+        "role": "secondary: non-LLM dense encoder (XLM-RoBERTa base, mean pooling); the model card advises the \"query: \" prefix for symmetric similarity",
+        "resolved_snapshot": "835193815a3936a24a0ee7dc9e3d48c1fbb19c55",
+        "modules": [
+          "Transformer",
+          "Pooling",
+          "Normalize"
+        ],
+        "pooling": null,
+        "max_seq_length": 512,
+        "padding_side": "right",
+        "parameter_dtype": "torch.float32",
+        "parameters": 278043648,
+        "dimension": 768,
+        "texts": 736,
+        "input_tokens_max": 56,
+        "input_tokens_mean": 31.657608695652176,
+        "truncated_texts": 0,
+        "normalize_embeddings": true,
+        "batch_size": 32,
+        "load_seconds": 14.3,
+        "encode_seconds_first": 1.788,
+        "encode_seconds_repeat": 1.582,
+        "repeat_max_abs_diff": 0.0,
+        "row_norm_min": 0.9999999403953552,
+        "row_norm_max": 1.0000001192092896,
+        "npy_sha256": "e67ab9c573bf4ca8d70c92ac721842d9493408539a0fe07180b55787c5a66d68"
+      }
+    ]
+  }
+}

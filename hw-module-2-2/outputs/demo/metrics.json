@@ -1,0 +1,142 @@
+{
+  "protocol_hash": "50efd4aeb415ba6f0c66dd0793a7c2033cdc32a42b86b58eebbca3e81eaf3417",
+  "primary_method": "llm_fill",
+  "methods": {
+    "popularity": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.028590012799467643,
+      "ndcg_at_10_nonempty": 0.25990920726788763,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.10515495892857625,
+      "failed_cases": 0
+    },
+    "cbf": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.020100011736078574,
+      "ndcg_at_10_nonempty": 0.18272737941889614,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.0,
+      "failed_cases": 0
+    },
+    "latest_buy": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.027722649787649066,
+      "ndcg_at_10_nonempty": 0.2520240889786279,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.05555555555555555,
+      "failed_cases": 0
+    },
+    "latest_buy_or_sell": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.027107048693904026,
+      "ndcg_at_10_nonempty": 0.2464277153991275,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.052577479464288125,
+      "failed_cases": 0
+    },
+    "pop_fill": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.027722649787649066,
+      "ndcg_at_10_nonempty": 0.2520240889786279,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.05555555555555555,
+      "failed_cases": 0
+    },
+    "tokens_fill": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.024389316454315732,
+      "ndcg_at_10_nonempty": 0.22172105867559758,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.0,
+      "failed_cases": 0
+    },
+    "tfidf_fill": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.02754396522217302,
+      "ndcg_at_10_nonempty": 0.25039968383793654,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.052577479464288125,
+      "failed_cases": 0
+    },
+    "e5_fill": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.029389316454315733,
+      "ndcg_at_10_nonempty": 0.267175604130143,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.08333333333333333,
+      "failed_cases": 0
+    },
+    "llm_fill": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.029389316454315733,
+      "ndcg_at_10_nonempty": 0.267175604130143,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.08333333333333333,
+      "failed_cases": 0
+    },
+    "tfidf_top20": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.027279964717494613,
+      "ndcg_at_10_nonempty": 0.24799967924995103,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.04817747105298131,
+      "failed_cases": 0
+    },
+    "llm_top20": {
+      "users": 100,
+      "nonempty_truth_users": 11,
+      "empty_truth_users": 89,
+      "ndcg_at_10": 0.024389316454315732,
+      "ndcg_at_10_nonempty": 0.22172105867559758,
+      "with_new_asset_users": 6,
+      "ndcg_at_10_with_new_asset": 0.0,
+      "failed_cases": 0
+    }
+  },
+  "failures": {},
+  "pop_fill_equals_latest_buy_mismatched_users": 0,
+  "cross_check_with_starter_run": {
+    "baseline_run_found": true,
+    "protocol_hash_equal": true,
+    "baseline_prediction_rows_equal": true,
+    "baseline_rows_compared": 4000,
+    "baseline_per_user_ndcg_equal": true
+  },
+  "excluded_rows": {
+    "reconstructed_initial_position_rows": 38019
+  },
+  "timings_local": {
+    "shared_data_and_four_baselines_seconds": 14.536532099940814,
+    "build_vector_spaces_seconds": 0.0601487000240013,
+    "scoring_seconds": {
+      "pop_fill": 0.0022554000606760383,
+      "tokens_fill": 0.04415749991312623,
+      "tfidf_fill": 0.052098700078204274,
+      "e5_fill": 0.07516039989423007,
+      "llm_fill": 0.06735150003805757,
+      "tfidf_top20": "included in the scoring time of its space",
+      "llm_top20": "included in the scoring time of its space"
+    }
+  },
+  "note": "Offline purchase relevance, not profitability or asset suitability."
+}

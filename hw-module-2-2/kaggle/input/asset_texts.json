@@ -1,0 +1,2997 @@
+{
+ "text_fields": [
+  "assetName",
+  "assetCategory",
+  "assetSubCategory",
+  "sector",
+  "industry",
+  "marketID"
+ ],
+ "text_template": "assetName | assetCategory | assetSubCategory | sector | industry | marketID  (empty fields omitted)",
+ "source": "FAR-Trans asset_information.csv, as-of rows (timestamp < cutoff)",
+ "asset_information_sha256": "33f9897b14087068fba53a0bc9e24a0031b096bd3ad3e977e534153f29b7a590",
+ "cutoffs": {
+  "2020-09-01": {
+   "eligible_assets": 732,
+   "distinct_texts": 677
+  },
+  "2020-12-01": {
+   "eligible_assets": 743,
+   "distinct_texts": 684
+  },
+  "2021-03-01": {
+   "eligible_assets": 757,
+   "distinct_texts": 694
+  },
+  "2021-06-01": {
+   "eligible_assets": 767,
+   "distinct_texts": 703
+  },
+  "2021-09-01": {
+   "eligible_assets": 785,
+   "distinct_texts": 719
+  },
+  "2021-12-01": {
+   "eligible_assets": 786,
+   "distinct_texts": 720
+  },
+  "2022-03-01": {
+   "eligible_assets": 791,
+   "distinct_texts": 725
+  },
+  "2022-06-01": {
+   "eligible_assets": 795,
+   "distinct_texts": 727
+  },
+  "2022-09-01": {
+   "eligible_assets": 802,
+   "distinct_texts": 734
+  }
+ },
+ "texts": [
+  {
+   "sha256": "0048f27c78d01e02a191a34327b38ec6210eb1669d3ff9be3d0ea96f4534c5a4",
+   "text": "KORRES NATURAL PRODUCTS (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "005f66a4c6039aa041845ce6604ac0c009d59f425609733ca5a060b5ef12c164",
+   "text": "EUROPEAN INVESTMENT BANK EUR 0,125 04/15/25 | Bond | Corporate | Corporate | Banks | XSTU"
+  },
+  {
+   "sha256": "00c2ab21742f9cef89c7ea25bc2c91e10f6db1f6ed3b6da79d7a279b3d9977e3",
+   "text": "KORDELLOS CH. BROS S.A.(CR) | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "0131716756e72fa17d93c14980e5621dfa5b0769e68336dc8db9c5e30101e1d8",
+   "text": "BNP Paribas Funds - Sustainable Multi-Asset Stabil | MTF | Balanced | XLUX"
+  },
+  {
+   "sha256": "01778e82b8ada91c07824290088bf0e1b8381962032f3d49d2e03a48b9636fb2",
+   "text": "ATHENS MEDICAL C.S.A. (CR) | Stock | Healthcare | Medical Care Facilities | XATH"
+  },
+  {
+   "sha256": "01884391a50624f135a0a56eaa23b8d0c221d572006bcca4c544543abec0a3fb",
+   "text": "Pictet - Robotics R USD | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "01c9072de6f261aa484a3914901f68706d037b0822d7f59924d0e93c61c1be3a",
+   "text": "Pictet-EUR Short Term High Yield HR USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "028270caf06f7de80fdc5d76ec37a7215621e04eb3cc2df7b76d3af193046aab",
+   "text": "IBRD | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "03d55c7efb04d76fb10ac059130f570b7a2b230a66624a836087da05fdc8aa8b",
+   "text": "N. LEVEDERIS S.A.  (CR) | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "04434333d8d192118f891fed98b7c1f7d71712e38452f6aefb7d9e21cf663b70",
+   "text": "Amundi Index Solutions - Amundi Floating Rate USD Corporate ESG - UCITS ETF DR - USD (C) | AFLT | MTF | Bond | XPAR"
+  },
+  {
+   "sha256": "04605d23203f52a7523b379bd85941b1c4756af5582e5094b6de3684d6ab98c4",
+   "text": "CVS Health Corp | Stock | Healthcare | Healthcare Plans | XNYS"
+  },
+  {
+   "sha256": "04c2c1e431a3820249747c0cf2920d98d95aa94ed78f49864a5cdbab0f4f52f3",
+   "text": "GEK TERNA HOLDING, REAL ESTATE, CONSTRUCTION (CR) | Stock | Large Cap | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "0507296bf141668682e6daade9f4be2fb75494fbd3452bc9b6bede647694d5a5",
+   "text": "IBRD | Bond | Corporate | Corporate | Banks | XMUN"
+  },
+  {
+   "sha256": "052135953778283004e01a71a95f1e587bf0c286c1590b31bf702dc5b694bd63",
+   "text": "iShares MSCI World ESG Screened UCITS ETF USD (Acc) | SAWD | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "05b803ae11fa47535436ae7f1d3e67ee65970ac8c53c201025de1f58a1b00193",
+   "text": "Microsoft Corp | Stock | Technology | Software - Infrastructure | XNGS"
+  },
+  {
+   "sha256": "05f1cbd6a1b0ac8b9c83e979eca4152df68ced68b3519dd6b09b6f136a567dfd",
+   "text": "VARANGIS AVEPE S.A. | Stock | Consumer Cyclical | Furnishings, Fixtures & Appliances | XATH"
+  },
+  {
+   "sha256": "060785487d1ba02bdfc1366e79caec641f2462b25cbd7edaa1a5826b33c9597e",
+   "text": "REVOIL S.A. (CR) | Stock | Energy | Oil & Gas Refining & Marketing | XATH"
+  },
+  {
+   "sha256": "06235f2e3c3a9ed986d5ad42e34524072051f75c0c15c0d5125fa5c3904a114e",
+   "text": "Diageo | Bond | Corporate | Corporate | Food and Beverage Production | XNYS"
+  },
+  {
+   "sha256": "07d455346b18009fa3abf149d5dd411f71271661af41e0ea7bd2de73bd299fba",
+   "text": "BlackRock Global Funds - Global Multi-Asset Income Fund A2 EUR Hedged | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "0828126b2c7f09f321a3303200191b5411854e39c7e8f9e5a2c42eb1fe6299ad",
+   "text": "Amundi Funds - European Equity Sustainable Income A2 EUR SATI D | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "0855f1495a224fd6e8b9ecc44f0f8fc77a44a7e5e4bbb82c4cf413e92e084681",
+   "text": "BlackRock Global Funds - Global Equity Income Fund A2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "08b537e1b6b9ddb70d81d33e9878499505a2f36c2374b99c454f9417d55fe866",
+   "text": "Glencore International AG | Bond | Corporate | Corporate | Wholesale Trade | XMUN"
+  },
+  {
+   "sha256": "098b94921a83e569f180c9c66c778af208da495f7c3b465efde16c7ec02935e1",
+   "text": "Noble Corp | Bond | Corporate | Corporate | Equipment and Services for Oil and Gas Extraction | XNYS"
+  },
+  {
+   "sha256": "0aeeba2aa28c7274ce2b3ca15910610203663126357022661665c50e6a0000a7",
+   "text": "BlackRock Global Funds - Global Corporate Bond Fund A5 USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "0af7ab1d6c33df6f5be5c5f565f8d26b5e155c7f8a292437a826f91eadb8434e",
+   "text": "Spain | Bond | Government | Sovereign | XBAR"
+  },
+  {
+   "sha256": "0bae293717c21a4ef731982bdb3c99446ab1a1743de92cc2aa8a2e2aa255a456",
+   "text": "Invesco Funds SICAV - Invesco Euro Corporate Bond Fund C Accumulation EUR | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "0c9de70aff807ec0313b0e30271f45d14a54d335c33f3ff38c72470171747fbd",
+   "text": "UBS (Lux) Equity SICAV - Swiss Opportunity (CHF) P-acc | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "0cba0dd86cdb3043ccb1893209b4d2545a5450fea8a6d73ea2675fa864ec1b3a",
+   "text": "Mercedes Benz International Finance BV 0.875% 09/04/2024 | Bond | Corporate | XETR"
+  },
+  {
+   "sha256": "0cc6f4c301e20cb929b3800377fa88d1154642125ba5de65cd42d2fc93edfe13",
+   "text": "GREEK ORGANISATION OF FOOTBALL PROGNOSTICS S.A. | Bond | Corporate | Corporate | Hotels and Lodging | XATH"
+  },
+  {
+   "sha256": "0cced2dc37d1cebf62c8cc79c222efde95faad79cf1360b2609c4acedc10b1ee",
+   "text": "BNP Paribas Funds Sustainable Global Low Vol Equity | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "0d88210547a98e0fd3f117b88335a3fb3c3ab22d8430ec2d110d0b334d5d1096",
+   "text": "DELSBBF Delos Synthesis Best Blue - Bond Fund of F | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "0e3d9030fe6deba65b335744af644f2f7325a11a41a7316f8018009890dbb13e",
+   "text": "PIPEWORKS L. GIRAKIAN PROFIL S.A. | Stock | XATH"
+  },
+  {
+   "sha256": "0ebdcc2a2e9db4d2c64ef6acbccad66da489e7f55586ee82186da9b18f042b6f",
+   "text": "Bond | Government | XETR"
+  },
+  {
+   "sha256": "0fa7ab857e488aa5f0160470eed25b0bf1d534b8ee1ada01a40fa2a7ab7b29f7",
+   "text": "SBCUYBI UBS Lux Strategy Fund - Yield USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "0ff05833d6a7e58083ea36876d4fcb7d044ed4f691ea5647be304ebb473daa76",
+   "text": "UBS (Lux) Equity SICAV - German High Dividend Sustainable (EUR) P-acc | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "0ffac5a1059c5852bed33cd2d5013f4b43d69e8694aa421ae9bb3c3bc651930e",
+   "text": "NBG INTL-DYNAM ASSET ALLOC-A | MTF | Balanced | XLUX"
+  },
+  {
+   "sha256": "10ea0489ce8410ca942472d6ecceb387567b54db74b971418ce937252d6840cb",
+   "text": "TORONTO-DOMINION BANK TD 1,8 07/13/21 | Bond | Corporate | Corporate | Banks | XNYS"
+  },
+  {
+   "sha256": "111733e75769034d3e73f231660693496f66e398dafbbd2ce8e5a1134035e2e7",
+   "text": "Schroder International Selection Fund Sustainable Conservative A Accumulation EUR | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "11259c8a8c46ad1718a39fda8ae682bd32425277db13bd94b3e9fa4f47820028",
+   "text": "BlackRock Global Funds - Global Government Bond Fund A3 USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "1174ff797279e04828daaaa850054ba1736506c0af40b37bc202e0139f35720a",
+   "text": "Sani/Ikos Financial Holdings 1 | Bond | Corporate | Corporate | Hotels and Lodging | XCIE"
+  },
+  {
+   "sha256": "117e9adb116b65db212a7fdaef0f754bcda480358b63ae219c6789a4e8d2e13a",
+   "text": "Intralot Inc. | Bond | Corporate | Corporate | Gambling business | XLUX"
+  },
+  {
+   "sha256": "11bb6615288853faf4dabbd8bdc7e73f725d425724297dc0b6a213d0c4a50716",
+   "text": "iShares € Govt Bond 1-3yr UCITS ETF EUR (Dist) | IBGS | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "1216b6d61865045a1d9b0c982d98b823b20228227465cc8b7c006b3818db65f6",
+   "text": "BNPIMUC BNP Paribas InstiCash USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "1374a0575e3dc348085276a2ae2204da88959942ef3dce79f3ffb56dccf638b5",
+   "text": "KARELIA TOBACCO COMPANY   S.A. (C) | Stock | XATH"
+  },
+  {
+   "sha256": "138a24fb465e9f1b0a1fa3d4e27a6cc4bf64a170620483fb0e90b8c686d089d0",
+   "text": "GGB 1,875 02/04/35 HellenicRep.Gov.Bond | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "14c635d59deab1828b897a31b382a38aa57e79a86409490feaddd276f758fec7",
+   "text": "EL. D. MOUZAKIS S.A. (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "14de58d8cac9b2e9d65bb957fe8d1433642e68b65ec77d1b580ba715722fe1db",
+   "text": "ELVIEMEK LAND DEVELOMPENT-LOGISTICS PARKS-ENERGY-R | Stock | Real Estate | Real Estate Services | XATH"
+  },
+  {
+   "sha256": "158b27245c07332d06f3d1b02bd5e89549ae12fe9ead6234ab929da9548f7be0",
+   "text": "Westpac Banking | Bond | Corporate | Corporate | Banks | XASX"
+  },
+  {
+   "sha256": "161c16ae7ce710fb7a40675e82212da0d31004f7f573a4f59e856f6866615b26",
+   "text": "Star Bulk Carriers Corp | Stock | Industrials | Marine Shipping | XNGS"
+  },
+  {
+   "sha256": "1693f4008cc8a241a233923bc778e2fb48cf95dad00c2220ace9081646d6cacb",
+   "text": "US TREASURY N/B T 0,750 12/31/23 | Bond | Government | Sovereign | XETR"
+  },
+  {
+   "sha256": "176bdb9e6d6ad4361a7a4d33384775b4a0483208cf37d2d352d412ff425d3f55",
+   "text": "FOURLIS  S.A.(CR) | Stock | Large Cap | Consumer Cyclical | Specialty Retail | XATH"
+  },
+  {
+   "sha256": "17950dabc499337615344f8089f3eab39e6c91f889f221e2bc33037e8abdf845",
+   "text": "Gazprom Neft | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XETR"
+  },
+  {
+   "sha256": "17a2952e0dec66d4a9ac3412d6d448cb428a949623d13f1a87954c70eb47b71a",
+   "text": "PETROS PETROPOULOS (CR) | Stock | Industrials | Farm & Heavy Construction Machinery | XATH"
+  },
+  {
+   "sha256": "180c7d0960c96f0b4985c9460fd7d22eb5e0df5f0910f8bccfcdf32366f70759",
+   "text": "France | Bond | Government | Sovereign | ALXP"
+  },
+  {
+   "sha256": "181ccb79a81f9ec6b1b9f03178401e2f90eddf3497919dc6949dcb4b4ec4d43f",
+   "text": "ALUMIL ALUMINIUM INDUSTRY S.A. (CR) | Stock | Basic Materials | Aluminum | XATH"
+  },
+  {
+   "sha256": "183afa1258f6316922289dffa61e16daee73500863ae021ff4a18a8fe9096329",
+   "text": "JUMBO S.A. (CR) | Stock | Large Cap | Consumer Cyclical | Specialty Retail | XATH"
+  },
+  {
+   "sha256": "191d5fa67a7fbfc20d88546b2cea4c3b5434a55b796e12166e090912af5bd7c9",
+   "text": "VelocityShares 3x Long Natural Gas ETN linked to the S&P GSCI Natural Gas Index ER | MTF | Other | XNYS"
+  },
+  {
+   "sha256": "1922fd52b1b2b31e90328a4f9a46098f59b5026978fae455f20a2e6346f785c7",
+   "text": "ELINOIL HELLENIC PETROLEUM COMPANY S.A. (CR) | Stock | Energy | Oil & Gas Refining & Marketing | XATH"
+  },
+  {
+   "sha256": "1940de317c2df9d355dc810d11d9a6d722ad715720ca5c908147625aa6a63a49",
+   "text": "LVMH Moet Hennessy Louis Vuitton SE | Stock | Consumer Cyclical | Luxury Goods | ALXP"
+  },
+  {
+   "sha256": "1966957aca5af4f8d2e0535275734271d9419a6f797467bd450ce0908b8cd232",
+   "text": "FLOUR MILLS KEPENOS S.A. (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "1a0b2141aaeca385547a3e6cde80c0844288e67a714adcc8f98c121bddfbc24c",
+   "text": "DHLOS EUROBOND | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "1a0c81d420a885279d7f91fb6bb13ae58cf1f1e59197a3723d7ce5fa87a49c93",
+   "text": "Citigroup | Bond | Corporate | Corporate | Banks | XNYS"
+  },
+  {
+   "sha256": "1a0ccb84711e70dd0e0ab009beee7fa51e1496f0f4bc4e94736b2f3f5e759d2b",
+   "text": "SISF-EURO CR CO-AEURD SF | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "1a3afceaf14d1e4c79bb1113db8b4a27ffe884185c2a1c14bfabe5b9236ccd16",
+   "text": "BlackRock Global Funds - World Healthscience Fund A2 (EUR) | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "1ba503ab3f9ec9a460eba0e49c90583fb4936f5df1ef821219b27413aa88f3ab",
+   "text": "A.S.COMPANY A.E-ΚΟ | Stock | Consumer Cyclical | Leisure | XATH"
+  },
+  {
+   "sha256": "1c19822b5652bee2c909f596e33450c14854e4f63cea6a0ab31b6bd4fa6f59b2",
+   "text": "BlackRock Global Funds - European Equity Income Fund A5G EUR | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "1ce03192b8b8c50cc5ca5fe2e871c13c25a39bc2c4f6fa44446def28327d906f",
+   "text": "PAPERPACK PRINTING BOX MANUFACTURING | Stock | XATH"
+  },
+  {
+   "sha256": "1d1b219db2fc4dbb1df7b8075675f4cb92e5190d4e8804e6f4d2ea2b56ce806e",
+   "text": "EKTER S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "1d72898a15a9d706bb3549b6aabc5216916617dba296f9b4760050d2214f3d28",
+   "text": "Lyxor Euro Stoxx 50 (DR) UCITS ETF Acc | MSE | MTF | Equity | ALXP"
+  },
+  {
+   "sha256": "1d7aa5cab992feb8c0f83961fdb63145b94c6f3b73be1f4ba5bb15af4c083afa",
+   "text": "CAIRO MEZZ PLC | Stock | Financial Services | Capital Markets | ENAX"
+  },
+  {
+   "sha256": "1e5b970d0cd22d820a605c0bd7723cafb2ac4bb04afc4ec083f53c93a9e080b5",
+   "text": "MYTILINAIOS SA | Stock | Large Cap | Industrials | Conglomerates | XATH"
+  },
+  {
+   "sha256": "1e60b611e96d553352fed90781f083858f7cc8c83be134b723ed778ee5d9d20a",
+   "text": "P.G NIKAS S.A | Stock | XATH"
+  },
+  {
+   "sha256": "1ea12fd596427d884c11ad96654b2a7de8ee1867e9f8d635075913f3e83d5ca8",
+   "text": "Franklin K2 Alternative Strategies Fund A(acc)EUR-H1 | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "1ea38bcc6a2070c97ba14573c02d819ed0f4a41c283e1aa04e18b9262adc40ce",
+   "text": "UBS(Lux)Fund Solutions – J.P. Morgan USD EM Diversified Bond 1-5 UCITS ETF(hedged EUR)A-acc | SHEME | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "1ee1e3a2a7cefbd37a01d18bb924b4212f1f3bddfd4d9ced2294c6a8ff5f34a7",
+   "text": "INTRAKAT SOCIETE ANONYME TECHNICAL AND ENERGY PROJECTS | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "1fb02d2dba4d6402cf26e17dd58fce65bba5855ee849dc993fa386b95a5c443a",
+   "text": "SAP SE | Stock | Technology | Software - Application | XETR"
+  },
+  {
+   "sha256": "1ff854ff87851b317578cdd97ccbaea8944dddafc08ebd3fade556445fe817f4",
+   "text": "Lyxor MSCI World UCITS ETF Dist | WLD | MTF | Equity | ALXP"
+  },
+  {
+   "sha256": "2042fd108afcc6b41b14e7d17e98e25544c06a90b63172a24c07042f3ad0ffde",
+   "text": "BGF-EUR SHRT DUR BND-A2USDHD | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "208c30632e13b55e0a7fe6e9846c37bff06ef35bcc056a90bef7661ccaee1462",
+   "text": "BNP Paribas Funds Target Risk BalancedClassicD | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "214a6dea02fea80e0da181e580f193946ee81459f6bbb1b4f942284e1f8d903f",
+   "text": "FT - FRANKL EUR H/Y - A USD CAP | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "2193a157f24301b16ac2b900428391b52a55b8eb85755171aaf8de4ca217a0ec",
+   "text": "BNP Paribas InstiCash GBP 1d Short Term VNAV | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "21e9479dee220f5fe551e0d8b7efb053b2882898568f0f77f8b5774f0d603de7",
+   "text": "PICTET-USD SHORT MT BONDS-R | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "23352070ff8178fa77b6925d51e268b92ebacc2a1484cf89e9020821dffa0788",
+   "text": "MOTOR OIL HELLAS CORINTH REFINERIES SA | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XATH"
+  },
+  {
+   "sha256": "23638a3039bea9777510f065abda8495d444f6c53e81ef31b1dceaf36edca7f2",
+   "text": "Xtrackers Switzerland UCITS ETF 1D | XSMI | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "23b1eb054fe7519b385b99e2fc7ac7dc314defe9a05a865a0e383632a20cc2f5",
+   "text": "Transnet | Bond | Corporate | Corporate | Railroad Transportation | XLON"
+  },
+  {
+   "sha256": "23c9f45f87a1271f0b6ebe1dc10f084f3e93135d43a68ae375b4d952266e6d67",
+   "text": "BlackRock Global Funds - Global Government Bond Fund A2 USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "23e3f9e2bda9b7729a7f9e3e4f0462f381fb77ddc779a273f5a3a781a454b548",
+   "text": "iShares Edge MSCI World Minimum Volatility UCITS ETF USD (Acc) | MVOL | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "24400bd8757e3642dcc5cf697581d591e1efd2f1a7c9e8201765f2c25f16bb1d",
+   "text": "SATO OFFICE AND HOUSEWARE SUPPLIES S.A. (CR) | Stock | Industrials | Business Equipment & Supplies | XATH"
+  },
+  {
+   "sha256": "2479ab6c45e03a49519a7c8ae98d85e623465d2bcbf7a79e6f6f0e8d5657f250",
+   "text": "Schroder International Selection Fund Global Inflation Linked Bond A Distribution EUR QV | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "24c6f9daf07dc213930b8cc7e31800f93c9dbcbc565d9b051f416a97de7aa4a0",
+   "text": "Western Australian Treasury Corporation (WATC) | Bond | Corporate | Corporate | Government Agencies | XNEC"
+  },
+  {
+   "sha256": "24fcd13546df55262b6835574f10ce2e812adc92c319e2d1cc6c2bc26a6d9ee6",
+   "text": "KRE.KA S.A. (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "2651faa487afdf8c67e557c562cb71cd4f63e16496dec3302303ba3f488853a2",
+   "text": "BlackRock Global Funds - European Value Fund A2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "266927fc0b0addd551bfa8005dac1e7a9d578a1f8147fe18c4599134c6666145",
+   "text": "Schroder International Selection Fund Strategic Bond A Accumulation USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "26d06b7feecc6034914b5a9a8e208875697ce1011c5be9d996d9bd60281e31c1",
+   "text": "BlackRock Global Funds - Fixed Income Global Opportunities Fund A4 EUR Hedged | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "27141e77028f66cd44239c519e41939b2e50aacc8ae0a098abd1865908986e72",
+   "text": "Pictet-EUR Short Term Corporate Bonds HR USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "27be539d7d64aab6fa2416a8b4826325c1c131eee879df55473f804a5845dd8b",
+   "text": "UBSMUSI UBS Lux Money Market Fund - USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "2812f44d7da97f7039f0de714fb9ada0399a5032e6d9a13eb5de9b7092b1c933",
+   "text": "UBS (Lux) Strategy Fund - Balanced Sustainable (USD) P-acc | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "28ef9b6f611ef522135e53b8ff5baff68420f7b332491b9748adfb0fa4e4a3e4",
+   "text": "Invesco Funds - Invesco Asian Equity Fund A Annual Distribution USD | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "28f0f9d56ec8c2026542215b36038a926d962ea767776ceb002b97af6d86e345",
+   "text": "UBS (Lux) Strategy Fund - Balanced Sustainable (EUR) P-acc | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "29cb0ba55e1fdaef1e18565934f8b9807a59d4bd65b662d50f92ace0a3155613",
+   "text": "iShares STOXX Europe 600 Automobiles & Parts UCITS ETF (DE) | EXV5 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "2a4a800dcfb194f543910ef887ffe5adaf768bb7e1e2c98acbcdaf5fb1b6e9ff",
+   "text": "DUROS S.A. (CR) | Stock | Consumer Cyclical | Apparel Manufacturing | XATH"
+  },
+  {
+   "sha256": "2b619685fd29bac0177372e88ddbb895849f725dd1c0f289b79be84a2fa1fe47",
+   "text": "HELLENIC REPUBLIC GGB 3,45 04/02/24 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "2b709b9b79c63f2e84b79f0d214379e0f7ca2ddd1180e404174a671f48eb7df5",
+   "text": "MEDITERRA S.A. (CR) | Stock | Consumer Defensive | Household & Personal Products | ENAX"
+  },
+  {
+   "sha256": "2b9335992fed6d10173c17ade3fd9a650e1123f81f9f1467f2849bbc29cf16cd",
+   "text": "BGF Emerging Markets Fund A2 EUR | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "2d82dbdcee1e271befaca723682c0046344f3cdbca8d318b78d242027bc3b8ed",
+   "text": "Viatris Inc | Stock | Healthcare | Drug Manufacturers - Specialty & Generic | XNGS"
+  },
+  {
+   "sha256": "2e15452d7c8004c8209f18418e8f1fa145c3146bd548ef75ae440b362addff3a",
+   "text": "GR. SARANTIS  S.A.(CR) | Stock | Large Cap | Consumer Defensive | Household & Personal Products | XATH"
+  },
+  {
+   "sha256": "2e4112dab5dd2f0930afb3108acd9d10a22f24d52e3472b9f505fd1f793ba633",
+   "text": "Schroder International Selection Fund Swiss Equity A Accumulation CHF | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "2e73a6a7f154392d935664d57382ee9dd5ca13c01f56280d07e40bc254fbcb5d",
+   "text": "iShares € Govt Bond 3-5yr UCITS ETF EUR (Dist) | IBGX | MTF | Bond | ALXA"
+  },
+  {
+   "sha256": "2eade5c5a47656a9fc6aff1e315eb1db813e8f1bed7a3e58c48ff55cc53f8700",
+   "text": "Amundi Funds II - Global Equity Target Income A USD Class D | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "2ee68f96cef364c8428e31368a4b1a4b85b8dbaec616f60fb0fbe0cd823b191e",
+   "text": "HELLENIC REPUBLIC GGB 1,50 06/18/30 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "2f240447da3d1a14bf143f4416146a6d2fad8aac08d23fbfe713606a06eec80c",
+   "text": "PERSEUS S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "2f4f246ed0621ba020670b65474ba89efc3156a381b6f5de6f14927bc6187b43",
+   "text": "Amundi Funds - Euro Government Bond A2 EUR (C) | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "2f6237e2566e19c4a335a943103295b31689070e4a2895f0afde835511910d2b",
+   "text": "DIAGNOSTICANDTHERAPEUTIC CENTER OF ATHENS YGEIA (C | Stock | XATH"
+  },
+  {
+   "sha256": "2f741fc92c9175b09411d5f61a36316017c40f5bae33b4b64157ece11843cf80",
+   "text": "BlackRock Global Funds - ESG Multi-Asset Fund A2 EUR | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "2faabb74fa76a889d4476fca0a290eebc6c1bc1488877382db9e609560c1d9f7",
+   "text": "PIPEWORKS L. GIRAKIAN PROFIL S.A. | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "2fad2e577a881a574a04e452740ec631bcb84c5c145f2cd5089050d1dfd79630",
+   "text": "BlackRock Global Funds - European Equity Income Fund A2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "2ffde9782d489665ee0fe3676deaa13118c134d7275676913194098493848398",
+   "text": "UBS Lux Equity SICAV Emerging Markets High Dividend EUR Hedged P-acc | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "301f23d94fcf2f9fbcccc0980331e11eaa5c883373a33cf1100a411fdb51aa1e",
+   "text": "Amundi Funds II - Absolute Return Multi-Strategy A EUR ND | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "31185c75584a9fe6015c2f5dd12dc999f6016484403a47721c355ac6ffadc879",
+   "text": "BNP Paribas Equity Germany NOK 2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "313af1766d03f8017101999320a098f2bf02d5c893389a600230dfe573592979",
+   "text": "Schroder International Selection Fund Global Corporate Bond A Accumulation USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "31e184cb859663d3d6eea0e7e0f5dda0a85ceed8825c6316b8716dcd7d103f89",
+   "text": "Invesco QQQ Trust Series 1 | MTF | Equity | XNYS"
+  },
+  {
+   "sha256": "321e10cf2d2939342045f59a7f36e2c931961701a592198d85087cabb24f023a",
+   "text": "HELLENIC TELECOM ORGANIZATION SA | Stock | Large Cap | Communication Services | Telecom Services | XATH"
+  },
+  {
+   "sha256": "3254735331cd04c79a5535837b0ef931201519e00640232061f783d2d4df2b65",
+   "text": "European Stability Mechanism 0.1 31/07/2023 | Bond | Government | XETR"
+  },
+  {
+   "sha256": "326d2a0f70f3b3d0477f5355589133ea0a12a3f5d1749b79648ca44c18f3b9e8",
+   "text": "QUALITY AND RELIABILITY S.A.(CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "326d987275d19c4344fc812572989b4801023f710d206538490a8ac090e3f55d",
+   "text": "CHATZIKRANIOTIS AND SONS MILLS S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "3276d0660d5b0c3e62249f816bbf7d7d72b42b3fb8322e1fe97c2dd65af8f517",
+   "text": "MOTOR OIL HELLAS SA MOHGA 2.125 07/19/26 | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XDUB"
+  },
+  {
+   "sha256": "3283824479f70a199a6feb85a7250ed594f4d64d5a871bd15a08971c513c0a5a",
+   "text": "SPDR® MSCI Europe Consumer Discretionary UCITS ETF | STR | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "32f58829bab0d01d93f0ce8ff251d003ed895ac222bd93a2325e77ffcbe6d898",
+   "text": "iShares Core S&P 500 UCITS ETF USD (Acc) | CSSPX | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "3372ae53e282b0878f646e7b1f893c2ed2ffd9516602d4321106d967878780f0",
+   "text": "MYTILINEOS FINANCIAL MYTIL 2,50 12/01/24 | Bond | Corporate | Corporate | Other Sectors | XLUX"
+  },
+  {
+   "sha256": "338fa515c73d0d99528c96c5435fe842253f6b4b9ec5e9e4ddebda8dc3ff0d12",
+   "text": "iShares Core MSCI Europe UCITS ETF EUR (Acc) | IMAE | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "33ca8b77cf138ef954d7443f03fdae19e7236854db609c1b54346d217ef0b024",
+   "text": "MARFIN INVESTEMENT GROUP S.A. | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "33dd6adfb94f8f142ae2dcd3869eeb844d69aaefdcef63515f13be2f7e25ef26",
+   "text": "Wells Fargo & Co | Stock | Financial Services | Banks - Diversified | XNYS"
+  },
+  {
+   "sha256": "3453069693776322e085854e6d54ee836647c3fea2d26d347f9f09fb846c7140",
+   "text": "DELUBFB Delos USD Bond Fund | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "34b9a3b61aeff9ede55f42bbc436958425094b5a92e01ed00760926d291dbc37",
+   "text": "ILYDA S.A. (CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "3552fe5ed0ddcfe09ae8f4d1309cf61876363668f94c17da4407274757b6e2d9",
+   "text": "YALCO - CONSTANTINOU S.A. (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "3578a8c20cdcc4ca34ac9de3e547e74ae9ca13078b035b18e2638f3c352242b1",
+   "text": "Pictet-Digital R USD | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "3585bc708038c6736284e6f0063e159fbb3b623b3aa5010ab266fff194da9700",
+   "text": "VelocitySharesTM 3x Long Natural Gas ETNs linked to the S&P GSCI Natural Gas Index ER | MTF | Other | XNYS"
+  },
+  {
+   "sha256": "3593a7c8bcc5859814b72d4eca18db6ac5cbbfc536c52d6fa247deb68077fb79",
+   "text": "HSBC USA | Bond | Corporate | Corporate | Banks | XNYS"
+  },
+  {
+   "sha256": "35d3a6ec84f598eaade8af3b5c7057314fce20b735c3719dcb42eb414b9f3e79",
+   "text": "Croatia | Bond | Government | Sovereign | OOTC"
+  },
+  {
+   "sha256": "361a700bb38c618b5ac4cef3087552f143381a4315045fab0b2242fdf6160099",
+   "text": "Council of Europe Development Bank | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "36ac1716d961f9cb40770002172a862d8b91f2b338589e9d64e555eea81e9377",
+   "text": "Lyxor STOXX Europe 600 Automobiles & Parts UCITS ETF EUR | MTF | Other | XPAR"
+  },
+  {
+   "sha256": "371416353e31a39022ce52894db7fb797530c101ddf528d56fb717956d977353",
+   "text": "iShares Core € Corp Bond UCITS ETF EUR (Acc) | IEAA | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "37a8cc08c5c6bea1dfde72038231a5a5d66ba685f3d3374874aaeda954de50d9",
+   "text": "MERMEREN KOMBINAT A.D. PRILEP(GDR) | Stock | Basic Materials | Other Industrial Metals & Mining | XATH"
+  },
+  {
+   "sha256": "37bb05654cb76717a18d68a94dc0bf4b8e83b1409af26bedfc355d514335daca",
+   "text": "Alphabet Inc | Stock | Communication Services | Internet Content & Information | XNYS"
+  },
+  {
+   "sha256": "380d45c4d8a89e3e5dcacec33bd9e8374b9efdf30579dc0889f3b2c10e6cd9fc",
+   "text": "Portugal | Bond | Government | Sovereign | PORT"
+  },
+  {
+   "sha256": "38d3bbeaf58a66944ce2e493c11bd15b0a7c5c0f52e98f4c712c82dbcf09956c",
+   "text": "iShares European Property Yield UCITS ETF EUR (Acc) | IPRE | MTF | Other | XETR"
+  },
+  {
+   "sha256": "38f076d354549c6826bd94d64096b9993a84791ecb46a8f6dc8718c2842fe8e7",
+   "text": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C | DBXT | MTF | Money Market | XETR"
+  },
+  {
+   "sha256": "3941369b5b6e9418c141585e52be2cac53ead52a50f4299ebe6133fe62b8c456",
+   "text": "AKRITAS S.A. (CR) | Stock | Basic Materials | Lumber & Wood Production | XATH"
+  },
+  {
+   "sha256": "398177d255c9fec6abcb106ed50fd395e3fe0917367d118991b6fb92afdd430b",
+   "text": "Agence Francaise de Developpement | Bond | Corporate | Corporate | Banks | XPAR"
+  },
+  {
+   "sha256": "39b312d425a03ccc589fc2d95d683497a05f30fd226470d4bc15ea73d0814af8",
+   "text": "EVROFARMA SA (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "3a7796456d1b3e4bf82288edb9efcaf3e2673062aaae3bac087e0e49f438ee8f",
+   "text": "iShares S&P 500 EUR Hedged UCITS ETF (Acc) | IUSE | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "3a98f200f6de18f484304d0b46caec6fd4d8667dc9b937323faa52b207d68793",
+   "text": "Electricite de France (EDF) | Bond | Corporate | Corporate | Power | XPAR"
+  },
+  {
+   "sha256": "3aaa6601d2fcdcbc29309d6987aeb4f085d1ffb93ea4b9c61704e435b6d060b1",
+   "text": "WisdomTree WTI Crude Oil ETF | MTF | Other | XLON"
+  },
+  {
+   "sha256": "3b20a48a3684d91eb044a1f2f57552e725c3a6663ef93b25e9e1a93404fe9035",
+   "text": "UBS (Lux) Bond Fund - Euro High Yield (EUR) P-dist | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "3be6665f2a4ac372e0eff1f524c141e0670a52dd735d5739c8dda8ce3353cbe7",
+   "text": "DOPPLER S.A. (CR) | Stock | Industrials | Specialty Industrial Machinery | ENAX"
+  },
+  {
+   "sha256": "3c48ec5efb9e6cbff2968e80e7aec17e5d13be57b79b9918fad4241f268f62d3",
+   "text": "Enel | Bond | Corporate | Corporate | Power | XETR"
+  },
+  {
+   "sha256": "3cccad91867681221bc201ef25580c3d58f448707afbfc70b2b044354b696bb5",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | XMUN"
+  },
+  {
+   "sha256": "3cd6b22913cc95558b711b56d9c0e080932680d80b4f1452fe1a1362f5463744",
+   "text": "SPDR® Bloomberg 1-5 Year Gilt UCITS ETF | GLTS | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "3d1fea1a4af82d686e17a4887da4e344b63ab0dba57a1f0b8deb0031772c68b7",
+   "text": "DELOS UNION FUND-BALANCED FD | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "3d9d2fa392898778550bbb0033f43d9783676c0b92883386b8b97df16bdb4c81",
+   "text": "AEGEAN AIRLINES | Stock | Large Cap | Industrials | Airlines | XATH"
+  },
+  {
+   "sha256": "3dc8cc861046bec93901e3cd1e5120884ee7aed0432cade8d0250aaf850402f8",
+   "text": "iShares STOXX Europe 600 Travel & Leisure UCITS ETF (DE) | EXV9 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "3ddf42a09af5472fbccde57e228738d36fc253ef4ad63928c4b7148ea090558f",
+   "text": "QUEST HOLDINGS S.A. (CR) | Stock | Technology | Electronics & Computer Distribution | XATH"
+  },
+  {
+   "sha256": "3dfacd885661b0bad69671fb6a8e5587ef4b641237defd0d6f9f5fa05bab7c63",
+   "text": "Pictet - Robotics HR EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "3e0cad6c40983263fe46b812292f7bcf764b341860f7b41e7a5ab789ee98c080",
+   "text": "ALPHA ETF FTSE ATHEX LARGE CAP EQUITY UCITS | MTF | Equity | XATH"
+  },
+  {
+   "sha256": "3e0cf9fc80405d9e3f0196064730112a73e26546921ac708ed31b6939c866d2d",
+   "text": "BNP Paribas Flexi I US Mortgage Classic H EUR Capitalisation | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "3e65adb0c2333f279dd799d82522d1a63bd98b0b42327b25f76fc71293932a7d",
+   "text": "ANEK LINES S.A. (CR) | Stock | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "3e9bdb9ca1c96b4359f22df91dd95921380961a9b17a9a924ea2829773d57212",
+   "text": "Caterpillar Inc | Stock | Industrials | Farm & Heavy Construction Machinery | XNYS"
+  },
+  {
+   "sha256": "3ea0ab517ebf4cb71e5996c50691734d792a6b61fa3b734d742d88654247b508",
+   "text": "ATTICA HOLDINGS S.A. (CR) | Stock | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "3f5e9cdd08a9fc02d587350b25d063409d62ecec8b80c2b42c30b47b41189ffb",
+   "text": "Franklin Euro Short Term Money Market Fund A | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "3f6331e0c3a484d151b2348ca1709282218ee0b141a5c4abf65e9a98ab3f7858",
+   "text": "DIVERSA COMMERCIAL IMPORTS TECH SERVICES S.A. | Stock | ENAX"
+  },
+  {
+   "sha256": "3fd5d4903c51b9ad870c2dad999b9a230f3d8f0ff770f318393ca5140d5fcd64",
+   "text": "Apple | Bond | Corporate | Corporate | IT equipment | XMOD"
+  },
+  {
+   "sha256": "3fe351729d0e1ed849f83948832ee7b761ae233427dfc48ca647c5266dea429b",
+   "text": "AVE S.A. | Stock | Communication Services | Entertainment | XATH"
+  },
+  {
+   "sha256": "40609a7f789fa7f18b60cb9b3653712b15f1cf7300e6b8f5adfcc02f8ebe71b5",
+   "text": "Bonos Comunidad de Madrid, 0.997% 30/09/2024 | Bond | Government | XBER"
+  },
+  {
+   "sha256": "409445cb454d547ead70bbf04b850d72b536ff0c7bc433ecd5f383316709a714",
+   "text": "Logismos INFORMATION SYSTEMS S.A. (CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "41244395ce067ecd7c67fe08623827361af20216830877cf006accb8ed5b54d2",
+   "text": "BGF Euro Reserve Fund A2 EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "414c238c64935d30a382ac77b8d78c9fbff66a3774f2aa398c2bb33590e33c9e",
+   "text": "ELTECH ANEMOS S.A. | Stock | XATH"
+  },
+  {
+   "sha256": "4168ea887cc835795775e8eebf3f19d9472ec9ce76d3afd86e00853735afd26e",
+   "text": "Xtrackers MSCI World Energy UCITS ETF 1C | XDW0 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "4264820523a8035d1418c78292ab978a825419a0679c39fd71501b37d4978d1d",
+   "text": "BIOKARPET S.A. IND. AND COMM.ENT.(CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "42abe861b0e9c0b7d237690e6e0c8ff258ad9680e7639f72082dfe6dee95eb5a",
+   "text": "INTRACOM S.A. HOLDINGS (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "42ffdc9a4b9a77902080511ddc3f2667660698c83d0669bfeae18e5a03f08ad3",
+   "text": "BlackRock Global Funds - Global Multi-Asset Income Fund A6 EUR Hedged | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "4305dc727573d83d7eb722aecfb7956c9476734d3b43724b74969188de2c06e9",
+   "text": "Pictet-EUR Short Term Corporate Bonds R | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "4333f3b11f7c67544676788f1bd4c72a24bddd3c14f25b5b6c3bdc8417654cf3",
+   "text": "Bausch Health Companies | Bond | Corporate | Corporate | Pharmaceutical Preparation and Biotechnology | XBER"
+  },
+  {
+   "sha256": "435b20449f3962370b9f9fa83bc1d6575ef2f4c614ca4870d8088a464bf2b373",
+   "text": "SELONDA AQUACULTURE S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "4370aa69c66255b65991498657665478368c3c72d043765676d6289aceb41094",
+   "text": "Citygroup Inc. | Stock | XNYS"
+  },
+  {
+   "sha256": "43cee0021427520cad1817fb18ea40fdd4366e413a31c5d1b9e278dc9f435666",
+   "text": "Public Power Corporation | Bond | Corporate | Corporate | Power | XDUB"
+  },
+  {
+   "sha256": "443127e464ee04033f30bc37ec665260ff48c42e81e751cd66aec494f000af86",
+   "text": "Schroder International Selection Fund US Dollar Bond A Distribution USD QF | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "444fab57be8a24f6c837a697eac2a099562b7ab6a1d539b10dfa708570dc7bab",
+   "text": "BNP Paribas Sustainable Bond Euro Short Term Classic C | MTF | Bond | XPAR"
+  },
+  {
+   "sha256": "451a5df2b5005c6f7fcb6b5f84002cf31245a01e226dcf5bd0347b242592af57",
+   "text": "BlackRock Global Funds - Global Allocation Fund A2 (EUR) | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "45781d3a081ac9e504a1a9358c7fcb10f65276fb75dd672e891cb9c1df351ae4",
+   "text": "MTF | Other | XLUX"
+  },
+  {
+   "sha256": "45f64e4b328209dbd91ac6895afded762352f718f785a5eda5b55d19f2a1cb33",
+   "text": "Invesco Global Equity Income Fund A EUR Hedged | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "4653a0fc87dea9ab34af130d14095869b04b1fadbe91efba1f9a15529884d530",
+   "text": "Walgreen | Bond | Corporate | Corporate | FMCG-Retail | XETR"
+  },
+  {
+   "sha256": "46f10cbc39bdbaca56715e2bfcdc3131d7a58829419ce62c40c072864b870e9c",
+   "text": "Sanofi SA | Stock | Healthcare | Drug Manufacturers - General | XPAR"
+  },
+  {
+   "sha256": "4766df160b6ca30447973859f5f4fbfb2216df2feaa1075233a737e040d24a74",
+   "text": "Mercedes-Benz Group AG | Stock | Consumer Cyclical | Auto Manufacturers | XETR"
+  },
+  {
+   "sha256": "479a8809983e7178e3420c0149fae1add1d459734cdd1c3bb8fe88eed4639728",
+   "text": "California Resource | Stock | XNYS"
+  },
+  {
+   "sha256": "47f9aae25a5cbc91acd6ba945ee7a13d1c872c8b1ea96fb312d8965d46869e26",
+   "text": "ELLAKTOR S.A. (CR) | Stock | Large Cap | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "47fe8c404bdbfca7b736d066e52942137ced62bda330521983763f9e781c0222",
+   "text": "ALPHA TRUST MUTUAL FUND AND ALTERNATIVE INVESTMENT | Stock | Financial Services | Asset Management | XATH"
+  },
+  {
+   "sha256": "48ee04f9076aa3e74905d3174cf5cc94dd5bfd88abeded1daed5d70c3580914d",
+   "text": "UNIBIOS HOLDINGS S.A. | Stock | Industrials | Pollution & Treatment Controls | XATH"
+  },
+  {
+   "sha256": "48fd71f3388c6d06e6796d702859b1ceb845a1954b749ab50e315dbe8aae2a0a",
+   "text": "Pfizer Inc | Stock | Healthcare | Drug Manufacturers - General | XNYS"
+  },
+  {
+   "sha256": "48ffc060931df5ebe7638d1a50a302c8dfc454411f3ed9a28a0df4efebee9f8c",
+   "text": "N. LEVEDERIS S.A.  (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "49d48387e24dbb538023b4fda42efa4a42e8cb32123001a4a6106045c021d2a9",
+   "text": "T-Mobile USA | Bond | Corporate | Corporate | Communication Services | XNYS"
+  },
+  {
+   "sha256": "4a55647bd9211874e338578a60cbecf3871abdf3978a5a9f02a9b548d3f7b6e9",
+   "text": "HELLENIC REPUBLIC  BONDS GGB 2 04/22/27 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "4a82eecc7d2e08ff8fe076c6009a1abb0edc2a94cb9dfee83c2f6864374fdfd8",
+   "text": "ELASTRON  S.A. (CR) | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "4b34382519e6f03f7a3c9d6b96b19c666ad4806f19c75df27ffd85d7c8b2be78",
+   "text": "TITAN CEMENT COMPANY S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "4b3e6e44f70e92179f5fad3cfbe3223c9fb984f47153e2ba6baf61f6ef6aa9f4",
+   "text": "Frigoglass | Bond | Corporate | Corporate | Miscellaneous Machinery and Industrial Equipment | XLUX"
+  },
+  {
+   "sha256": "4b72c0a389e556e0749519a94c9c0538b5d6a8c2b7a8bbe5441fe90c59461285",
+   "text": "UBS Lux Equity Fund - Global Sustainable Innovators | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "4b9431884eb992b90f6a20d537a7bceec3637c9ec7b6d59cd6d83a29ec010d05",
+   "text": "IASO S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "4bd08020d7e59f58948f9d5475a2e10b0e41c9aca710d876781252ad7e252d0f",
+   "text": "TECHNICAL OLYMPIC S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "4bd5343f3b2c2ec5008da9dd08253d1c719694edfab2342ee316ca5e7e830e01",
+   "text": "iShares STOXX Europe 600 Technology UCITS ETF (DE) | EXV3 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "4c13614c7f40287dd16bc75e24080c271e084c454ac4abad33d2d412e0b80b57",
+   "text": "EL. D. MOUZAKIS  S.A. (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "4c525b833e041c97f1a1aa748e02969d287adf4c4e1401ea5403ff1e6bcde0c0",
+   "text": "BlackRock Global Funds - Euro Bond Fund A3 | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "4ca0fe445aaee5def3b7da8fbd06ff6823294fc732366329c2746811ba40adee",
+   "text": "Schroder International Selection Fund EURO Government Bond A Distribution EUR AV | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "4cbea347e7aacb2164fda2f31b9ab8ceab27e9b4a2d2d749a6554fb5b3194125",
+   "text": "Stellantis NV | Stock | Consumer Cyclical | Auto Manufacturers | XPAR"
+  },
+  {
+   "sha256": "4d08486d9a77e5f0b27b363da6debce91babbc42141a6b2b1170942b74fb5fab",
+   "text": "Sumitomo Mitsui FG | Bond | Corporate | Corporate | Holding Companies | XNYS"
+  },
+  {
+   "sha256": "4d24dd8f08eee6feb51d612b1a99a7c2f722c09c3374acb4a1286fb1ccea752e",
+   "text": "HELLENIC REPUBLIC GGB 1,875 23/07/26 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "4d5f22f2792632a744f08055d91ec28982dc989630a67c7c6b408bbf2d44d1d1",
+   "text": "Basf SE | Stock | Basic Materials | Chemicals | XETR"
+  },
+  {
+   "sha256": "4dbac0267b12f390cb9ef1bb6c7f0f0d81a7a67b0ac37538fd1fdf147ee64e09",
+   "text": "ALPHA ASTIKA AKINHTA S.A. (CR) | Stock | Real Estate | Real Estate Services | XATH"
+  },
+  {
+   "sha256": "4dd03b850d3fb7ef672fe8ff60e818f68a7cde1b1ef94708267de1cb70d08556",
+   "text": "ΜΙΝΩΙΚΕΣ ΓΡΑΜΜΕΣ-ΚΟ | Stock | XATH"
+  },
+  {
+   "sha256": "4de7aec1f870eaddc9fb6cf9fcc4ce4391bec6f689e5f217aa8efddcdf1b8308",
+   "text": "The Goldman Sachs Group Inc | Stock | Financial Services | Capital Markets | XNYS"
+  },
+  {
+   "sha256": "4e3d6e0044ddbaddc42e353f059e7d2dccaafb74571f62d1a159db6e994e2786",
+   "text": "SCHRODER INT-STR CRD-A ACC | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "4f53ffe33c7aaa8696025bd27236823fdc8d87ae5bfea740cad4de088fbcf38f",
+   "text": "iShares Diversified Commodity Swap UCITS ETF (DE) | EXXY | MTF | Other | XETR"
+  },
+  {
+   "sha256": "4f67ab6adc11e24fcd8a90c7499a38971e6716b5c56694bd0573165f176265f3",
+   "text": "Telecom Italia (TIM) | Bond | Corporate | Corporate | Communication Services | XLUX"
+  },
+  {
+   "sha256": "4f8f8225fe42479932560045f55bd151846f9ad31d602bcfbc5d332d52ee8eac",
+   "text": "Instituto de Credito Oficial | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "4f91ac909f140b31ebe91cec92d73eb38bbf449685c7e9ab303349db3f6f98e6",
+   "text": "Invesco Funds SICAV - Invesco Balanced-Risk Allocation Fund A Accumulation EUR | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "4fa281e71a952b9d6df20906897be369d171c842fdc4394bf472149f4ddac2e2",
+   "text": "Goldman Sachs | Bond | Corporate | Corporate | Banks | XNYS"
+  },
+  {
+   "sha256": "4fc1e38506897d28ed1fc013fe03b45df077b65518975a9af17e579e5bdf1600",
+   "text": "KRITON ARTOS SA | Stock | ENAX"
+  },
+  {
+   "sha256": "505c14a063598f87b5800981ca90c5cf118d68ea7f2ff1d573a735e8a947b566",
+   "text": "The Walt Disney Co | Stock | Communication Services | Entertainment | XNYS"
+  },
+  {
+   "sha256": "505fea50be492bf2cc7eebf18015046e34cf5d520b88422d294444b8b448fef5",
+   "text": "USA | Bond | Government | Sovereign | XBER"
+  },
+  {
+   "sha256": "5069819afaa4f5c90a430f3f3c8918723c32f4c0ff3e20389cb09dddfa904235",
+   "text": "MTF | Other | XNYS"
+  },
+  {
+   "sha256": "50897c5810c8997ead1de1bb7cfc4d32ea37659b2b113472d6fa549e8126f35b",
+   "text": "Schroder International Selection Fund EURO Corporate Bond A Accumulation EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "50ba1cd6ef957cf04a671d46deb14d2c36ff13d7bff66f36faae096ab8dc7154",
+   "text": "BNP Paribas Funds Commodities Classic H EUR Capitalisation | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "5189bd17a83e440be38c4c4731f49deed851556565e42c383b771b6adcd237c8",
+   "text": "BlackRock Global Funds - World Gold Fund A2 (EUR) | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "51fee86a15d395020c750b446bcf4509778f9ca3f77a19d249d250f051560185",
+   "text": "INTERWOOD XYLEMPORIA S.A. (CR) | Stock | Basic Materials | Lumber & Wood Production | XATH"
+  },
+  {
+   "sha256": "5286ef661ac525b0999129fe6da4ea6d9b28c844c55b630bf7d0484738414e2c",
+   "text": "N.P.INSURANCE ΝΕΟΣ ΠΟΣΕΙΔΩΝ ΜΙΚΤΟ | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "52a69ae0c6c9358f2e67a74ae753ac5c3f77f7a6aeaa1c9eefd0088ed908b409",
+   "text": "DPB FLOAT  PERP Deutsche Postbank Funding Trust I | Bond | Corporate | XETR"
+  },
+  {
+   "sha256": "52c380c451b8eeaaece27d5cb9c1192ccf1b0858facfee6a4071f711479a1f7b",
+   "text": "ELLAKTOR VALUE PLC ELLAKT 6,375 12/15/24 | Bond | Corporate | Corporate | Other Financial Institutions | XCIE"
+  },
+  {
+   "sha256": "538e7969537d015e351045d267d32e5ad287f47d201286cbb72647fab83c1afc",
+   "text": "PRODEA REAL ESTATE INVESTMENT COMPANY S.A. | Stock | Real Estate | REIT - Office | XATH"
+  },
+  {
+   "sha256": "53dfea58fc0509d5605b53c9be8f13cafe179001f0ca4ec444af980f27a2d2bc",
+   "text": "MINERVA KNITWEAR (CB) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "5407fa1a8a494b90b322c97eea3478dee072f48fc0c4e5f56eddd3648352a8bd",
+   "text": "LAVIPHARM S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "547252b1597038e2f3d5e9a150f7b182cdb26e99ae5d1a5b40c1f6a1e3936ec0",
+   "text": "iShares China CNY Bond UCITS ETF USD Acc | CYBA | MTF | Bond | XAMS"
+  },
+  {
+   "sha256": "550dbc7a71cffd067406e58c22aa017f714ab092621592ef3d93da20ba40fa77",
+   "text": "Lyxor Euro Overnight Return UCITS ETF Acc | CSH | MTF | Money Market | ALXP"
+  },
+  {
+   "sha256": "5550738bdb3094e771d560b74eeed41e4122fb19b1f2d32580ec3aa782e68f52",
+   "text": "Renault SA | Stock | Consumer Cyclical | Auto Manufacturers | ALXP"
+  },
+  {
+   "sha256": "55d0526a8d91e1b4797bea6d3ed8f02ac4e2551045ed278a83eeddb9def4e86b",
+   "text": "I. KLOUKINAS - I. LAPPAS S.A. CON. AND CO.COMP(CR) | Stock | Consumer Cyclical | Apparel Retail | XATH"
+  },
+  {
+   "sha256": "55d91c828525b792bcd122061909657142141cf2d977b9762d2fc9a63074c031",
+   "text": "THESSALONIKA WATER AND SEWERAGE SA (CR) | Stock | Utilities | Utilities - Regulated Water | XATH"
+  },
+  {
+   "sha256": "561b49c66b926de5e82e865a2df703f344e3168848091ecd5753381235695327",
+   "text": "DIONIC S.A. (CR) | Stock | Industrials | Industrial Distribution | XATH"
+  },
+  {
+   "sha256": "564854815ab06e4fd6539070057dc04df6849db344d77ff5f544615eaf6e033b",
+   "text": "HSBC Portfolios - World Selection 2 AC | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "564e84d46bd18708485c8a6cff69fa658a1a2de834db1d1ac64125cec84164f3",
+   "text": "Schroder International Selection Fund Global Dividend Maximiser A1 Distribution USD Q | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "57151e951d5da8978f83d9c049b3d27a2bb93d205bce194f5afa4bbb93b4cb4d",
+   "text": "VARVARESSOS S.A. EUROPEAN SPINNING MILLS (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "5740b3e122ae62f05e0c1785178d2aeca8da4b302158abefa69ec26c06eb3852",
+   "text": "Avis Budget Car Rental | Bond | Corporate | Corporate | Leasing and Rental | XBER"
+  },
+  {
+   "sha256": "5796a08604d108bd30bb3ed4a599baf6751a37754516703d81db8c55ff832db3",
+   "text": "Ericsson | Bond | Corporate | Corporate | Telecommunication Equipment | XBER"
+  },
+  {
+   "sha256": "583363def32758e441a3fbdbcbf999536e35d651845bb4c6ae2c95aef915dd2c",
+   "text": "Schroder International Selection Fund Global Dividend Maximiser A1 Distribution EUR Hedged Q | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "586fb3b5ff7c330a3c9e2e9ca14ef2567f9a3c5e6dcf2a954370666072511123",
+   "text": "Germany | Bond | Government | Sovereign | XETR"
+  },
+  {
+   "sha256": "587fd198667ff2180086dc285b0ef13eaad4c3c558614f666dcba2c81f36ec1e",
+   "text": "Apple | Bond | Corporate | Corporate | IT equipment | XNYS"
+  },
+  {
+   "sha256": "58bc98c0a134451e0395d1695dd123973997ea954bace3675963c6cdb83a5963",
+   "text": "LAMDA DEVELOPMENT SA | Bond | Corporate | Corporate | Miscellaneous Construction | XATH"
+  },
+  {
+   "sha256": "58bfe972cfb816deebe14fa8472ff9f48ea04a44f5f75ac580dfe04cfe78a749",
+   "text": "E. PAIRIS S.A (CR) | Stock | Consumer Cyclical | Packaging & Containers | XATH"
+  },
+  {
+   "sha256": "59637732b3a33183b108b2213c85ab1a5f26f5197044a9081e92c1fd9ae765b8",
+   "text": "BlackRock Global Funds - Emerging Markets Fund A2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "5a7049e8cb7e0d125013ab09979a61f462b538a1b27c1591221a3daf44ebe883",
+   "text": "Diamond Offshore Drilling | Bond | Corporate | Corporate | Equipment and Services for Oil and Gas Extraction | XNYS"
+  },
+  {
+   "sha256": "5ae75c7fdf60a3305331c999e874430ec3c4ebb9cf76cbc63eb4af88867047dd",
+   "text": "BlackRock Global Funds - Sustainable World Bond Fund A2 USD | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "5af4835f76f315b29b435dbd3d5656e01176c218c1aada1f909150ee19e364ed",
+   "text": "SPACE HELLAS S.A. (CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "5be469f7b44c567d452b62e3308f7d4733a087c4e8685f6eb310415f93b888cc",
+   "text": "EUROPEAN INVESTMENT BANK EIB 1,875 02/10/25 | Bond | Corporate | Corporate | Banks | XBER"
+  },
+  {
+   "sha256": "5c2508aee13784e149b041c83014cee37c28eb67eab8905dc1f935439958099a",
+   "text": "NEXANS HELLAS S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "5c4ee1de6378d7900ae80f27ee23ff0994eb24544381de735e9df635b1923510",
+   "text": "Compagnie de Saint-Gobain SA | Stock | Industrials | Building Products & Equipment | ALXP"
+  },
+  {
+   "sha256": "5c4f0c23ea441b2c8e11e5651c4ae42ec24f0e31c02143c457685a602993d632",
+   "text": "Telecom Italia (TIM) | Bond | Corporate | Corporate | Communication Services | XPAR"
+  },
+  {
+   "sha256": "5c54dac93a093b6edf45bf20f4279400ceb7028672ced6b0158c3cfb0ce9be81",
+   "text": "MOTOR OIL REFINERIES SA | Stock | Large Cap | Energy | Oil & Gas Refining & Marketing | XATH"
+  },
+  {
+   "sha256": "5c57239d90c456b713ba1b2d0a6f16cbb5d2c91ecde906558be83052967d2c4f",
+   "text": "C. SARANTOPOULOS FLOUR MILLS S.A. (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "5c89c6b6e2544cd03434b31e484502d5389b07da0f15ac3dafe06e17ccc38470",
+   "text": "Xtrackers II Eurozone Inflation-Linked Bond UCITS ETF 1C | DBXK | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "5cda4fed8fba0b08da3b471e4634970804cbef4ff1f2fe52d19c71418bddf22c",
+   "text": "Macif | Bond | Corporate | Corporate | Insurance and Reinsurance | XPAR"
+  },
+  {
+   "sha256": "5d837e49c8c5b97ed93bed4acf14251e93f74f13c5b7c6ee99499a888eddc75f",
+   "text": "UBS ETF (CH) – Gold (EUR) hedged (EUR) A-dis | AUEUAH | MTF | Other | XSWX"
+  },
+  {
+   "sha256": "5e17797891672c116934e5ab08bbe1cf493a17835509341a5a433d55985e98f7",
+   "text": "Invesco Funds SICAV - Invesco Euro Corporate Bond Fund A Accumulation EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "5e49efd03022aba1a34d0d89aee7cb238def412f203941b1b4797b0ab540dd61",
+   "text": "ELTRAK S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "5e527a54fce86176d1f98721ff99bd797a17b3b62f66ee6778ffc5a604afcf2b",
+   "text": "PPC SA | Stock | Large Cap | Utilities | Utilities - Renewable | XATH"
+  },
+  {
+   "sha256": "5e72fad5e9f68bf7e40ef902e5ee73567a4e9b945db89b83194358822c71e4c4",
+   "text": "EPSILON NET S.A. (CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "5e8207bc9def8eb654925605d069b97a67a25d4fc79ab7e1adee3d571cfc9ce1",
+   "text": "Boeing Co | Stock | Industrials | Aerospace & Defense | XNYS"
+  },
+  {
+   "sha256": "5e8a4cd1eb6b0297059472db5886d60ba312a0ec812dbe8f416225675a9a78e2",
+   "text": "HELLENIC REPUBLIC GGB 1,75 06/18/32 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "5e963c8db540a509d8ce97e1af4a7832bb923d46a4a0276c2c68a131b79294a3",
+   "text": "Xtrackers MSCI World Financials UCITS ETF 1C | XDWF | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "5ebf9ada67833ea19cd24010009dfbe2f2e62225d4daa48ba5f1ab9d03f8acd9",
+   "text": "BGF European Special Situations Fund A2 EUR | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "5edeac44dbc8b5eb9f7013e4da559259c251060900f7836f1ea922e41d712da1",
+   "text": "NIO Inc | Stock | Consumer Cyclical | Auto Manufacturers | XNYS"
+  },
+  {
+   "sha256": "5fba51ea8834ca22b83f164f3d1cde4cc6a8207ebd11f735f8012400d201fc74",
+   "text": "NAFPAKTOS TEXTILE INDUSTRY S.A. (CB) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "6094abfdaeb7ffb040edd9d74ea344fe569745e6fc950e5246c6dff5b5654845",
+   "text": "VIDAVO S.A. | Stock | Healthcare | Health Information Services | ENAX"
+  },
+  {
+   "sha256": "60b735f593ec93ec8467eaaedb61c5aae81ab578035fa0b033e38b8adcff80bc",
+   "text": "Xtrackers II iTraxx Crossover Swap UCITS ETF 1C | DBXM | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "60f30b4ce0dfe698d20b3d9357c60397e30b935f74e96e7a70d4defb42805702",
+   "text": "PREMIA PROPERTIES SA | Bond | Corporate | Corporate | Domestic and Commercial Construction | XATH"
+  },
+  {
+   "sha256": "61451d51465b40dd5faa0d4d3a18ea552b47805f5b66bb84a7b11d8e2b146ae4",
+   "text": "Pictet-Short-Term Money Market JPY R | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "6181a06d0c427ba03e622e925d98b74fc4a557e5aba4126c152dc3d632322a72",
+   "text": "ALPHA  TRUST ANDROMEDA INVESTMENT TRUST S.A. (CR) | Stock | Financial Services | Asset Management | XATH"
+  },
+  {
+   "sha256": "618886de845999f4f0d25b1ab266d68365deda83ccb83770f912fa97c72285aa",
+   "text": "ATTICA BANK S.A | Stock | Financial Services | Banks - Regional | XATH"
+  },
+  {
+   "sha256": "6188cc7aa696de3072ce914db7061ec10864491f487223095c066a8889c15d75",
+   "text": "iShares MSCI Europe SRI UCITS ETF EUR (Acc) | IESE | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "619dc52df7a4f4304d99652466dcd2079f0ed51fd6d10dfd850d2801e2c3339a",
+   "text": "INTERTECH S.A.  INTERNATIONAL TECHNOLOGIES (CR) | Stock | Technology | Electronics & Computer Distribution | XATH"
+  },
+  {
+   "sha256": "61e57dd4cd96a722a5a59d4a9aca82dd07814e30bbbcd9d9e8534215d7897f02",
+   "text": "Johnson & Johnson | Stock | Healthcare | Drug Manufacturers - General | XNYS"
+  },
+  {
+   "sha256": "6215e345a33b640b30446b98f6ca4f2f67235533bc5e1c71f96b867e2daa32a5",
+   "text": "GRIVALIA PROPERTIES R.E.I.C. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "62d3dcf849e1f9e978f3f697e9ce5eca8b332c1f2a544984093c6bc9d38b14c0",
+   "text": "Xtrackers USD Corporate Bond UCITS ETF 2D - EUR Hedged | XDGE | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "6311fa908f62a40791bc42e63586393b3b9e7a84c776985fc8df8b8294548564",
+   "text": "BlackRock Global Funds - World Gold Fund A2 | Stock | Sector Equity Precious Metals | CCLX"
+  },
+  {
+   "sha256": "63170bf83966c93f5b1bdb426eaa9acd52e13993e0b5895475f3d313a9e7fc9e",
+   "text": "Invesco Funds SICAV - Invesco Asia Opportunities Equity Fund E Accumulation EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "6369510fd9c3792d5827ff531592a6b218737c26eb08b7e3519165c7fc42645a",
+   "text": "WOOL  INDUSTRY  TRIA  ALFA S.A. (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "636cdfc43ea25a517f8690d164dcb366961f569ab6ad24be962c4863b30110e0",
+   "text": "HSBC Global Investment Funds - Euro Reserve Ac | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "6391413ffba477f071b0282b61c61f8fbc53829b08ea2c484b478143988f8d14",
+   "text": "Alpha Services and Holdings | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "64e8fdb4b44c00acddc1b8e092f18c7078ea2da85e100ec436455ceb6d362ecb",
+   "text": "VIOHALCO SA | Stock | Industrials | Metal Fabrication | ALXB"
+  },
+  {
+   "sha256": "65498d6c9c74454feac8541ddf2efd930d8d78be01b40bf3f438a4a0128e95a4",
+   "text": "Pictet - SmartCity R dy USD | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "6552678a0f7774501ccb746d50ce25bb2d9d0a440955f98ce85bc1471f79e6ad",
+   "text": "Amazon.com Inc | Stock | Consumer Cyclical | Internet Retail | XNYS"
+  },
+  {
+   "sha256": "65ae3529393c28ad4c036f23fcb9520d3801259ea6840064b9639a7cdce17b04",
+   "text": "Xtrackers MSCI World Information Technology UCITS ETF 1C | XDWT | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "66353069ae14c636b31bb934cb658e8d7abaa3e38f3a29e953646a4e6e8f6c6c",
+   "text": "BNPICMC BNP Paribas InstiCash EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "672c9f458e119e5463de100a144bac16036bc0e9bc173c4450218df2e0ede7d0",
+   "text": "Petrobras | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XNYS"
+  },
+  {
+   "sha256": "67528bca173473266fb2788d847244b9235aa972cc6248c84693c879190be3ae",
+   "text": "DELOS FIXED INCOME PLUS - BOND FUND | MTF | Structured | AEDAK"
+  },
+  {
+   "sha256": "67a71382e478f1dcbcf93945293e01b072de4e53a2d4bd3abdb87881b07a43fb",
+   "text": "MGHMLA2 BlackRock Global Funds - Global Allocation | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "67c065b052929799d5208e877728d3bafb491a8ff41b1d65bf6fa57fd124a221",
+   "text": "Teva Pharmaceutical Industries | Bond | Corporate | Corporate | Pharmaceutical Preparation and Biotechnology | XNYS"
+  },
+  {
+   "sha256": "67ef303c9c83b692a3b96d24412b3e27c0bffad8009f766d5a50da446663a00c",
+   "text": "Xtrackers MSCI EM Latin America ESG Swap UCITS ETF 1C | XMLA | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "6868e6cd2f2bf6a00e7c46b4630379563036b5a7c2b8d44b12f8ed1e32f48030",
+   "text": "LAVIPHARM SA (CR) | Stock | Healthcare | Drug Manufacturers - Specialty & Generic | XATH"
+  },
+  {
+   "sha256": "6874d54b7924d8ecdb797c7839a87ec94e9261f75c0912d3ae65ea763d38813a",
+   "text": "Microsoft | Bond | Corporate | Corporate | IT Services and Computer Programming | XBER"
+  },
+  {
+   "sha256": "689b83c719089a3c0ab24bb43db425d19007ec66df1ad0212e97ac3be24c8084",
+   "text": "BNP Paribas Funds Europe Small Cap Classic Capitalisation | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "68a0935cb339c317c2d3afa89c4fccaf88e24bc08f1488b68c93374be3e6ecd2",
+   "text": "ELVALHALCOR HELLENIC COPPER AND ALUMINIUM INDUSTRY S.A. | Bond | Corporate | Corporate | Non-Ferrous Metals | XATH"
+  },
+  {
+   "sha256": "68fc0cbe9e9d13c22097f200d4797454bdfc20c20218bd2ba6164b25a3886d35",
+   "text": "BlackRock Global Funds - Global Allocation Fund A2 | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "69a46f645ebe7ec0f6140be6e4f939ef8e94ce69438605baac3ec457a1d91121",
+   "text": "HELLENIC REPUBLIC GGB FLOAT 12/15/27 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "6a4fba09b4badfbc35dea272cd1368e0b56367ee70afa63919e9f1d6de6c9c34",
+   "text": "ALPHA TRUST MUTUAL FUND AND ALTERNATIVE INVESTMENT | Stock | Financial Services | Asset Management | ENAX"
+  },
+  {
+   "sha256": "6a5a3676544d6c0dc06b688025a6d32921271335299db109001306b941d0f7a6",
+   "text": "Amundi Funds - Global Equity Sustainable Income A2 EUR QTI (D) | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "6a7aa77ea2933d89acd49d628d1bfdbf9378c88e4c2cafb6b729bc77a90779d3",
+   "text": "IKTINOS HELLAS S.A (CR) | Stock | Industrials | Building Products & Equipment | XATH"
+  },
+  {
+   "sha256": "6a8d9cf6f7718a760d186add9f69839c2cc0b413f8558b12a6e78f649bac5d3b",
+   "text": "SISF-CARBON NEUT CRE-A EUR A | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "6a9258e6f2d4772cb67c164643c8a12551add78cf90e22d0adcc1ac808812c32",
+   "text": "NEWSPHONE HELLAS S.A. AUDIOTEX (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "6aef6c41679844e5e403efb1c8ce85fe543fc02e96f4304f379cf8f97dea70c5",
+   "text": "UBSMECI UBS Lux Money Market Fund - EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "6b01b050b522102622aa7f341eb138a8ade2b0ab25bce3616223aa9704788db5",
+   "text": "OPAP SA | Stock | Large Cap | Consumer Cyclical | Gambling | XATH"
+  },
+  {
+   "sha256": "6b0393ab026621eb8f37792ec9a48908fed65116a2fd82240287b38e99218e97",
+   "text": "Exxon Mobil Corp | Stock | Energy | Oil & Gas Integrated | XNYS"
+  },
+  {
+   "sha256": "6bf0cb4f6828e6fd9d0d7ffe1945664dcedcb8cc1f483296b7aadc812c05776f",
+   "text": "AEOLIAN INVESTMENT FUND S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "6bff2359f9fb7d29813ec8c3d0387676e12acfa2b02f00182e837302fcc14a54",
+   "text": "OPTRONICS TECHNOLOGIES S.A. (CR) | Stock | Technology | Communication Equipment | ENAX"
+  },
+  {
+   "sha256": "6cf716a1b606e131487324c55ac3d44f27cf3afa4ef40b5f2f8c548338ca70dc",
+   "text": "COCA COLA HELLENIC BOTTLING CO AG | Stock | Large Cap | Consumer Defensive | Beverages - Non-Alcoholic | XATH"
+  },
+  {
+   "sha256": "6d4d68ca1beb0844596d834591ae00b14ac0c34fba913ebbc636efa14d0da913",
+   "text": "Johnson&Johnson | Bond | Corporate | Corporate | Pharmaceutical Preparation and Biotechnology | XNYS"
+  },
+  {
+   "sha256": "6d6e8488aa7cfb7058ef845e1a3635d14b21d4b74020691cd24c01463e6e76cc",
+   "text": "Schroder International Selection Fund Asian Dividend Maximiser A Accumulation EUR | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "6d897059fb10fd05f7ef9c8de6ca8e7179af797abac20719ce9400203474cebb",
+   "text": "MLS MULTIMEDIA S.A. MLSB3 4.30 25/07/24 | Bond | Corporate | Corporate | IT Services and Computer Programming | ENAX"
+  },
+  {
+   "sha256": "6e044b7505c7c727db4399ba45c2a97c0840ddbdc6bfc14df482ff1eec4278a6",
+   "text": "iShares Edge MSCI World Value Factor UCITS ETF USD (Acc) | IWVL | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "6e2416c3f5032ad2a610502f5534f340ea52095dfe3b105a1972d8a38989e535",
+   "text": "CNL CAPITAL EKES-AIFM | Stock | Financial Services | Asset Management | XATH"
+  },
+  {
+   "sha256": "6e41e4974fd9704c5c2fbafb6ef804719e872cea138112a8097f2f913b5b7838",
+   "text": "BlackRock Global Funds - US Mid-Cap Value Fund A2 (EUR) | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "6e99d6ab924c8ed1e4e6517bf60338b4f4164bd1955e5cb0128b34ded87a45e7",
+   "text": "AEGEAN AIRLINES S.A. | Bond | Corporate | Corporate | Air Transportation | XATH"
+  },
+  {
+   "sha256": "6ed5fb85cf13a979cf093cf0cd4de461e69e00a3cb2e1f2e43388328878ca8ed",
+   "text": "AEGEK (CR) | Stock | Real Estate | Real Estate Services | XATH"
+  },
+  {
+   "sha256": "6f059b67015cb6528f3c199a6712a1c6ea762e2784c874043c6f3f0f78643199",
+   "text": "MATHIOS REFRACTORY S.A. (CR) | Stock | Basic Materials | Building Materials | XATH"
+  },
+  {
+   "sha256": "6fb7897e7c20667c38326d060d9480bea5bd88496ada31e5c49d86e31747a048",
+   "text": "BNP PARIBAS-SUS  ENH BD 12M -CL A | MTF | Structured | XLUX"
+  },
+  {
+   "sha256": "706b34070c7481e4f196c279d84c9908efa9e5ddba6faf5f830def6e8006cdf7",
+   "text": "DHLOS EISODHMATOS OMOLOGIAKO ESOTERIKOY | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "709b3eff770be4b83463304a5302c6b1beae55494cfb179e52f657bdfe4d7c40",
+   "text": "Apple | Bond | Corporate | Corporate | IT equipment | XETR"
+  },
+  {
+   "sha256": "715c9f43b01d4ea3c203a1066b544a5633e66c8e8562ff6079efbe4c5fa051f3",
+   "text": "NBG INT - EUROPEAN ALLSTARS-A | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "717b97fa0585fc0c2a950fdf8ef687b6b17162528a393db75950926f3a001427",
+   "text": "Microsoft Corp | Stock | Technology | Software - Infrastructure | XNYS"
+  },
+  {
+   "sha256": "722e2f3cc66d3ef0cf156dc2629a7e94250b10c1fc2c10c89be11a7fbc156758",
+   "text": "HSBC Global Investment Funds - Indian Equity EC | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "7309703fcf3847c1a4388e72093e19069307f0daa5d82f2b7a96899fec5349a7",
+   "text": "Orange SA | Stock | Communication Services | Telecom Services | ALXP"
+  },
+  {
+   "sha256": "73839fabec1ddd363aea1761db7d756dd1e0e722149a525bbb617376a1932dc4",
+   "text": "BNP Paribas Funds - Green Bond Classic CAPITALISAT | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "73898b8fdd5ca4d60d7acecd2f6fc39471283e244072e824359d0ac60c734b62",
+   "text": "Apple | Bond | Corporate | Corporate | IT equipment | XBER"
+  },
+  {
+   "sha256": "73b9b1b6653d3232067af0e4531ef70ca7ef113a6ae6b8c34f2c601ead765f9d",
+   "text": "Templeton Asian Growth Fund A(acc)EUR-H1 | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "7487514fe06414352d69714ba050996b21afbfd9fb3d6c10bd7f21efef640a59",
+   "text": "BlackRock Global Funds - Emerging Europe Fund A2 | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "74a0653d9b9e3fa1d37968ef922072528e8fcc05347309012128e38e691c5560",
+   "text": "THE HOUSE OF AGRICULTURE  SPIROU S.A. (CR) | Stock | Basic Materials | Agricultural Inputs | XATH"
+  },
+  {
+   "sha256": "74e1fa08136c21102c21f5a940be40b06c604d5545671b2855be3e0dc0b8da0c",
+   "text": "AngloGold Ashanti Holdings | Bond | Corporate | Corporate | Precious Metal Mining | XNYS"
+  },
+  {
+   "sha256": "74f3060dff0e6800edda2bc8982647591852ba108989199b3346553db658e74d",
+   "text": "TITAN GLOBAL FINANCE PLC TITKGA 0 06/30/27 | Bond | Corporate | XDUB"
+  },
+  {
+   "sha256": "7583d57907ee75894205926763469efb36fe7fa22c6b3c37fdd6d90a8c2b35e1",
+   "text": "Jpmorgan Chase & Co | Stock | XNYS"
+  },
+  {
+   "sha256": "75ad022df9c863ec9e0357fc00c9170a660621749c8b2f3105f00de835c06f48",
+   "text": "MIGSDRI BlackRock Global Funds - US Dollar Reserve | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "764eb01f9dcfae486a2368889d2dddf425d49a671c3f2d94679df4b08e39dded",
+   "text": "International Business Machines Corp | Stock | Technology | Information Technology Services | XNYS"
+  },
+  {
+   "sha256": "76519e7256dd99e74d5d3765b780118c07fefdd0360cda4d13f5496975f5b417",
+   "text": "US TREASURY N/B T 2,250 11/15/24 | Bond | Government | Sovereign | XBER"
+  },
+  {
+   "sha256": "765c75dfffb15034370dc22a5381d5e3894009c95610a10470d876cc0905fff5",
+   "text": "Peugeot S.A. | Stock | ALXP"
+  },
+  {
+   "sha256": "76b46e084a77143f72cfa4932ad23a756b3366e09afbf2922af913ec96e3a492",
+   "text": "Invesco Euro Corporate Hybrid Bond UCITS ETF Inc | EHBD | MTF | Bond | MTAA"
+  },
+  {
+   "sha256": "772e8f46c6b5d5a800cfac1bcb543b469f7ca842840efa725593a7db84b15459",
+   "text": "Goldman Sachs | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "7833c5840ec35acd50f829de74e28d7436639c052c2a0f63f0288b588749869c",
+   "text": "OTE PLC | Bond | Corporate | Corporate | Communication Services | XLUX"
+  },
+  {
+   "sha256": "7849954e5821800d83dc5695b51366ea42a15a97a8c01c8a99410e4044a49d70",
+   "text": "EUROXX SECURITIES SA | Stock | Financial Services | Financial Data & Stock Exchanges | ENAX"
+  },
+  {
+   "sha256": "7853b67f5e436b695e901924fb73c5efb6b368692e56e1d77232e34fb54ea8cd",
+   "text": "Schroder International Selection Fund EURO Short Term Bond A Accumulation EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "78f65892bdcb6d75ef4cc5b1c0cc103a1758c1268efbd3319fb600461ce932e6",
+   "text": "iShares Core EURO STOXX 50 UCITS ETF (DE) | EXW1 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "78faef7ea66767d18a624eafd78327694545194b25bbed1c7e1d18bcee14e556",
+   "text": "Xtrackers MSCI World Consumer Discretionary UCITS ETF 1C | XDWC | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "79075e74906fec76335719e2bac9b8c0dbe2ca3363110b0f9a8a506acf308b1c",
+   "text": "KBC Bank | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "7927bc7b56d0056a9e2f9ed7d16fc057a6329bebc7b27421e71a58407b756938",
+   "text": "iShares € High Yield Corp Bond UCITS ETF EUR (Acc) | HIGH | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "7a3f91bf1087d60cc2feab792773a553b58a6107a436c89421f02295fe3a3417",
+   "text": "Netflix Inc | Stock | Communication Services | Entertainment | XNYS"
+  },
+  {
+   "sha256": "7a644f545b87c999ade7fedbeb96c73d1b480fc46bcc837ac35255986bfe0124",
+   "text": "KIRIACOULIS SHIPPING S.A. (CR) | Stock | Consumer Cyclical | Leisure | XATH"
+  },
+  {
+   "sha256": "7b3e3d337895564ae0c65ed8957e43031d1e48ad7b05a5fb466012dbcbf0fe14",
+   "text": "Xtrackers MSCI World Utilities UCITS ETF 1C | XDWU | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "7b55bde2e8e6210f25ae20028f4e4f4189aaddf501a4892e496320bef98b83af",
+   "text": "DROMEAS S.A.  (CR) | Stock | Consumer Cyclical | Furnishings, Fixtures & Appliances | XATH"
+  },
+  {
+   "sha256": "7c31155c171987207ae11c830a86b03b91482c34039c7d9c45d43d94c2a9cedd",
+   "text": "YALCO - CONSTANTINOU S.A.(CR) | Stock | Consumer Defensive | Household & Personal Products | XATH"
+  },
+  {
+   "sha256": "7c73e61169df81a4ad1d11efba5fcb30f44db6fa62db33e1a71b9dcd95257764",
+   "text": "NIREFS S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "7c95d91f8028e0dd3b48714c9dcecc2faaa0a41136d87b05b404504d4f6d8eb3",
+   "text": "ALPHA SERVICES AND HOLDINGS S.A. | Stock | Large Cap | Financial Services | Banks - Regional | XATH"
+  },
+  {
+   "sha256": "7d344da54c0f1a161ec6a2e7452f44efa85c5abcec29f6975bec9bf710d42cf2",
+   "text": "BlackRock Global Funds - Euro Short Duration Bond Fund A2 EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "7e0a12f9b33f746ed42f0df2a1c949eb0733d25bb57af01841b34ea2509a7a98",
+   "text": "REAL CONSULTING IT BUSINESS SOLUTIONS SA | Stock | Technology | Information Technology Services | ENAX"
+  },
+  {
+   "sha256": "7e0cd91269180611aaa538aadd1c6d603a81c9b3a94f946cba96ddd6d2c565ab",
+   "text": "Valeo SA | Stock | Consumer Cyclical | Auto Parts | XPAR"
+  },
+  {
+   "sha256": "7e1bfd5fae6a4074cca1a8ccb93d58dee0e3fe024573c9049d9a9ddccdfd93c4",
+   "text": "Amundi Funds - Global Equity Sustainable Income R2 EUR MTI (D) | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "7e3648eeef9a59baa504410b7142ce5286d50262b214c386926f1602c5998ff7",
+   "text": "Gaslog Ltd. | Stock | XNYS"
+  },
+  {
+   "sha256": "7ee014e4b42094665a286233240ba982a56022c31867c3e123b1a70048c959f5",
+   "text": "Schroder International Selection Fund Global Corporate Bond A Distribution USD MV | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "7fa030cb916979c7070a64ff9e15d1126f74c3f9c85a802587612f38fe409648",
+   "text": "JPMorgan Funds - Aggregate Bond Fund A (acc) - EUR (hedged) | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "7fae210493362993e9efa75b86329d8aac8d4d5533fefd418a65e5014d3fbd3e",
+   "text": "Apple Inc | Stock | Technology | Consumer Electronics | XNGS"
+  },
+  {
+   "sha256": "7ffdf11b2602c841a4dedd2679603e96dd883ab38d4e29e1b8fda2804fabf387",
+   "text": "N. LEVEDERIS S.A.  (PB) | Stock | XATH"
+  },
+  {
+   "sha256": "804ab4a7f8ba2fa41ebf0a95ab784a1883f0d8f25c39d09f613b539cf6d6fb37",
+   "text": "HeidelbergCement | Bond | Corporate | Corporate | Building Materials | XETR"
+  },
+  {
+   "sha256": "80df4597668514b96b3f4a607d6461d705aeef72a145a2bc340d23a3189e2d48",
+   "text": "iShares J.P. Morgan $ EM Bond UCITS ETF EUR Hedged (Acc) | 3SUD | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "811f8d7a5efe09319f8fed789952079fea37404cb403bd3c6fe931a7f0a4db4d",
+   "text": "Amundi ETF MSCI Emerging Markets Asia UCITS ETF EUR | MTF | Other | XPAR"
+  },
+  {
+   "sha256": "812a64895a3a3c7e699e6da2952133e38dd0b7932e76514d69b8d1849283c5d1",
+   "text": "CPLP SHIPPING HOLDINGS PLC | Bond | Corporate | Corporate | Marine Transportation | XATH"
+  },
+  {
+   "sha256": "815161272587ee9b46a6f238dabde99985b8d30d4895315d7abf4e97b35a7d96",
+   "text": "Mytilineos | Bond | Corporate | Corporate | Other Sectors | XLUX"
+  },
+  {
+   "sha256": "819a3a54988add9252782938182afbbf94a225414203de00b7e5d28e7b0283b3",
+   "text": "GEK TERNA HOLDING, REAL ESTATE, CONSTRUCTION S.A. | Bond | Corporate | Corporate | Miscellaneous Construction | XATH"
+  },
+  {
+   "sha256": "829f3b1b4ffc5712834e8bf9aaf58e73a3d54349874843ebd805ccbd531dd27d",
+   "text": "BIOTER S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "82def53ba9d19487bd362bf5b20c8cd88846ff45572f3a4049d905c4eacaa942",
+   "text": "UBS (Lux) Key Selection SICAV - Global Equities (USD) (EUR) P-acc | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "82dfa6da97df63e72e2c14c7473997746617bb50480790a63755864eeeca5ab2",
+   "text": "BNP Paribas | Stock | Financial Services | Banks - Regional | ALXP"
+  },
+  {
+   "sha256": "8318e9bf42b2949c6202e1e611350b9b87c9f3f13ed8cd23e258a0568dc8d757",
+   "text": "iShares € High Yield Corp Bond UCITS ETF EUR (Dist) | IHYG | Stock | EUR High Yield Bond | XLON"
+  },
+  {
+   "sha256": "83723708560d6df353e85ceef970501cef7a8af802b27ba1dea6cf38663cf7ae",
+   "text": "Vodafone Group PLC | Stock | Communication Services | Telecom Services | XLON"
+  },
+  {
+   "sha256": "83935971046f42fbd6424f3eaad7439ff3ee6070ae26a96f496fe60ac4d293d3",
+   "text": "FOLLIE FOLLIE GROUP (CR) | Stock | Consumer Cyclical | Luxury Goods | XATH"
+  },
+  {
+   "sha256": "83ae07e16468f284f5bab11d78e1fbbdf75e6b20339212f60a6244443b19f651",
+   "text": "FLEXOPACK S.A. (CR) | Stock | Consumer Cyclical | Packaging & Containers | XATH"
+  },
+  {
+   "sha256": "83b22eb29d8a2e0c596263caa6373a38b72a3d44359806bef77f7247cfeb58ae",
+   "text": "Wells Fargo | Bond | Corporate | Corporate | Banks | XNYS"
+  },
+  {
+   "sha256": "83ef87eedc76bcb3bbefb4ac3e5d58850b0a471c7f24d8da7b330c3f0a7eb784",
+   "text": "L&G Cyber Security UCITS ETF | MTF | Other | XETR"
+  },
+  {
+   "sha256": "84a4063c6b9612efc92cd353b45e20727f37c88a7a3a8692362ba268192ed77e",
+   "text": "Allianz SE | Stock | Financial Services | Insurance - Diversified | XETR"
+  },
+  {
+   "sha256": "84cae00f851fe74093ce494f1600972b7bb15e07ac86ec083e451bf50966ef43",
+   "text": "SFAKIANAKIS  S.A. (CR) | Stock | Consumer Cyclical | Auto & Truck Dealerships | XATH"
+  },
+  {
+   "sha256": "8581cbb686e36fdc5badcb6e94b0ce0d8bc4c92f6e24f244a22389d10fd58d41",
+   "text": "FIERATEX S.A. (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "863fb4ae539e98d27af1334f389483586ca6fc847b1e3cb1f86ac47e514f349c",
+   "text": "The Black Sea Trade and Development Bank | Bond | Corporate | Corporate | Banks | XDUB"
+  },
+  {
+   "sha256": "8646e783f70ec8ac512da6c8100cdc0164f3a0d91d092b32f8b9fda87f1d4c53",
+   "text": "DHLOS SYNTHESIS BEST FUND OF FUNDS ΜΕΤΟΧΙΚΟ | MTF | Money Market | AEDAK"
+  },
+  {
+   "sha256": "864c065772915f4f6f3d4927a052e4ac35f3d7349d7d97cf6058ce373fc5e4ac",
+   "text": "TPA S.A. (CR) | Stock | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "8724a44ee32fe381fd1361f9a5987640ed69b69ef3b974f933966f23074d28ce",
+   "text": "UBS (Lux) Bond Fund - Euro High Yield (EUR) P-acc | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "87bbef196c6074df0c00a641c841716ae95ae89bee9323938f99d30278304d58",
+   "text": "Schroder International Selection Fund EURO Equity A Distribution EUR AV | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "883128d30d6d459cdecef9d50a0f78c7d498fa699c77a74632cee270a74cd500",
+   "text": "WisdomTree Short USD Long EUR 3x Daily | MTF | Other | XLON"
+  },
+  {
+   "sha256": "88771e94dc3f00a9f8e1ce2578c49f6c7c563c9eb6e6614abd09a19758e7af41",
+   "text": "F.G. EUROPE S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "888a1620aca85e800c018bd219e1ef218300735454a59869e4f799884114d3d1",
+   "text": "BNP Paribas Funds Global Convertible Classic Capitalisation | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "88d8e115328c3a51829b7ef31b5ce9b1da10a2cb0d50ecf13c188dd1943e4ab5",
+   "text": "Allianz Asia-Pacific Equity A EUR Dis | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "88dabf677d00467c97194a1d10939e4c6bfd669f92132538e8bf620bfed77bac",
+   "text": "NESTLE HOLDINGS INC NESNVX 2,375 11/17/22 | Bond | Corporate | Corporate | Food and Beverage Production | XLON"
+  },
+  {
+   "sha256": "897141c1090490c55b717f95b2014b7f86dd2b6ce098dd2fd21fdc9abda42f43",
+   "text": "Amundi Funds Pioneer Strategic Income A USD (C) | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "8973b4f40badca4f9f63b54bfc803df1f7007a2889cfdbedd35c5a4ae5499e27",
+   "text": "UBS (Lux) Equity Fund - European Opportunity Sustainable (EUR) P-acc | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "8987d6b9589ed2cae67db15118485347b69c79eb9ed016e40b9a51c2a99539fb",
+   "text": "MFS Meridian Funds - European Research Fund A1 EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "8a13c237c7bd537e8c2728465557d94d6bee0a7f62f88033b2d26cf49df2f00c",
+   "text": "KRI- KRI MILK INDUSTRY S.A. (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "8b06010a92a2df3f2fe41ecb0c0de79c81cb4bf53dc45cbe17fa6f7c6f2c7b08",
+   "text": "Obligaciones del Tesoro Público España, 1%, 31/05/2025 | Bond | Government | XBAR"
+  },
+  {
+   "sha256": "8b3466e0cbfd3ca119abf179a331283580bf8b298f60c2d13897d1946425eb6c",
+   "text": "Pictet-Global Megatrend Selection R EUR | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "8b72edb036ff195f71d154544a7d127b1061c51c8b71613be0dc4b2ed2d54aa8",
+   "text": "Deutsche Telekom AG | Stock | Communication Services | Telecom Services | XETR"
+  },
+  {
+   "sha256": "8b9d74037a080dc5c89ac7914e58ebaeffcf70ca20d0a0d3de3e5394821dc196",
+   "text": "Amundi Funds II - Pioneer Strategic Income A USD MGI D | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "8ba3749ff0dee513fb94fb7694f4b8b0047240e1b602be45f36caf4830b0dfdc",
+   "text": "NATIONAL BANK OF GREECE | Stock | Large Cap | XATH"
+  },
+  {
+   "sha256": "8bf31ec484ede79e008997904956bd4b15e4f0f04ce690249e679ab2f6fe2301",
+   "text": "Pictet-Digital HR EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "8c10b9829cda92dd5720a2a6d6b774a036f22b51d6f1a13a19087763e6c554ad",
+   "text": "ELVE S.A. | Stock | Consumer Cyclical | Apparel Manufacturing | XATH"
+  },
+  {
+   "sha256": "8c8eddf85c30dea4212e9bb5a6a5426419a89aa8ab0848288f8c897919f97ece",
+   "text": "BGF-FIXED INC GBL OP HED-A2 | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "8cc359861461c7ac250f8d4168799a6b849500183cd51408a0623ad3e5aca974",
+   "text": "ELTON  S.A.(CR) | Stock | Basic Materials | Chemicals | XATH"
+  },
+  {
+   "sha256": "8cefd1a1a0d3d584e42fbf8f86b2547b486e7f804e792423ef6ac62ce89fa0af",
+   "text": "BlackRock Global Funds - Global Multi-Asset Income Fund A6 USD | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "8d20246c723505f9a741757d51d6991987afb18907829391c8d3fa93860c704f",
+   "text": "BlackRock Global Funds - ESG Multi-Asset Fund A2 USD Hedged | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "8d261ef2f05d980929842cd85e0b80fc48da7ce8cb4272af665efab8009c2cb9",
+   "text": "ELVAL HALCOR HELLENIC COPPER AND ALUMINIUM INDUSTR | Stock | Industrials | Metal Fabrication | XATH"
+  },
+  {
+   "sha256": "8d5af8f125522b5b73018ac966b5e8a0b99fa52871f540caf4748794fa6e885f",
+   "text": "Nestle S.A. | Bond | Corporate | Corporate | Food and Beverage Production | XLON"
+  },
+  {
+   "sha256": "8de337bd6b78fb44c503a91920a361539d2c5ff30177e34cfc4b6d0321934ab3",
+   "text": "General Electric Co | Stock | Industrials | Specialty Industrial Machinery | XNYS"
+  },
+  {
+   "sha256": "8e02f6f7ad09862bc48d736c7e5fad561dae0bfb1449103a10796e3f7f7c6f4d",
+   "text": "VOYATZOGLOU S.A | Stock | Consumer Cyclical | Furnishings, Fixtures & Appliances | XATH"
+  },
+  {
+   "sha256": "8ea87cbaee62b2a1a46ce5a8ebe65f8419888eca7f2c449d603690ff09cfc466",
+   "text": "iShares € Corp Bond 1-5yr UCITS ETF EUR (Dist) | IE15 | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "8f08306977f5c17415ffa5ec121e79d718d587dcb56576616ce17529f1b72999",
+   "text": "B&F COMMERCIAL & GARMENT INDUSTRIES S.A. | Bond | Corporate | Corporate | Miscellaneous Wholesale and Retail Trade | XATH"
+  },
+  {
+   "sha256": "900b4eb38eb266479e06fa525257877c8b70e489c0f972d4998d0337b1ef9005",
+   "text": "NBG INTERNAT-GLOBAL EQUITY-A | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "902a34d0bc49e37ad119698bb331833e435f1c2d562256e60a706c660b0c931e",
+   "text": "Forthnet S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "90405bb7d19ffcff5d0e62f41b03fac395dfcaaf31052c1ad76d45855f3ad836",
+   "text": "FOODLINK S.A. (SR) | Stock | Industrials | Integrated Freight & Logistics | ENAX"
+  },
+  {
+   "sha256": "90afe21271baf1699ec47bf9b8cb0e25960c51733f1b15a0748c1cc27072af68",
+   "text": "SCHRODER ISF-GL CR IN-AIUSD | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "90b15ba3565d9c9607b54ee23da87e93e123d6a3d9941ba24655a0dc4f3d7333",
+   "text": "REDS S.A. (CR) | Stock | Real Estate | Real Estate - Diversified | XATH"
+  },
+  {
+   "sha256": "90baaa2728d9de7dc9a28e237c481f9c637960aff29d3ea6e9b90cf3a671db7c",
+   "text": "MINERVA KNITWEAR (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "91389fa166c31b3f36a578a3db8dbc1ea22979f847a199742b307034933ab515",
+   "text": "Xtrackers II Eurozone Government Bond 3-5 UCITS ETF 1C | DBXQ | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "918fcfa28f23bc6cd6f619cb05fcae90ebe00b9ceaa6cc9153d21a477c242746",
+   "text": "PPA SA (CR) | Stock | Large Cap | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "91caeccaddad12b2579e6f6f817095638f382e9b0f5a0ece2c6f5e05639b72c0",
+   "text": "FRANKLIN EU TOT RT RT-AAC | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "924a3b038805637b285f6d3eb9af3bc808208a1bf6972b41cc204d281edd8b97",
+   "text": "PIMCO Short-Term High Yield Corporate Bond Index Source UCITS ETF Inc | STHY | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "92bec7af5c4f1de64a050d088539b41e95f4ebdf42867871bf7b6149701365b5",
+   "text": "Monsanto | Bond | Corporate | Corporate | Chemical and Petrochemical Industry | XNYS"
+  },
+  {
+   "sha256": "9323f94ee8a376aebaf89d94b3ed74499f1caa478614f184f2d429f7aa9b8c34",
+   "text": "Allied Irish Banks | Bond | Corporate | Corporate | Banks | XDUB"
+  },
+  {
+   "sha256": "932fa7dfcfb620361a83395ab34a87b0c3cd77d6c18521ff879aeb0611da5e68",
+   "text": "Iberdrola SA | Stock | Utilities | Utilities - Diversified | XBAR"
+  },
+  {
+   "sha256": "938089b4fb0d7f1b28616a0bf1da40dfd0729ec617c929f5c5fd2bc64cbc852a",
+   "text": "INTERWOOD XYLEMPORIA S.A. (PR) | Stock | Basic Materials | Lumber & Wood Production | XATH"
+  },
+  {
+   "sha256": "94e5fc39317d6f9ebf7896eb34107b083659107d3e609f88e523580bb1b16b17",
+   "text": "HELLENIC PETROLEUM FINANCE PLC ELPEGA 2 10/04/24 | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XLUX"
+  },
+  {
+   "sha256": "95c70bac49bc4b81880d0266f255cc5af0c12ddd475ec1b9c9544aead4176242",
+   "text": "Schroder International Selection Fund Global Bond A Distribution EUR Hedged Q | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9630c2262c470f2e558b6bae93e8ce0d9351fc00b3414be526d912d22673f3ef",
+   "text": "BlackRock Global Funds - Sustainable World Bond Fund A2 EUR Hedged | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9645bd2368e972b4ff3489058362aedef9209e1d47f6e1f495aff9c6e1646fb0",
+   "text": "BGF World Technology Fund A2 EUR | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "96ce3044b64b2a0eb206fb595f415b4fb34f6aa6ae9ab34f4ed73ae144cd7183",
+   "text": "BITROS HOLDING S.A.(CR) | Stock | Industrials | Metal Fabrication | XATH"
+  },
+  {
+   "sha256": "98981f45f6c937e3e557dda60bd42396f2397343ce68333b84e81a41528938f2",
+   "text": "G.E. DIMITRIOU S.A.(CR) | Stock | XATH"
+  },
+  {
+   "sha256": "995fbd96f1c393434aa022faedf7c9385aae252edb35d71a1c64722a55cf9bf6",
+   "text": "BlackRock Global Funds - Global Government Bond Fund A3 EUR Hedged | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "99ca91fbacb18b88078d9b5467be69faa20261188495d77ce52f356bffa2086f",
+   "text": "PROFILE SYSTEMS AND SOFTWARE S.A. (CR) | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "9a6aca7bbd3a811f4003e8a8e1b6c5edb024dd40ad748cb7e2bd8af28cf625cb",
+   "text": "PIMCO GIS Total Return Bond Fund E Class EUR (Hedged) Accumulation | MTF | Bond | XDUB"
+  },
+  {
+   "sha256": "9a9ab4bfe9bed48c9db3e10d5eefa4c529856743d818e8a40193ad66f661fd24",
+   "text": "Hewlett Packard Enterprise | Bond | Corporate | Corporate | IT equipment | XNYS"
+  },
+  {
+   "sha256": "9b655b7953e0c1d0990fd46acacfc45e978240c838748d800841a7a6479750b5",
+   "text": "JD.com Inc | Stock | XNYS"
+  },
+  {
+   "sha256": "9c5f6aa9fc08242a8cedf216999dc948d0a00e54d2c92720d9f9662daeb06e5c",
+   "text": "Airbus SE | Stock | Industrials | Aerospace & Defense | XPAR"
+  },
+  {
+   "sha256": "9c9f018069ce0acd046a1547519f421cb5c49562ce49cda79d5da0881e7d5281",
+   "text": "PICTET-MULTI ASSET GL OP-REU | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9cc842f68f71d6ba1cb261d0f5edaaad9610b1ccb009e7d57fc78e3f604ffe73",
+   "text": "ΕΛΒΑΛΧΑΛΚΟΡ ΕΛΛΗΝΙΚΗ ΒΙΟΜΗΧΑΝΙΑ ΧΑΛΚΟΥ ΚΑΙ ΑΛΟΥΜΙΝ | Stock | XATH"
+  },
+  {
+   "sha256": "9ce6d96c86096a843f11feb5edbd53ff6b8ac3f25c9c58d588a4c16117ccaa9d",
+   "text": "ΝΤΡΟΥΚΦΑΡΜΠΕΝ ΕΛΛΑΣ Α.Ε.-ΚΟ | Stock | XATH"
+  },
+  {
+   "sha256": "9d795a73c742f12754201e8bccef3b27eb5d7b239e5013a41decfb266706fbcd",
+   "text": "Pemex | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XETR"
+  },
+  {
+   "sha256": "9dfb47f09c0f18d2146014e655a990e03df3fd1af6c7d01bbc706fe51b02e549",
+   "text": "NBG INTERNAT- INCOME PLUS-A | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9e91ab66806ab87e38c2a64cf7b6cfc314398792ed374514a3da307639c8c22d",
+   "text": "PARVEST DISRUPTIVE TECH-CC | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9ecad5db360572cbb46cd3e9ca6772cdaab7b972c49327a10151434b442b8056",
+   "text": "BlackRock Global Funds - Euro Corporate Bond Fund A3 EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "9f2f2f95110ff13feca35cc62151cbd94087daf37b03917b4a47de0e3070c9d2",
+   "text": "VIS S.A. (CR) | Stock | Consumer Cyclical | Packaging & Containers | XATH"
+  },
+  {
+   "sha256": "9f3ca139729b6f22af3b98c7171a6046861f2154f5c9880b9bc099e2f7030697",
+   "text": "HSBC Global Investment Funds - Euro Credit Bond EC | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "9f864238c678710075b15771d82fdfb946d6e5940dc8a784db63fd7c0f2deb46",
+   "text": "SPDR® ICE BofA 0-5 Year EM USD Government Bond UCITS ETF | EMH5 | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "9f94391a09091f40dd5047249cd48a7bde9614029e1624df564fa28c33eb9c07",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | XSTU"
+  },
+  {
+   "sha256": "9ffb9a7cb0aa2ee425c6fe1ea351bb164fc49912b37aa5d4de8d26ad4b8afcec",
+   "text": "KARAMOLEGOS BAKERY INDUSTRY S.A. (CR) | Stock | Consumer Defensive | Grocery Stores | XATH"
+  },
+  {
+   "sha256": "a01f92645afddd2a3a6dd873e8c68782fb4966062ee34b982f2d92466882dd14",
+   "text": "INTRACOM S.A. HOLDINGS (CR) | Stock | Technology | Communication Equipment | XATH"
+  },
+  {
+   "sha256": "a0501c0997cbd4cf672e8570b4297a56e3f43fbab46a6e7f7f898b82ec5aceeb",
+   "text": "SPDR® Dow Jones Industrial Average ETF Trust (EUR) | DIA | MTF | Other | XNYS"
+  },
+  {
+   "sha256": "a0823b150ed547c9c96a866cdd89abc9df981930d1f7de506675a58995193340",
+   "text": "COSCO Shipping Holdings | Bond | Corporate | Corporate | Marine Transportation | XHKG"
+  },
+  {
+   "sha256": "a0a224d07074e1824b22f740131ea2fd5ec21d5cb0637a1202cce5e24c596ba5",
+   "text": "MEVACO S.A. (CR) | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "a10abe466a674e73a71dc9aa100748a625bfc5469e6ad18b21b0d8998fc48aa3",
+   "text": "MIGSEBI BlackRock Global Funds - Euro Bond Fund | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "a166a127c8e05d35c45a7ede6d55abd526d0d9a8bc2d79421ce68012c6a72807",
+   "text": "UBS (Lux) Key Selection SICAV - Multi Strategy Alternatives (EUR) P-acc | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "a197e9583e71a2d8b8f70e32f071ea366370b849d5375afee8d3a0482e3fba8f",
+   "text": "J.BOUTARIS AND SON HOLDING S.A. (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "a19b0f11d6e0245729b40aa42e50748800a63eb763980cfd7671c7be50e15588",
+   "text": "BNP Paribas Funds Equity Russia Opportunities Classic Capitalisation EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "a1ac0e2ca2eaf14aae635906e2bd17517409abf895ae4db8eda55924c907d132",
+   "text": "MOTODYNAMICS S.A. (CR) | Stock | Consumer Cyclical | Auto & Truck Dealerships | XATH"
+  },
+  {
+   "sha256": "a210a403bf09b08c8e0ac917c3f91c7e4d02f37e253d6a3cb3a95189e84b7124",
+   "text": "Ball | Bond | Corporate | Corporate | Packaging | XDUB"
+  },
+  {
+   "sha256": "a238553cf884554edc1e1a0887fb319e795ad1d63bda488302b6539c258fcdba",
+   "text": "Physical Platinum EUR Hedged ETC - Xtrackers ETF | MTF | Other | XETR"
+  },
+  {
+   "sha256": "a27269e99b6a22c09853bc3da52457e684f0491b133985db00d526cfb6e3868d",
+   "text": "Schroder International Selection Fund Global High Yield A Distribution USD MV | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "a2887327ef7b7df9259c64f135c45104db006e64bb8d0924b0c34194b6abdf46",
+   "text": "Schroder International Selection Fund Global Credit Income A Accumulation EUR Hedged | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "a60bd3adc7ca040fb9584f877aac55987fd66498fd831cd867b0572f912ab22b",
+   "text": "TERNA ENERGY FINANCE S.A | Bond | Corporate | Corporate | Power | XATH"
+  },
+  {
+   "sha256": "a612bb3ccccada30526c420675dc9d874fbbce7e0110313aec500c5fa18e9066",
+   "text": "BNP PARIBAS FUNDS US VALUE MULTI FACTOR(PARVEST EQ | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "a6407c1268a189785929714a62bdb056414bede87ea46b666470e0c20144f099",
+   "text": "HSBC Global Investment Funds - Euroland Value EC | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "a74011434057d567ee54a8b6d3513046bb32e1a4ea6c7997f272838c5e348e5e",
+   "text": "KRETA FARM S.A. (CR) | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "a8435809239bb786741e31814a2367592b3d903b5207bee210e8c3f31815c17a",
+   "text": "Exxon Mobil | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XNYS"
+  },
+  {
+   "sha256": "a870bce4cd56654100b45f9baf9849ded7668458617a981209318f00f6f7a83e",
+   "text": "ΔΗΛΟΣ ΒΡΑΧΥΠΡΟΘΕΣΜΩΝ & ΜΕΣΟΠΡΟΘΕΣΜΩΝ ΕΠΕΝΔΥΣΕΩΝ-ΟΜ | MTF | Money Market | AEDAK"
+  },
+  {
+   "sha256": "aa1d991491d187782530d6e64667165458534b0c96563cab09d8ad3d37f203c2",
+   "text": "iShares Core DAX® UCITS ETF (DE) EUR (Acc) | EXS1 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "aa53d61b726f4ced62c214a3b60a006fb423bf128204abf1a099acdd0a8d9b63",
+   "text": "PHOENIX VEGA MEZZ PLC (CR) | Stock | Financial Services | Asset Management | ENAX"
+  },
+  {
+   "sha256": "ab6014088fbc4c147a8f9dd4f3c124781cea284d301e06e81231eb6a7c34fc44",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | CCLX"
+  },
+  {
+   "sha256": "ab6e6d88f64d1f142de60df940d25bccc43b72a9496f764d3408c232f71f0c37",
+   "text": "Portugal | Bond | Government | Sovereign | ENXL"
+  },
+  {
+   "sha256": "ab93a692d7597e036653c42a38abb1845762fe3c4eff61d6637fd05618937acb",
+   "text": "JPMorgan Funds - Global Natural Resources Fund A (acc) - EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "abbbf8fcaef31006266b1ce6724ffc4be6b55b3bd96a054d91aa90f8bfdb95e7",
+   "text": "iShares Edge MSCI Europe Multifactor UCITS ETF EUR (Acc) | IBC0 | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "ac393048750905c4e4b579e5bf18d9104ad0e0f47865a30709e0086dd2839d31",
+   "text": "SYSTEMS SUNLIGHT INDUSTRIAL AND COMMERCIAL COMPANY | Bond | Corporate | Corporate | Power | XATH"
+  },
+  {
+   "sha256": "ac3b7b0b5036f45a27d8dfcdd3914a80ab76513537f59ee153c550e90a15ba96",
+   "text": "USA | Bond | Government | Sovereign | XNYS"
+  },
+  {
+   "sha256": "ac58407871f40ee34a7094e4c8af23edf518d9cd01f81e2b7d23c755d8138277",
+   "text": "VIOHALCO SA (el-GR) | Stock | Large Cap | XATH"
+  },
+  {
+   "sha256": "ac5d840b87ce99b6435d87f4e8b78bbae9cb7f57da8212177d8998423b178eb4",
+   "text": "BlackRock Global Funds - Euro Corporate Bond Fund A2 | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "acdb405c19614b3e3302363764c252f56a43bf164f39d4897ef0850b6a9a5570",
+   "text": "ELGEKA S.A. (CR) | Stock | Consumer Defensive | Food Distribution | XATH"
+  },
+  {
+   "sha256": "ad585f6e2c04aca70f8f7d41a0726a7bf102ee70c4d701cec37493a57e73588b",
+   "text": "MTF | Other | XNMS"
+  },
+  {
+   "sha256": "ad65dafb4da5d4d67f01c40a3204367a71a53ee33d2eaadfd286cb022880f064",
+   "text": "Alpha Bank | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "ad968264abae0eff4e72faa71082aa5a4bf951d6591246b9e8a55db2cb0b6a87",
+   "text": "Apple | Bond | Corporate | Corporate | IT equipment | XNGS"
+  },
+  {
+   "sha256": "adb77f5086200ee8682cfe41244176852b787f341b1e70a96f59bbee70bfacff",
+   "text": "Xtrackers II iBoxx Eurozone Government Bond Yield Plus UCITS ETF 1C | XY4P | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "adf355903802aec7b77f055870bfc6095f22b6a04ee874f26f0e502b7ca46279",
+   "text": "FAGE International | Bond | Corporate | Corporate | Food and Beverage Production | XLUX"
+  },
+  {
+   "sha256": "ae21ca229419bd521686740a3b8a66d1fdf33146a523c4cc6a9e56cccec1508d",
+   "text": "PREMIA PROPERTIES | Stock | Real Estate | Real Estate - Development | XATH"
+  },
+  {
+   "sha256": "ae2cb26ad7a93fb888a21297e89fa5b577d20de33b3794cbb1bc8a8cac7bc77f",
+   "text": "BlackRock Global Funds - World Financials Fund A2 (EUR) | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "ae74923113c825f3eff10469f6209ad9f48f10535f0a9dee493423921a286639",
+   "text": "BNP Paribas Funds Russia Equity Classic Capitalisation | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "ae8ffbc38431bbacde347b0edab069f709dd5235e5f582df6d0105f530d410d6",
+   "text": "iShares Core MSCI World UCITS ETF USD (Acc) | IWDA | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "aec9fdd2edc50a4b54ba6d8ebdaa2c0cb53efcd41846c20976ae31ea47248df4",
+   "text": "DIMAND SOCIETE ANONYME DEVELOPMENT AND EXPLOITATION OF REAL ESTATE AND CONSTRUCTIONS SERVICES AND HOLDING | Stock | Real Estate | Real Estate - Development | XATH"
+  },
+  {
+   "sha256": "aef0b14a65ee6813f732e4d22782feea8a45b0bf77b21fa2bf144c48b6668299",
+   "text": "EURO STABILITY MECHANISM ESM 0 10/18/22 | Bond | Corporate | XETR"
+  },
+  {
+   "sha256": "af0aa4dfaaec89bf0903df2ff46f309f1d2a0a1442f8ccf6e409e59d91288679",
+   "text": "ATTICA PUBLICATIONS S.A. (CR) | Stock | Communication Services | Publishing | XATH"
+  },
+  {
+   "sha256": "af4cebcb11ebdffc49103846562dd029d689808d33a6ea7999478d91e4e526b1",
+   "text": "HSBC Global Investment Funds - Chinese Equity EC | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "af5047e71ea8771e04420f3073dc5d978187b39de20dee2c59ff438a5dedb9db",
+   "text": "Merck KGaA | Stock | Healthcare | Drug Manufacturers - Specialty & Generic | XETR"
+  },
+  {
+   "sha256": "af80cd18200542db61bef2b4efaec0276bc500cefbb9f7b4192a6777b3985847",
+   "text": "iShares NASDAQ 100 UCITS ETF USD (Acc) | CSNDX | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "b06d9d885e6b8925dd058f7048fc693b83bd5b7e948341ad3b7612bda8f1015f",
+   "text": "Hapag-Lloyd | Bond | Corporate | Corporate | Marine Transportation | XETR"
+  },
+  {
+   "sha256": "b0be1e314d855e36ab0472b9fc2532656eb9179803ad5d00bec3062836959b64",
+   "text": "CORAL A.E. OIL AND CHEMICALS COMPANY | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XATH"
+  },
+  {
+   "sha256": "b0e8f0843a833eb67577f2eb125aa341ed039ad0aaacad5b569806ef55d85b3c",
+   "text": "Invesco Funds SICAV - Invesco Balanced-Risk Allocation Fund A (USD Hedged) Accumulation USD | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "b1a2d171dfb00e1f6c63c4ec402b581eb191bd3634fa82a39b0db7633132ecf0",
+   "text": "The Coca-Cola Company | Bond | Corporate | Corporate | Food and Beverage Production | XNYS"
+  },
+  {
+   "sha256": "b1c62098a0733250d5d6cd7683b51e450c4919c8ed6408a3b218f669888ff8bd",
+   "text": "KOSTAS LAZARIDIS S.A. (CR) | Stock | Consumer Defensive | Beverages - Wineries & Distilleries | XATH"
+  },
+  {
+   "sha256": "b212c6e02bd9c611c80a38d3092785fcd4272eee90011913887f98452d6d2018",
+   "text": "Ishares Usd Short Dur Hy Crp | Stock | XLON"
+  },
+  {
+   "sha256": "b241704e15cce96df1c62dc816d61a679d663757211f76d0a3475543fff3e545",
+   "text": "EUROPEAN RELIANCE GEN. INSUR. S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "b274d5a4a98d1a9b1bdbd8dda52a843c4a8c3dcacb92740c96cbc9d29f709678",
+   "text": "Bulgaria | Bond | Government | Sovereign | OOTC"
+  },
+  {
+   "sha256": "b277778fc7086ad702d0d5053d209217e7a94cf858ff10880de743083c666db0",
+   "text": "DELOS USD-INTERNATIONAL BD | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "b346d361dd2b2f38c5480cc43a964be55ceaf5e5b8b1198abb0ef2cd8472ec00",
+   "text": "Lloyds Banking Group | Bond | Corporate | Corporate | Banks | XLON"
+  },
+  {
+   "sha256": "b386e4f65c5ee65fb1ca28419b65f3e3538e6a3948b6671bb5bc00f17e81e8ea",
+   "text": "iShares STOXX Europe 600 Telecommunications UCITS ETF (DE) | EXV2 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "b39e4e4a8809f211a45d9250e5b27eeb2189656ac94cbfdf225ae296e1faffd3",
+   "text": "PRODEA R.E.I.C. S.A. | Bond | Corporate | Corporate | Real Estate Investment and Services | XATH"
+  },
+  {
+   "sha256": "b3ffed3fe075e8b6e0839add9abb048d52a1bd870094ce3c356db68b5cb8ade9",
+   "text": "Franklin U.S. Low Duration Fund A(acc)USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "b44fc964c69457a823891051a7e2193da8d640f9b594a32fb9392e3c3e4f89bc",
+   "text": "EUROPEAN INVESTEMENT BANK 0,25 10/15/20 | Bond | Corporate | Corporate | Banks | XSTU"
+  },
+  {
+   "sha256": "b4924dab56b5b52d3f4b0ed83cf40e8d91ff622b49ebcf89f9cecc1ea1023f5b",
+   "text": "UniCredit SpA | Stock | Financial Services | Banks - Regional | MTAA"
+  },
+  {
+   "sha256": "b4f1742daec6c755012bbff7df51c639e015f0d973195a78ad9c91b0293bcf70",
+   "text": "HSBC Portfolios - World Selection 3 ACHEUR | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "b4f7fab86e966393daa1eef02750943c347fb546e37d02fd8a2a72a4ae784b56",
+   "text": "Legg Mason ClearBridge US Aggressive Growth Fund Class A US$ Accumulating | MTF | Equity | XASM"
+  },
+  {
+   "sha256": "b550688e292c89c6ae271e9c0b6e78adec6f8a0d8d87c262154829aa59d2015d",
+   "text": "Banco Santander SA | Stock | Financial Services | Banks - Diversified | XBAR"
+  },
+  {
+   "sha256": "b569aa1e4026f6afda829e083de50a4dbffecd618e87ddcdd9fc2a665375c139",
+   "text": "SELECTED TEXTILE IND. ASSOC. S.A. (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "b5de9a2454038a34af4ade74356cb5fe1e4ed963fd1b4f6ba41e79a882e1c790",
+   "text": "AVAX S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "b5f07e5cabb0ebe6935cab27ab8a0819c3abf6b0802b97f6bd8e94261d75027a",
+   "text": "Virgin Galactic Holdings Inc | Stock | Industrials | Aerospace & Defense | XNYS"
+  },
+  {
+   "sha256": "b62e5fd2ef24ee19cd5e1a90818c1f9ac6ce863543e10065faed18bd50adbd74",
+   "text": "European Financial Stablity 0.125% 17/10/2023 | Bond | Government | XLUX"
+  },
+  {
+   "sha256": "b66c17b1afe617dfd76a995df13aa2be6680287511b1aacd8d8903db5e9d695b",
+   "text": "DAIOS PLASTICS SA (CR) | Stock | Basic Materials | Specialty Chemicals | XATH"
+  },
+  {
+   "sha256": "b7491f50233178a0866c70ea932dcea2c5a098f930ae4fa0a85598ac47981f2d",
+   "text": "R ENERGY ONE | Stock | Utilities | Utilities - Renewable | XCYS"
+  },
+  {
+   "sha256": "b77e4b0ef958b7e6125723fd1e814fcf8f8ad7b0c3931549b4ed72b93bec32e9",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "b7a43ba4f6183bf04bb358ada1a01be97a27df8ea399578378e010d3ce90be74",
+   "text": "CENERGY HOLDINGS SA | Stock | Industrials | Electrical Equipment & Parts | XATH"
+  },
+  {
+   "sha256": "b7b6cabba4c4fe17d5bd30387ad03e4dbb0c62c676fb29dd6db09abe696e992a",
+   "text": "BASF | Bond | Corporate | Corporate | Chemical and Petrochemical Industry | XETR"
+  },
+  {
+   "sha256": "b7e10ca3b3e80904fe22db276f9ccea51d4355783b3747448064397e01ed349f",
+   "text": "Amundi Funds II - Emerging Markets Bond A H EUR DA | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "b89dfd892e07a36f57317583b078b5dfd9b267a24a33bc6f41303474c9af3dac",
+   "text": "HellenicRep.Gov.Bond GGB 3,875 03/12/29 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "b8b833b57d7f2a20ff7259063d346f5772c42f8afb2a9a2c608a2d0376461bb5",
+   "text": "TotalEnergies SE | Stock | Energy | Oil & Gas Integrated | XPAR"
+  },
+  {
+   "sha256": "b92ba6b33c6fda6c5366e1d3b3413fa39efc39ea08ade18064c2fa175b6f368d",
+   "text": "Toyota Motor Credit | Bond | Corporate | Corporate | Other Financial Institutions | XETR"
+  },
+  {
+   "sha256": "bac26fb1c0b343bebf7924da3b36cde3b6595b4f487e20dddc1787dc75adfb6f",
+   "text": "BNP Paribas Funds Bond Absolute Return V350 | MTF | Bonds | XLUX"
+  },
+  {
+   "sha256": "bac2a722b099501b157eba8278a957d2233d8e6bb84627a5feb4ca019cd6478f",
+   "text": "UBS (Lux) Strategy Fund - Yield Sustainable (EUR) P-dist | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "bb8d8403fb5c63018f81dd9aa8332690938426037ed605270e93580941f1aaa6",
+   "text": "Schroder International Selection Fund EURO High Yield A Accumulation | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "bbdd8521180d26a9777bd999f3b8046f293815484693a4c123b8a68733960e73",
+   "text": "Goldman Sachs Global Currency Plus Portfolio | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "bbeeb2c7b70b6aca5b5459aa3085fb32bcb3866fc03c7d513aa5b1d42418a105",
+   "text": "CENTRIC MULTIMEDIA S.A. (CR) | Stock | Financial Services | Asset Management | XATH"
+  },
+  {
+   "sha256": "bc64dfeb9379cc05e50d4d3162cbbc9d76febc2942f119a202448cf566d4c7c2",
+   "text": "BNP Paribas Funds EURO Short Term Bond Opportunities Classic Capitalisation | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "bcbd6dbb1e5fd28fadc30d0ae13b97e2915526dc77f7b22695f393381207ce16",
+   "text": "BNP Paribas Funds Target Risk BalancedClassicR | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "bcbfd83eb42f3776222af45f971daa41697e575e251412451fe192802c1d633d",
+   "text": "France | Bond | Government | Sovereign | XPAR"
+  },
+  {
+   "sha256": "bcd0445480bbc84351d8aa9950655f61a053ecd346a039810895f9fadd46d64f",
+   "text": "Norway | Bond | Government | Sovereign | XOSL"
+  },
+  {
+   "sha256": "bcf91be839c9517ed20f0145ec74ea5f0fa284344c501cc5abe15ba0dc6bbc48",
+   "text": "AMUNDI FDS-PION. US EQ.F.GR-A EUR HG | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "bd15153e1452df1cadce8f50f34d96c144081a7a801b901a42ec4966041d28d5",
+   "text": "A/K  DHLOS SYNTHESIS BEST YELLOW FUNDS OF FUND ΜΙΚ | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "bd241efcc351f1449e3f13745fd3a023d39cbb0ca1a3f13f42fd597b10c3c1a9",
+   "text": "WOOL  INDUSTRY  TRIA  ALFA S.A. (PR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "be9cd3bb5aa7251261ee099484d11f57c62a6bc9287cbdd5f8e06c5e3c8d23f3",
+   "text": "Templeton Global Bond Fund A(acc)EUR | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "bec18b5b004ae32a1689c6b8599421db34c47a1c6a1609f328d18e713e66f193",
+   "text": "N. VARVERIS-MODA BAGNO S.A. (CR) | Stock | Consumer Cyclical | Furnishings, Fixtures & Appliances | XATH"
+  },
+  {
+   "sha256": "bfab7c9172d9a755df39ae62574c5e45682caf032aa1ea31723b732148229ead",
+   "text": "Shell | Bond | Corporate | Corporate | Oil and Gas Extraction and Refining | XNYS"
+  },
+  {
+   "sha256": "c0b006699eba30acc5d3c90e3707bdd95a9d8a2901ea6faa6bbd1db731f3aa3a",
+   "text": "LANAKAM S.A. (CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "c1aaa6cf9e835160d752351589c54bb098793f333a470336489a02c295ab3a61",
+   "text": "Parworld Lyra Classic EUR Acc | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "c23d2127557a1be6e106abde746fa1fadfca2a9d6123d798ceff43ce037b8933",
+   "text": "Pictet-Short-Term Money Market USD R | MTF | Money Market | CCLX"
+  },
+  {
+   "sha256": "c244b3e7b084a1d61bc3e1362b62db93d79947e46216257a9dc52b37d423f9d2",
+   "text": "KARATZIS  S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "c27fa03a05c105ad52ab8b77991514ceece7580c25d677a734e0005a74b4a72a",
+   "text": "PROODEFTIKH TECHNICAL COMPANY S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "c28efc9ee327bee4f285633c25cad81421d73011425accd1e5592c94cb26931e",
+   "text": "ATHENS WATER SUPPLY AND SEWERAGE S.A. | Stock | Large Cap | Utilities | Utilities - Regulated Water | XATH"
+  },
+  {
+   "sha256": "c2df6478ef7a3a5cbf9f1c3edc59b9ad2d8affb415f185837081beb042c5f093",
+   "text": "UBS (Lux) Strategy Fund - Yield Sustainable (USD) P-dist | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "c2ea79a4431027ae62c155c32634eb6536205ad18d40c5058f69de2a6af780cd",
+   "text": "abrdn Physical Platinum Shares ETF | MTF | Other | XNYS"
+  },
+  {
+   "sha256": "c348699783529eaac6c600d54d47acabb3989c6905de415adf3a9c328d18069c",
+   "text": "Pictet - SmartCity R dy EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "c372ee89d5952a479616a431aa9bba0d27221f117f36b533700d4feef7c02d23",
+   "text": "iShares Edge MSCI World Quality Factor UCITS ETF USD (Acc) | IWQU | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "c3c2e13a5a2992d45c8c71036c500b51e7763f309a334ae80281539c61e3c4b1",
+   "text": "INTRALOT SA | Stock | Consumer Cyclical | Gambling | XATH"
+  },
+  {
+   "sha256": "c4eeb49fb12f0eca7add8c1539c679b78d04cf8e4abb7c3d401cfbe1ac592ad4",
+   "text": "ATTICA HOLDINGS S.A. | Bond | Corporate | Corporate | Marine Transportation | XATH"
+  },
+  {
+   "sha256": "c5380acb86232f568982904ed95735918c53f257dce1a5cff56c64f47e2cd195",
+   "text": "UBS (Lux) Bond Fund - Euro High Yield (EUR) P-mdist | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "c7d4a22dd7c51283dbf72afe9d0fc15a74aad13633d684cd98dde4e3e41d72a5",
+   "text": "EUROPEAN INVESTMENT BANK EIB 0,05 10/13/34 | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "c83b367edf96960867b98ac0ab424934ead8712018d841e5ea8a89f3b8340939",
+   "text": "Xtrackers CSI300 Swap UCITS ETF 1C | XCHA | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "c85a9ffe38e9e6fdfb00fcaf2813eb76ad788e569c12ed4e6d4915d75b6592af",
+   "text": "ANEK LINES S.A. (PR, issue '96) | Stock | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "c86e1f8004c846bb149d449ee8f8191288f7c091e7aae0cb64a5587d8ea36855",
+   "text": "HELLENIC EXCHANGES-ATHENS STOCK EXCHANGE S.A | Stock | Large Cap | Financial Services | Financial Data & Stock Exchanges | XATH"
+  },
+  {
+   "sha256": "c87c28ecdec58e4708e340821c7dc2b50edebb50d01d3dfd9fa6872014c896ce",
+   "text": "MLS MULTIMEDIA SA BOND MLSGA 5,30 07/11/20 | Bond | Corporate | Corporate | IT Services and Computer Programming | ENAX"
+  },
+  {
+   "sha256": "c8a203d28a76fc5c103b1e4a2d1e5e6c3922eaac179de94ea60c52551f6e7d29",
+   "text": "Amundi Funds II - Emerging Markets Bond A H USD DA | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "c95ddce5b8342e6bc9191a7088a766256996463efa11fb1966dc54baf2685214",
+   "text": "National Bank of Greece | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "c9ac63cd51e64bbc47eec39905cfbef141a01f6da4beaf37bf767cfb352e5691",
+   "text": "HELLENiQ ENERGY HOLDINGS S.A. | Stock | Large Cap | Energy | Oil & Gas Integrated | XATH"
+  },
+  {
+   "sha256": "c9d4e1efb431a7d8ff69c7ca50e978026b0e604fd9001e6138fdee9903985fe1",
+   "text": "UBS LUX STRG FD-YIELD EUR-B | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "cab513b248aec257249440988b1bbd28955b25031ad117401b902c483b254e47",
+   "text": "STELIOS KANAKIS SA (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "caf83f70b3e59820d68582f47f2fe210817b9b20a3ac4c043712f9b8269a1d7a",
+   "text": "BNP Paribas Funds Equity Russia Opportunities Classic Capitalisation USD | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "cb0edc47babb745772a89fe8881921029272a832677aa8bb90df800ceae1378e",
+   "text": "HOUSEMARKET BOND | Bond | Corporate | Corporate | Miscellaneous Wholesale and Retail Trade | XATH"
+  },
+  {
+   "sha256": "cb18bbbb8befd5be9439f1f2e907a40757deeeebe5dac1566c1465e3e46421bb",
+   "text": "DOMIKI KRITIS S.A. (CR) | Stock | Industrials | Engineering & Construction | XATH"
+  },
+  {
+   "sha256": "cbb5a5ba6bbc1c1b11ef83010257680dc4df221fe52bdcb6837cb1aa135a5ddc",
+   "text": "iShares Italy Govt Bond UCITS ETF EUR (Dist) | IITBm | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "cbc2072f1f9a5bbd4437c6682a4a538781f07a2bf854e0997fe4dfc98fe07de9",
+   "text": "Repsol SA | Stock | Energy | Oil & Gas Integrated | XMAD"
+  },
+  {
+   "sha256": "cc2b854ad93b2dfa1e6858eb41776819566059d8d28a6c304876ecad79b5e090",
+   "text": "iShares Core € Govt Bond UCITS ETF EUR (Dist) | EUNH | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "cc48553625b6c82eee3b27612ff3c56915380d98d21687385c6e67d33b41f185",
+   "text": "iShares China CNY Bond UCITS ETF USD (Dist) | CNYB | MTF | Bond | XAMS"
+  },
+  {
+   "sha256": "ccb0d1564cb0357d977591187152ec0054c8901f916f0118448af88508c2b5e2",
+   "text": "Anheuser-Busch InBev SA/NV | Stock | Consumer Defensive | Beverages - Brewers | ALXB"
+  },
+  {
+   "sha256": "cd1b22007c369690467b1d257d5ae881999b99e18858877248a3605101cf09dc",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | XBER"
+  },
+  {
+   "sha256": "cd3d21d714d1f5ab838403b0161b4ecc27d8177cd42ef0224a49e46ae8164f1c",
+   "text": "INTERCONTINENTAL INTERNATIONAL Α.Ε.Ε.Α.Π. | Stock | Real Estate | REIT - Diversified | XATH"
+  },
+  {
+   "sha256": "cddda6e89d752fc538456d5a31694d170a129f1be504952bcf0725088f9f64f0",
+   "text": "DELOS GREEK GROW-DOMEST BOND | MTF | Bond | AEDAK"
+  },
+  {
+   "sha256": "cefe5c68adb3bcd5a6e5da76f2d732d71b3c943e4424d1dc0828fddfac868ee8",
+   "text": "UBS (Lux) Strategy Fund - Fixed Income Sustainable (USD) P-dist | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "cf1b4ef984b371c22bc8b70ce344ec6ab816375f5b3d0bbc44572cb99a5e48a3",
+   "text": "Argentina | Bond | Government | Sovereign | XETR"
+  },
+  {
+   "sha256": "cfa74981c358a8f01f2fd6992438150010461e1e15d4207e554571432de50531",
+   "text": "Jaguar Land Rover | Bond | Corporate | Corporate | Motor Vehicle Production | XETR"
+  },
+  {
+   "sha256": "d030022f6e2938296165f2c1d0c2ea4102cd4989721c70e62569faf5d2c34322",
+   "text": "Ireland | Bond | Government | Sovereign | XDUB"
+  },
+  {
+   "sha256": "d0966d325282e2756000d461294ce031bc6b89fae0d958884498c149c02203cf",
+   "text": "PARSTCA Parvest Money Market Euro | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "d153c466f3411ad74f964d2d13af20443ca3c509dda7da384969db0c46f7818c",
+   "text": "KEKROPS S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "d16ffc4c04241a98a095a119888ff824b3d41f7194e613ccfb7cba07e2320e43",
+   "text": "BNP Paribas Funds USD Money Market Classic C | MTF | Money Market | CCLX"
+  },
+  {
+   "sha256": "d18e87dd8c5d3bceb60998c010075345594e6902575234ff22baa6120a7e3ffc",
+   "text": "Danone | Bond | Corporate | Corporate | Food and Beverage Production | XETR"
+  },
+  {
+   "sha256": "d26588f26c474a9b37815f05bf4de31db2c04969724ec1d356e36f92146423da",
+   "text": "Aston Martin Lagonda Global Holdings PLC | Stock | Consumer Cyclical | Auto Manufacturers | XLON"
+  },
+  {
+   "sha256": "d28e82665fd080dbefff7bf9189bd50dea1c4af9739a3979972b4641ff0a2a8c",
+   "text": "DHLOS MIKTO AMOIVAIO KEFALAIO | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "d312a4cad21947d539dc779cd5e7ee0820cded08ed34ba09c5696ea37180a4d9",
+   "text": "CRETE PLASTICS S.A. (CR) | Stock | Basic Materials | Specialty Chemicals | XATH"
+  },
+  {
+   "sha256": "d33315c35698d994263f19d50b5ad2fb4481749de92ff605d910ce1402ba8e41",
+   "text": "KARELIA TOBACCO COMPANY INC S.A. | Stock | Consumer Defensive | Tobacco | XATH"
+  },
+  {
+   "sha256": "d36a6aa97d078ffa8b175399b007acc9a46de9ececd5b7e03c6fe602aaf71e6d",
+   "text": "DHLOS STRATEGIC INVESTMENTS | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "d37f1bed7c8dc8bf6326919ac75bfa55e9fb6e7869d9afb5c2f70cfd483bc875",
+   "text": "Eurobank (LF) Reserve Fund | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "d420486a9c5dad0014a6fc230ddc76e76d4a5eb90cbc49953085276dd599fc41",
+   "text": "ATHENA S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "d427715763ef1b5f0ed5876b3d89527c5c4cd4c5abb93fb5c79ac286e8d36996",
+   "text": "TERNA ENERGY FINANCE S.A. | Bond | Corporate | Corporate | Power | XATH"
+  },
+  {
+   "sha256": "d464fe21d9e1be43653a34238000d3f7b2fa9755e1875654a3cd4447ea7493ac",
+   "text": "DHLOS BLUE CHIPS | MTF | Equity | AEDAK"
+  },
+  {
+   "sha256": "d46f8d449bec09b23a9c5c8e3220fff0f67579c7d764a429f9605a2d14c86e90",
+   "text": "LOULIS FOOD INGREDIENTS | Stock | Consumer Defensive | Packaged Foods | XATH"
+  },
+  {
+   "sha256": "d472a36015a684b285354f156c4eee5b8e33c4d6aa76d79a656bee7058db48a3",
+   "text": "LIVANI PUBLISHING ORGANIZATION S.A. (CR) | Stock | Communication Services | Publishing | XATH"
+  },
+  {
+   "sha256": "d495d961f75af47ac5665d712875e7932b4a032818db2e78f96aeda82239fae9",
+   "text": "EUROBANK ERGASIAS SERVICES AND HOLDINGS S.A. | Stock | Large Cap | Financial Services | Banks - Regional | XATH"
+  },
+  {
+   "sha256": "d54dffbc17efe3b46d95d0320b0ab6286859fff8d040357a9e91a0db977fa651",
+   "text": "TITAN CEMENT COMPANY S.A. (PR) | Stock | XATH"
+  },
+  {
+   "sha256": "d56b99212abf5f199452abc9f1cb48c3630dbd02f5c0755eca2c3717a13bd283",
+   "text": "PICTET-MULTI ASST GL OP-RDME | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "d59963d31d878e82cb610c1db15c1629c87e012a01223dae463e4631b727353e",
+   "text": "Vinci SA | Stock | Industrials | Engineering & Construction | XPAR"
+  },
+  {
+   "sha256": "d67ab415df5f34380a3495f5b96d86308c2f8405e83de918a782408d85970373",
+   "text": "Allianz Global Investors Fund - Allianz Euro Bond AT EUR | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "d69eb86ce75bafe131fa48b3b39ad26ea8f99b97a2cb4eb57076f418f8f19816",
+   "text": "Allianz Global Investors Fund - Allianz Income and Growth AM USD | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "d7240e835b8f09339a19ca95b27550c0383fb703e6667a57143c92b5b7f3384f",
+   "text": "iShares Global Clean Energy UCITS ETF USD (Dist) | INRG | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "d746d37b3d27e1b2d055af7b2a462341ba79ef273986e66f95cba0140cf6edfa",
+   "text": "BYTE COMPUTER S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "d75cb5b8faa244337a80e9295fd6b0c20f2f10382da61716558d1effd12edf82",
+   "text": "European Investment Bank (EIB) | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "d87d92e75b4ee662019c975d68df306dd028bdf63dbf60e1bd26164fc70acd66",
+   "text": "Western Digital Corp | Stock | Technology | Computer Hardware | XNYS"
+  },
+  {
+   "sha256": "d8dc2a39cf6d34d06b0a4a4ea4ffdd25fb7d0feebc0561a3c4ef15d53df40ecd",
+   "text": "Boausch Health Companies 6.125% 15/05/2025 | Bond | Corporate | XNYS"
+  },
+  {
+   "sha256": "d8fed750d6024be13eee1988373942b4d50b58c487e66526f88c86ac2cd634d2",
+   "text": "McDonalds | Bond | Corporate | Corporate | Restaurants and Bars | XMOD"
+  },
+  {
+   "sha256": "d95d979785e07c6eaf1b45b24e43775cd7a1d4c25c9a4731a79c47069b0c97ae",
+   "text": "Schroder International Selection Fund EURO Corporate Bond A Distribution EUR SF | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "d9da81f95c9630719a8db931d9c82d0d5e3ce8f026f0ac48202ace0d24639b5f",
+   "text": "EUROMEDICA S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "da102e3be647c853ac655e595ecde6506dfcc442e7f80aade6391f3ed991180e",
+   "text": "PARVEST AQUA-CLASSIC | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "da9a6529debdfcd38951374581c2c73c0418a3652140725f191e59ccacf56cea",
+   "text": "BNP US SHORT DUR BD-CL C | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "dad7aca588627580cd0c7d46c650368ad929bea4673c78d05ace84f30cd05dfd",
+   "text": "Volkswagen Financial Services AG | Bond | Corporate | Corporate | Microfinance | XETR"
+  },
+  {
+   "sha256": "db225dd5a871630b81963f79487c3de4d335d93f0750f720d23d1f89f1efe2b9",
+   "text": "iShares $ High Yield Corp Bond UCITS ETF EUR Hedged (Dist) | IHYE | MTF | Bond | XETR"
+  },
+  {
+   "sha256": "db351a1dec8bbc207242e6ba7115a079940c0c9018e02d01096eaae5b9db706e",
+   "text": "BP PLC | Stock | Energy | Oil & Gas Integrated | XNYS"
+  },
+  {
+   "sha256": "dbc9ecadc612b7cfccda03b2fdcf3091a4346156d83d0b965b2bcd18cbaad623",
+   "text": "GEN. COMMERCIAL AND IND. (CR) | Stock | Industrials | Industrial Distribution | XATH"
+  },
+  {
+   "sha256": "dc82595dd9ce5a35cfecb2cae6533d1ea5b11bb5ec90893a72a975a5a44d545a",
+   "text": "BANK OF GREECE (CR) | Stock | Financial Services | Banks - Regional | XATH"
+  },
+  {
+   "sha256": "dca45589201af5664a989e704212552ea592350404e5f4e93a066e78ed7512a3",
+   "text": "UBS LX EQ - GBL IMP USD -P EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "dd23332fc941c15a1e9ca268032b9eb9b5231962781f0d804f2aed67b18daaf9",
+   "text": "FRIGOGLASS S.A.(CR) | Stock | Consumer Cyclical | Packaging & Containers | XATH"
+  },
+  {
+   "sha256": "dd62f32c843be4d254d91c071210eca3f49a46ded29bca063ed477a2c9156321",
+   "text": "Banque Federative du Credit Mutuel | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "dd7edfd35e7bb1d0cc086e27cb1d52c87f90b514de032f5472efe08d0a33538f",
+   "text": "BNP Paribas Funds Euro Bond Classic Capitalisation | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "dd81091b401c3fa6e7477f14ebc5600471cbdd352d7dcc53fda0095b4a624364",
+   "text": "BlackRock Global Funds - Global Equity Income Fund A5G EUR Hedged | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "de34d981daa8095f0e11da327fc936315247f68a5c86576126741aa44fef225a",
+   "text": "BlackRock Global Funds - India Fund A2 (EUR) | MTF | Equity | CCLX"
+  },
+  {
+   "sha256": "de7c6185658be11f75df439279c346fb5d8b077b3a9190be849fcb07c28ea7a1",
+   "text": "PIRAEUS FINANCIAL HOLDINGS S.A. | Stock | Large Cap | Financial Services | Banks - Regional | XATH"
+  },
+  {
+   "sha256": "de92ef0ee5052c1962cc4e247ed6be08c4f11875c0870bab49544ebf8acfd7c7",
+   "text": "CIBC | Bond | Corporate | Corporate | Banks | XETR"
+  },
+  {
+   "sha256": "ded62e190a86c8b43c11de4c744794d8d3bd94f1bec0bc55e4ea82ad974f345e",
+   "text": "Visa Inc | Stock | Financial Services | Credit Services | XNYS"
+  },
+  {
+   "sha256": "df0671725a876963cff933ac5c4d7a306413922724d936b1bc020930b49a9992",
+   "text": "iShares MSCI World SRI UCITS ETF EUR (Acc) | SUSW | MTF | Equity | XLON"
+  },
+  {
+   "sha256": "df197940556f54f1c69653a9e4cee97ec243a71ebeaa3992b121b087005c9556",
+   "text": "Piraeus Bank | Bond | Corporate | Corporate | Banks | XLUX"
+  },
+  {
+   "sha256": "df3985bde63deba889bedef28d6ea11f12d5ae61877608bb400d71c6ae78c137",
+   "text": "Coca-Cola European Partners US | Bond | Corporate | Corporate | Food and Beverage Production | XMUN"
+  },
+  {
+   "sha256": "df55b993611136ef9857a901ef7de4e5a3b931df1ff67320c5f58a1c0ee32034",
+   "text": "UBS (Lux) Bond SICAV - USD Corporates (USD) P-acc | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "df55f4022fa66bc9db2dda71679928e156b95b611dc0c6e98242f4ff0a21cd43",
+   "text": "Sampo Oyj | Stock | Financial Services | Insurance - Diversified | XHEL"
+  },
+  {
+   "sha256": "df5f3228228a8941d0b51ec7d141f9284f68803fb5802c97774f28f905a3274e",
+   "text": "Ireland IRGB 3.9% 20/03/2023 | Bond | Government | XLON"
+  },
+  {
+   "sha256": "e00f43435ea74bcd7bd35cfdbafad854daeca11e87b960d772e57b500726dc69",
+   "text": "AT&T Inc | Stock | Communication Services | Telecom Services | XNYS"
+  },
+  {
+   "sha256": "e047e65ca00e663e8af5aa0a5832b067d9f6b9de6a7b6e6f0c64599dba26cb8a",
+   "text": "Bayer AG | Stock | Healthcare | Drug Manufacturers - General | XETR"
+  },
+  {
+   "sha256": "e0694d033b363dd16a2d89e929475a0f3d2b7e785b9d74a1ae39e0a3535d6b0a",
+   "text": "SCHRODER IS-GL CR IN-AIEURH | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "e0ed8fb25281d38173d4a5c970bf2ec6b76d0ddddcd8424453c9c12cf8391843",
+   "text": "BNP Paribas Funds Enhanced Bd 6M Classic Capitalisation | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "e0fca4bd384d62795e1e7dabfec5840337bdcea3ae8ebe64b3c24bec47ded7de",
+   "text": "AXA SA | Stock | Financial Services | Insurance - Diversified | XPAR"
+  },
+  {
+   "sha256": "e1045ce40332a93a48e7b13a2411ae1a869dec6a8ce7dbfd5f315c44fb32e474",
+   "text": "Schroder International Selection Fund EURO High Yield A Distribution EUR QV | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "e1121e314c02e3cdfbc238ab1c526e73fdb3fdedcae6f21ad9b509c1d48e5b4d",
+   "text": "Franklin Multi-Asset Conservative Fund A USD Accumulation | MTF | Other | XASM"
+  },
+  {
+   "sha256": "e125258948dd29c1a5eff8879e4bd6632eed2bb838a3c1f15cfed950747df22b",
+   "text": "Corporacion Andina de Fomento (CAF) | Bond | Corporate | Corporate | Banks | XLON"
+  },
+  {
+   "sha256": "e135838593c52145b365c631ccea99130d66899b317767eccebe3d9fba80c061",
+   "text": "Abbott Laboratories | Bond | Corporate | Corporate | Pharmaceutical Preparation and Biotechnology | XNYS"
+  },
+  {
+   "sha256": "e1559c67a2471ce848ab04caa459f709009896034b9575449b7fe818782cce2e",
+   "text": "BRIQ PROPERTIES REIC (CR) | Stock | Real Estate | REIT - Office | XATH"
+  },
+  {
+   "sha256": "e180cc12030be7a20fa63c0e5531a63d001aff004033d365e306612b430a730b",
+   "text": "Lyxor STOXX Europe 600 Insurance UCITS ETF EUR | MTF | Other | XPAR"
+  },
+  {
+   "sha256": "e182156a215cd3d118ead9d1e31961c0fe6965a0427fe1273d10756585701e5e",
+   "text": "TRASTOR REAL ESTATE INVESTMENT COMPANY (CR) | Stock | Real Estate | REIT - Diversified | XATH"
+  },
+  {
+   "sha256": "e256a0b83f93086e3c0beb5518839a40e500163c528b7052a99ca24845009a90",
+   "text": "NBG International Funds FCP/Money Market Sub Fund Class A | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "e26c53525aa44f2b18ff29336cb4dd4115441aa667fa9a6d4385bb1d40e749b9",
+   "text": "BNP Paribas Funds Sustainable Global Low Vol Equity Classic Capitalisation | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "e291276558b0b108b4249d9ed11524f28b9a9e6ccf9ab7f6e940fa7e079fcba5",
+   "text": "PERFORMANCE TECHN/GIES Α.Ε.-ΚΟ | Stock | Technology | Information Technology Services | ENAX"
+  },
+  {
+   "sha256": "e2a51363fadf7b2417671884fac6b387edc0faa3f378707162391c75712d2a28",
+   "text": "Micron Technology Inc | Stock | Technology | Semiconductors | XNYS"
+  },
+  {
+   "sha256": "e2ea4887fc3a5c6e8620e57badc6301a5bb089db9a49abad1ddffef9e9f62c4e",
+   "text": "Hyundai Capital Services | Bond | Corporate | Corporate | Leasing and Rental | XASX"
+  },
+  {
+   "sha256": "e30445ae2c20c54b3500997062d5162979661892879ae17c06807885c4c45961",
+   "text": "DHLOS PET OTE | MTF | Balanced | AEDAK"
+  },
+  {
+   "sha256": "e3384ac14d94fa4d17dc3965b19151967f10868d4d63412716127e3d6714d274",
+   "text": "MEDICON HELLAS S.A (CR) | Stock | Healthcare | Drug Manufacturers - Specialty & Generic | XATH"
+  },
+  {
+   "sha256": "e350d7d3c80297ec67a433af7419a7ae060ed19d02dcc7f473c66bbc3c3d265f",
+   "text": "BUNDESREPUB DEUTSCHLAND DBR 2 08/15/23 | Bond | Government | Sovereign | XETR"
+  },
+  {
+   "sha256": "e36d78ddf2302f0fe8a87df767f30cf23bb405911fa50bd435b54ae1a87f12af",
+   "text": "ASML Holding NV | Stock | Technology | Semiconductor Equipment & Materials | ALXA"
+  },
+  {
+   "sha256": "e36e2de6ae24ba7d99d45d2381ce7619ae57ed7dbba3cea783da07e97c4c946e",
+   "text": "TERNA ENERGY S.A. (CR) | Stock | Large Cap | Utilities | Utilities - Renewable | XATH"
+  },
+  {
+   "sha256": "e39c3e7871711921683d2fb62a4bca94e86400bd8359f70e30ec0257c63f0368",
+   "text": "HOLDING COMPANY ADMIE IPTO S.A. | Stock | Large Cap | Utilities | Utilities - Independent Power Producers | XATH"
+  },
+  {
+   "sha256": "e3c79de181693a88c888e3254306f6b66b47b63f9fb7df3808f69377ae490089",
+   "text": "iShares STOXX Europe 600 UCITS ETF (DE) | EXSA | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "e3e9c093c4f255c00c5c0b41c5bdf2c00d11028001a5f993429320c1c0da9a87",
+   "text": "KFW | Bond | Corporate | Corporate | Banks | XBER"
+  },
+  {
+   "sha256": "e42a15eced92a8cf2b3b074a078ba3efa6ad888d6e31ce1ad0c6104c7decada4",
+   "text": "PICTET-EUR SHORT MT BDS-R INC | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "e4730ff34a3c5ad967101f76f2c2b910b5d9c5e4e2143af85da30eb343651927",
+   "text": "BlackRock Global Funds - European Equity Income Fund A5G USD Hedged | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "e501fe3f27eb6255f5efe4fbeca1da31336107c10dda4f4bec61fff597c16089",
+   "text": "Twitter Inc. | Stock | XNAS"
+  },
+  {
+   "sha256": "e53f04c573322ac26504b83cf260d32656d030d4f38af9e34c1da49e30392151",
+   "text": "Italy | Bond | Government | Sovereign | MTAA"
+  },
+  {
+   "sha256": "e5506ead1e1ba1be7f2ebb71ce247a0e3cadf634b05a731dcf77d717fe5e4cfa",
+   "text": "Moderna Inc | Stock | Healthcare | Biotechnology | XNGS"
+  },
+  {
+   "sha256": "e5a761732b85e8c7955e38679bb479448a094fdb0c848a948f19caab37c59466",
+   "text": "ANEK LINES S.A. (PR, issue '90) | Stock | Industrials | Marine Shipping | XATH"
+  },
+  {
+   "sha256": "e621ccdd4b98b69c31b116091d54a35f8410098c01d26bfa57e5ff032143e397",
+   "text": "MLS INNOVATION INC | Stock | Technology | Software - Application | XATH"
+  },
+  {
+   "sha256": "e6806d0dcf7307c51cad94844e90a8aa8383e291ac97e87b7ae0182550ee101f",
+   "text": "Cisco Systems Inc | Stock | Technology | Communication Equipment | XNYS"
+  },
+  {
+   "sha256": "e6ac0bd545ed8616abc648dfcd12306a3cdc483fbb5816f3c497a32cf72e1599",
+   "text": "PLAISIO COMPUTERS S.A. (CR) | Stock | Technology | Computer Hardware | XATH"
+  },
+  {
+   "sha256": "e6c8697223b28be3e6fa5d9e0dfb4c6a8406f1bc770a0821ae018dbfbcb5d16d",
+   "text": "N. LEVEDERIS S.A.  (PR) | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "e71aa749f0f74024746f73b043097d10cfed0c8697b3b74eb4807a36195ea234",
+   "text": "SIDMA STEEL SA | Stock | Basic Materials | Steel | XATH"
+  },
+  {
+   "sha256": "e71c5e1eba54bdba4dc522ff8c2f5476e50aea517207799e00aeca051e22b43c",
+   "text": "GEKE S.A. (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "e769b391e220a34df838ebd7420457593170f4ea206153db50d7a02099cc92ce",
+   "text": "Schroder International Selection Fund Global Credit Income A Accumulation USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "e77fcc088cab23f3a177812f92a3c650d04f5a0994658797a704c83c9af10755",
+   "text": "HELLENIC REPUBLIC GGB 1,875 01/24/52 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "e783fafd9e5389925bbf9249c7966d50963a5d43ab2efff8170c1753b2f24435",
+   "text": "iShares STOXX Europe 50 UCITS ETF (DE) | EXW3 | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "e7cb2c09445a96248b8e08a9c5277a360a530a6cc73da8aae4044f889929800b",
+   "text": "Portugal | Bond | Government | Sovereign | CCLX"
+  },
+  {
+   "sha256": "e7fae99fa13625194d19f70f6ce4624d5deded2dd4120e1da70b9cd216c73916",
+   "text": "Amundi Funds II - Emerging Markets Bond A EUR HND | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "e817865846565e46b8778cbcee38a1c7b9f8d6b969bd9f17873ae266563aea0d",
+   "text": "J.BOUTARIS AND SON HOLDING S.A. (PB) | Stock | XATH"
+  },
+  {
+   "sha256": "e8245e0780972a469fb0f47375d2997e661ab127358ac76d40fd009146b009e8",
+   "text": "Cyprus | Bond | Government | Sovereign | XLON"
+  },
+  {
+   "sha256": "e8fcc3c7d7a17ee9641ad452f97ac34838ac73ac6d86d546a1ce372ab7dfa182",
+   "text": "Spain | Bond | Government | Sovereign | XMAD"
+  },
+  {
+   "sha256": "e928d6df21618c72fff0730c11a2292e1f7acd9415f183a7fa1791235af7c382",
+   "text": "VARVARESSOS S.A. EUROPEAN SPINNING MILLS (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "e93e577e284c7c0f1fe2dc166cd860a07f7a8bb1e57b8ac675a98b206e9b6d3b",
+   "text": "EUROCONSULTANTS S.A. (CR) | Stock | Technology | Information Technology Services | XATH"
+  },
+  {
+   "sha256": "ea99f620747aa8a110de4445cfe4432280dfb9ce2bc47edb717dbd912761e2c9",
+   "text": "AT&T Inc | Bond | Corporate | Corporate | Communication Services | OOTC"
+  },
+  {
+   "sha256": "ead39b4f5bf1d4d26a9b24b67be7774502caaad6031157c8245fd63556740461",
+   "text": "UBS (Lux) Strategy Fund - Balanced Sustainable (EUR) P-dist | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "eafe32e68d7d201d5742e89ac8fe3f3fce386406ad0d633bd895749c4f801214",
+   "text": "Greece | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "eb6833010087f70906c5ce1b29eb72ce465fabfe06c0f45953903ddb633bd4c3",
+   "text": "Petroleo Brasileiro SA Petrobras | Stock | Energy | Oil & Gas Integrated | XNYS"
+  },
+  {
+   "sha256": "eb713521861591c4dea30771d7dfe7be4428ebfd2914feb6765e03f4ef8aae29",
+   "text": "MYTILINEOS HOLDINGS S.A. | Bond | Corporate | Corporate | Other Sectors | XATH"
+  },
+  {
+   "sha256": "ebdc93b152a069e6427e33524e4498d3ce095060be93e494d77976823fd22cc0",
+   "text": "HeidelbergCement AG | Stock | Basic Materials | Building Materials | XETR"
+  },
+  {
+   "sha256": "ebe60065594c2c5c37b9d393b0d65db9bc52cc85fdcaf1f09c796250ad74a9f5",
+   "text": "Nokia Oyj | Stock | Technology | Communication Equipment | XHEL"
+  },
+  {
+   "sha256": "ec311643b5e45139bb3adfb35f62a1dc5ba005d3f764b889b262408c83773691",
+   "text": "NAFPAKTOS TEXTILE INDUSTRY S.A. (CB) | Stock | XATH"
+  },
+  {
+   "sha256": "ec664ecc7b87f32da8c298c2c801ba3ad0181d3575b16c226db376fb498bd9b7",
+   "text": "Variopartner SICAV - MIV Global Medtech Fund P2 EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "ecfc03352f7024ed832d7cfc1e79a47b5c1606839447a376e801a7afd72edfac",
+   "text": "Costamare Inc | Stock | Industrials | Marine Shipping | OOTC"
+  },
+  {
+   "sha256": "ed62f917b9c4c4398da6977c989b2241472a76a81a042bf2bd01d912a3cc9dc2",
+   "text": "LAMDA DEVELOPMENT S.A. (CR) | Stock | Large Cap | Real Estate | Real Estate - Development | XATH"
+  },
+  {
+   "sha256": "eee671978bd33cfa1dd9983ee27103c962d5292bb4d4446c077edbfc0e7ddcaf",
+   "text": "WEALTHAVENUE PLC | Stock | XCYS"
+  },
+  {
+   "sha256": "f0b169353c43973e12f33de8855fba360bcde41b7129eb757051631084c6bdb4",
+   "text": "BGF-US DOLLAR BND-USD A3 | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "f0bd66e79013b831c0899528ec5e13d468a3ff4d5c84b9462723eada56765f33",
+   "text": "UBS (Irl) Fund Solutions plc - MSCI ACWI SF UCITS ETF (hedged to EUR) A-acc | ACWIE | MTF | Equity | MTAA"
+  },
+  {
+   "sha256": "f1f7cf4437abd372f4b62f689f4aa599aff5371af7568710f66af0b95bfb5c6d",
+   "text": "UBS (Lux) Bond Fund - Global Flexible (CAD hedged) P-acc | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "f2aff435476d8aeaffc612cd26150674f8b51389201da515e3e9fdda80868c56",
+   "text": "THRACE PLASTICS S.A.(CR) | Stock | Consumer Cyclical | Textile Manufacturing | XATH"
+  },
+  {
+   "sha256": "f314463924430382bb40c20ca14112963d4d8ea2d8821cf891ad8fd97acdbfb8",
+   "text": "IDEAL HOLDINGS A.E. | Stock | Technology | Electronics & Computer Distribution | XATH"
+  },
+  {
+   "sha256": "f33fd9f53015e4d416bddeb621e32d66d0d6941305410ea9260e2d5854c50c9d",
+   "text": "iShares Core MSCI Japan IMI UCITS ETF USD (Acc) | IJPA | MTF | Equity | XETR"
+  },
+  {
+   "sha256": "f3644a1f5574fc3eab120dca47bee05bf07ae3c9a3cffa7d12235e734dda5a6a",
+   "text": "AUTOHELLAS SA | Stock | Industrials | Rental & Leasing Services | XATH"
+  },
+  {
+   "sha256": "f40b9fd05dfce8426860b282e54950347c827bd99b2ad6faf58e7b61a31492ef",
+   "text": "HSBC Portfolios - World Selection 2 ACHEUR | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "f5168baee937cc76685d016dfd3cb2d4330c22117169b5a13a4280fbafbe2ae1",
+   "text": "MLS INNOVATION INC 5,30 08/31/22 | Bond | Corporate | Corporate | IT Services and Computer Programming | ENAX"
+  },
+  {
+   "sha256": "f5894a9384d9561ab99c21324d11b9d7d3fbdf3ec087fb66f45e540ce48f53ef",
+   "text": "INTERTECH S.A. (CR) | Stock | XATH"
+  },
+  {
+   "sha256": "f5fcafbd10272510a35e915caa2b12e4995bda96d6242f8415682afb7600f2fd",
+   "text": "WisdomTree Broad Commodities ETF | MTF | Other | XLON"
+  },
+  {
+   "sha256": "f7781cae14bb09990decd6bb1af9e6558e14a386218cec3f274e2a1e67e45600",
+   "text": "DELTA TECHNIKI S.A | Bond | Corporate | Corporate | Miscellaneous Construction | ENAX"
+  },
+  {
+   "sha256": "f7d4aaa141c656072f45c62d7fda22c8cef49b81a82905339918017f89e776bc",
+   "text": "NAKAS MUSIC (CR) | Stock | Consumer Cyclical | Specialty Retail | XATH"
+  },
+  {
+   "sha256": "f7de647b81e492297a61933ebb7c9372f8cecbcdcde5de5a2090d5154cb556b3",
+   "text": "BNP Paribas Funds Emerging Bonds Opportunities Classic RH EUR Capitalisation | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "f7ed5cb8f37ac4e6ea2b0b6473015daf3a1efad296e33f0a7efd939a2d100414",
+   "text": "Schroder International Selection Fund Global Multi-Asset Income A Distribution EUR Hedged QV | MTF | Other | CCLX"
+  },
+  {
+   "sha256": "f7f503ff028a3c1e6c1bf5c0a20459445e614141dd3e295af8719b75af9898b0",
+   "text": "Bombardier | Bond | Corporate | Corporate | Aircraft Production and Defense | XMUN"
+  },
+  {
+   "sha256": "f8bad240d00b8ee7f6e2423266a0951a5c73846faa3dab3fa4ffda5bc39cf9bb",
+   "text": "BlackRock Global Funds - US Dollar High Yield Bond Fund A6 USD | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "f8ebdc689e99394e153f1d3fc7144a4dccc285d0802b24c74af815cfdc0c5934",
+   "text": "BlackRock Global Funds - Global High Yield Bond Fund A1 EUR Hedged | MTF | Bond | XLUX"
+  },
+  {
+   "sha256": "f8fda7ae94a6e4b179ff5b0ccad1cc3ed082c5852a732cd01f938fd159fb5d1d",
+   "text": "PAPOUTSANIS S.A. (CR) | Stock | Consumer Defensive | Household & Personal Products | XATH"
+  },
+  {
+   "sha256": "f90ec4f5b31b90c2b26e14601a30753d1b8510add4194ac934cc34e50917fe84",
+   "text": "Schroder International Selection Fund EURO Equity A Accumulation EUR | MTF | Equity | XLUX"
+  },
+  {
+   "sha256": "f99e23fad543d8088f6a50ccc8c56943d4613b17efd00739a0527a466d589408",
+   "text": "Deutsche Post AG | Stock | Industrials | Integrated Freight & Logistics | XETR"
+  },
+  {
+   "sha256": "f9d77d3fe3d8f0b53a721321ef20902ab3db1ef252b0e53a4bee98c17298682a",
+   "text": "CPI COMPUTER PERIPHERALS INTER/NAL (CR) | Stock | Technology | Information Technology Services | XATH"
+  },
+  {
+   "sha256": "f9fc2d741d0256da6cec0291707bad5f3bc0984ed6cbba1acf6e8d407d0af7ac",
+   "text": "Intralot SA | Bond | Corporate | Corporate | Gambling business | XLUX"
+  },
+  {
+   "sha256": "fa0e5d9868f1c01e1a6eda9a39f0310d0183e2d96fcaff03759c359700305aed",
+   "text": "Franklin Templeton Investment Funds-Franklin K2 Alternative Strategies Fund A(acc)USD | MTF | Other | XLUX"
+  },
+  {
+   "sha256": "fa4165c4166c6f405f487a6a0f25a4acfb2db4d90afdadeb513dbf6d53163a62",
+   "text": "INFORM P. LYKOS HOLDINGS S.A. | Stock | Industrials | Specialty Business Services | XATH"
+  },
+  {
+   "sha256": "fb2b87afd63cef80516804ae059f0724d467cdad9b08ca54e49566d93ed60bf4",
+   "text": "Turkey | Bond | Government | Sovereign | XSTU"
+  },
+  {
+   "sha256": "fb4021c9fe18421dc602f2531625acd546f4ad3a4acf4ebac46c1006f0917619",
+   "text": "iShares Core € Corp Bond UCITS ETF EUR (Dist) | IEAC | MTF | Bond | XLON"
+  },
+  {
+   "sha256": "fb7f512a1d7f7baa48f23065e24175e8143825772eff546203b9e71642e93fec",
+   "text": "Meta Platforms Inc | Stock | Communication Services | Internet Content & Information | XNYS"
+  },
+  {
+   "sha256": "fcadd2218667358d31b45d2ce78e9e9f9f97ddd66c73b68843fc67f3e59bf7d0",
+   "text": "HELLENIC REPUBLIC GGB 0,75 06/18/31 | Bond | Government | Sovereign | HDAT"
+  },
+  {
+   "sha256": "fda9e2194319adf16a8e7b9305213925c5010770a65062ff9d8d2fb7351d92d7",
+   "text": "Costamare Inc | Stock | Industrials | Marine Shipping | XNYS"
+  },
+  {
+   "sha256": "fdd1b9bfa8de976a27cf77946d87a4fb1fc04419688aa34533cdef8b85f52b8c",
+   "text": "HAIDEMENOS  S.A. (CR) | Stock | Industrials | Specialty Business Services | XATH"
+  },
+  {
+   "sha256": "fdd4fa547d78c13d7eaf4915947fa1746c574dcde0c25c1461cd7ae2d799b78f",
+   "text": "COSTAMARE PARTICIPATIONS PLC | Bond | Corporate | Corporate | Other Financial Institutions | XATH"
+  },
+  {
+   "sha256": "fdde6f2dd87a3397e95ad7c3d2b62c3c3c3f743dc967c7f4b320f55c4cd3b46b",
+   "text": "UBS (Lux) Bond Fund - EUR Flexible P-acc | MTF | Bond | CCLX"
+  },
+  {
+   "sha256": "fe3c18ded734478cde2593a39b6ec2b4ebe3b68fcaa142e846ef9b0906312d2b",
+   "text": "Telefonica SA | Stock | Communication Services | Telecom Services | XBAR"
+  },
+  {
+   "sha256": "feece094bd6faa756d1a440c022dff6c525beae997cfaf85e92827a9c4dfd5dc",
+   "text": "DHLOS SMALL CAP | MTF | Equity | AEDAK"
+  },
+  {
+   "sha256": "ff218bac9d9b92b00d2e6de90c0adcbcade1ad4b9e8ce4b6aade54aea74de68c",
+   "text": "JPMorgan Funds - EUR Money Market VNAV Fund A (acc) - EUR | MTF | Money Market | XLUX"
+  },
+  {
+   "sha256": "ffdea70b8f2971ced581ab7350d85e0be432f209234ffc97180945b5fdf3ee17",
+   "text": "LAMPSA  HOTEL  S.A. (CR) | Stock | Consumer Cyclical | Lodging | XATH"
+  }
+ ]
+}

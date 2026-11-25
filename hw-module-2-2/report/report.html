@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Session 2 report — Aleksei Kosychev</title><style>
+@page { size: A4; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 9.4pt; line-height: 1.17; color: #111; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 5px; line-height: 1.18; }
+.meta { text-align: center; font-style: italic; font-size: 9pt; margin-bottom: 8px; }
+h2 { font-size: 11pt; margin: 9px 0 3px; color: #1f3b63; border-bottom: 1px solid #c9d3e0; }
+h3 { font-size: 9.8pt; margin: 7px 0 2px; }
+p { margin: 2px 0 4px; text-align: justify; }
+ul, ol { margin: 2px 0 4px; padding-left: 16px; }
+li { margin: 1px 0; }
+blockquote { margin: 3px 12px; padding: 2px 8px; border-left: 3px solid #1f3b63; background: #f2f4f7; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 8.2pt; background: #f2f4f7; padding: 0 2px; }
+pre { font-family: Consolas, 'Courier New', monospace; font-size: 7.8pt; background: #f2f4f7;
+      padding: 4px 6px; margin: 3px 0 5px; white-space: pre-wrap; }
+pre code { background: none; padding: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
+td.num, th.num { text-align: right; }
+th { background: #dde6f2; }
+tr.mine td { background: #eef5ea; }
+.todo { background: #fff3b0; border: 1px solid #e0b000; padding: 3px 6px; margin: 4px 0; }
+span.todo { padding: 0 3px; margin: 0; }
+.draft { background: #fde2e1; border: 1px solid #d9534f; padding: 3px 6px; margin: 0 0 6px;
+         text-align: center; font-size: 8.6pt; }
+.small { font-size: 8.2pt; }
+</style></head>
+<body><h1>Filling the Slots Recency Leaves Empty with an LLM Embedding Space: An Implemented, Matched Test on FAR-Trans</h1>
+<div class="meta">
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: name &nbsp;&nbsp; Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-25<br>
+Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>) &nbsp;&nbsp; Experiment commit: <span class="todo">TODO after commit</span><br>
+Assignment: Session 2 / Homework 2 — Implement and Test Your Idea (LLM4Rec, Module 2)
+</div>
+
+<div class="draft">PRELIMINARY DRAFT for team review. All measured numbers are generated from the run outputs; the yellow blocks wait for the team discussion and for my own verification.</div>
+
+<h2>Abstract</h2>
+<p>In Session 1 I asked whether frozen LLM text embeddings of as-of asset metadata, used only to
+fill the Top-10 slots that the recency prefix of the provided <code>latest_buy</code> baseline leaves
+empty, improve nDCG@10 over a popularity, categorical or TF-IDF fill. I implemented this
+Encoder-track change with the open-weight <code>Qwen/Qwen3-Embedding-0.6B</code> (pinned revision, run on a
+Kaggle T4) and compared it with the four provided baselines and matched controls. On the HW2
+protocol (100 warm users, cutoff 2021-06-01, 30 days) the LLM fill scores highest:
+nDCG@10 0.0294 over all users and
+0.2672 over the 11
+users with purchases, but the whole margin comes from one customer. On nine quarterly
+development cutoffs (12,163 labelled user-windows) it is the <strong>worst</strong> fill
+for users who buy an asset new to them: 0.2256 vs
+0.2813 for popularity (paired difference
+-0.0624), lower on all
+9 cutoffs. It fills slots with rarely bought assets. The result is negative,
+and it is reported as such.</p>
+<p><em>Index Terms</em> — financial asset recommendation, LLM text embeddings, content-based filtering, nDCG, FAR-Trans</p>
+<h2>1. Introduction</h2>
+<p><strong>Problem and question.</strong> Each evaluated FAR-Trans customer gets a Top-10 asset list, scored by
+nDCG@10 against the purchases in the next 30 days under a past-only protocol [1], [3]. The strongest
+classical baseline, <code>latest_buy</code>, is two parts: a <em>prefix</em> (the customer's own past buys, most
+recent first) and a <em>fill</em> (the most popular other assets). Customers hold few distinct assets,
+so most of every list is fill. Fill is also the only part that can reach an asset new to the
+customer. Session 1 fixed the question (Encoder track):</p>
+<blockquote>
+<p>We test whether <strong>frozen LLM text embeddings of the as-of asset description</strong> (intervention)
+improve <strong>nDCG@10 against purchases in the next 30 days</strong> (outcome) over <strong>the same pipeline whose
+fill uses popularity, the starter's categorical tokens or TF-IDF</strong> (control) for <strong>warm
+FAR-Trans customers, overall and on those whose label window holds an asset new to them</strong>
+(population).</p>
+</blockquote>
+<p><strong>What changed since Session 1.</strong> The LLM arm was planned then; it is now implemented and run.
+Session 1 named <code>multilingual-e5-base</code> as the candidate. That model is an XLM-RoBERTa encoder,
+not an LLM, so the primary model is now an LLM-based embedder, Qwen3-Embedding-0.6B [6]. The
+e5 model stays as a control and answers one question: is the effect due to the LLM, or to any
+dense encoder?</p>
+<p><strong>Place in the pipeline.</strong> history → <code>latest_buy</code> prefix (unchanged) → fill candidates = eligible
+assets not in the prefix → score = cosine between the asset vector and the buy-count-weighted
+history profile → Top-10 → the starter's nDCG@10. Only the vector space differs between arms.</p>
+<h2>2. Related Work</h2>
+<table>
+<thead>
+<tr>
+<th>Study</th>
+<th>Method</th>
+<th>Data and evaluation</th>
+<th>Connection to this work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sanz-Cruzado et al., 2024 [1]</td>
+<td>FAR-Trans release; 11 classical FAR algorithms</td>
+<td>retail investment transactions; temporal split</td>
+<td>supplies the data and the classical references; no LLM method</td>
+</tr>
+<tr>
+<td>Lyu et al., 2024, LLM-Rec [4]; course adaptation [3]</td>
+<td>LLM enriches item text by prompting; the course version paraphrases asset attributes with Qwen3-1.7B and ranks by TF-IDF over original + paraphrase</td>
+<td>the paper reports gains from LLM-augmented text; the course reports its encoder on the same 100 users</td>
+<td><strong>nearest prior work</strong>: it changes the <em>text</em> and keeps a sparse space over the whole list; I keep the text and change the <em>space</em>, only in the fill slots</td>
+</tr>
+<tr>
+<td>Liu et al., 2024, ONCE [5]</td>
+<td>open LLM layers as a trained content encoder</td>
+<td>news and books; up to 19.32% relative gain</td>
+<td>trained end-to-end on rich text; leaves open frozen embeddings of terse metadata</td>
+</tr>
+<tr>
+<td>Zhang et al., 2025, Qwen3 Embedding [6]</td>
+<td>embedding models built on Qwen3 LLMs (0.6B/4B/8B), multi-stage training</td>
+<td>MTEB, multilingual and cross-lingual retrieval, state of the art</td>
+<td>the model used here; not evaluated on recommendation or finance</td>
+</tr>
+<tr>
+<td>Wang et al., 2024, multilingual E5 [7]</td>
+<td>contrastive pre-training on 1B multilingual pairs plus fine-tuning</td>
+<td>MTEB</td>
+<td>the non-LLM dense control</td>
+</tr>
+</tbody>
+</table>
+<p>We did not find a study that measures frozen LLM embeddings as a fill rule behind a recency
+prefix on FAR-Trans, against nDCG@10 on next-month purchases.</p>
+<h2>3. Method</h2>
+<p><strong>Arms.</strong> All arms keep the <code>latest_buy</code> prefix (its first min(10, |history|) items) and differ
+only in the fill. <code>pop_fill</code> is popularity and reproduces <code>latest_buy</code> exactly (0 of 100 demo
+users and 0 of 102,321 development user-windows differ). <code>tokens_fill</code> uses
+cosine in the starter's categorical token space. <code>tfidf_fill</code> uses cosine over unigram TF-IDF of
+the asset text. <code>e5_fill</code> and <strong><code>llm_fill</code> (mine)</strong> use cosine over the mE5-base and
+Qwen3-Embedding vectors of the same text. <code>*_top20</code> re-orders the 20 most popular unseen assets
+by the space's cosine. <code>oracle_fill</code> places the user's new-to-user label assets (a ceiling, not
+a method). Ties break by popularity rank, then ISIN. Scores are rounded to 10⁻¹² before
+tie-breaking: without this, float sums over Python sets followed the per-process hash seed and
+flipped ties between runs (found while reproducing the Session 1 pilot).</p>
+<p><strong>Model input and inference.</strong> The text is <code>name | category | subcategory | sector | industry |
+market</code> from the latest asset row strictly before the cutoff, with empty fields omitted, e.g.
+<code>DHLOS SYNTHESIS BEST FUND OF FUNDS ΜΕΤΟΧΙΚΟ | MTF | Money Market | AEDAK</code>. The texts carry no
+user, date or transaction field. The 736 unique texts of the nine cutoffs are embedded once.
+Embedding is per text, so a text of a later cutoff cannot change an earlier vector, and each
+cutoff looks up only its own as-of texts. <code>Qwen/Qwen3-Embedding-0.6B</code> at revision
+<code>97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3</code> (Apache-2.0, 595,776,512 parameters): float32,
+last-token pooling, L2-normalised, 1,024 dimensions. Asset texts are
+encoded as documents without an instruction (the repository's document prompt is empty).
+Batch size is 32 and the longest input is 60 tokens (none
+truncated). <code>intfloat/multilingual-e5-base</code> at <code>835193815a3936a24a0ee7dc9e3d48c1fbb19c55</code> uses the "query: " prefix that
+its card advises for symmetric similarity, with mean pooling. Inference ran on Kaggle
+(Tesla T4, CUDA 13.0, Python 3.13.16, torch
+2.11.0+cu130, transformers 5.20.2, sentence-transformers
+5.7.0). A second encoding pass was bit-identical (max |Δ| =
+0.0). Scoring and evaluation run locally on CPU
+(i5-13420H, Python 3.14, numpy 2.4). Code: <code>kaggle/embed_assets.py</code>, <code>src/fill.py</code>.</p>
+<p><strong>Fair comparison and failure handling.</strong> Users, cutoff, eligibility, labels and nDCG@10 come
+from the unchanged starter, imported as a module. My run's <code>protocol_hash</code> equals that of a
+separate starter CLI run, and all 4,000 baseline prediction rows are byte-identical. The fill
+candidates are all eligible assets not in the prefix; the starter's 50-candidate CBF list is not
+used. Nothing is generated, so there is no parsing failure. A missing, misaligned (sha256 per
+text) or non-finite vector aborts the run. A user with an empty profile would get the
+popularity fill and count as a failed case; none occurred. Leakage test: deleting every CSV row
+dated on or after the cutoff leaves all lists unchanged. The development protocol (nine quarterly
+cutoffs 2020-09-01 … 2022-09-01, all warm users, never filtered by future purchases) was fixed in
+Session 1, before the LLM arm existed.</p>
+<h2>4. Experiments</h2>
+<h3>4.1 HW2 protocol: 100 users, cutoff 2021-06-01, 30-day window</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Users</th>
+<th style="text-align: right;">Users with future purchases</th>
+<th style="text-align: right;">nDCG@10: all users</th>
+<th style="text-align: right;">nDCG@10: nonempty truth</th>
+<th>Runtime</th>
+<th style="text-align: right;">Failed cases</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Popularity</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0286</td>
+<td style="text-align: right;">0.2599</td>
+<td>17.0 s (whole starter run, all four)</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>CBF</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0201</td>
+<td style="text-align: right;">0.1827</td>
+<td>17.0 s (whole starter run, all four)</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Latest buy</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0277</td>
+<td style="text-align: right;">0.2520</td>
+<td>17.0 s (whole starter run, all four)</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Latest buy or sell</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0271</td>
+<td style="text-align: right;">0.2464</td>
+<td>17.0 s (whole starter run, all four)</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td><strong>LLM fill (Qwen3-Emb.) — mine</strong></td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0294</td>
+<td style="text-align: right;">0.2672</td>
+<td>0.07 s scoring + 10.3 s one-off embedding of 736 texts (T4)</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td><em>Matched controls (same prefix, other fill space)</em></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>Token fill (starter CBF space)</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0244</td>
+<td style="text-align: right;">0.2217</td>
+<td>0.04 s scoring</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>TF-IDF fill</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0275</td>
+<td style="text-align: right;">0.2504</td>
+<td>0.05 s scoring</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>mE5-base fill (non-LLM encoder)</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0294</td>
+<td style="text-align: right;">0.2672</td>
+<td>0.08 s scoring</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>TF-IDF order in top-20 popular</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0273</td>
+<td style="text-align: right;">0.2480</td>
+<td>with its space</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>LLM order in top-20 popular</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0244</td>
+<td style="text-align: right;">0.2217</td>
+<td>with its space</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>Shared by all fill arms: data loading and space building 14.6 s (local CPU); the LLM model load on Kaggle took 14.8 s.</p>
+<p>Metrics are rounded to four decimals; full precision and the protocol hash are in
+<code>outputs/demo/metrics.json</code>. The baseline runtime is one wall-clock run of the starter for all
+four baselines together. Fill runtimes are local CPU scoring time per arm.</p>
+<p><strong>Who moves.</strong> Of the 11 users with purchases, 5 bought only assets they held before. The fill
+cannot change their score: all fill arms tie, as the tests check. Three more bought a new
+asset but have ten or more past assets, so no slot is free. Of the remaining three, one
+customer (<code>6B15…</code>, the data example of Session 1) is rescued. He held a "DHLOS SYNTHESIS BEST
+YELLOW" fund and buys the sibling "DHLOS SYNTHESIS BEST FUND OF FUNDS". Both dense spaces put
+it at rank 3 (nDCG 0.5). TF-IDF reaches only rank 8, because his oil-refinery bond pulls the fill
+towards Petrobras and Pemex bonds. One customer is lost: his purchase sat in the popularity
+fill at rank 7. One is missed by every arm. The +0.0017 all-user margin of <code>llm_fill</code> over
+<code>latest_buy</code> is therefore the net of one rescue and one loss. On the 100-user samples of the other development cutoffs
+the LLM fill is below the popularity fill in 5 of
+9 and above it in 3.</p>
+<h3>4.2 Development cutoffs: 9 quarters, all warm users</h3>
+<p>12,163 labelled user-windows out of 102,321;
+5,051 of them (42%) hold a
+new-to-user purchase ("with-new"). Values are macro means over the cutoffs.</p>
+<table>
+<thead>
+<tr>
+<th>Fill rule (same <code>latest_buy</code> prefix)</th>
+<th style="text-align: right;">nDCG@10 all warm</th>
+<th style="text-align: right;">nDCG@10 labelled</th>
+<th style="text-align: right;">nDCG@10 with-new (min–max over cutoffs)</th>
+<th style="text-align: right;">New-to-user purchases in Top-10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Popularity fill (= Latest buy)</td>
+<td style="text-align: right;">0.0731</td>
+<td style="text-align: right;">0.5613</td>
+<td style="text-align: right;">0.2813 (0.2027–0.3652)</td>
+<td style="text-align: right;">1,472</td>
+</tr>
+<tr>
+<td>Token fill (starter CBF space)</td>
+<td style="text-align: right;">0.0707</td>
+<td style="text-align: right;">0.5472</td>
+<td style="text-align: right;">0.2482 (0.1945–0.2955)</td>
+<td style="text-align: right;">842</td>
+</tr>
+<tr>
+<td>TF-IDF fill</td>
+<td style="text-align: right;">0.0707</td>
+<td style="text-align: right;">0.5464</td>
+<td style="text-align: right;">0.2459 (0.1966–0.2992)</td>
+<td style="text-align: right;">796</td>
+</tr>
+<tr>
+<td>mE5-base fill (non-LLM encoder)</td>
+<td style="text-align: right;">0.0716</td>
+<td style="text-align: right;">0.5520</td>
+<td style="text-align: right;">0.2587 (0.2029–0.3187)</td>
+<td style="text-align: right;">1,070</td>
+</tr>
+<tr>
+<td><strong>LLM fill (Qwen3-Emb.) — mine</strong></td>
+<td style="text-align: right;">0.0693</td>
+<td style="text-align: right;">0.5379</td>
+<td style="text-align: right;">0.2256 (0.1864–0.2666)</td>
+<td style="text-align: right;">386</td>
+</tr>
+<tr>
+<td>TF-IDF order in top-20 popular</td>
+<td style="text-align: right;">0.0730</td>
+<td style="text-align: right;">0.5621</td>
+<td style="text-align: right;">0.2841 (0.2178–0.3544)</td>
+<td style="text-align: right;">1,526</td>
+</tr>
+<tr>
+<td>LLM order in top-20 popular</td>
+<td style="text-align: right;">0.0719</td>
+<td style="text-align: right;">0.5560</td>
+<td style="text-align: right;">0.2702 (0.2055–0.3325)</td>
+<td style="text-align: right;">1,254</td>
+</tr>
+<tr>
+<td>Oracle fill (ceiling, reads labels)</td>
+<td style="text-align: right;">0.0834</td>
+<td style="text-align: right;">0.6385</td>
+<td style="text-align: right;">0.4697 (0.4021–0.5405)</td>
+<td style="text-align: right;">4,463</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Paired on with-new user-windows</th>
+<th style="text-align: right;">Better</th>
+<th style="text-align: right;">Worse</th>
+<th style="text-align: right;">Equal</th>
+<th style="text-align: right;">Mean diff.</th>
+<th>95% CI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llm_fill</code> − <code>pop_fill</code></td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">1,239</td>
+<td style="text-align: right;">3,610</td>
+<td style="text-align: right;">-0.0624</td>
+<td>[-0.0667, -0.0584]</td>
+</tr>
+<tr>
+<td><code>llm_fill</code> − <code>tfidf_fill</code></td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">644</td>
+<td style="text-align: right;">4,268</td>
+<td style="text-align: right;">-0.0225</td>
+<td>[-0.0250, -0.0201]</td>
+</tr>
+<tr>
+<td><code>llm_fill</code> − <code>e5_fill</code></td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">887</td>
+<td style="text-align: right;">4,033</td>
+<td style="text-align: right;">-0.0369</td>
+<td>[-0.0399, -0.0339]</td>
+</tr>
+<tr>
+<td><code>e5_fill</code> − <code>pop_fill</code></td>
+<td style="text-align: right;">470</td>
+<td style="text-align: right;">949</td>
+<td style="text-align: right;">3,632</td>
+<td style="text-align: right;">-0.0255</td>
+<td>[-0.0291, -0.0219]</td>
+</tr>
+<tr>
+<td><code>tfidf_fill</code> − <code>pop_fill</code></td>
+<td style="text-align: right;">424</td>
+<td style="text-align: right;">974</td>
+<td style="text-align: right;">3,653</td>
+<td style="text-align: right;">-0.0399</td>
+<td>[-0.0441, -0.0357]</td>
+</tr>
+<tr>
+<td><code>llm_top20</code> − <code>pop_fill</code></td>
+<td style="text-align: right;">584</td>
+<td style="text-align: right;">978</td>
+<td style="text-align: right;">3,489</td>
+<td style="text-align: right;">-0.0171</td>
+<td>[-0.0209, -0.0133]</td>
+</tr>
+</tbody>
+</table>
+<p>The confidence intervals come from a percentile bootstrap over pooled with-new user-windows.
+A customer seen at several cutoffs is not clustered, so the intervals are optimistic.</p>
+<p><strong>Findings.</strong> (i) On the with-new users the LLM fill is the lowest of all fills: below
+popularity on 9/9 cutoffs, below TF-IDF on
+9/9 and below mE5 on
+9/9. It places
+386 new-to-user purchases in the Top-10, against
+1,472 for popularity. (ii) The non-LLM mE5 encoder is the best
+content space, but it still loses to popularity (above it on 2 cutoffs).
+(iii) Restricting the LLM order to the 20 most popular unseen assets recovers most of the loss
+(<code>llm_top20</code>), and TF-IDF inside the same prior roughly ties popularity. The prior, not the
+semantic order, carries the score. (iv) An oracle fill reaches
+0.4697 on with-new users, so the headroom is real.</p>
+<p><strong>Failure analysis (cutoff 2021-06-01; <code>outputs/dev/diagnose_2021-06-01.json</code>).</strong> New-to-user
+purchases are 88% stocks with a mean popularity rank of
+44. The mean popularity rank of the filled assets is
+4 for popularity,
+53 for tokens,
+102 for mE5,
+193 for TF-IDF and
+204 for the LLM. The Qwen3 space is far less
+compressed: its mean pairwise cosine is 0.48, against
+0.81 for mE5. Its nearest neighbours are
+name-and-issuer siblings, and most of them are long-tail assets that almost nobody buys.
+Semantic closeness is not purchase propensity in this data.</p>
+<p><strong>Checks run by code (AI-performed, <code>tests/test_fill.py</code> and the run outputs).</strong> The starter's 58
+tests pass on the unchanged copy. My 19 tests pass: fill units, embedding alignment and finiteness,
+<code>pop_fill</code> = <code>latest_buy</code>, the repeat-only tie, prefix preservation, the protocol and baseline
+match with a fresh starter run, the future-blind test, and hash-seed independence. The non-LLM
+arms match the Session 1 pilot up to tie-breaking (max |Δ| = 0.0006).</p>
+<h2>5. Discussion</h2>
+<p><strong>What improved, what failed.</strong> The implementation works end to end: a pinned open-weight LLM,
+reproducible vectors and a fair, cross-checked comparison. The question has a clear answer on the
+development data: LLM embeddings of terse asset metadata are the worst fill, worse than sparse
+features and worse than a smaller non-LLM encoder. The positive 100-user number is a single-user
+event; I report it and do not claim it. For the product-owner decision framed in Session 1, this
+argues against LLM-embedding infrastructure for the fill as it stands.</p>
+<p><strong>Next controlled experiment.</strong> <em>Changes:</em> one term, the fill score becomes
+cosine + λ·log(1 + buyers). λ is chosen on the 2020-09 … 2021-03 cutoffs and tested on the six
+later ones. <em>Fixed:</em> prefix, users, cutoffs, texts, model, revision and vectors. A second,
+model-side variant (Qwen3 with the same retrieval instruction on both sides) waits until the
+first one is settled.</p>
+<p><strong>Threats to validity.</strong> One model and one input template. The asymmetric Qwen3 model is used
+symmetrically, as documents. The bootstrap ignores repeated customers. 93% of new-to-user labels
+are stocks. The data cover one institution, 2020–2022. The HW2 sample has 11 labelled users, so
+its ordering of methods is not evidence. No suitability, return or profit claim is made.</p>
+<p><strong>Team discussion and individual contribution.</strong> <em>Documented so far:</em> in Session 1 Mark Starchenko
+sent written proposals through the repository (PR #1, merged 2026-11-18). He proposed to split
+<code>latest_buy</code> into the prefix (his Ranker question: reorder it with an LLM vs logistic regression)
+and the fill (my Encoder question), which gives a clean baseline / encoder-only / ranker-only /
+both ablation. He also proposed the nine-cutoff development protocol and the exclusion of
+<code>lastQuestionnaireDate</code>. He noted that my Session 1 report described that discussion as joint,
+when it was written and asynchronous; I report it here as it happened. For HW2 the team agreed on
+a process: each member builds an individual solution first, then the solutions are merged with
+an AI assistant keeping the best practices, and the merge is reported as the team discussion.
+<em>My work (individual):</em> everything in <code>hw-module-2-2</code>: the design of the arms, the Kaggle
+inference, the controls, the tests, the development evaluation and the failure analysis.
+<em>Shared:</em> the course starter and the development protocol.</p>
+<div class="todo">TODO (after the merge with Mark Starchenko, Konstantin Patrushev and Nikita Vaal):
+what the team decided from the individual solutions, which parts of mine are kept or dropped,
+and which questions stay open (e.g. which fill/prefix combination is submitted, whether the
+with-new subgroup becomes primary).</div>
+
+<h2>6. AI Usage Disclosure</h2>
+<p><strong>Tool.</strong> Claude Code (model Claude Opus 5.5, Anthropic) in VS Code; the native session export
+is submitted as <code>kosychev_session2_session.json</code>. <strong>What the AI did:</strong> it read the course
+repository and starter, wrote all code in <code>src/</code>, <code>kaggle/</code> and <code>tests/</code>, pushed and ran the
+Kaggle notebook with my approval, ran all experiments and the checks listed in §4, found and
+fixed the hash-seed tie-breaking issue, and drafted this report. <strong>My decisions:</strong> the model
+runs on Kaggle, not on my laptop (I stopped a local download); the model is run through the
+Kaggle API; I asked for this preliminary version for the team.</p>
+<div class="todo">TODO — What I personally verified: to be written only after I do the checks in
+<code>manual/CHECKLIST.md</code> (one user's IDs and nDCG@10 by hand against the raw CSV; the model
+input file contains no future or customer data; the baselines equal the starter's README).</div>
+
+<h2>References</h2>
+<p>[1] J. Sanz-Cruzado, N. Droukas, and R. McCreadie, "FAR-Trans: An Investment Dataset for Financial Asset Recommendation," in <em>Proc. IJCAI-24 Workshop on Recommender Systems in Finance (Fin-RecSys)</em>, Jeju, 2024. [Online]. Available: https://arxiv.org/abs/2407.08692</p>
+<p>[2] University of Glasgow, "FAR-Trans dataset," research data repository. [Online]. Available: https://researchdata.gla.ac.uk/1658/</p>
+<p>[3] S. Jin, "RecSys-LLMs: FAR-Trans starter and LLM baselines (project/far-trans, project/far-trans-llm)," GitHub, commit 799e54c, 2026. [Online]. Available: https://github.com/dryjins/RecSys-LLMs</p>
+<p>[4] H. Lyu, S. Jiang, H. Zeng, Y. Xia, Q. Wang, S. Zhang, R. Chen, C. Leung, J. Tang, and J. Luo, "LLM-Rec: Personalized Recommendation via Prompting Large Language Models," in <em>Findings of NAACL</em>, 2024. [Online]. Available: https://arxiv.org/abs/2307.15780</p>
+<p>[5] Q. Liu, N. Chen, T. Sakai, and X.-M. Wu, "ONCE: Boosting Content-based Recommendation with Both Open- and Closed-source Large Language Models," in <em>Proc. 17th ACM Int. Conf. Web Search and Data Mining (WSDM)</em>, 2024, pp. 452–461. [Online]. Available: https://arxiv.org/abs/2305.06566</p>
+<p>[6] Y. Zhang, M. Li, D. Long, X. Zhang, H. Lin, B. Yang, P. Xie, A. Yang, D. Liu, J. Lin, F. Huang, and J. Zhou, "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models," arXiv:2506.05176, 2025. [Online]. Available: https://arxiv.org/abs/2506.05176</p>
+<p>[7] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, "Multilingual E5 Text Embeddings: A Technical Report," arXiv:2402.05672, 2024. [Online]. Available: https://arxiv.org/abs/2402.05672</p></body></html>

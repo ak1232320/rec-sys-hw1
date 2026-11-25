@@ -1,0 +1,8 @@
+{
+  "scope": "whole starter run: data loading plus all four baselines together; not a per-method timing",
+  "wall_clock_seconds": 17.04,
+  "command": "python starter/starter.py run --data-dir <FAR-Trans> --output-dir outputs/baseline",
+  "python": "3.14.0",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel"
+}

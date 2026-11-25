@@ -1,0 +1,25 @@
+test_every_eligible_demo_asset_has_both_embeddings (test_fill.EmbeddingCoverage.test_every_eligible_demo_asset_has_both_embeddings) ... ok
+test_alignment_and_lookup (test_fill.EmbeddingLoader.test_alignment_and_lookup) ... ok
+test_misaligned_rows_are_rejected (test_fill.EmbeddingLoader.test_misaligned_rows_are_rejected) ... ok
+test_non_finite_matrix_is_rejected (test_fill.EmbeddingLoader.test_non_finite_matrix_is_rejected) ... ok
+test_dense_space_is_cosine_to_count_weighted_profile (test_fill.FillUnits.test_dense_space_is_cosine_to_count_weighted_profile) ... ok
+test_dense_space_rejects_broken_vectors (test_fill.FillUnits.test_dense_space_rejects_broken_vectors) ... ok
+test_empty_profile_falls_back_to_popularity_and_is_reported (test_fill.FillUnits.test_empty_profile_falls_back_to_popularity_and_is_reported) ... ok
+test_full_prefix_leaves_no_slot_to_fill (test_fill.FillUnits.test_full_prefix_leaves_no_slot_to_fill) ... ok
+test_oracle_reads_only_new_labels (test_fill.FillUnits.test_oracle_reads_only_new_labels) ... ok
+test_prefix_and_popularity_fill_rebuild_latest_buy (test_fill.FillUnits.test_prefix_and_popularity_fill_rebuild_latest_buy) ... ok
+test_score_fill_takes_best_unseen_and_breaks_ties_by_popularity (test_fill.FillUnits.test_score_fill_takes_best_unseen_and_breaks_ties_by_popularity) ... ok
+test_shortlist_stays_inside_the_popularity_prior (test_fill.FillUnits.test_shortlist_stays_inside_the_popularity_prior) ... ok
+test_sparse_space_rejects_negative_weights (test_fill.FillUnits.test_sparse_space_rejects_negative_weights) ... ok
+test_every_list_keeps_the_prefix_and_is_valid (test_fill.StarterIntegration.test_every_list_keeps_the_prefix_and_is_valid) ... ok
+test_fill_cannot_change_users_whose_labels_are_all_repeats (test_fill.StarterIntegration.test_fill_cannot_change_users_whose_labels_are_all_repeats) ... ok
+test_lists_do_not_depend_on_the_python_hash_seed (test_fill.StarterIntegration.test_lists_do_not_depend_on_the_python_hash_seed) ... ok
+test_pop_fill_is_exactly_latest_buy (test_fill.StarterIntegration.test_pop_fill_is_exactly_latest_buy) ... ok
+test_predictions_are_blind_to_rows_at_or_after_the_cutoff (test_fill.StarterIntegration.test_predictions_are_blind_to_rows_at_or_after_the_cutoff)
+Delete every row dated at/after the cutoff: no list may change, truth must vanish. ... ok
+test_protocol_and_baselines_match_a_fresh_starter_run (test_fill.StarterIntegration.test_protocol_and_baselines_match_a_fresh_starter_run) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 207.355s
+
+OK

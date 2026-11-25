@@ -1,0 +1,82 @@
+{
+ "cutoff": "2021-06-01",
+ "users_with_new_asset_and_free_slots": 357,
+ "new_label_pairs": 511,
+ "new_label_category_share": {
+  "MTF": 0.1095890410958904,
+  "Stock": 0.8845401174168297,
+  "Bond": 0.005870841487279843
+ },
+ "new_label_mean_popularity_rank": 44.489236790606654,
+ "arms": {
+  "pop_fill": {
+   "mean_popularity_rank_of_fill": 3.8895552223888057,
+   "fill_category_share": {
+    "Stock": 0.8580709645177411,
+    "Bond": 0.14192903548225888
+   },
+   "fill_share_same_name_family_as_history": 0.026486756621689155,
+   "new_label_hits": 80
+  },
+  "tokens_fill": {
+   "mean_popularity_rank_of_fill": 53.33433283358321,
+   "fill_category_share": {
+    "MTF": 0.07446276861569215,
+    "Bond": 0.07496251874062969,
+    "Stock": 0.8505747126436781
+   },
+   "fill_share_same_name_family_as_history": 0.053973013493253376,
+   "new_label_hits": 69
+  },
+  "tfidf_fill": {
+   "mean_popularity_rank_of_fill": 192.50524737631184,
+   "fill_category_share": {
+    "Bond": 0.1934032983508246,
+    "MTF": 0.06446776611694154,
+    "Stock": 0.7421289355322339
+   },
+   "fill_share_same_name_family_as_history": 0.16141929035482258,
+   "new_label_hits": 67
+  },
+  "e5_fill": {
+   "mean_popularity_rank_of_fill": 101.85807096451774,
+   "fill_category_share": {
+    "MTF": 0.07746126936531735,
+    "Stock": 0.8215892053973014,
+    "Bond": 0.10094952523738131
+   },
+   "fill_share_same_name_family_as_history": 0.13843078460769614,
+   "new_label_hits": 86,
+   "mean_pairwise_cosine": 0.8085978263840428,
+   "p10_p90_pairwise_cosine": [
+    0.7720943321613759,
+    0.8529240591267964
+   ]
+  },
+  "llm_fill": {
+   "mean_popularity_rank_of_fill": 203.6126936531734,
+   "fill_category_share": {
+    "MTF": 0.07796101949025487,
+    "Stock": 0.8000999500249875,
+    "Bond": 0.12193903048475763
+   },
+   "fill_share_same_name_family_as_history": 0.13543228385807096,
+   "new_label_hits": 46,
+   "mean_pairwise_cosine": 0.48359145512906265,
+   "p10_p90_pairwise_cosine": [
+    0.3479735320614416,
+    0.6427234252247287
+   ]
+  },
+  "llm_top20": {
+   "mean_popularity_rank_of_fill": 9.948025987006497,
+   "fill_category_share": {
+    "Stock": 0.9690154922538731,
+    "MTF": 0.014492753623188406,
+    "Bond": 0.01649175412293853
+   },
+   "fill_share_same_name_family_as_history": 0.053973013493253376,
+   "new_label_hits": 84
+  }
+ }
+}

@@ -1,0 +1,4 @@
+# Generated Kaggle push folder (rebuilt by kaggle/build_kernel.py from embed_assets.py)
+kaggle/kernel/
+# Scratch outputs of test or debug runs
+outputs/tmp*/
