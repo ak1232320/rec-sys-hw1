@@ -1,12 +1,10 @@
 # Filling the Slots Recency Leaves Empty with an LLM Embedding Space: An Implemented, Matched Test on FAR-Trans
 
 <div class="meta">
-Student: Aleksei Kosychev &nbsp;&nbsp; Team: name &nbsp;&nbsp; Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-25<br>
-Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>) &nbsp;&nbsp; Experiment commit: <code>62e0fdb</code><br>
-Assignment: Session 2 / Homework 2 — Implement and Test Your Idea (LLM4Rec, Module 2)
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: name (A. Kosychev, K. Patrushev, M. Starchenko) &nbsp;&nbsp; Date: 2026-11-25<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>)<br>
+Experiment commits: <code>62e0fdb</code> (my solution), <code>MERGE_COMMIT</code> (team merge) &nbsp;&nbsp; Assignment: Session 2 / Homework 2 — Implement and Test Your Idea
 </div>
-
-<div class="draft">PRELIMINARY DRAFT for team review. All measured numbers are generated from the run outputs; the yellow blocks wait for the team discussion and for my own verification.</div>
 
 ## Abstract
 
@@ -24,7 +22,9 @@ for users who buy an asset new to them: {{dev:macro_ndcg_with_new_asset.llm_fill
 {{dev:macro_ndcg_with_new_asset.pop_fill}} for popularity (paired difference
 {{dev:paired_with_new_pooled.llm_fill-pop_fill.mean_diff|+.4f}}), lower on all
 {{derived:cutoffs|d}} cutoffs. It fills slots with rarely bought assets. The result is negative,
-and it is reported as such.
+and it is reported as such. In the merge with my teammate's prefix-reranking solution [8], the
+only change that helps on the development cutoffs is its logistic-regression prefix; both LLM
+components stay below their classical controls.
 
 *Index Terms* — financial asset recommendation, LLM text embeddings, content-based filtering, nDCG, FAR-Trans
 
@@ -169,9 +169,10 @@ name-and-issuer siblings, and most of them are long-tail assets that almost nobo
 Semantic closeness is not purchase propensity in this data.
 
 **Checks run by code (AI-performed, `tests/test_fill.py` and the run outputs).** The starter's 58
-tests pass on the unchanged copy. My 19 tests pass: fill units, embedding alignment and finiteness,
+tests pass on the unchanged copy. My 20 tests pass: fill units, embedding alignment and finiteness,
 `pop_fill` = `latest_buy`, the repeat-only tie, prefix preservation, the protocol and baseline
-match with a fresh starter run, the future-blind test, and hash-seed independence. The non-LLM
+match with a fresh starter run, the future-blind test, hash-seed independence, and the
+prefix/fill additivity that the team merge (§5) relies on. The non-LLM
 arms match the Session 1 pilot up to tie-breaking (max |Δ| = {{dev:regression_check.max_abs_diff_vs_session1_pilot}}).
 
 ## 5. Discussion
@@ -194,23 +195,60 @@ symmetrically, as documents. The bootstrap ignores repeated customers. 93% of ne
 are stocks. The data cover one institution, 2020–2022. The HW2 sample has 11 labelled users, so
 its ordering of methods is not evidence. No suitability, return or profit claim is made.
 
-**Team discussion and individual contribution.** *Documented so far:* in Session 1 Mark Starchenko
-sent written proposals through the repository (PR #1, merged 2026-11-18). He proposed to split
-`latest_buy` into the prefix (his Ranker question: reorder it with an LLM vs logistic regression)
-and the fill (my Encoder question), which gives a clean baseline / encoder-only / ranker-only /
-both ablation. He also proposed the nine-cutoff development protocol and the exclusion of
-`lastQuestionnaireDate`. He noted that my Session 1 report described that discussion as joint,
-when it was written and asynchronous; I report it here as it happened. For HW2 the team agreed on
-a process: each member builds an individual solution first, then the solutions are merged with
-an AI assistant keeping the best practices, and the merge is reported as the team discussion.
-*My work (individual):* everything in `hw-module-2-2`: the design of the arms, the Kaggle
-inference, the controls, the tests, the development evaluation and the failure analysis.
-*Shared:* the course starter and the development protocol.
+**Team discussion and individual contribution.** *Session 1:* Mark Starchenko sent written
+proposals through the repository (PR #1, merged 2026-11-18): split `latest_buy` into the prefix
+(his Ranker question) and the fill (my Encoder question) for a baseline / prefix-only / fill-only /
+both ablation, the nine-cutoff development protocol, and the exclusion of `lastQuestionnaireDate`.
+He noted that my Session 1 report called this discussion joint when it was written and
+asynchronous; I report it as it happened. *Decided for HW2:* each member builds an individual
+solution, then the solutions are merged with an AI assistant keeping the best practices, and the
+merge is reported here.
 
-<div class="todo">TODO (after the merge with Mark Starchenko, Konstantin Patrushev and Nikita Vaal):
-what the team decided from the individual solutions, which parts of mine are kept or dropped,
-and which questions stay open (e.g. which fill/prefix combination is submitted, whether the
-with-new subgroup becomes primary).</div>
+*Starchenko's solution* [8] (branch `starchenko/session2-prefix-rerank`, commit
+`{{team:starchenko_commit}}`): Qwen3-1.7B, zero-shot, reorders the customer's own past assets,
+and the popularity fill stays. On the same 100 users his LLM prefix is below a logistic regression
+(LR) given the same facts and below a model-free control that keeps the prompt's listing order (by
+ISIN). {{team:demo_100.llm_prefix_echo_input_order|d}} of {{team:demo_100.llm_prefix_valid_answers|d}}
+valid answers echo that order, and {{team:demo_100.llm_prefix_invalid|d}} of
+{{team:demo_100.llm_prefix_calls|d}} answers were invalid.
+
+*Merge (`src/team_merge.py`, done with Claude).* Our changes touch disjoint positions, so per user
+nDCG(prefix A + fill B) = nDCG(A + popularity) + nDCG(recency + B) − nDCG(recency + popularity),
+and the four-way ablation follows from the two solutions without rerunning his model. Checks
+before combining: my code rebuilds his prompt-order control and reproduces his per-user values
+for all {{team:demo_100.labelled_users|d}} labelled users and his mean (|Δ| =
+{{team:demo_100.checks.prompt_order_control_mean_abs_diff|.1f}}); the identity holds on real
+combined lists for all 100 users; and his Session 1 baseline equals my `pop_fill` on every
+development cutoff, so his LR prefix (trained on 2019-03 … 2020-06 windows) and my fills are
+measured on the same user-windows. nDCG@10; 100 users: all-user mean; dev: pooled over the
+{{team:dev_9_cutoffs.labelled_user_windows|d}} labelled and
+{{team:dev_9_cutoffs.with_new_user_windows|d}} with-new user-windows.
+
+<div class="keep" markdown="1">
+
+{{table:merge}}
+
+</div>
+
+*Merge outcome (proposed; not yet confirmed by every member).* The only change that helps on the
+development data is the LR prefix ({{derived:lr_gain_labelled|+.4f}} on labelled user-windows,
+better for {{team:dev_9_cutoffs.lr_prefix_paired.labelled.better|d}}, worse for
+{{team:dev_9_cutoffs.lr_prefix_paired.labelled.worse|d}}). Adding my LLM fill to it changes the
+with-new value by {{derived:llm_fill_on_lr_with_new|+.4f}}, the same loss as behind the recency
+prefix. The best 100-user cell (LR prefix + LLM fill) again rests on one rescued and one lost
+customer.
+Proposed team pipeline: LR prefix + popularity fill, with no LLM component for now. *Kept from each
+solution:* from Starchenko's, a model-free control for any order an LLM returns (it exposed the
+position bias) and a strict output policy with logged fallbacks; from mine, decisions on the nine
+development cutoffs with paired intervals rather than on 11 labelled users, pinned model
+revisions and hash-seed-independent tie-breaking; from both, the future-truncation leakage test.
+*Open:* Starchenko's order-bias test of the LLM prefix on the development cutoffs; my
+popularity-aware fill; whether the with-new subgroup becomes a primary metric; Konstantin
+Patrushev's individual solution was not in the repository when this merge was made, so it is not
+included. *My contribution:* everything in `hw-module-2-2` on `main`: the fill arms, the Kaggle
+inference, the controls, the tests, the development evaluation, the failure analysis and the
+merge. *Shared:* the course starter and the development protocol; the prefix arms and their
+numbers are Starchenko's.
 
 ## 6. AI Usage Disclosure
 
@@ -218,13 +256,27 @@ with-new subgroup becomes primary).</div>
 is submitted as `kosychev_session2_session.json`. **What the AI did:** it read the course
 repository and starter, wrote all code in `src/`, `kaggle/` and `tests/`, pushed and ran the
 Kaggle notebook with my approval, ran all experiments and the checks listed in §4, found and
-fixed the hash-seed tie-breaking issue, and drafted this report. **My decisions:** the model
-runs on Kaggle, not on my laptop (I stopped a local download); the model is run through the
-Kaggle API; I asked for this preliminary version for the team.
+fixed the hash-seed tie-breaking issue, read Starchenko's branch and wrote the merge with its
+checks (§5), and drafted this report. **My decisions:** the model runs on Kaggle, not on my laptop
+(I stopped a local download); the model is run through the Kaggle API; a preliminary version went
+to the team first, then the merge with Starchenko's solution.
 
-<div class="todo">TODO — What I personally verified: to be written only after I do the checks in
-<code>manual/CHECKLIST.md</code> (one user's IDs and nDCG@10 by hand against the raw CSV; the model
-input file contains no future or customer data; the baselines equal the starter's README).</div>
+**What I personally verified** (by hand, following `manual/CHECKLIST.md`). (1) *One user's IDs
+and nDCG@10.* For customer `6B1591…` I filtered `outputs/demo/predictions.csv` to `llm_fill`:
+ranks 1–2 are his past buys `GRC4261213D5` and `GRF000036001`, rank 3 is `GRF000045002`. In the
+raw `transactions.csv` he bought `GRF000036001` on 2020-02-14 and `GRC4261213D5` on 2021-03-19,
+before the cutoff, and `GRF000045002` on 2021-06-02, inside the window; his 2018-01-02 row with a
+negative `transactionID` is a reconstructed initial position, which the starter excludes. One
+relevant asset at rank 3 gives nDCG@10 = (1/log₂4)/(1/log₂2) = 0.5, the value in `per_user.csv`;
+for `latest_buy` it is 0, because the asset is not in that top ten. This user alone adds
+0.5/11 ≈ 0.045 to the nonempty mean. (2) *Model input.* `kaggle/input/asset_texts.json` holds only
+asset texts (name | category | subcategory | sector | industry | market) and their sha256, with no
+dates, customer IDs or amounts, and the Kaggle notebook reads only these texts and writes the
+`.npy` files and `manifest.json`. (3) *Baselines.* `outputs/baseline` (the unchanged starter run)
+and `outputs/demo` have the same `protocol_hash` and the same four baseline values (0.0286, 0.0201,
+0.0277, 0.0271), which are also the values in the starter's README. **Trusted without my own
+check:** the pinned model download and pooling on Kaggle, the starter's eligibility rules, the
+development pipeline and the merge (checked by code only), and Starchenko's committed numbers.
 
 ## References
 
@@ -241,3 +293,5 @@ input file contains no future or customer data; the baselines equal the starter'
 [6] Y. Zhang, M. Li, D. Long, X. Zhang, H. Lin, B. Yang, P. Xie, A. Yang, D. Liu, J. Lin, F. Huang, and J. Zhou, "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models," arXiv:2506.05176, 2025. [Online]. Available: https://arxiv.org/abs/2506.05176
 
 [7] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, "Multilingual E5 Text Embeddings: A Technical Report," arXiv:2402.05672, 2024. [Online]. Available: https://arxiv.org/abs/2402.05672
+
+[8] M. Starchenko, "Does a Small LLM Read Purchase Timing? Zero-Shot Reranking of Customers' Own Past Assets on FAR-Trans," Session 2 report, LLM4Rec, team "name," 2026. Repository https://github.com/ak1232320/rec-sys-hw1, branch `starchenko/session2-prefix-rerank`, folder `hw-module-2-2/starchenko`, commit bb64f11.

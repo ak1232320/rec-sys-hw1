@@ -15,6 +15,7 @@ pre { font-family: Consolas, 'Courier New', monospace; font-size: 7.8pt; backgro
       padding: 4px 6px; margin: 3px 0 5px; white-space: pre-wrap; }
 pre code { background: none; padding: 0; }
 table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+tr, .keep { break-inside: avoid; }
 th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
 td.num, th.num { text-align: right; }
 th { background: #dde6f2; }
@@ -27,12 +28,10 @@ span.todo { padding: 0 3px; margin: 0; }
 </style></head>
 <body><h1>Filling the Slots Recency Leaves Empty with an LLM Embedding Space: An Implemented, Matched Test on FAR-Trans</h1>
 <div class="meta">
-Student: Aleksei Kosychev &nbsp;&nbsp; Team: name &nbsp;&nbsp; Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Date: 2026-11-25<br>
-Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>) &nbsp;&nbsp; Experiment commit: <code>62e0fdb</code><br>
-Assignment: Session 2 / Homework 2 — Implement and Test Your Idea (LLM4Rec, Module 2)
+Student: Aleksei Kosychev &nbsp;&nbsp; Team: name (A. Kosychev, K. Patrushev, M. Starchenko) &nbsp;&nbsp; Date: 2026-11-25<br>
+Email: amkosychev@edu.hse.ru &nbsp;&nbsp; Repository: https://github.com/ak1232320/rec-sys-hw1 (folder <code>hw-module-2-2</code>)<br>
+Experiment commits: <code>62e0fdb</code> (my solution), <code>MERGE_COMMIT</code> (team merge) &nbsp;&nbsp; Assignment: Session 2 / Homework 2 — Implement and Test Your Idea
 </div>
-
-<div class="draft">PRELIMINARY DRAFT for team review. All measured numbers are generated from the run outputs; the yellow blocks wait for the team discussion and for my own verification.</div>
 
 <h2>Abstract</h2>
 <p>In Session 1 I asked whether frozen LLM text embeddings of as-of asset metadata, used only to
@@ -49,7 +48,9 @@ for users who buy an asset new to them: 0.2256 vs
 0.2813 for popularity (paired difference
 -0.0624), lower on all
 9 cutoffs. It fills slots with rarely bought assets. The result is negative,
-and it is reported as such.</p>
+and it is reported as such. In the merge with my teammate's prefix-reranking solution [8], the
+only change that helps on the development cutoffs is its logistic-regression prefix; both LLM
+components stay below their classical controls.</p>
 <p><em>Index Terms</em> — financial asset recommendation, LLM text embeddings, content-based filtering, nDCG, FAR-Trans</p>
 <h2>1. Introduction</h2>
 <p><strong>Problem and question.</strong> Each evaluated FAR-Trans customer gets a Top-10 asset list, scored by
@@ -448,9 +449,10 @@ compressed: its mean pairwise cosine is 0.48, against
 name-and-issuer siblings, and most of them are long-tail assets that almost nobody buys.
 Semantic closeness is not purchase propensity in this data.</p>
 <p><strong>Checks run by code (AI-performed, <code>tests/test_fill.py</code> and the run outputs).</strong> The starter's 58
-tests pass on the unchanged copy. My 19 tests pass: fill units, embedding alignment and finiteness,
+tests pass on the unchanged copy. My 20 tests pass: fill units, embedding alignment and finiteness,
 <code>pop_fill</code> = <code>latest_buy</code>, the repeat-only tie, prefix preservation, the protocol and baseline
-match with a fresh starter run, the future-blind test, and hash-seed independence. The non-LLM
+match with a fresh starter run, the future-blind test, hash-seed independence, and the
+prefix/fill additivity that the team merge (§5) relies on. The non-LLM
 arms match the Session 1 pilot up to tie-breaking (max |Δ| = 0.0006).</p>
 <h2>5. Discussion</h2>
 <p><strong>What improved, what failed.</strong> The implementation works end to end: a pinned open-weight LLM,
@@ -468,35 +470,129 @@ first one is settled.</p>
 symmetrically, as documents. The bootstrap ignores repeated customers. 93% of new-to-user labels
 are stocks. The data cover one institution, 2020–2022. The HW2 sample has 11 labelled users, so
 its ordering of methods is not evidence. No suitability, return or profit claim is made.</p>
-<p><strong>Team discussion and individual contribution.</strong> <em>Documented so far:</em> in Session 1 Mark Starchenko
-sent written proposals through the repository (PR #1, merged 2026-11-18). He proposed to split
-<code>latest_buy</code> into the prefix (his Ranker question: reorder it with an LLM vs logistic regression)
-and the fill (my Encoder question), which gives a clean baseline / encoder-only / ranker-only /
-both ablation. He also proposed the nine-cutoff development protocol and the exclusion of
-<code>lastQuestionnaireDate</code>. He noted that my Session 1 report described that discussion as joint,
-when it was written and asynchronous; I report it here as it happened. For HW2 the team agreed on
-a process: each member builds an individual solution first, then the solutions are merged with
-an AI assistant keeping the best practices, and the merge is reported as the team discussion.
-<em>My work (individual):</em> everything in <code>hw-module-2-2</code>: the design of the arms, the Kaggle
-inference, the controls, the tests, the development evaluation and the failure analysis.
-<em>Shared:</em> the course starter and the development protocol.</p>
-<div class="todo">TODO (after the merge with Mark Starchenko, Konstantin Patrushev and Nikita Vaal):
-what the team decided from the individual solutions, which parts of mine are kept or dropped,
-and which questions stay open (e.g. which fill/prefix combination is submitted, whether the
-with-new subgroup becomes primary).</div>
-
+<p><strong>Team discussion and individual contribution.</strong> <em>Session 1:</em> Mark Starchenko sent written
+proposals through the repository (PR #1, merged 2026-11-18): split <code>latest_buy</code> into the prefix
+(his Ranker question) and the fill (my Encoder question) for a baseline / prefix-only / fill-only /
+both ablation, the nine-cutoff development protocol, and the exclusion of <code>lastQuestionnaireDate</code>.
+He noted that my Session 1 report called this discussion joint when it was written and
+asynchronous; I report it as it happened. <em>Decided for HW2:</em> each member builds an individual
+solution, then the solutions are merged with an AI assistant keeping the best practices, and the
+merge is reported here.</p>
+<p><em>Starchenko's solution</em> [8] (branch <code>starchenko/session2-prefix-rerank</code>, commit
+<code>bb64f11</code>): Qwen3-1.7B, zero-shot, reorders the customer's own past assets,
+and the popularity fill stays. On the same 100 users his LLM prefix is below a logistic regression
+(LR) given the same facts and below a model-free control that keeps the prompt's listing order (by
+ISIN). 46 of 57
+valid answers echo that order, and 3 of
+60 answers were invalid.</p>
+<p><em>Merge (<code>src/team_merge.py</code>, done with Claude).</em> Our changes touch disjoint positions, so per user
+nDCG(prefix A + fill B) = nDCG(A + popularity) + nDCG(recency + B) − nDCG(recency + popularity),
+and the four-way ablation follows from the two solutions without rerunning his model. Checks
+before combining: my code rebuilds his prompt-order control and reproduces his per-user values
+for all 11 labelled users and his mean (|Δ| =
+0.0); the identity holds on real
+combined lists for all 100 users; and his Session 1 baseline equals my <code>pop_fill</code> on every
+development cutoff, so his LR prefix (trained on 2019-03 … 2020-06 windows) and my fills are
+measured on the same user-windows. nDCG@10; 100 users: all-user mean; dev: pooled over the
+12,163 labelled and
+5,051 with-new user-windows.</p>
+<div class="keep">
+<table>
+<thead>
+<tr>
+<th>Prefix order (Starchenko)</th>
+<th style="text-align: right;">100 users: pop. fill</th>
+<th style="text-align: right;">100 users: LLM fill</th>
+<th style="text-align: right;">Dev labelled: pop. fill</th>
+<th style="text-align: right;">Dev labelled: LLM fill</th>
+<th style="text-align: right;">Dev with-new: pop. fill</th>
+<th style="text-align: right;">Dev with-new: LLM fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recency (= <code>latest_buy</code>)</td>
+<td style="text-align: right;">0.0277</td>
+<td style="text-align: right;">0.0294</td>
+<td style="text-align: right;">0.5648</td>
+<td style="text-align: right;">0.5389</td>
+<td style="text-align: right;">0.2906</td>
+<td style="text-align: right;">0.2282</td>
+</tr>
+<tr>
+<td>Logistic regression, same facts</td>
+<td style="text-align: right;">0.0343</td>
+<td style="text-align: right;">0.0359</td>
+<td style="text-align: right;">0.5705</td>
+<td style="text-align: right;">0.5446</td>
+<td style="text-align: right;">0.2954</td>
+<td style="text-align: right;">0.2331</td>
+</tr>
+<tr>
+<td>Prompt listing order (no model)</td>
+<td style="text-align: right;">0.0341</td>
+<td style="text-align: right;">0.0358</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+</tr>
+<tr>
+<td>LLM, Qwen3-1.7B zero-shot</td>
+<td style="text-align: right;">0.0316</td>
+<td style="text-align: right;">0.0332</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+<td style="text-align: right;">not run</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Merge outcome (proposed; not yet confirmed by every member).</em> The only change that helps on the
+development data is the LR prefix (+0.0057 on labelled user-windows,
+better for 2,590, worse for
+2,086). Adding my LLM fill to it changes the
+with-new value by -0.0624, the same loss as behind the recency
+prefix. The best 100-user cell (LR prefix + LLM fill) again rests on one rescued and one lost
+customer.
+Proposed team pipeline: LR prefix + popularity fill, with no LLM component for now. <em>Kept from each
+solution:</em> from Starchenko's, a model-free control for any order an LLM returns (it exposed the
+position bias) and a strict output policy with logged fallbacks; from mine, decisions on the nine
+development cutoffs with paired intervals rather than on 11 labelled users, pinned model
+revisions and hash-seed-independent tie-breaking; from both, the future-truncation leakage test.
+<em>Open:</em> Starchenko's order-bias test of the LLM prefix on the development cutoffs; my
+popularity-aware fill; whether the with-new subgroup becomes a primary metric; Konstantin
+Patrushev's individual solution was not in the repository when this merge was made, so it is not
+included. <em>My contribution:</em> everything in <code>hw-module-2-2</code> on <code>main</code>: the fill arms, the Kaggle
+inference, the controls, the tests, the development evaluation, the failure analysis and the
+merge. <em>Shared:</em> the course starter and the development protocol; the prefix arms and their
+numbers are Starchenko's.</p>
 <h2>6. AI Usage Disclosure</h2>
 <p><strong>Tool.</strong> Claude Code (model Claude Opus 5.5, Anthropic) in VS Code; the native session export
 is submitted as <code>kosychev_session2_session.json</code>. <strong>What the AI did:</strong> it read the course
 repository and starter, wrote all code in <code>src/</code>, <code>kaggle/</code> and <code>tests/</code>, pushed and ran the
 Kaggle notebook with my approval, ran all experiments and the checks listed in §4, found and
-fixed the hash-seed tie-breaking issue, and drafted this report. <strong>My decisions:</strong> the model
-runs on Kaggle, not on my laptop (I stopped a local download); the model is run through the
-Kaggle API; I asked for this preliminary version for the team.</p>
-<div class="todo">TODO — What I personally verified: to be written only after I do the checks in
-<code>manual/CHECKLIST.md</code> (one user's IDs and nDCG@10 by hand against the raw CSV; the model
-input file contains no future or customer data; the baselines equal the starter's README).</div>
-
+fixed the hash-seed tie-breaking issue, read Starchenko's branch and wrote the merge with its
+checks (§5), and drafted this report. <strong>My decisions:</strong> the model runs on Kaggle, not on my laptop
+(I stopped a local download); the model is run through the Kaggle API; a preliminary version went
+to the team first, then the merge with Starchenko's solution.</p>
+<p><strong>What I personally verified</strong> (by hand, following <code>manual/CHECKLIST.md</code>). (1) <em>One user's IDs
+and nDCG@10.</em> For customer <code>6B1591…</code> I filtered <code>outputs/demo/predictions.csv</code> to <code>llm_fill</code>:
+ranks 1–2 are his past buys <code>GRC4261213D5</code> and <code>GRF000036001</code>, rank 3 is <code>GRF000045002</code>. In the
+raw <code>transactions.csv</code> he bought <code>GRF000036001</code> on 2020-02-14 and <code>GRC4261213D5</code> on 2021-03-19,
+before the cutoff, and <code>GRF000045002</code> on 2021-06-02, inside the window; his 2018-01-02 row with a
+negative <code>transactionID</code> is a reconstructed initial position, which the starter excludes. One
+relevant asset at rank 3 gives nDCG@10 = (1/log₂4)/(1/log₂2) = 0.5, the value in <code>per_user.csv</code>;
+for <code>latest_buy</code> it is 0, because the asset is not in that top ten. This user alone adds
+0.5/11 ≈ 0.045 to the nonempty mean. (2) <em>Model input.</em> <code>kaggle/input/asset_texts.json</code> holds only
+asset texts (name | category | subcategory | sector | industry | market) and their sha256, with no
+dates, customer IDs or amounts, and the Kaggle notebook reads only these texts and writes the
+<code>.npy</code> files and <code>manifest.json</code>. (3) <em>Baselines.</em> <code>outputs/baseline</code> (the unchanged starter run)
+and <code>outputs/demo</code> have the same <code>protocol_hash</code> and the same four baseline values (0.0286, 0.0201,
+0.0277, 0.0271), which are also the values in the starter's README. <strong>Trusted without my own
+check:</strong> the pinned model download and pooling on Kaggle, the starter's eligibility rules, the
+development pipeline and the merge (checked by code only), and Starchenko's committed numbers.</p>
 <h2>References</h2>
 <p>[1] J. Sanz-Cruzado, N. Droukas, and R. McCreadie, "FAR-Trans: An Investment Dataset for Financial Asset Recommendation," in <em>Proc. IJCAI-24 Workshop on Recommender Systems in Finance (Fin-RecSys)</em>, Jeju, 2024. [Online]. Available: https://arxiv.org/abs/2407.08692</p>
 <p>[2] University of Glasgow, "FAR-Trans dataset," research data repository. [Online]. Available: https://researchdata.gla.ac.uk/1658/</p>
@@ -504,4 +600,5 @@ input file contains no future or customer data; the baselines equal the starter'
 <p>[4] H. Lyu, S. Jiang, H. Zeng, Y. Xia, Q. Wang, S. Zhang, R. Chen, C. Leung, J. Tang, and J. Luo, "LLM-Rec: Personalized Recommendation via Prompting Large Language Models," in <em>Findings of NAACL</em>, 2024. [Online]. Available: https://arxiv.org/abs/2307.15780</p>
 <p>[5] Q. Liu, N. Chen, T. Sakai, and X.-M. Wu, "ONCE: Boosting Content-based Recommendation with Both Open- and Closed-source Large Language Models," in <em>Proc. 17th ACM Int. Conf. Web Search and Data Mining (WSDM)</em>, 2024, pp. 452–461. [Online]. Available: https://arxiv.org/abs/2305.06566</p>
 <p>[6] Y. Zhang, M. Li, D. Long, X. Zhang, H. Lin, B. Yang, P. Xie, A. Yang, D. Liu, J. Lin, F. Huang, and J. Zhou, "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models," arXiv:2506.05176, 2025. [Online]. Available: https://arxiv.org/abs/2506.05176</p>
-<p>[7] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, "Multilingual E5 Text Embeddings: A Technical Report," arXiv:2402.05672, 2024. [Online]. Available: https://arxiv.org/abs/2402.05672</p></body></html>
+<p>[7] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, "Multilingual E5 Text Embeddings: A Technical Report," arXiv:2402.05672, 2024. [Online]. Available: https://arxiv.org/abs/2402.05672</p>
+<p>[8] M. Starchenko, "Does a Small LLM Read Purchase Timing? Zero-Shot Reranking of Customers' Own Past Assets on FAR-Trans," Session 2 report, LLM4Rec, team "name," 2026. Repository https://github.com/ak1232320/rec-sys-hw1, branch <code>starchenko/session2-prefix-rerank</code>, folder <code>hw-module-2-2/starchenko</code>, commit bb64f11.</p></body></html>

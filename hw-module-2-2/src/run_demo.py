@@ -122,9 +122,10 @@ def build(args):
     for arm in SHORTLIST_ARMS:
         timings['scoring_seconds'][arm] = 'included in the scoring time of its space'
 
-    per_user = []
+    per_user, relevant_sets = [], {}
     for uid in users:
         relevant = truth.get(uid, set()) & set(contexts[uid]['eligible_asset_ids'])
+        relevant_sets[uid] = relevant
         new = {i for i in relevant if i not in history[uid]}
         free = 10 - min(10, len(history[uid]))
         for method, ranking in predictions[uid].items():
@@ -145,7 +146,9 @@ def build(args):
     return {'starter': starter, 'protocol': protocol, 'users': users, 'predictions': predictions,
             'per_user': per_user, 'metrics': metrics, 'methods': methods, 'failures': failures,
             'pop_fill_mismatch_users': mismatch, 'timings': timings, 'excluded': excluded,
-            'embedding_manifest': manifest}
+            'embedding_manifest': manifest,
+            'history': {uid: history[uid] for uid in users},   # for the team merge (team_merge.py)
+            'relevant': relevant_sets}
 
 
 def cross_check(result, baseline_dir):

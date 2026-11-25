@@ -19,7 +19,8 @@ SOURCES = {'demo': ROOT / 'outputs' / 'demo' / 'metrics.json',
            'dev': ROOT / 'outputs' / 'dev' / 'dev_metrics.json',
            'diag': ROOT / 'outputs' / 'dev' / 'diagnose_2021-06-01.json',
            'base': ROOT / 'outputs' / 'baseline' / 'timing.json',
-           'emb': ROOT / 'kaggle' / 'output' / 'manifest.json'}
+           'emb': ROOT / 'kaggle' / 'output' / 'manifest.json',
+           'team': ROOT / 'outputs' / 'team' / 'merge.json'}
 DATA = {k: json.loads(p.read_text(encoding='utf-8')) for k, p in SOURCES.items() if p.exists()}
 
 
@@ -40,6 +41,10 @@ DATA['derived'] = {
     'demo100_llm_above_pop': _count(_cuts, lambda b: _demo(b, 'llm_fill') > _demo(b, 'pop_fill')),
     'with_new_share_of_labelled': DATA['dev']['with_new_user_windows'] / DATA['dev']['labelled_user_windows'],
 }
+_g = DATA['team']['dev_9_cutoffs']['grid_pooled']
+for _group in ('labelled', 'with_new'):
+    DATA['derived'][f'lr_gain_{_group}'] = _g['lr'][_group]['pop_fill'] - _g['recency'][_group]['pop_fill']
+    DATA['derived'][f'llm_fill_on_lr_{_group}'] = _g['lr'][_group]['llm_fill'] - _g['lr'][_group]['pop_fill']
 
 NAMES = {'popularity': 'Popularity', 'cbf': 'CBF', 'latest_buy': 'Latest buy',
          'latest_buy_or_sell': 'Latest buy or sell', 'pop_fill': 'Popularity fill (= Latest buy)',
@@ -123,7 +128,24 @@ def paired_table():
     return '\n'.join(rows)
 
 
-TABLES = {'demo': demo_table, 'dev': dev_table, 'paired': paired_table}
+def merge_table():
+    team = DATA['team']
+    d, v = team['demo_100']['grid'], team['dev_9_cutoffs']['grid_pooled']
+    names = {'recency': 'Recency (= `latest_buy`)', 'lr': 'Logistic regression, same facts',
+             'input_order': 'Prompt listing order (no model)', 'llm': 'LLM, Qwen3-1.7B zero-shot'}
+    rows = ['| Prefix order (Starchenko) | 100 users: pop. fill | 100 users: LLM fill | '
+            'Dev labelled: pop. fill | Dev labelled: LLM fill | Dev with-new: pop. fill | '
+            'Dev with-new: LLM fill |', '|---|---:|---:|---:|---:|---:|---:|']
+    for arm, name in names.items():
+        cells = [f"{d[arm][f]['ndcg_at_10']:.4f}" for f in ('pop_fill', 'llm_fill')]
+        for group in ('labelled', 'with_new'):
+            cells += ([f"{v[arm][group][f]:.4f}" for f in ('pop_fill', 'llm_fill')]
+                      if arm in v else ['not run', 'not run'])
+        rows.append(f"| {name} | " + ' | '.join(cells) + ' |')
+    return '\n'.join(rows)
+
+
+TABLES = {'demo': demo_table, 'dev': dev_table, 'paired': paired_table, 'merge': merge_table}
 
 
 def render(md_text):
@@ -147,6 +169,7 @@ pre { font-family: Consolas, 'Courier New', monospace; font-size: 7.8pt; backgro
       padding: 4px 6px; margin: 3px 0 5px; white-space: pre-wrap; }
 pre code { background: none; padding: 0; }
 table { border-collapse: collapse; width: 100%; font-size: 8.2pt; margin: 3px 0 5px; }
+tr, .keep { break-inside: avoid; }
 th, td { border: 1px solid #8fa3bf; padding: 1px 4px; text-align: left; vertical-align: top; }
 td.num, th.num { text-align: right; }
 th { background: #dde6f2; }

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import random
 import subprocess
 import sys
 import tempfile
@@ -167,6 +168,22 @@ class StarterIntegration(unittest.TestCase):
         self.assertTrue(check['protocol_hash_equal'])
         self.assertTrue(check['baseline_prediction_rows_equal'])
         self.assertTrue(check['baseline_per_user_ndcg_equal'])
+
+    def test_prefix_and_fill_effects_add_up(self):
+        """Team-merge identity: nDCG(A+B) = nDCG(A+pop) + nDCG(recency+B) - nDCG(recency+pop)."""
+        r, rng = self.result, random.Random(0)
+        ndcg = r['starter'].ndcg10
+        for uid in r['users']:
+            hist, rel, pred = r['history'][uid], r['relevant'][uid], r['predictions'][uid]
+            p = min(10, len(hist))
+            other = sorted(hist)
+            rng.shuffle(other)                      # another prefix order (and choice, if > 10)
+            other = other[:p]
+            alt = ndcg(other + pred['pop_fill'][p:], rel)
+            for fill in ('llm_fill', 'tfidf_fill', 'tfidf_top20'):
+                both = ndcg(other + pred[fill][p:], rel)
+                self.assertAlmostEqual(both, alt + ndcg(pred[fill], rel) - ndcg(pred['pop_fill'], rel),
+                                       places=12)
 
     def test_lists_do_not_depend_on_the_python_hash_seed(self):
         code = ('import sys, json, hashlib, argparse; sys.path.insert(0, "src"); import run_demo; '

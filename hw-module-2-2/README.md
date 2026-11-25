@@ -1,6 +1,7 @@
 # Session 2 (HW2): LLM-embedding fill on FAR-Trans — Aleksei Kosychev
 
-Individual implementation of my Session 1 question (Encoder track). Team: name.
+Individual implementation of my Session 1 question (Encoder track), merged with Mark
+Starchenko's prefix-reranking solution. Team: name (A. Kosychev, K. Patrushev, M. Starchenko).
 Report: [report/kosychev_session2_report.pdf](report/kosychev_session2_report.pdf)
 (source `report/report.md`). The task statement is [homework2.md](homework2.md).
 
@@ -25,7 +26,8 @@ encoder that is not an LLM).
 | `src/run_demo.py` | HW2 protocol (100 users, 2021-06-01, 30 days): four baselines + all arms → `outputs/demo/` |
 | `src/run_dev.py` | development evaluation, nine quarterly cutoffs, all warm users → `outputs/dev/dev_metrics.json` |
 | `src/diagnose.py` | failure analysis of the fills on one cutoff → `outputs/dev/diagnose_<cutoff>.json` |
-| `tests/test_fill.py` | unit tests, starter cross-check, future-blind test |
+| `src/team_merge.py` | team merge: Starchenko's prefix arms (branch `starchenko/session2-prefix-rerank`, commit `bb64f11`) × my fills, with cross-checks → `outputs/team/merge.json` |
+| `tests/test_fill.py` | unit tests, starter cross-check, future-blind test, prefix/fill additivity |
 | `manual/CHECKLIST.md` | the hand checks for the report's verification section |
 
 ## Reproduce
@@ -43,6 +45,7 @@ kaggle kernels output alekseykosychev/far-trans-asset-embeddings -p kaggle/outpu
 python src/run_demo.py                      # HW2 table
 python src/run_dev.py                       # nine-cutoff development table (~10 min)
 python src/diagnose.py 2021-06-01
+python src/team_merge.py                    # needs commit bb64f11 (git fetch origin)
 python -m unittest discover -s tests -v
 python -m unittest discover -s starter -p "test_*.py"
 ```
@@ -57,3 +60,9 @@ See the report. In short: on the HW2 100-user sample the LLM fill scores highest
 from one customer; on the nine development cutoffs (12,163 labelled user-windows) it is
 the **worst** fill on the users who buy something new to them — it moves the fill into
 the long tail of rarely bought assets. A negative result, reported as such.
+
+**Team merge.** The prefix and fill changes touch disjoint list positions, so their effects
+add up exactly per user (checked by a test and on real lists). On the nine development
+cutoffs, Starchenko's logistic-regression prefix with the popularity fill is the best
+combination (pooled labelled nDCG@10 0.5705 vs 0.5648 for `latest_buy`); adding my LLM fill
+lowers it (0.5446). Proposed team pipeline: LR prefix + popularity fill.
